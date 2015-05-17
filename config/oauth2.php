@@ -38,6 +38,10 @@ return [
 			// whether or not to issue a new refresh token when a new access token is issued
 			'rotate_refresh_tokens' => false,
 		],
+		'direct' => [
+			'class' => 'Muhit\Models\DirectGrant',
+			'access_token_ttl' => 604800,
+		],
 	],
 
 	/*

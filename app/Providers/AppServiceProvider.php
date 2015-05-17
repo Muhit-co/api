@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
-		Response::macro("api", function ($msg = "", $data = []) {
+		Response::macro("api", function ($code = 200, $msg = "", $data = []) {
 			return response()->json([
 				"info" => [
 					"request_time" => date("r"),
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider {
 				],
 				"msg" => $msg,
 				"data" => $data,
-			]);
+			])->setStatusCode($code);
 		});
 	}
 

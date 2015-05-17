@@ -11,7 +11,7 @@ class Handler extends ExceptionHandler {
 	 * @var array
 	 */
 	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException'
+		'Symfony\Component\HttpKernel\Exception\HttpException',
 	];
 
 	/**
@@ -22,8 +22,7 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return void
 	 */
-	public function report(Exception $e)
-	{
+	public function report(Exception $e) {
 		return parent::report($e);
 	}
 
@@ -34,9 +33,9 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return \Illuminate\Http\Response
 	 */
-	public function render($request, Exception $e)
-	{
-		return parent::render($request, $e);
+	public function render($request, Exception $e) {
+		#return parent::render($request, $e);
+		return response()->api(500, 'Error', ['details' => json_encode((array) $e)]);
 	}
 
 }

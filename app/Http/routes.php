@@ -12,9 +12,15 @@
  */
 
 Route::get('/', function () {
-	return response()->api("Welcome to the Muhit API. ");
+	return response()->api(200, "Welcome to the Muhit API. ");
 });
 
 Route::get('/secure', ['before' => 'oauth', function () {
-	return response()->api("You have access to the secure calls");
+	return response()->api(500, "You have access to the secure calls");
 }]);
+
+Route::controller('/auth', 'AuthController');
+
+Route::group(['before' => ['oauth']], function () {
+
+});
