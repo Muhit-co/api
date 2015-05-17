@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Muhit
+        psr4_prefix: Muhit
+        src_path: app
