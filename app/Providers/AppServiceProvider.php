@@ -1,6 +1,8 @@
 <?php namespace Muhit\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Request;
+use Response;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -9,9 +11,20 @@ class AppServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function boot()
-	{
-		//
+	public function boot() {
+		Response::macro("api", function ($msg = "", $data = []) {
+			return response()->json([
+				"info" => [
+					"request_time" => date("r"),
+					"request_uri" => Request::path(),
+					"request_url" => Request::url(),
+					"api_version" => "0.1",
+					"response_time" => 0,
+				],
+				"msg" => $msg,
+				"data" => $data,
+			]);
+		});
 	}
 
 	/**
@@ -23,8 +36,7 @@ class AppServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
 			'Muhit\Services\Registrar'

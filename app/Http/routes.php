@@ -9,13 +9,12 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function () {
+	return response()->api("Welcome to the Muhit API. ");
+});
 
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('/secure', ['before' => 'oauth', function () {
+	return response()->api("You have access to the secure calls");
+}]);

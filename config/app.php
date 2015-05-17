@@ -145,6 +145,14 @@ return [
 		'Muhit\Providers\EventServiceProvider',
 		'Muhit\Providers\RouteServiceProvider',
 
+		/*
+		 *	3rd party providers
+		 */
+
+		'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
+		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
+		'Laravel\Socialite\SocialiteServiceProvider',
+
 	],
 
 	/*
@@ -192,6 +200,8 @@ return [
 		'URL' => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View' => 'Illuminate\Support\Facades\View',
+		'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\AuthorizerFacade',
+		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

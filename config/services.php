@@ -12,7 +12,7 @@ return [
 	| default location for this type of information, allowing packages
 	| to have a conventional place to find your various credentials.
 	|
-	*/
+	 */
 
 	'mailgun' => [
 		'domain' => '',
@@ -20,7 +20,7 @@ return [
 	],
 
 	'mandrill' => [
-		'secret' => '',
+		'secret' => env('MANDRILL'),
 	],
 
 	'ses' => [
@@ -30,8 +30,14 @@ return [
 	],
 
 	'stripe' => [
-		'model'  => 'App\User',
+		'model' => 'Muhit\Models\User',
 		'secret' => '',
+	],
+
+	'facebook' => [
+		'client_id' => env('FB_ID'),
+		'client_secret' => env('FB_SECRET'),
+		'redirect' => env('URL') . 'auth/facebook',
 	],
 
 ];
