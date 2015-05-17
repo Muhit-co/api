@@ -11,7 +11,7 @@ class Users extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		$this->schema()->create('users', function (Blueprint $table) {
+		Schema::create('users', function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('username')->unique();
 			$table->string('email')->unique();
@@ -22,6 +22,15 @@ class Users extends Migration {
 			$table->rememberToken();
 			$table->timestamps();
 		});
+
+		Schema::create('user_social_accounts', function (Blueprint $table) {
+			$table->bigIncrements('id');
+			$table->bigInteger('user_id')->unsigned();
+			$table->string('source');
+			$table->string('source_id');
+			$table->string('access_token');
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -30,7 +39,8 @@ class Users extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		$this->schema()->drop('users');
+		Schema::drop('users');
+		Schema::drop('user_social_accounts');
 	}
 
 }
