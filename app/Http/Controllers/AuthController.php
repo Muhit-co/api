@@ -49,6 +49,10 @@ class AuthController extends Controller {
 		$user->first_name = $data['first_name'];
 		$user->last_name = $data['last_name'];
 
+		if (isset($data['active_hood']) and !empty($data['active_hood'])) {
+			$user->active_hood = $data['active_hood'];
+		}
+
 		try {
 			$user->save();
 		} catch (Exception $e) {
