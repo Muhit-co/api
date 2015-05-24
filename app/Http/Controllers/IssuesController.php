@@ -1,84 +1,129 @@
 <?php namespace Muhit\Http\Controllers;
 
-use Muhit\Http\Requests;
 use Muhit\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use Request;
 
 class IssuesController extends Controller {
 
 	/**
-	 * Display a listing of the resource.
+	 * creates a new issues
 	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function postAdd() {
+		$data = Request::all();
+
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * list issues
 	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function getList($start = 0) {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * search issues
 	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function postSearch() {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * issue detail
 	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function getView($id = null) {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * get popular issues via paginate
 	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function getPopular($start = 0) {
+
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * get latest issues via paginate
 	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function getLatest($start = 0) {
+
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * get issues via tag
 	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+	 * @return json
+	 * @author
+	 **/
+	public function getByTag($tag_id = null, $start = 0) {
+
 	}
 
+	/**
+	 * get issues by hood
+	 *
+	 * @return json
+	 * @author
+	 **/
+	public function getByHood($hood_id = null, $start = 0) {
+	}
+
+	/**
+	 * get issues by district
+	 *
+	 * @return json
+	 * @author
+	 **/
+	public function getByDistrict($district_id = null, $start = 0) {
+	}
+
+	/**
+	 * get issues by city
+	 *
+	 * @return json
+	 * @author
+	 **/
+	public function getByCity($city_id = null, $start = 0) {
+	}
+
+	/**
+	 * get issues by user
+	 *
+	 * @return json
+	 * @author
+	 **/
+	public function getByUser($user_id = null, $start = 0) {
+	}
+
+	/**
+	 * get issues by status
+	 *
+	 * @return json
+	 * @author
+	 **/
+	public function getByStatus($status = null, $start = 0) {
+	}
+
+	/**
+	 * get issues by sporter id
+	 *
+	 * @return json
+	 * @author
+	 **/
+	public function getBySupporter($user_id = null, $start = 0) {
+	}
 }
