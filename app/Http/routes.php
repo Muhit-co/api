@@ -20,6 +20,7 @@ Route::get('/secure', ['before' => 'oauth', function () {
 }]);
 
 Route::controller('/auth', 'AuthController');
+Route::controller('/hoods', 'HoodsController');
 
 Route::group(['before' => ['oauth']], function () {
 
