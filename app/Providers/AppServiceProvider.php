@@ -23,7 +23,11 @@ class AppServiceProvider extends ServiceProvider {
 				],
 				"msg" => $msg,
 				"data" => $data,
-			])->setStatusCode($code);
+			])
+			->setStatusCode($code)
+			->header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+			->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, DELETE, PUT')
+			->header('Access-Control-Allow-Origin', '*');
 		});
 	}
 
