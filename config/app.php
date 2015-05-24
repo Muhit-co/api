@@ -151,7 +151,6 @@ return [
 
 		'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
 		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
-		'Laravel\Socialite\SocialiteServiceProvider',
 
 	],
 
@@ -201,7 +200,6 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View' => 'Illuminate\Support\Facades\View',
 		'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\AuthorizerFacade',
-		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d5551fead1c28be0fd999348e5d1d35",
+    "hash": "1e968e2ed149ac81c0d0a97246931188",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.4",
+            "version": "2.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1f92deea40f03f1112cd3d026141d89eabbaf858"
+                "reference": "f7a45e68187bc29d82b710b753fda47839a73d98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1f92deea40f03f1112cd3d026141d89eabbaf858",
-                "reference": "1f92deea40f03f1112cd3d026141d89eabbaf858",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f7a45e68187bc29d82b710b753fda47839a73d98",
+                "reference": "f7a45e68187bc29d82b710b753fda47839a73d98",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-05-14 23:43:27"
+            "time": "2015-05-21 20:09:31"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -290,6 +290,55 @@
             "time": "2014-12-20 21:24:13"
         },
         {
+            "name": "facebook/php-sdk-v4",
+            "version": "4.0.23",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
+                "reference": "c82611e05596622c9bd7abfa1cea1512d885c95e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/c82611e05596622c9bd7abfa1cea1512d885c95e",
+                "reference": "c82611e05596622c9bd7abfa1cea1512d885c95e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~4.0",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2015-04-03 20:31:47"
+        },
+        {
             "name": "guzzle/guzzle",
             "version": "v3.9.3",
             "source": {
@@ -386,26 +435,26 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "5.2.0",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "475b29ccd411f2fa8a408e64576418728c032cfa"
+                "reference": "f3c8c22471cb55475105c14769644a49c3262b93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/475b29ccd411f2fa8a408e64576418728c032cfa",
-                "reference": "475b29ccd411f2fa8a408e64576418728c032cfa",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f3c8c22471cb55475105c14769644a49c3262b93",
+                "reference": "f3c8c22471cb55475105c14769644a49c3262b93",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/ringphp": "~1.0",
+                "guzzlehttp/ringphp": "^1.1",
                 "php": ">=5.4.0"
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "~4.0",
-                "psr/log": "~1.0"
+                "phpunit/phpunit": "^4.0",
+                "psr/log": "^1.0"
             },
             "type": "library",
             "extra": {
@@ -440,20 +489,20 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-01-28 01:03:29"
+            "time": "2015-05-20 03:47:55"
         },
         {
             "name": "guzzlehttp/ringphp",
-            "version": "1.0.7",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/RingPHP.git",
-                "reference": "52d868f13570a9a56e5fce6614e0ec75d0f13ac2"
+                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/52d868f13570a9a56e5fce6614e0ec75d0f13ac2",
-                "reference": "52d868f13570a9a56e5fce6614e0ec75d0f13ac2",
+                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
+                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
                 "shasum": ""
             },
             "require": {
@@ -471,7 +520,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -491,7 +540,7 @@
                 }
             ],
             "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
-            "time": "2015-03-30 01:43:20"
+            "time": "2015-05-20 03:37:09"
         },
         {
             "name": "guzzlehttp/streams",
@@ -856,71 +905,17 @@
             "time": "2015-05-11 22:15:00"
         },
         {
-            "name": "laravel/socialite",
-            "version": "v2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/socialite.git",
-                "reference": "3d5f6560f8642c4973b5e54a67b1368ee81ff24d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/3d5f6560f8642c4973b5e54a67b1368ee81ff24d",
-                "reference": "3d5f6560f8642c4973b5e54a67b1368ee81ff24d",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "~4.0|~5.0",
-                "illuminate/contracts": "~5.0",
-                "illuminate/http": "~5.0",
-                "illuminate/support": "~5.0",
-                "league/oauth1-client": "~1.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Socialite\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "Laravel wrapper around OAuth 1 & OAuth 2 libraries.",
-            "keywords": [
-                "laravel",
-                "oauth"
-            ],
-            "time": "2015-03-13 02:40:10"
-        },
-        {
             "name": "league/event",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/event.git",
-                "reference": "cecc6213023a8b18efb163853569082051e5f1ea"
+                "reference": "e4bfc88dbcb60c8d8a2939a71f9813e141bbe4cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/cecc6213023a8b18efb163853569082051e5f1ea",
-                "reference": "cecc6213023a8b18efb163853569082051e5f1ea",
+                "url": "https://api.github.com/repos/thephpleague/event/zipball/e4bfc88dbcb60c8d8a2939a71f9813e141bbe4cd",
+                "reference": "e4bfc88dbcb60c8d8a2939a71f9813e141bbe4cd",
                 "shasum": ""
             },
             "require": {
@@ -957,7 +952,7 @@
                 "event",
                 "listener"
             ],
-            "time": "2015-03-30 07:53:52"
+            "time": "2015-05-21 12:24:47"
         },
         {
             "name": "league/flysystem",
@@ -1044,16 +1039,16 @@
         },
         {
             "name": "league/flysystem-aws-s3-v2",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-aws-s3-v2.git",
-                "reference": "dfb35efdbd1261b114d0dcb6785b4d1c05467e0f"
+                "reference": "a5baeb6658410feaf360820b35c5117d958041df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v2/zipball/dfb35efdbd1261b114d0dcb6785b4d1c05467e0f",
-                "reference": "dfb35efdbd1261b114d0dcb6785b4d1c05467e0f",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v2/zipball/a5baeb6658410feaf360820b35c5117d958041df",
+                "reference": "a5baeb6658410feaf360820b35c5117d958041df",
                 "shasum": ""
             },
             "require": {
@@ -1087,70 +1082,7 @@
                 }
             ],
             "description": "Flysystem adapter for AWS S3 SDK v2",
-            "time": "2015-02-10 13:16:47"
-        },
-        {
-            "name": "league/oauth1-client",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/oauth1-client.git",
-                "reference": "b378b2ba54f0de789628c9b5784bcf01c8303adf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/b378b2ba54f0de789628c9b5784bcf01c8303adf",
-                "reference": "b378b2ba54f0de789628c9b5784bcf01c8303adf",
-                "shasum": ""
-            },
-            "require": {
-                "guzzle/guzzle": "3.*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.7.2",
-                "phpunit/phpunit": "*",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\OAuth1\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Corlett",
-                    "email": "bencorlett@me.com",
-                    "homepage": "http://www.webcomm.com.au",
-                    "role": "Developer"
-                }
-            ],
-            "description": "OAuth 1.0 Client Library",
-            "keywords": [
-                "Authentication",
-                "SSO",
-                "authorization",
-                "bitbucket",
-                "identity",
-                "idp",
-                "oauth",
-                "oauth1",
-                "single sign on",
-                "trello",
-                "tumblr",
-                "twitter"
-            ],
-            "time": "2015-04-07 00:07:18"
+            "time": "2015-05-19 14:01:37"
         },
         {
             "name": "league/oauth2-server",
@@ -1218,39 +1150,39 @@
         },
         {
             "name": "lucadegasperi/oauth2-server-laravel",
-            "version": "4.0.0",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucadegasperi/oauth2-server-laravel.git",
-                "reference": "171fac777eace1e6235c39e1b091d7c7383186eb"
+                "reference": "e9a4cae0f6d52b2484ffae369970271214d5814f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucadegasperi/oauth2-server-laravel/zipball/171fac777eace1e6235c39e1b091d7c7383186eb",
-                "reference": "171fac777eace1e6235c39e1b091d7c7383186eb",
+                "url": "https://api.github.com/repos/lucadegasperi/oauth2-server-laravel/zipball/e9a4cae0f6d52b2484ffae369970271214d5814f",
+                "reference": "e9a4cae0f6d52b2484ffae369970271214d5814f",
                 "shasum": ""
             },
             "require": {
-                "illuminate/config": "5.0.*",
-                "illuminate/console": "5.0.*",
-                "illuminate/contracts": "5.0.*",
-                "illuminate/database": "5.0.*",
-                "illuminate/http": "5.0.*",
-                "illuminate/support": "5.0.*",
+                "illuminate/config": "5.0.*|5.1.*",
+                "illuminate/console": "5.0.*|5.1.*",
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/database": "5.0.*|5.1.*",
+                "illuminate/http": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
                 "league/oauth2-server": "4.1.*",
                 "php": ">=5.4.0"
             },
             "require-dev": {
                 "henrikbjorn/phpspec-code-coverage": "~1.0",
-                "mockery/mockery": "~0.8",
-                "orchestra/testbench": "3.0.*",
+                "mockery/mockery": "~0.9",
+                "orchestra/testbench": "3.1.*@dev",
                 "phpspec/phpspec": "~2.0",
                 "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0.x-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1273,7 +1205,7 @@
                     "email": "packages@lucadegasperi.com"
                 }
             ],
-            "description": "A Laravel 4 wrapper for the popular OAuth 2.0 Server package league/oauth2-server",
+            "description": "Laravel wrapper for the OAuth 2.0 Server package league/oauth2-server.",
             "keywords": [
                 "api",
                 "laravel",
@@ -1281,7 +1213,7 @@
                 "oauth2",
                 "server"
             ],
-            "time": "2015-04-21 09:39:52"
+            "time": "2015-05-20 06:49:07"
         },
         {
             "name": "monolog/monolog",
@@ -3585,7 +3517,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "lucadegasperi/oauth2-server-laravel": 20
+        "lucadegasperi/oauth2-server-laravel": 20,
+        "facebook/php-sdk-v4": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,
