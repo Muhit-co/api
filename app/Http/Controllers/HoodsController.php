@@ -4,6 +4,7 @@ use Illuminate\Support\Str;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\City;
 use Muhit\Models\District;
+use Muhit\Models\Hood;
 
 class HoodsController extends Controller {
 
@@ -66,7 +67,29 @@ class HoodsController extends Controller {
 	 * @author
 	 **/
 	public function getHoods($city_id = null, $district_id = null, $q = null) {
+		$hoods = Hood::orderBy('name', 'asc');
 
+		if ($q !== null and $q !== 'null') {
+			$hoods->where('name', 'LIKE', '%' . $q . '%');
+		}
+
+		if ($city_id !== null and $city_id !== 'null') {
+			$hoods->where('city_id', $city_id);
+		}
+
+		if ($district_id !== null and $district_id !== 'null') {
+			$hoods->where('district_id', $district_id);
+		}
+
+		$hoods = $hoods->get();
+
+		if (null === $hoods) {
+			$hoods = [];
+		} else {
+			$hoods = $hoods->toArray();
+		}
+
+		return response()->api(200, 'Hoods: ', $hoods);
 	}
 
 }
