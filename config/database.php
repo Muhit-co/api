@@ -48,10 +48,10 @@ return [
 		'mysql' => [
 			'driver' => 'mysql',
 			'read' => [
-				'host' => env('DB_HOST', 'localhost'),
+				'host' => env('DB_HOST_READ', 'localhost'),
 			],
 			'write' => [
-				'host' => env('DB_HOST_READ', 'localhost'),
+				'host' => env('DB_HOST', 'localhost'),
 			],
 			'database' => env('DB_DATABASE', 'forge'),
 			'username' => env('DB_USERNAME', 'forge'),
