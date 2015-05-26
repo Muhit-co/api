@@ -112,7 +112,20 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getList($start = 0) {
+	public function getList($start = 0, $take = 20) {
+		$issues = Issue::with('user', 'tags', 'images')
+			->orderBy('id', 'desc')
+			->skip($start)
+			->take(20)
+			->get();
+
+		$response = [];
+
+		if ($issues !== null) {
+			$response = $issues->toArray();
+		}
+
+		return response()->api(200, 'Issues starting with: ' . $start, $response);
 	}
 
 	/**
@@ -139,7 +152,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getPopular($start = 0) {
+	public function getPopular($start = 0, $take = 20) {
 
 	}
 
@@ -149,7 +162,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getLatest($start = 0) {
+	public function getLatest($start = 0, $take = 20) {
 
 	}
 
@@ -159,7 +172,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getByTag($tag_id = null, $start = 0) {
+	public function getByTag($tag_id = null, $start = 0, $take = 20) {
 
 	}
 
@@ -169,7 +182,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getByHood($hood_id = null, $start = 0) {
+	public function getByHood($hood_id = null, $start = 0, $take = 20) {
 	}
 
 	/**
@@ -178,7 +191,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getByDistrict($district_id = null, $start = 0) {
+	public function getByDistrict($district_id = null, $start = 0, $take = 20) {
 	}
 
 	/**
@@ -187,7 +200,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getByCity($city_id = null, $start = 0) {
+	public function getByCity($city_id = null, $start = 0, $take = 20) {
 	}
 
 	/**
@@ -196,7 +209,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getByUser($user_id = null, $start = 0) {
+	public function getByUser($user_id = null, $start = 0, $take = 20) {
 	}
 
 	/**
@@ -205,7 +218,7 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getByStatus($status = null, $start = 0) {
+	public function getByStatus($status = null, $start = 0, $take = 20) {
 	}
 
 	/**
@@ -214,6 +227,6 @@ class IssuesController extends Controller {
 	 * @return json
 	 * @author
 	 **/
-	public function getBySupporter($user_id = null, $start = 0) {
+	public function getBySupporter($user_id = null, $start = 0, $take = 20) {
 	}
 }

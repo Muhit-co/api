@@ -25,17 +25,17 @@ Route::controller('/hoods', 'HoodsController');
 Route::get('tags/{q?}', 'TagsController@getList');
 
 Route::get('/issues/view/{id}', 'IssuesController@getView');
-Route::get('/issues/list/{start?}', 'IssuesController@getList');
+Route::get('/issues/list/{start?}/{take?}', 'IssuesController@getList');
 Route::post('/issues/search', 'IssuesController@postSearch');
-Route::get('/issues/popular/{start?}', 'IssuesController@getPopular');
-Route::get('/issues/latest/{start?}', 'IssuesController@getLatest');
-Route::get('/issues/by-tag/{tag_id}/{start?}', 'IssuesController@getByTag');
-Route::get('/issues/by-hood/{hood_id}/{start?}', 'IssuesController@getByHood');
-Route::get('/issues/by-district/{district_id}/{start?}', 'IssuesController@getByDistrict');
-Route::get('/issues/by-city/{city_id}/{start?}', 'IssuesController@getByCity');
-Route::get('/issues/by-user/{user_id}/{start?}', 'IssuesController@getByUser');
-Route::get('/issues/by-status/{status}/{start?}', 'IssuesController@getByStatus');
-Route::get('/issues/by-supporter/{user_id}/{start?}', 'IssuesController@getBySupporter');
+Route::get('/issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
+Route::get('/issues/latest/{start?}/{take?}', 'IssuesController@getLatest');
+Route::get('/issues/by-tag/{tag_id}/{start?}/{take?}', 'IssuesController@getByTag');
+Route::get('/issues/by-hood/{hood_id}/{start?}/{take?}', 'IssuesController@getByHood');
+Route::get('/issues/by-district/{district_id}/{start?}/{take?}', 'IssuesController@getByDistrict');
+Route::get('/issues/by-city/{city_id}/{start?}/{take?}', 'IssuesController@getByCity');
+Route::get('/issues/by-user/{user_id}/{start?}/{take?}', 'IssuesController@getByUser');
+Route::get('/issues/by-status/{status}/{start?}/{take?}', 'IssuesController@getByStatus');
+Route::get('/issues/by-supporter/{user_id}/{start?}/{take?}', 'IssuesController@getBySupporter');
 
 Route::group(['before' => ['oauth']], function () {
 	Route::post('/issues/add', 'IssuesController@postAdd');
