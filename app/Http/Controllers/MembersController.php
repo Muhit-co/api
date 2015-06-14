@@ -16,7 +16,10 @@ class MembersController extends Controller {
      */
     public function getProfile($id = null)
     {
-
+        $user_id = Authorizer::getResourceOwnerId();
+        if ($id === null) {
+            $id = $user_id;
+        }
     }
 
     /**

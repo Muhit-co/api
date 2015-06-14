@@ -38,7 +38,7 @@ Route::get('/issues/by-user/{user_id}/{start?}/{take?}', 'IssuesController@getBy
 Route::get('/issues/by-status/{status}/{start?}/{take?}', 'IssuesController@getByStatus');
 Route::get('/issues/by-supporter/{user_id}/{start?}/{take?}', 'IssuesController@getBySupporter');
 
-Route::get('/profile/{user_id}', 'MembersController@getProfile');
+Route::get('/profile/{user_id?}', 'MembersController@getProfile');
 
 Route::group(['before' => ['oauth']], function () {
 	Route::post('/issues/add', 'IssuesController@postAdd');
