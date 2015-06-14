@@ -25,9 +25,12 @@ class AnnouncementsController extends Controller {
      * @return json
      * @author gcg
      */
-    public function getList($hood_id = null, $start = null, $take = null)
+    public function getList($hood_id = null, $start = 0, $take = 25)
     {
-        $announcements = Announcement::where('hood_id', $hood_id)->get();
+        $announcements = Announcement::where('hood_id', $hood_id)
+            ->skip($start)
+            ->take($take)
+            ->get();
 
         if ($announcements === null) {
             return response()->api(200, 'Announcements: ', []);
