@@ -27,7 +27,13 @@ class AnnouncementsController extends Controller {
      */
     public function getList($hood_id = null, $start = null, $take = null)
     {
+        $announcements = Announcement::where('hood_id', $hood_id)->get();
 
+        if ($announcements === null) {
+            return response()->api(200, 'Announcements: ', []);
+        }
+
+        return response()->api(200, 'Announcements: ', $announcements->toArray());
     }
 
 }
