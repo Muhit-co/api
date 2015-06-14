@@ -35,7 +35,10 @@ class AuthController extends Controller {
 
 		$user = new User;
 
-		$data['username'] = Str::slug($data['username']);
+        $data['username'] = Str::slug($data['username']);
+        if (empty($data['username'])) {
+            $data['username'] = Str::slug($data['first_name'])."-".Str::slug($data['last_name']);
+        }
 
 		$check_username = DB::table('users')->where('username', $data['username'])->first();
 		$check_email = DB::table('users')->where('email', $data['email'])->first();
@@ -45,8 +48,8 @@ class AuthController extends Controller {
 		}
 
 		if (null !== $check_username) {
-			return response()->api(400, 'Duplicate entry on username', $data);
-		}
+            $data['username'] = $data['username'].time();
+        }
 
 		$user->username = $data['username'];
 		$user->email = $data['email'];
