@@ -12,6 +12,7 @@ use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
 use Muhit\Models\UserSocialAccount;
 use Request;
+use Log;
 
 class AuthController extends Controller {
 
@@ -24,7 +25,7 @@ class AuthController extends Controller {
 	public function postRegister() {
 		$data = Request::all();
 
-		$required_fields = ['email', 'first_name', 'last_name', 'password', 'username', 'client_id', 'client_secret'];
+		$required_fields = ['email', 'first_name', 'last_name', 'password', 'client_id', 'client_secret'];
 
 		foreach ($required_fields as $key) {
 			if (!isset($data[$key]) or empty($data[$key])) {
@@ -43,7 +44,8 @@ class AuthController extends Controller {
 		$check_username = DB::table('users')->where('username', $data['username'])->first();
 		$check_email = DB::table('users')->where('email', $data['email'])->first();
 
-		if (null !== $check_email) {
+        if (null !== $check_email) {
+            Log::error('Auth/Register/DuplicateEmail', $data);
 			return response()->api(400, 'Duplicate entry on email.', $data);
 		}
 
