@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+CTYPE html>
 
 <html lang="en">
 
@@ -133,7 +133,9 @@
                   <a href="javascript:void(0)" class="btn btn-primary" data-dialog="dialog_newidea"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
                 </div>
 
-                <h1>ntepsi, Bayrampaşa<</div>
+                <h1>Muhit</h1>
+
+              </div>
             </div>
             </header>
 
@@ -148,35 +150,33 @@
                                     Item 1
                                     <p>secondary info</p>
                                 </a></li>
-            e, Küçükçekmece</a></li>
-                    <li><a href="#"><b>Alt</b>ayçsmepe</a></li>
-                    <li><a href="#"><b>Alt</b>ıntepe, M<b>alt</b>epe</a></li>
-                 M<b>alt</b>epe</a></li>
-                    <li><a href="#" clas-f</a></li>
-                  </ul>
-                  </div>
-                </div>
-
-              </div>
-/p>
+                                <li><a href="javascript:void(0)">
+                                    <p class="u-floatright"><small>31 Mar</small></p>
+                                    Item 2
+                                    <p>secondary info</p>
                                 </a></li>
-                                <li><a href="javascript:voiiv class="u-alignright">
-                  <a href="javascript:void(0)" class="btnteript:void(0)" class="btn btn-primary" data-dialog=i>   </div>
+                                <li><a href="javascript:void(0)">
+                                    <p class="u-floatright"><small>30 Mar</small></p>
+                                    Item 3
+                                    <p>secondary info</p>
+                                </a></li>
+                                <li><a href="javascript:void(0)">
+                                    <p class="u-floatright"><small>29 Mar</small></p>
+                                    Item 4
+                                    <p>secondary info</p>
+                                </a></li>
+                                <li><a href="javascript:void(0)">
+                                    <p class="u-floatright"><small>28 Mar</small></p>
+                                    Item 5
+                                    <p>secondary info</p>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
 
-                <h1>ntepsi, Bayrampaşa<</div>
-            </div>
-            </header>
-
-            <section>
-                <div class="row u-pv20">
-                    r>
-
-            <section>
-                <div class="row u-pv20">
-                    <div class="col-md-4">/d"list list_block">
-                            <div class="list-header"></div>
-                            <ul>
-                                <li><a href href="javascript:void(0)"><i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i></a>
+                        <div class="flash flash-warning u-mb20">
+                            <a href="javascript:void(0)"><i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i></a>
                             <i class="ion ion-information-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
                             This idea is currently being moderated; therefore it is not possible to support or change its status.
                         </div>
@@ -187,33 +187,31 @@
                         <h4>Heading 4</h4>
                         <h5>Heading 5</h5>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend at tellus eget tristique. Nullam scelerisque euismod mi, vel suscipit risus efficitur id. Aenean sit amipt:void(0)" class="btn btn-primary" data-dialog=i>   </divic, Bayrampaşa<</div>
-            </div>
-            </header>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend at tellus eget tristique. Nullam scelerisque euismod mi, vel suscipit risus efficitur id. Aenean sit amet nisi vel ipsum volutpat porttitor sed eget urna. Morbi dictum ac purus nec imperdiet. Etiam ac tempus nisl. Pellentesque arcu justo, <a href="http://www.muhit.co" target="_blank">Inline text link</a> auctor ac odio ornare, dapibus congue ante. Phasellus tristique orci a fermentum ultricies. Maecenas faucibus bibendum magna. Pellentesque quis ornare quam.</p>
 
-            <section>
-                <div class="rowef="http://www.muhit.co" target="_blank">Inline text link-pv20">
-                    <div class="col-md-4">/d"list list_block">
-                            <div class="lfermentum ultricies. Maecenas faucibus bibendum magna. Pellentesque quis ornare quam.</p>
+                        <a href="http://www.muhit.co" target="_blank">Muhit web</a><br /><br />
 
-                        <a href="http://www.muhit.co" tar-close ion-15x u-floatright u-ml10 u-mb10"></i>< href="javascript:void(0)" class="btn btn-primary u-mr10"><i class="ion ion-plus"></i> FİKİR EKLE</a>
-                        <a href="javascript:void(0)" class="btn btn-secondary u-mr10" data-dialog="dialog_newidea">FİKİR EKLE <i class="ion i
-                        <h3>Heading 3</h3>
-                        <h4>Heading 4</h4>
-                        <h5>Heading 5</h5>
-
-            a       <h5>Heading 5</h5>
-
-                        <p>Lorem ipsum dolor sit  Ging elit. Donec eleifend at tellus eget tristique. Nullam scelerisque euismoullam scelerisque        euismod mi, vel suscipit risus ea>ipt:void(0)" class="btn btn-primary" data-dialog=i>   </divic, Bayrampaşa#">Çözüldü</a></li>
-                                    <li><a href="#">Yor<div class="rowef="http://www.muhit.co   " target="_blank">Inline text linkavascript:void(0)" class="btn btn-tertiary u-mr10">VAZGEÇ</a>
+                        <a href="javascript:void(0)" class="btn btn-primary u-mr10"><i class="ion ion-plus"></i> FİKİR EKLE</a>
+                        <a href="javascript:void(0)" class="btn btn-secondary u-mr10" data-dialog="dialog_newidea">FİKİR EKLE <i class="ion ion-android-open"></i></a>
+                        <div class="hasDropdown u-inlineblock">
+                            <a href="javascript:void(0)" class="btn u-mr10">HAREKETE GEÇ <i class="ion ion-chevron-down"></i></a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li><a href="#">Çayımı iç</a></li>
+                                    <li><a href="#">Gelişmekte</a></li>
+                                    <li><a href="#">Çözüldü</a></li>
+                                    <li><a href="#">Yorum yaz</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0)" class="btn btn-tertiary u-mr10">VAZGEÇ</a>
 
                         <br /><br />
 
                         <div class="form-group">
                             <label>Adınız</label>
-                            <</p>
-
-                        <a href="http://www.muhit.co" tar-close ion-15x u-floatright u-ml10 div>
+                            <input type="text" class="form-input" value="" placeholder="Yazin..." />
+                        </div>
 
                         <div class="form-group">
                             <label>Adınız</label>
@@ -223,7 +221,19 @@
                         <div class="form-group">
                             <input type="checkbox" name="vehicle" value="agree" class="u-floatleft u-mr20">
                             <label for="checkbox">I agree with the <a href="javascript:void(0)">Terms of service</a>.</label>
-            eifend at tellus eget tristique. Nullam scelerisque euismoullam scelerisque euismod mi,">llam scelerisque euismod mi, vel suscipit risus         ea>ipt:voidsm-4">
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4">
                 </div>
@@ -233,4 +243,5 @@
     </body>
 
 </html>
+
 
