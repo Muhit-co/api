@@ -1,0 +1,27 @@
+/* --- flashmessage --- */
+.flash {
+  background-color: @muhitBlue;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px;
+  color: @white;
+
+  a {
+    color: fade(@white, 60%);
+
+    &:hover, &:focus {
+      color: @white;
+    }
+  }
+
+  &.flash-error {
+    background-color: @red;
+  }
+  &.flash-success {
+    background-color: @green;
+  }
+  &.flash-warning {
+    background-color: @yellow;
+  }
+}

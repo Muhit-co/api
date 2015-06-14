@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 
   (function () {
@@ -55,5 +53,3 @@ $(document).ready(function() {
     })();
 
 });
-
-//# sourceMappingURL=all.js.map

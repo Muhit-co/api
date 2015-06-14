@@ -1,0 +1,98 @@
+/* --- button --- */
+.btn {
+  display: inline-block;
+  height: 40px;
+  padding: 5px 15px;
+  background-color: #aab;
+  border: 1px solid transparent;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.btn-lg {
+  padding: 10px 20px;
+  height: 60px;
+}
+.btn-sm {
+  padding: 5px 10px;
+  height: 30px;
+  line-height: 20px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #99a;
+  color: #fff;
+}
+.btn:active {
+  -webkit-transform: translateY(2px);
+  -moz-transform: translateY(2px);
+  transform: translateY(2px);
+}
+.btn-primary {
+  background-color: @muhitGreen;
+
+  &:hover, &:focus {
+    background-color: darken(@muhitGreen, 10%);
+  }
+}
+.btn-secondary {
+  background-color: @muhitBlue;
+
+  &:hover, &:focus {
+    background-color: darken(@muhitBlue, 10%);
+  }
+}
+.btn-white {
+  background-color: #fff;
+  color: #44a1e0;
+}
+.btn-white:hover,
+.btn-white:focus {
+  background-color: #eee;
+}
+.btn-tertiary {
+  background-color: #ccd;
+}
+.btn-tertiary:hover,
+.btn-tertiary:focus {
+  background-color: #bbc;
+}
+.btn-outline {
+  background-color: transparent;
+  border-color: @muhitBlue;
+  color: @muhitBlue;
+
+  &:hover,
+  &:focus {
+    background-color: @muhitBlue;
+  }
+}
+.btn-facebook {
+  background-color: @facebookBlue;
+
+  &:hover,
+  &:focus {
+    background-color: darken(@facebookBlue, 10%);
+  }
+}
+.btn-twitter {
+  background-color: @twitterBlue;
+
+  &:hover,
+  &:focus {
+    background-color: darken(@twitterBlue, 10%);
+  }
+}
+.btn-empty {
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: fade(@black, 10%)
+  }
+}

@@ -1,5 +1,5 @@
 var elixir = require('laravel-elixir');
-
+process.env.DISABLE_NOTIFIER = true;
 /*
    |--------------------------------------------------------------------------
    | Elixir Asset Management
@@ -15,7 +15,8 @@ elixir(function(mix) {
     mix.less('app.less');
     mix.scripts([
             "vendors/jquery.js",
-            "app.js"
+            "app.js",
+            "scripts.js"
 
     ]);
 });

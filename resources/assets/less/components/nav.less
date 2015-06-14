@@ -1,0 +1,93 @@
+/* --- nav --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: @muhitBlueMedium;
+  color: @white;
+  z-index: 10;
+}
+nav a {
+  color: rgba(255, 255, 255, 0.7);
+}
+nav a:hover, nav a:focus {
+  color: #fff;
+}
+nav #nav_logo {
+  padding: 10px;
+}
+nav #nav_logo img {
+  display: block;
+}
+nav #userinfo {
+  padding: 20px;
+  line-height: 40px;
+  font-weight: 700;
+}
+nav #userinfo:hover,
+nav #userinfo:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+nav a#logout {
+  color: @red;
+}
+nav a#logout:hover, nav a#logout:focus {
+  color: darken(@red, 10%);
+}
+
+
+
+/* --- menu --- */
+#menu li {
+  display: inline-block;
+  margin-right: -0.25em;
+}
+#menu a {
+  display: block;
+  height: 80px;
+  padding: 18px 20px 8px;
+  border-bottom: 2px solid transparent;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  -webkit-transition: -webkit-transform 0.2s ease;
+  -moz-transition: -moz-transform 0.2s ease;
+  transition: transform 0.2s ease;
+}
+#menu a:hover, #menu a:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+#menu a:active {
+  -webkit-transform: translateY(2px);
+  -moz-transform: translateY(2px);
+  transform: translateY(2px);
+}
+#menu a .ion {
+  display: block;
+}
+#menu li.active a {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+#navbutton {
+  display: none;
+  padding: 20px;
+  line-height: 40px;
+}
+@media screen and (max-width: 768px) {
+
+  nav #userinfo {
+    padding: 20px 10px;
+  }
+  nav #userinfo .text {
+    display: none;
+  }
+  #menu {
+    display: none;
+  }
+  #navbutton {
+    display: inline-block;
+  }
+}

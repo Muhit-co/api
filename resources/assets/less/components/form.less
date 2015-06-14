@@ -1,0 +1,67 @@
+/* --- forms --- */
+.form-group {
+  position: relative;
+  width: 300px;
+  min-width: 150px;
+  margin-bottom: 10px;
+}
+.form-group.form-fullwidth {
+  width: 100%;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1em;
+  line-height: 20px;
+}
+label[for] {
+  cursor: pointer;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  display: block;
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid @greyLight;
+  .rounded(5px);
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1em;
+  line-height: 40px;
+  color: @muhitBlueDark;
+}
+input:focus,
+textarea:focus {
+  border-color: @muhitBlue;
+  color: @muhitBlue;
+  outline: none;
+}
+textarea {
+  height: auto;
+}
+.form-input {
+  position: relative;
+}
+input.form-disabled {
+  border-color: @greyLighter;
+  color: @greyLight;
+}
+input[type="checkbox"] {
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  transform: scale(2);
+  -webkit-transform-origin: center left;
+  -moz-transform-origin: center left;
+  transform-origin: center left;
+}
+.form-appendRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  z-index: 2;
+}

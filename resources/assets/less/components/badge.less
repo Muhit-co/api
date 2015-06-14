@@ -1,0 +1,74 @@
+/* --- badge --- */
+.badge {
+  display: inline-block;
+  background-color: @greyLighter;
+  color: #667;
+  text-align: center;
+  .rounded(5px);
+  overflow: hidden;
+
+  &.badge-circle {
+    width: 40px;
+    height: 40px;
+    .rounded(50%);
+  }
+  &.badge-user {
+    padding-top: 9px;
+  }
+  &.badge-image {
+    width: 50px;
+    height: 50px;
+    background-color: @greyLighter;
+    background-size: cover;
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+    .ion {
+      margin: 7px 0;
+    }
+  }
+  &.badge-status {
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    background-color: @muhitBlue;
+    color: @white;
+  }
+}
+.tag {
+  position: relative;
+  display: inline-block;
+  background-color: @greyLighter;
+  color: @white;
+  padding: 3px 10px;
+  .rounded(5px);
+  font-size: 0.9em;
+  font-weight: bold;
+
+  &.tag-collapsed {
+    width: 15px;
+    height: 15px;
+    .rounded(50%);
+    .transform(translateY(2px));
+    margin-right: 5px;
+    padding: 0;
+  }
+  .tag-close {
+    display: inline-block;
+    float: right;
+    height: 32px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    padding-top: 8px;
+    border-left: 1px solid fade(@black, 20%);
+    line-height: 15px;
+    color: fade(@white, 75%);
+
+    &:hover, &:focus {
+      color: @white;
+    }
+  }
+}

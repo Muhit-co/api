@@ -1,0 +1,102 @@
+// 
+// Utility classes
+// --------------------------------------------------
+
+
+// build margin classes (steps, maximum)
+.margins(5, 200);
+
+.margins(@steps, @max, @i: 0) when (@i =< (@max/@steps)) {
+  // define margin number to use as classname
+  @margin: (@i * @steps);
+  // output classes
+  .u-mt@{margin} {
+    margin-top: ~"@{margin}px" !important;
+  }
+  .u-mb@{margin} {
+    margin-bottom: ~"@{margin}px" !important;
+  }
+  .u-mr@{margin} {
+    margin-right: ~"@{margin}px" !important;
+  }
+  .u-ml@{margin} {
+    margin-left: ~"@{margin}px" !important;
+  }
+  .u-mv@{margin} {
+    margin-top: ~"@{margin}px" !important;
+    margin-bottom: ~"@{margin}px" !important;
+  }
+  .u-mh@{margin} {
+    margin-left: ~"@{margin}px" !important;
+    margin-right: ~"@{margin}px" !important;
+  }
+  .u-ma@{margin} {
+    margin: ~"@{margin}px" !important;
+  }
+  // initiate next iteration
+  .margins(@steps, @max, (@i + 1));
+}
+
+
+// build padding classes (steps, maximum)
+.padding(5, 200);
+
+.padding(@steps, @max, @i: 0) when (@i =< (@max/@steps)) {
+  // define padding number to use as classname
+  @padding: (@i * @steps);
+  // output classes
+  .u-pt@{padding} {
+    padding-top: ~"@{padding}px" !important;
+  }
+  .u-pb@{padding} {
+    padding-bottom: ~"@{padding}px" !important;
+  }
+  .u-pr@{padding} {
+    padding-right: ~"@{padding}px" !important;
+  }
+  .u-pl@{padding} {
+    padding-left: ~"@{padding}px" !important;
+  }
+  .u-pv@{padding} {
+    padding-top: ~"@{padding}px" !important;
+    padding-bottom: ~"@{padding}px" !important;
+  }
+  .u-ph@{padding} {
+    padding-left: ~"@{padding}px" !important;
+    padding-right: ~"@{padding}px" !important;
+  }
+  .u-pa@{padding} {
+    padding: ~"@{padding}px" !important;
+  }
+  // initiate next iteration
+  .padding(@steps, @max, (@i + 1));
+}
+
+.u-inlineblock {
+  display: inline-block;
+}
+.u-floatleft {
+  display: inline-block;
+  float: left;
+}
+.u-floatright {
+  display: inline-block;
+  float: right;
+}
+.u-aligncenter {
+  text-align: center;
+}
+.u-alignleft {
+  text-align: left;
+}
+.u-alignright {
+  text-align: right;
+}
+.u-pinned-topright {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.u-fullWidth {
+  width: 100%;
+}

@@ -1,1 +1,72 @@
+/* --- Imports mixins --- */
+@import url('lesselements.less');
 
+/* --- Imports basics --- */
+@import url('basics/colours.less');
+@import url('basics/generic.less');
+@import url('basics/grid.less');
+@import url('basics/reset.less');
+@import url('basics/utilities.less');
+
+/* --- Imports components --- */
+@import url('components/badge.less');
+@import url('components/button.less');
+@import url('components/card.less');
+@import url('components/dialog.less');
+@import url('components/dropdown.less');
+@import url('components/flashmessage.less');
+@import url('components/form.less');
+@import url('components/list.less');
+@import url('components/nav.less');
+
+
+
+
+/* --- icons (extends ionicons) --- */
+.ion-15x {
+	font-size: 1.5em;
+}
+.ion-2x {
+	font-size: 2em;
+}
+.ion-3x {
+	font-size: 3em;
+}
+.ion-4x {
+	font-size: 4em;
+}
+
+
+
+/* --- main --- */
+main {
+	background-color: @greyLighter;
+	min-height: calc(100vh - 100px);
+	.transition(filter 0.5s ease);
+}
+section.login {
+	background-color: @muhitBlue;
+	color: @white;
+}
+
+
+
+/* --- header --- */
+header {
+	min-height: 250px;
+	//height: 35vh;
+	padding-top: 80px;
+	background: url('../images/banner_city.png') no-repeat;
+	background-position: center bottom;
+	background-size: contain;
+	background-color: @muhitBlue;
+	color: @white;
+}
+
+
+
+/* --- footer --- */
+footer {
+	padding: 50px 0;
+	background-color: #dde;
+}
