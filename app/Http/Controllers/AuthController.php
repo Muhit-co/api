@@ -36,7 +36,11 @@ class AuthController extends Controller {
 
 		}
 
-		$user = new User;
+        $user = new User;
+
+        if (!isset($data['username'])) {
+            $data['username'] = '';
+        }
 
         $data['username'] = Str::slug($data['username']);
         if (empty($data['username'])) {
