@@ -74,172 +74,18 @@ CTYPE html>
 
         <a href="javascript:void(0)" id="dialog_mask"></a>
 
-        <dialog id="dialog_newidea">
-            <a href="javascript:void(0)" id="closeDialog"><i class="ion ion-ios-close-empty ion-3x u-floatright u-pinned-topright u-mr30 u-mt15"></i></a>
-            <div class="dialog-content">
-                    <h2>
-                        You need to do something before you can continue.
-                    </h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend at tellus eget tristique.</p>
+        @include('dialogs.newidea')
 
-                    <div class="form-group form-fullwidth">
-                        <label>Adınız</label>
-                        <input type="text" class="form-input" value="" placeholder="Yazin..." />
-                    </div>
-
-                    <hr>
-
-                    <div class="u-alignright">
-                        <a href="javascript:void(0)" id="closeDialog" class="btn btn-tertiary u-mr10">VAZGEÇ</a>
-                        <a href="javascript:void(0)" class="btn btn-secondary">KAYDET</a>
-                    </div>
-
-            </div>
-        </dialog>
 
         <main>
 
-            <header id="top">
-            <div class="row u-pt40 u-pb60">
-              <div class="col-md-4 col-sm-6">
+            @include('partials.header')
 
-                <!-- search issues -->
-                <div class="form-group form-fullwidth">
-                  <input type="text" class="form-input" value="" placeholder="Ara..." />
-                  <a class="form-appendRight"><i class="ion ion-search ion-15x u-pa10"></i></a>
-                </div>
 
-                <!-- change mahalle -->
-                <div class="form-group form-autosuggest form-fullwidth hasDropdown">
-                  <input type="text" class="form-input" value="Erenköy, Kadıköy" />
-                  <a class="form-appendRight"><i class="ion ion-chevron-down u-pa15"></i></a>
-                  <div class="dropdown u-fullWidth">
-                  <ul>
-                    <li><a href="#"><b>Alt</b>ınşehir, Başakşehir</a></li>
-                    <li><a href="#">Kart<b>alt</b>epe, Bakırköy</a></li>
-                    <li><a href="#"><b>Alt</b>ıntepsi, Bayrampaşa</a></li>
-                    <li><a href="#">Kart<b>alt</b>epe, Küçükçekmece</a></li>
-                    <li><a href="#"><b>Alt</b>ayçeşme, M<b>alt</b>epe</a></li>
-                    <li><a href="#"><b>Alt</b>ıntepe, M<b>alt</b>epe</a></li>
-                    <li><a href="#" class="light">Daha yukle...</a></li>
-                  </ul>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-md-8 col-sm-6">
-
-                <div class="u-alignright">
-                  <a href="javascript:void(0)" class="btn btn-primary" data-dialog="dialog_newidea"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
-                </div>
-
-                <h1>Muhit</h1>
-
-              </div>
-            </div>
-            </header>
-
-            <section>
-                <div class="row u-pv20">
-                    <div class="col-md-4">
-                        <div class="list list_block">
-                            <div class="list-header"></div>
-                            <ul>
-                                <li><a href="javascript:void(0)">
-                                    <p class="u-floatright"><small>1 Apr</small></p>
-                                    Item 1
-                                    <p>secondary info</p>
-                                </a></li>
-                                <li><a href="javascript:void(0)">
-                                    <p class="u-floatright"><small>31 Mar</small></p>
-                                    Item 2
-                                    <p>secondary info</p>
-                                </a></li>
-                                <li><a href="javascript:void(0)">
-                                    <p class="u-floatright"><small>30 Mar</small></p>
-                                    Item 3
-                                    <p>secondary info</p>
-                                </a></li>
-                                <li><a href="javascript:void(0)">
-                                    <p class="u-floatright"><small>29 Mar</small></p>
-                                    Item 4
-                                    <p>secondary info</p>
-                                </a></li>
-                                <li><a href="javascript:void(0)">
-                                    <p class="u-floatright"><small>28 Mar</small></p>
-                                    Item 5
-                                    <p>secondary info</p>
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-
-                        <div class="flash flash-warning u-mb20">
-                            <a href="javascript:void(0)"><i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i></a>
-                            <i class="ion ion-information-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
-                            This idea is currently being moderated; therefore it is not possible to support or change its status.
-                        </div>
-
-                        <h1>Heading 1</h1>
-                        <h2>Heading 2</h2>
-                        <h3>Heading 3</h3>
-                        <h4>Heading 4</h4>
-                        <h5>Heading 5</h5>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend at tellus eget tristique. Nullam scelerisque euismod mi, vel suscipit risus efficitur id. Aenean sit amet nisi vel ipsum volutpat porttitor sed eget urna. Morbi dictum ac purus nec imperdiet. Etiam ac tempus nisl. Pellentesque arcu justo, <a href="http://www.muhit.co" target="_blank">Inline text link</a> auctor ac odio ornare, dapibus congue ante. Phasellus tristique orci a fermentum ultricies. Maecenas faucibus bibendum magna. Pellentesque quis ornare quam.</p>
-
-                        <a href="http://www.muhit.co" target="_blank">Muhit web</a><br /><br />
-
-                        <a href="javascript:void(0)" class="btn btn-primary u-mr10"><i class="ion ion-plus"></i> FİKİR EKLE</a>
-                        <a href="javascript:void(0)" class="btn btn-secondary u-mr10" data-dialog="dialog_newidea">FİKİR EKLE <i class="ion ion-android-open"></i></a>
-                        <div class="hasDropdown u-inlineblock">
-                            <a href="javascript:void(0)" class="btn u-mr10">HAREKETE GEÇ <i class="ion ion-chevron-down"></i></a>
-                            <div class="dropdown">
-                                <ul>
-                                    <li><a href="#">Çayımı iç</a></li>
-                                    <li><a href="#">Gelişmekte</a></li>
-                                    <li><a href="#">Çözüldü</a></li>
-                                    <li><a href="#">Yorum yaz</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a href="javascript:void(0)" class="btn btn-tertiary u-mr10">VAZGEÇ</a>
-
-                        <br /><br />
-
-                        <div class="form-group">
-                            <label>Adınız</label>
-                            <input type="text" class="form-input" value="" placeholder="Yazin..." />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Adınız</label>
-                            <input type="text" class="form-input" value="" placeholder="Yazin..." />
-                        </div>
-
-                        <div class="form-group">
-                            <input type="checkbox" name="vehicle" value="agree" class="u-floatleft u-mr20">
-                            <label for="checkbox">I agree with the <a href="javascript:void(0)">Terms of service</a>.</label>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
+            @yield('content')
         </main>
 
-        <footer>
-            <div class="row">
-                <div class="col-sm-4">
-                </div>
-                <div class="col-sm-4">
-                </div>
-                <div class="col-sm-4">
-                </div>
-            </div>
-        </footer>
-
+        @include('partials.footer')
     </body>
 
 </html>
