@@ -25,6 +25,8 @@ class AuthController extends Controller {
 	public function postRegister() {
 		$data = Request::all();
 
+        Log::error('Auth/Register/fired', []);
+
 		$required_fields = ['email', 'first_name', 'last_name', 'password', 'client_id', 'client_secret'];
 
 		foreach ($required_fields as $key) {
