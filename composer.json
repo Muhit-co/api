@@ -5,7 +5,7 @@
 	"license": "GPLv3",
 	"type": "project",
 	"require": {
-		"laravel/framework": "5.0.*",
+		"laravel/framework": "5.1.*",
 		"guzzlehttp/guzzle": "~5.0",
 		"league/flysystem-aws-s3-v2": "~1.0",
 		"predis/predis": "~1.0",
