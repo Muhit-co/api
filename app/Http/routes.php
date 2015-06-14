@@ -23,6 +23,7 @@ Route::controller('/auth', 'AuthController');
 Route::controller('/hoods', 'HoodsController');
 
 Route::get('tags/{q?}', 'TagsController@getList');
+Route::get('announcements/{hood_id}', 'AnnouncementsController@getList');
 
 Route::get('/issues/view/{id}', 'IssuesController@getView');
 Route::get('/issues/list/{start?}/{take?}', 'IssuesController@getList');
