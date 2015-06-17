@@ -8,11 +8,11 @@ use Facebook\FacebookRequest;
 use Facebook\FacebookSession;
 use Facebook\GraphUser;
 use Illuminate\Support\Str;
+use Log;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
 use Muhit\Models\UserSocialAccount;
 use Request;
-use Log;
 
 class AuthController extends Controller {
 
@@ -25,7 +25,6 @@ class AuthController extends Controller {
 	public function postRegister() {
 		$data = Request::all();
 
-
 		$required_fields = ['email', 'first_name', 'last_name', 'password', 'client_id', 'client_secret'];
 
 		foreach ($required_fields as $key) {
@@ -35,28 +34,28 @@ class AuthController extends Controller {
 
 		}
 
-        $user = new User;
+		$user = new User;
 
-        if (!isset($data['username'])) {
-            $data['username'] = '';
-        }
+		if (!isset($data['username'])) {
+			$data['username'] = '';
+		}
 
-        $data['username'] = Str::slug($data['username']);
-        if (empty($data['username'])) {
-            $data['username'] = Str::slug($data['first_name'])."-".Str::slug($data['last_name']);
-        }
+		$data['username'] = Str::slug($data['username']);
+		if (empty($data['username'])) {
+			$data['username'] = Str::slug($data['first_name']) . "-" . Str::slug($data['last_name']);
+		}
 
 		$check_username = DB::table('users')->where('username', $data['username'])->first();
 		$check_email = DB::table('users')->where('email', $data['email'])->first();
 
-        if (null !== $check_email) {
-            Log::error('Auth/Register/DuplicateEmail', $data);
+		if (null !== $check_email) {
+			Log::error('Auth/Register/DuplicateEmail', $data);
 			return response()->api(400, 'Duplicate entry on email.', $data);
 		}
 
 		if (null !== $check_username) {
-            $data['username'] = $data['username'].time();
-        }
+			$data['username'] = $data['username'] . time();
+		}
 
 		$user->username = $data['username'];
 		$user->email = $data['email'];
@@ -107,7 +106,7 @@ class AuthController extends Controller {
 		}
 
 		if (!Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
-			return response()->api(400, 'Wrong user credentials', $data);
+			return response()->api(401, 'Wrong user credentials', $data);
 		}
 
 		Request::merge(['grant_type' => 'password', 'username' => $data['email']]);
