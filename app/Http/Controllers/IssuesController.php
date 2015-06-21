@@ -130,7 +130,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', $response);
+        return response()->app(200, 'issues.list', ['issues' => $response]);
 	}
 
 	/**
