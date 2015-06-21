@@ -28,6 +28,10 @@ Route::get('login', 'AuthController@getLogin');
 Route::get('register', 'AuthController@getRegister');
 Route::post('login', 'AuthController@postLogin');
 Route::post('register', 'AuthController@postRegister');
+Route::get('logout', function(){
+    Auth::logout();
+    return redirect('/');
+});
 
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', function () {
