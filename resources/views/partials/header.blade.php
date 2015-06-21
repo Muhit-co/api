@@ -29,7 +29,7 @@
     <div class="col-md-8 col-sm-6">
 
     <div class="u-alignright">
-      <a href="javascript:void(0)" class="btn btn-primary" data-dialog="dialog_newidea"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
+      <a href="/issue/new" class="btn btn-primary" data-dialog="dialog_newidea"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
     </div>
 
     </div>

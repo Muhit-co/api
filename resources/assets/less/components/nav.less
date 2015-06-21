@@ -1,10 +1,12 @@
+@headerHeight: 80px;
+
 /* --- nav --- */
 nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: @headerHeight;
   background-color: @muhitBlueMedium;
   color: @white;
   z-index: 10;
@@ -40,13 +42,21 @@ nav a#logout:hover, nav a#logout:focus {
 
 
 /* --- menu --- */
+.navplaceholder {
+  display: block;
+  height: @headerHeight;
+}
+
+
+
+/* --- menu --- */
 #menu li {
   display: inline-block;
   margin-right: -0.25em;
 }
 #menu a {
   display: block;
-  height: 80px;
+  height: @headerHeight;
   padding: 18px 20px 8px;
   border-bottom: 2px solid transparent;
   font-size: 0.8em;

@@ -17,6 +17,9 @@ Route::get('/', function() {
 Route::get('/issue', function() {
     return view('issues.show');
 });
+Route::get('/issue/new', function() {
+    return view('issues.new');
+});
 Route::get('/components', function() {
     return view('pages.components');
 });

@@ -2772,6 +2772,11 @@ nav a#logout:focus {
   color: #d62c1a;
 }
 /* --- menu --- */
+.navplaceholder {
+  display: block;
+  height: 80px;
+}
+/* --- menu --- */
 #menu li {
   display: inline-block;
   margin-right: -0.25em;
@@ -2848,7 +2853,6 @@ section.login {
 /* --- header --- */
 header {
   min-height: 250px;
-  padding-top: 80px;
   background: url('../images/banner_city.png') no-repeat;
   background-position: center bottom;
   background-size: contain;
