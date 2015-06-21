@@ -67,7 +67,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('/profile/{user_id?}', 'MembersController@getProfile');
 
-    Route::group(['before' => ['oauth']], function () {
+    Route::group(['before' => 'oauth'], function () {
         Route::post('/issues/add', 'IssuesController@postAdd');
         Route::post('/issues/support/{id}', 'IssuesController@getSupport');
         Route::post('/issues/unsupport/{id}', 'IssuesController@getUnSupport');

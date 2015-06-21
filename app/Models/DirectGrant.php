@@ -8,6 +8,7 @@ use League\OAuth2\Server\Event;
 use League\OAuth2\Server\Exception;
 use League\OAuth2\Server\Grant\AbstractGrant;
 use League\OAuth2\Server\Util\SecureKey;
+use Log;
 
 /**
  * Password grant class
@@ -51,13 +52,15 @@ class DirectGrant extends AbstractGrant {
 	public function completeFlow() {
 		// Get the required params
 		$clientId = $this->server->getRequest()->request->get('client_id', $this->server->getRequest()->getUser());
-		if (is_null($clientId)) {
+        if (is_null($clientId)) {
+            Log::error('DirectGrant/InvalidClientId', []);
 			throw new Exception\InvalidRequestException('client_id');
 		}
 
 		$clientSecret = $this->server->getRequest()->request->get('client_secret',
 			$this->server->getRequest()->getPassword());
-		if (is_null($clientSecret)) {
+        if (is_null($clientSecret)) {
+            Log::error('DirectGrant/InvalidClientSecret', []);
 			throw new Exception\InvalidRequestException('client_secret');
 		}
 
@@ -75,7 +78,8 @@ class DirectGrant extends AbstractGrant {
 		}
 
 		$userId = $this->server->getRequest()->request->get('user_id', null);
-		if (is_null($userId)) {
+        if (is_null($userId)) {
+            Log::error('DirectGrant/InvalidUserId', []);
 			throw new Exception\InvalidRequestException('user_id');
 		}
 
