@@ -12,6 +12,7 @@
  */
 
 Route::get('/', function() {
+    view()->share('pageTitle', 'Hoşgeldiniz - ');
     return view('issues.list');
 });
 Route::get('/issue', function() {

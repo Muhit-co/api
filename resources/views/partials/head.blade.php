@@ -1,6 +1,6 @@
 <head>
 
-  <title>Muhit UI kit</title>
+  <title>{{ $pageTitle or '' }} MUHIT</title>
 
   <meta name="description" content="" />
   <meta name="keywords" content="" />
