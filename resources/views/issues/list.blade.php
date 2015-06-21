@@ -10,6 +10,9 @@
         <div class="list-header"></div>
           <ul>
             <li><a href="/issue">
+              <div class="badge u-floatleft">
+                LS
+              </div>
               <p class="u-floatright"><small>1 Apr</small></p>
               Item 1
               <p>secondary info</p>
