@@ -10,32 +10,25 @@
         <div class="list-header"></div>
           <ul>
             <li><a href="/issue">
-              <div class="badge u-floatleft">
-                LS
+              <div class="badge badge-image u-floatleft u-mr15">
+                <!-- first image in issue -->
+                <img src="/images/street_thumbnail.jpg" alt="" />
               </div>
-              <p class="u-floatright"><small>1 Apr</small></p>
-              Item 1
-              <p>secondary info</p>
-            </a></li>
-            <li><a href="/issue">
-              <p class="u-floatright"><small>31 Mar</small></p>
-              Item 2
-              <p>secondary info</p>
-            </a></li>
-            <li><a href="/issue">
-              <p class="u-floatright"><small>30 Mar</small></p>
-              Item 3
-              <p>secondary info</p>
-            </a></li>
-            <li><a href="/issue">
-              <p class="u-floatright"><small>29 Mar</small></p>
-              Item 4
-              <p>secondary info</p>
-            </a></li>
-            <li><a href="/issue">
-              <p class="u-floatright"><small>28 Mar</small></p>
-              Item 5
-              <p>secondary info</p>
+              <!-- status/support badge -->
+              <div class="badge badge-status u-floatright u-mt10">
+                <i class="ion ion-wrench u-mr5"></i>
+                <strong>54</strong>
+              </div>
+              <!-- issue title -->
+              <strong>Sıraselviler’de araç işgali kontrol edilsin.</strong>
+              <p>
+                <!-- issue tags (max 3) -->
+                <span class="tag u-mr10" style="background-color: #a7cc81;">AĞAÇLANDIRMA</span>
+                <span class="tag u-mr10" style="background-color: #7dd3ac;">SÜRDÜRÜLEBİLİR</span>
+                <span class="tag u-mr10" style="background-color: #c673c0;">ENERJİ</span>
+                <!-- issue date -->
+                <span class="date">Bugün</span>
+              </p>
             </a></li>
           </ul>
         </div>
