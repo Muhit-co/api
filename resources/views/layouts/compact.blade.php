@@ -6,12 +6,7 @@
 
   <body>
 
-    @include('partials.nav')
-
-    <a href="javascript:void(0)" id="dialog_mask"></a>
-
-    @include('dialogs.newidea')
-
+    @include('partials.nav-compact')
 
     <main>
 

@@ -12,7 +12,13 @@
  */
 
 Route::get('/', function() {
-    return view('pages.home');
+    return view('issues.list');
+});
+Route::get('/issue', function() {
+    return view('issues.show');
+});
+Route::get('/components', function() {
+    return view('pages.components');
 });
 
 Route::get('login', 'AuthController@getLogin');

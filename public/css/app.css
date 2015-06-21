@@ -52,7 +52,7 @@ html {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 105%;
   line-height: 1.5em;
-  background-color: #fdfdfd;
+  background-color: #ccccdd;
   color: #667;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2225,6 +2225,12 @@ figure img {
 .u-fullWidth {
   width: 100%;
 }
+.u-nowrap {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 /* --- Imports components --- */
 /* --- badge --- */
 .badge {
@@ -2343,13 +2349,12 @@ figure img {
 .btn-secondary:focus {
   background-color: #2289cf;
 }
-.btn-white {
-  background-color: #fff;
-  color: #44a1e0;
+.btn-quaternary {
+  background-color: #245672;
 }
-.btn-white:hover,
-.btn-white:focus {
-  background-color: #eee;
+.btn-quaternary:hover,
+.btn-quaternary:focus {
+  background-color: #18394b;
 }
 .btn-tertiary {
   background-color: #ccd;
@@ -2357,6 +2362,14 @@ figure img {
 .btn-tertiary:hover,
 .btn-tertiary:focus {
   background-color: #bbc;
+}
+.btn-white {
+  background-color: #fff;
+  color: #44a1e0;
+}
+.btn-white:hover,
+.btn-white:focus {
+  background-color: #eee;
 }
 .btn-outline {
   background-color: transparent;

@@ -46,13 +46,12 @@
     background-color: darken(@muhitBlue, 10%);
   }
 }
-.btn-white {
-  background-color: #fff;
-  color: #44a1e0;
-}
-.btn-white:hover,
-.btn-white:focus {
-  background-color: #eee;
+.btn-quaternary {
+  background-color: @muhitBlueDark;
+
+  &:hover, &:focus {
+    background-color: darken(@muhitBlueDark, 10%);
+  }
 }
 .btn-tertiary {
   background-color: #ccd;
@@ -60,6 +59,14 @@
 .btn-tertiary:hover,
 .btn-tertiary:focus {
   background-color: #bbc;
+}
+.btn-white {
+  background-color: #fff;
+  color: #44a1e0;
+}
+.btn-white:hover,
+.btn-white:focus {
+  background-color: #eee;
 }
 .btn-outline {
   background-color: transparent;
