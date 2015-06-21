@@ -34,13 +34,7 @@ Route::get('logout', function(){
 });
 
 #issue routing
-Route::post('issue', 'IssuesController@postAdd');
-Route::get('issues/{start?}/{take?}', 'IssuesController@getList');
-Route::get('issue/{id}', 'IssuesController@getView');
-Route::post('search', 'IssuesController@postSearch');
-Route::get('popular/{start?}/{take?}', 'IssuesController@getPopular');
-Route::get('latest/{start?}/{take?}', 'IssuesController@getLatest');
-Route::get('issues-by-hood/{start?}/{take?}', 'IssuesController@getByHood');
+Route::controller('issues', 'IssuesController');
 
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', function () {
