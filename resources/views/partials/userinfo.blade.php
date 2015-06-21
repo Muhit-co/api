@@ -1,10 +1,10 @@
    <div class="userinfo hasDropdown u-floatright">
-      <a href="javascript:void(0)" id="userinfo" class="u-inlineblock">
-          <span class="badge badge-circle badge-user u-floatright u-ml10">
-              <i class="ion ion-person ion-2x"></i>
-          </span>
-          <span class="text">John Doe</span>
-      </a>
+        <a href="javascript:void(0)" id="userinfo" class="u-inlineblock">
+            <span class="badge badge-circle badge-user u-floatright u-ml10">
+                <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{Auth::user()->picture}}" alt="{{Auth::user()->first_name}}">
+            </span>
+          <span class="text">{{Auth::user()->first_name}}</span>
+        </a>
       <div class="dropdown">
           <ul>
               <li><a href="#"><i class="ion ion-plus u-mr5"></i> Fikir ekle</a></li>
