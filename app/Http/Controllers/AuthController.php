@@ -14,6 +14,7 @@ use Muhit\Models\User;
 use Muhit\Models\UserSocialAccount;
 use Request;
 
+
 class AuthController extends Controller {
 
     /**
@@ -24,6 +25,11 @@ class AuthController extends Controller {
      */
     public function getLogin()
     {
+
+        if($this->isApi){
+            return response()->api(404, 'Method not found', []);
+        }
+
         return view('auth.login');
     }
 
@@ -35,6 +41,11 @@ class AuthController extends Controller {
      */
     public function getRegister()
     {
+
+        if($this->isApi){
+            return response()->api(404, 'Method not found', []);
+        }
+
         return view('auth.register');
     }
 
