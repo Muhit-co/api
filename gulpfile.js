@@ -20,4 +20,5 @@ elixir(function(mix) {
             "app.js",
             "scripts.js"
     ]);
+
 });
