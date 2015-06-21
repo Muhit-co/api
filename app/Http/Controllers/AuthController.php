@@ -58,14 +58,16 @@ class AuthController extends Controller {
     public function postRegister() {
         $data = Request::all();
 
-        $required_fields = ['email', 'first_name', 'last_name', 'password', 'client_id', 'client_secret'];
+        if ($this->isApi) {
+            $required_fields = ['email', 'first_name', 'last_name', 'password', 'client_id', 'client_secret'];
+            foreach ($required_fields as $key) {
+                if (!isset($data[$key]) or empty($data[$key])) {
+                    return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
+                }
 
-        foreach ($required_fields as $key) {
-            if (!isset($data[$key]) or empty($data[$key])) {
-                return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
             }
-
         }
+
 
         $user = new User;
 
@@ -83,7 +85,11 @@ class AuthController extends Controller {
 
         if (null !== $check_email) {
             Log::error('Auth/Register/DuplicateEmail', $data);
-            return response()->api(400, 'Duplicate entry on email.', $data);
+            if ($this->isApi) {
+                return response()->api(400, 'Duplicate entry on email.', $data);
+            }
+
+            return redirect('/register')->with('warning', 'Bu eposta adresi ile daha önceden kayıt olunmuş, şifreni unuttuysan, şifreni hatırlatabilirim? ');
         }
 
         if (null !== $check_username) {
@@ -104,19 +110,38 @@ class AuthController extends Controller {
             $user->save();
         } catch (Exception $e) {
             Log::error('AuthController/postRegister', (array) $e);
-            return response()->api(500, 'Error while creating the user. ', ['details' => (array) $e]);
+            if ($this->isApi) {
+                return response()->api(500, 'Error while creating the user. ', ['details' => (array) $e]);
+            }
+
+            return redirect('/register')->with('error', 'Teknik bir sıkıntı oldu :(  ');
+
         }
 
         try {
             Auth::login($user);
-            Request::merge(['grant_type' => 'direct', 'user_id' => $user->id]);
-            $token = Authorizer::issueAccessToken();
         } catch (Exception $e) {
             Log::error('AuthController/postRegister', (array) $e);
-            return response()->api(500, 'User saved but there were some errors on login.', ['details' => (array) $e]);
+            if ($this->isApi) {
+                return response()->api(500, 'Login error on tech', []);
+            }
+            return redirect('/login')->with('warning', 'Kayıttan sonra oturum açarken bir hata oluştu.');
         }
 
-        return response()->api(200, 'Registered and logged in. ', ['user' => $user, 'oauth2' => $token]);
+        if ($this->isApi) {
+            try {
+                Auth::login($user);
+                Request::merge(['grant_type' => 'direct', 'user_id' => $user->id]);
+                $token = Authorizer::issueAccessToken();
+            } catch (Exception $e) {
+                Log::error('AuthController/postRegister', (array) $e);
+                return response()->api(500, 'User saved but there were some errors on login.', ['details' => (array) $e]);
+            }
+
+            return response()->api(200, 'Registered and logged in. ', ['user' => $user, 'oauth2' => $token]);
+        }
+
+       return redirect('/')->with('success', 'Hoşgeldin, '.$user->first_name);
 
     }
 
