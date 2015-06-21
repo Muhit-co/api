@@ -129,7 +129,8 @@ class IssuesController extends Controller {
             return response()->api(200, 'Issues starting with: ' . $start, $response);
         }
 
-        return repsonse()->app(200, 'issues.list', $response);
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.list', $response);
 	}
 
 	/**

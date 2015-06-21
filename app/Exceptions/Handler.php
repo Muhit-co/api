@@ -3,6 +3,7 @@
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Request;
+use Log;
 
 class Handler extends ExceptionHandler {
 

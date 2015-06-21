@@ -11,10 +11,9 @@
 |
  */
 
-Route::get('/', function() {
-    view()->share('pageTitle', 'Hoşgeldiniz - ');
-    return view('issues.list');
-});
+Route::get('/', 'IssuesController@getList');
+
+#testing routes for dann;
 Route::get('/issue', function() {
     return view('issues.show');
 });
@@ -24,6 +23,7 @@ Route::get('/issue/new', function() {
 Route::get('/components', function() {
     return view('pages.components');
 });
+#end of testing routes for dann
 
 Route::get('login', 'AuthController@getLogin');
 Route::get('register', 'AuthController@getRegister');
