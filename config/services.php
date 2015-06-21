@@ -38,6 +38,11 @@ return [
 		'client_id' => env('FB_ID'),
 		'client_secret' => env('FB_SECRET'),
 		'redirect' => env('URL') . 'auth/facebook',
-	],
+    ],
+
+    'raven' => [
+        'dsn'   => env('SENTRY_DSN'),
+        'level' => env('SENTRY_LEVEL', 'error')
+    ],
 
 ];
