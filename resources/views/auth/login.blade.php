@@ -3,7 +3,7 @@
 
 <section class="login u-pt50">
 
-    <div class="row u-pv50">
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="post" action="/login">
                 <h2 class="u-mv20">Giriş yap</h2>

@@ -11504,6 +11504,11 @@ $(document).ready(function() {
         $('.card').toggleClass('card-hidden').toggleClass('card-expanded');
       });
 
+      // closes flash message
+      $('.flash #flash_close').click(function() {
+        $(this).closest('.flash').fadeOut();
+      });
+
     });
     })();
 
