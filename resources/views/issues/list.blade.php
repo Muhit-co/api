@@ -39,6 +39,14 @@
                                 </a>
                             </li>
                         @endforeach
+                        @if (count($issues) == 0)
+                            <li class="u-aligncenter u-pt20">
+                                <span class="c-light">
+                                    <i class="ion ion-checkmark-circled ion-2x"></i><br />
+                                    <strong>Fikirleri şu an bulunamadı...</strong>
+                                </span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

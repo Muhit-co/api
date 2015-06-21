@@ -11461,6 +11461,18 @@ $(document).ready(function() {
       $touch = ( navigator.userAgent.match(/(Android|webOS|iPad|iPhone|iPod|BlackBerry)/i) ? true : false );
       var touchEvent = $touch ? 'touchstart' : 'click';
 
+      // initiating smoothscroll
+      $('a[href^="#"]').smoothScroll();
+
+      // setting loader mask on non-same page links
+      $('a').click(function() {
+        $href = $(this).attr('href');
+        if (!$href.match("^#") && !$href.match("^javascript")) {
+          $('#loader_mask').addClass('isVisible');
+          $('main,nav').addClass('dialogIsOpen');
+        }
+      });
+
       // dropdown toggle
       $('.hasDropdown > a').bind(touchEvent, (function(e) {
       $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
@@ -11508,9 +11520,6 @@ $(document).ready(function() {
       $('.flash #flash_close').click(function() {
         $(this).closest('.flash').fadeOut();
       });
-
-      // initiating smoothscroll
-      $('a[href^="#"]').smoothScroll();
 
     });
     })();
