@@ -1,3 +1,4 @@
+<div class="navplaceholder"></div>
 <nav>
   <div class="row">
     <div class="col-xs-2">

@@ -9,6 +9,9 @@
 .c-light {
   color: #ccccdd;
 }
+.c-bgBlue {
+  background-color: #44a1e0;
+}
 .bg-tag-blue {
   background-color: #629acc !important;
 }

@@ -9,6 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+  <?php $env = env('APP_ENV') ?>
   <!-- CSS dependencies -->
   <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /> -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" />
