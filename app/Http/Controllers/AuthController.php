@@ -30,7 +30,7 @@ class AuthController extends Controller {
             return response()->api(404, 'Method not found', []);
         }
 
-        return view('auth.login');
+        return response()->app(200, 'auth.login');
     }
 
     /**
@@ -46,7 +46,7 @@ class AuthController extends Controller {
             return response()->api(404, 'Method not found', []);
         }
 
-        return view('auth.register');
+        return response()->app(200, 'auth.register');
     }
 
 	/**
