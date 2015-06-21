@@ -255,6 +255,33 @@ class AuthController extends Controller {
 	 **/
 	public function postSendPassword() {
 
-	}
+    }
+
+    /**
+     * refresh the access token with the refresh token
+     *
+     * @return json
+     * @author gcg
+     */
+    public function postRefreshToken()
+    {
+        $data = Request::all();
+		$required_fields = ['refresh_token', 'client_id', 'client_secret'];
+
+		foreach ($required_fields as $key) {
+			if (!isset($data[$key]) or empty($data[$key])) {
+				return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
+			}
+		}
+
+        Request::merge(['grant_type' => 'refresh_token']);
+        try {
+            $token = Authorizer::issueAccessToken();
+        } catch (Exception $e) {
+            Log::error('AuthController/postRefreshToken', (array) $e);
+            return response()->api(500, 'Tech problem', []);
+        }
+        return response()->api(200, 'Access token refreshed', ['oauth2' => $token]);
+    }
 
 }

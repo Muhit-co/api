@@ -16,7 +16,7 @@ return [
 	'grant_types' => [
 		'password' => [
 			'class' => 'League\OAuth2\Server\Grant\PasswordGrant',
-			'access_token_ttl' => 604800,
+			'access_token_ttl' => 2592000,
 			// the code to run in order to verify the user's identity
 			'callback' => function ($email, $password) {
 				$credentials = [
@@ -32,11 +32,11 @@ return [
 		],
 		'refresh_token' => [
 			'class' => 'League\OAuth2\Server\Grant\RefreshTokenGrant',
-			'access_token_ttl' => 604800,
+			'access_token_ttl' => 2592000,
 			// the refresh token time to live
-			'refresh_token_ttl' => 604800,
+			'refresh_token_ttl' => 15552000,
 			// whether or not to issue a new refresh token when a new access token is issued
-			'rotate_refresh_tokens' => false,
+			'rotate_refresh_tokens' => true,
 		],
 		'direct' => [
 			'class' => 'Muhit\Models\DirectGrant',
