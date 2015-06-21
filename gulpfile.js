@@ -14,7 +14,7 @@ process.env.DISABLE_NOTIFIER = true;
 elixir(function(mix) {
     mix.less('app.less');
     mix.scripts([
-            "vendors/jquery.js",
+            "vendors/jquery-1.11.3.js",
             "vendors/jquery.smooth-scroll.js",
             "vendors/fastclick.js",
             "app.js",
