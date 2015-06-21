@@ -4,9 +4,8 @@
   .clearfix;
   max-width: 1100px;
   margin: 0 auto;
-  /*padding-left: 10px;
-  padding-right: 10px;*/
 }
+
 .row > [class*="col-"] {
   display: inline-block;
   min-height: 10px;
@@ -19,99 +18,48 @@
   padding-left: 0;
   padding-right: 0;
 }
-.row > .col-xs-2 {
-  width: 100% * 2 / 12;
-}
-.row > .col-xs-8 {
-  width: 100% * 8 / 12;
-}
-.row > .col-sm-3,
-.row > .col-md-3 {
-  width: 25%;
-}
-.row > .col-sm-4 {
-  width: 33.33333333%;
-}
-.row > .col-sm-6 {
-  width: 50%;
-}
-.row > .col-sm-8 {
-  width: 66.66666666%;
-}
-.row > .col-sm-9,
-.row > .col-md-9 {
-  width: 75%;
-}
-.row > .col-md-offset-1 {
-  margin-left: 100% * 1 / 12;
-}
-.row > .col-md-offset-2 {
-  margin-left: 16.666666667%;
-}
-.row > .col-md-offset-3 {
-  margin-left: 25%;
-}
-.row > .col-md-1 {
-  width: 100% * 1 / 12;
-}
-.row > .col-md-2 {
-  width: 100% * 2 / 12;
-}
-.row > .col-md-4 {
-  width: 33.33333333%;
-}
-.row > .col-md-6 {
-  width: 50%;
-}
-.row > .col-md-8 {
-  width: 66.66666666%;
-}
-.row > .col-md-10 {
-  width: 100% * 10 / 12;
-}
-@media screen and (max-width: 1000px) {
-  .row > .col-md-1,
-  .row > .col-md-2,
-  .row > .col-md-3,
-  .row > .col-md-4,
-  .row > .col-md-5,
-  .row > .col-md-6,
-  .row > .col-md-7,
-  .row > .col-md-8,
-  .row > .col-md-9,
-  .row > .col-md-10,
-  .row > .col-md-11,
-  .row > .col-md-12 {
-    width: 100%;
+
+/* -- hoooooook -- */
+.make-grid(12);
+
+.make-grid(@columns, @i: 0) when (@i =< @columns) {
+  @number: @i;
+  .row > .col-xs-@{number} {
+    width: 100% * @number / 12;
   }
-  .row > .col-md-offset-1,
-  .row > .col-md-offset-2,
-  .row > .col-md-offset-3,
-  .row > .col-md-offset-4,
-  .row > .col-md-offset-5,
-  .row > .col-md-offset-6,
-  .row > .col-md-offset-7,
-  .row > .col-md-offset-8,
-  .row > .col-md-offset-9,
-  .row > .col-md-offset-10,
-  .row > .col-md-offset-11,
-  .row > .col-md-offset-12 {
-    margin-left: 0;
+  .row > .col-xs-offset-@{number} {
+    margin-left: 100% * @number / 12;
   }
-}
-@media screen and (max-width: 768px) {
-  .row > .col-sm-1,
-  .row > .col-sm-2,
-  .row > .col-sm-3,
-  .row > .col-sm-4,
-  .row > .col-sm-5,
-  .row > .col-sm-6,
-  .row > .col-sm-7,
-  .row > .col-sm-8,
-  .row > .col-sm-9,
-  .row > .col-sm-10,
-  .row > .col-sm-11,
-  .row > .col-sm-12 {
-    width: 100%;
+  .row > .col-sm-@{number} {
+    width: 100% * @number / 12;
   }
+  .row > .col-sm-offset-@{number} {
+    margin-left: 100% * @number / 12;
+  }
+  .row > .col-md-@{number} {
+    width: 100% * @number / 12;
+  }
+  .row > .col-md-offset-@{number} {
+    margin-left: 100% * @number / 12;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .row > .col-md-@{number} {
+      width: 100%;
+    }
+    .row > .col-md-offset-@{number} {
+      margin-left: 0;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .row > .col-sm-@{number} {
+      width: 100%;
+    }
+    .row > .col-sm-offset-@{number} {
+      margin-left: 0;
+    }
+  }
+
+  // initiate next iteration
+  .make-grid(@columns, (@i + 1));
 }

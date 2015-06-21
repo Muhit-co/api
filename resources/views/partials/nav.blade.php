@@ -13,10 +13,10 @@
           </div>
       @endif
 
-      <a href="#top" id="nav_logo" class="u-floatleft"><img src="/images/logo.png" height="60px" alt="" /></a>
+      <a href="#top" id="nav_logo" class="u-floatleft"><img src="/images/logo.png" height="40px" alt="" /></a>
 
+    @if(Auth::check())
       <a href="#top" id="navbutton"><i class="ion ion-navicon ion-2x"></i></a>
-
       <ul id="menu">
         <?php
         $pages = array(
@@ -57,6 +57,7 @@
         </li>
         <?php endforeach; ?>
       </ul>
+      @endif
 
     </div>
   </div>

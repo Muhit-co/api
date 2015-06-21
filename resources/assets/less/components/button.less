@@ -5,13 +5,17 @@
   padding: 5px 15px;
   background-color: #aab;
   border: 1px solid transparent;
-  color: #fff;
+  color: @white;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: 0.05em;
   line-height: 30px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  .rounded(5px);
+
+  .ion-15x {
+    line-height: 1em;
+  }
 }
 .btn-lg {
   padding: 10px 20px;
@@ -25,12 +29,10 @@
 .btn:hover,
 .btn:focus {
   background-color: #99a;
-  color: #fff;
+  color: @white;
 }
 .btn:active {
-  -webkit-transform: translateY(2px);
-  -moz-transform: translateY(2px);
-  transform: translateY(2px);
+  .transform(translateY(2px));
 }
 .btn-primary {
   background-color: @muhitGreen;

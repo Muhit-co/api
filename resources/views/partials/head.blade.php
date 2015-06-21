@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/css/app.css" />
   <script src="/js/all.js"></script>
 
-  <link href="/favicon.ico" type="image/x-icon" rel="icon" />
-  <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+  <link href="/images/favicon.ico" type="image/x-icon" rel="icon" />
+  <link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 
 </head>

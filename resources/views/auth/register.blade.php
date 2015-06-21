@@ -32,6 +32,10 @@
                     <label>Mahalle</label>
                     <input type="text" class="form-input" value="" name="user.hood" placeholder="Start typing your mahalle..." />
                 </div>
+                <div class="form-group form-fullwidth u-mb20">
+                    <input type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" />
+                    <label for="checkbox">I agree with the <a href="javascript:void(0)">Terms of service</a>.</label>
+                </div>
 
                 <button type="submit" class="btn btn-primary u-floatright">KAYIT OL</i></button>
             </form>
