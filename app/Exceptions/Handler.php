@@ -23,7 +23,8 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return void
 	 */
-	public function report(Exception $e) {
+    public function report(Exception $e) {
+        Log::error($e);
 		return parent::report($e);
 	}
 
