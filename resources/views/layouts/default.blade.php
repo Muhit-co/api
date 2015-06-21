@@ -2,25 +2,26 @@
 
 <html lang="en">
 
-  @include('partials.head')
+    @include('partials.head')
 
-  <body>
+    <body>
 
-    @include('partials.nav')
+        @include('partials.nav')
 
-    <a href="javascript:void(0)" id="dialog_mask"></a>
+        <a href="javascript:void(0)" id="dialog_mask"></a>
 
-    @include('dialogs.newidea')
+        @include('dialogs.newidea')
 
 
-    <main>
+        <main>
+            @include('partials.messages')
 
-      @yield('content')
-      
-    </main>
+            @yield('content')
 
-    @include('partials.footer')
-  </body>
+        </main>
+
+        @include('partials.footer')
+    </body>
 
 </html>
 

@@ -2,20 +2,21 @@
 
 <html lang="en">
 
-  @include('partials.head')
+    @include('partials.head')
 
-  <body>
+    <body>
 
-    @include('partials.nav-compact')
+        @include('partials.nav-compact')
 
-    <main>
+        <main>
+            @include('partials.messages')
 
-      @yield('content')
-      
-    </main>
+            @yield('content')
 
-    @include('partials.footer')
-  </body>
+        </main>
+
+        @include('partials.footer')
+    </body>
 
 </html>
 
