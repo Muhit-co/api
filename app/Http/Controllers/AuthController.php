@@ -16,6 +16,28 @@ use Request;
 
 class AuthController extends Controller {
 
+    /**
+     * displays a login form
+     *
+     * @return view
+     * @author gcg
+     */
+    public function getLogin()
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * displays a registration form
+     *
+     * @return view
+     * @author gcg
+     */
+    public function getRegister()
+    {
+        return view('auth.register');
+    }
+
 	/**
 	 * register as a new user
 	 *

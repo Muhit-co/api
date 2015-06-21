@@ -15,6 +15,11 @@ Route::get('/', function() {
     return view('pages.home');
 });
 
+Route::get('login', 'AuthController@getLogin');
+Route::get('register', 'AuthController@getRegister');
+Route::post('login', 'AuthController@postLogin');
+Route::post('register', 'AuthController@postRegister');
+
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', function () {
         return response()->api(200, "Welcome to the Muhit API. ");
