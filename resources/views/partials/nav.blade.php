@@ -2,6 +2,12 @@
     <div class="row">
         <div class="col-xs-12 u-aligncenter">
 
+            @if(Auth::check())
+                {{-- user is logged in --}}
+            @else
+                {{-- user is not logged in --}}
+            @endif
+
             <div class="userinfo hasDropdown u-floatright">
                 <a href="javascript:void(0)" id="userinfo" class="u-inlineblock">
                     <span class="badge badge-circle badge-user u-floatright u-ml10">
