@@ -123,9 +123,13 @@ class IssuesController extends Controller {
 
 		if ($issues !== null) {
 			$response = $issues->toArray();
-		}
+        }
 
-		return response()->api(200, 'Issues starting with: ' . $start, $response);
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        return repsonse()->app(200, 'issues.list', $response);
 	}
 
 	/**
@@ -228,5 +232,7 @@ class IssuesController extends Controller {
 	 * @author
 	 **/
 	public function getBySupporter($user_id = null, $start = 0, $take = 20) {
-	}
+    }
+
+
 }
