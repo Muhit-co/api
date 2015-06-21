@@ -11509,6 +11509,9 @@ $(document).ready(function() {
         $(this).closest('.flash').fadeOut();
       });
 
+      // initiating smoothscroll
+      $('a[href^="#"]').smoothScroll();
+
     });
     })();
 
