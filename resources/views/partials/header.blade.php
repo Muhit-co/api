@@ -29,7 +29,7 @@
     <div class="col-md-8 col-sm-6">
 
     <div class="u-alignright">
-      <a href="/issue/new" class="btn btn-primary"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
+      <a href="/issues/new" class="btn btn-primary"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
     </div>
 
     </div>

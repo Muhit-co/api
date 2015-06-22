@@ -17,9 +17,7 @@ Route::get('/', 'IssuesController@getList');
 Route::get('/issue', function() {
     return view('issues.show');
 });
-Route::get('/issue/new', function() {
-    return view('issues.new');
-});
+
 Route::get('/components', function() {
     return view('pages.components');
 });
@@ -34,8 +32,14 @@ Route::get('logout', function(){
     return redirect('/');
 });
 
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('issues/new', 'IssuesController@getNew');
+});
+
 #issue routing
 Route::controller('issues', 'IssuesController');
+Route::get('issues', 'IssuesController@getList');
 
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', function () {

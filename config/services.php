@@ -41,7 +41,7 @@ return [
     ],
 
     'raven' => [
-        'dsn'   => env('SENTRY_DSN'),
+        'dsn'   => env('SENTRY_DSN', ''),
         'level' => env('SENTRY_LEVEL', 'error')
     ],
 
