@@ -27,16 +27,24 @@ textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid @greyLight;
+  border: 1px solid transparent;
+  background: fade(@white, 80%);
   .rounded(5px);
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 1em;
   line-height: 40px;
   color: @muhitBlueDark;
+
+  &:hover {
+    background: fade(@white, 90%);
+  }
 }
-input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
-  border-color: @muhitBlue;
+  background: @white;
+  // border-color: @muhitBlueDark;
+  .box-shadow(0 0 0 3px fade(@black, 10%));
   color: @muhitBlue;
   outline: none;
 }

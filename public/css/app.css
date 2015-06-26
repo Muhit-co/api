@@ -5707,11 +5707,18 @@ figure img {
   background-color: #2d4373;
 }
 .btn-twitter {
-  background-color: #55acee;
+  background-color: #55ceee;
 }
 .btn-twitter:hover,
 .btn-twitter:focus {
-  background-color: #2795e9;
+  background-color: #27c1e9;
+}
+.btn-googleplus {
+  background-color: #dd4b39;
+}
+.btn-googleplus:hover,
+.btn-googleplus:focus {
+  background-color: #c23321;
 }
 .btn-empty {
   background-color: transparent;
@@ -5956,16 +5963,24 @@ textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid #ccccdd;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 1em;
   line-height: 40px;
   color: #245672;
 }
-input:focus,
+input[type="text"]:hover,
+input[type="password"]:hover,
+textarea:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
-  border-color: #44a1e0;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(51, 51, 68, 0.1);
   color: #44a1e0;
   outline: none;
 }

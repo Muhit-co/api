@@ -32,8 +32,9 @@
             <br />
             <br />
 
-            <a href="" ng-click='login();' class="btn btn-facebook u-mr10"><i class="ion ion-social-facebook ion-15x"></i> CONNECT</a>
-            <a href="javascript:void(0)" class="btn btn-twitter u-mr10"><i class="ion ion-social-twitter"></i> CONNECT</a>
+            <a href="" ng-click='login();' class="btn btn-facebook u-mr10"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-twitter u-mr10"><i class="ion ion-social-twitter u-floatleft u-pa5"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-googleplus u-mr10"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i> CONNECT</a>
 
         </div>
     </div>

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="post" action="/register">
-                <h2 class="u-mv20">Kayit Ol</h2>
+                <h2 class="u-mv20">Kayıt Ol</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>Ad</label>

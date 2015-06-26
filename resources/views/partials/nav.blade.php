@@ -9,7 +9,7 @@
           {{-- user is not logged in --}}
           <div class="u-floatright u-nowrap">
             <a href="/login" class="btn btn-quaternary u-mt20 u-mr5">GİRİŞ YAP</a>
-            <a href="/register" class="btn btn-primary u-mt20">KAYİT OL</a>
+            <a href="/register" class="btn btn-primary u-mt20">KAYIT OL</a>
           </div>
       @endif
 
