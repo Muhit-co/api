@@ -8,8 +8,8 @@
             @else
                 {{-- user is not logged in --}}
                 <div class="u-floatright u-nowrap">
-                    <a href="/login" class="btn btn-quaternary u-mt20 u-mr5">GİRİŞ YAP</a>
-                    <a href="/register" class="btn btn-primary u-mt20">KAYIT OL</a>
+                    <a href="/login" class="btn btn-quaternary u-mt20 u-mr5">GİRİŞ<span class="extended"> YAP</span></a>
+                    <a href="/register" class="btn btn-primary u-mt20 u-mr15">KAYIT<span class="extended"> OL</span></a>
                 </div>
             @endif
 

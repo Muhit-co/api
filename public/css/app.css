@@ -3739,6 +3739,17 @@ hr {
 }
 .bg-blue {
   background-color: #44a1e0;
+  color: #ffffff;
+}
+.bg-blue hr {
+  border-color: #245672;
+}
+.bg-blue a:not(.btn) {
+  color: #245672;
+}
+.bg-blue a:not(.btn):hover,
+.bg-blue a:not(.btn):focus {
+  color: #18394b;
 }
 .bg-blueDark {
   background-color: #245672;
@@ -6251,6 +6262,21 @@ dialog hr {
 .form-group.form-fullwidth {
   width: 100%;
 }
+.form-group input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+.form-group input[type="checkbox"] + label:before {
+  content: "\f372";
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  font-family: "Ionicons";
+  font-size: 1.5em;
+}
+.form-group input[type="checkbox"]:checked + label:before {
+  content: "\f374";
+}
 label {
   display: block;
   margin-bottom: 5px;
@@ -6313,12 +6339,6 @@ input.form-disabled {
   border-color: #eeeeee;
   color: #ccccdd;
 }
-input[type="checkbox"] {
-  -webkit-transform: scale(2);
-  transform: scale(2);
-  -webkit-transform-origin: center left;
-  transform-origin: center left;
-}
 .form-appendRight {
   position: absolute;
   top: 0;
@@ -6332,7 +6352,6 @@ header {
   background: url('../images/banner_city.png') no-repeat;
   background-position: center bottom;
   background-size: contain;
-  background-color: #44a1e0;
   color: #ffffff;
 }
 /* --- list --- */
@@ -6412,7 +6431,7 @@ nav a {
 }
 nav a:hover,
 nav a:focus {
-  color: #fff;
+  color: #ffffff;
 }
 nav #nav_logo {
   padding: 20px 15px;
@@ -6489,7 +6508,7 @@ nav a#logout:focus {
 #navbutton:focus {
   background-color: rgba(51, 51, 68, 0.05);
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
   nav {
     max-width: 100vw;
   }
@@ -6551,6 +6570,9 @@ nav a#logout:focus {
   #navbutton.isActive .ion-android-close {
     display: inline-block;
   }
+  .extended {
+    display: none;
+  }
 }
 /* --- icons (extends ionicons) --- */
 .ion-15x {
@@ -6576,10 +6598,6 @@ main {
   -webkit-transform: translateX(90vw);
   transform: translateX(90vw);
 }
-section.login {
-  background-color: #44a1e0;
-  color: #ffffff;
-}
 /* --- rows (extends bootstrap's grid system) --- */
 .row {
   max-width: 1100px;
@@ -6596,6 +6614,11 @@ section.login {
 .row-nopadding > [class*="col-"] {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+@media screen and (max-width: 480px) {
+  .row .col-xs-hide {
+    display: none;
+  }
 }
 /* --- footer --- */
 footer {

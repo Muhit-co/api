@@ -57,10 +57,10 @@ main {
 .menu-isActive main {
 	.transform(translateX(90vw));
 }
-section.login {
-	background-color: @muhitBlue;
-	color: @white;
-}
+// section.login {
+// 	background-color: @muhitBlue;
+// 	color: @white;
+// }
 
 
 
@@ -73,6 +73,11 @@ section.login {
 .row-nopadding > [class*="col-"] {
 	padding-left: 0 !important;
 	padding-right: 0 !important;
+}
+@media screen and (max-width: @screen-xs) {
+  .row .col-xs-hide {
+    display: none;
+  }
 }
 
 

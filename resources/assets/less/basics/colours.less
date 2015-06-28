@@ -42,6 +42,18 @@
 }
 .bg-blue {
   background-color: @muhitBlue;
+  color: @white;
+
+  hr {
+    border-color: @muhitBlueDark;
+  }
+  a:not(.btn) {
+    color: @muhitBlueDark;
+
+    &:hover, &:focus {
+      color: darken(@muhitBlueDark, 10%);
+    }
+  }
 }
 .bg-blueDark {
   background-color: @muhitBlueDark;

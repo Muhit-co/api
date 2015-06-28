@@ -4,9 +4,27 @@
   width: 300px;
   min-width: 150px;
   margin-bottom: 10px;
-}
-.form-group.form-fullwidth {
-  width: 100%;
+
+  &.form-fullwidth {
+    width: 100%;
+  }
+  input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+
+    & + label:before {
+      content: "\f372";
+      display: inline-block;
+      float: left;
+      margin-right: 10px;
+      font-family: "Ionicons";
+      font-size: 1.5em;
+    }
+    &:checked + label:before {
+      content: "\f374";
+    }
+  }
+
 }
 label {
   display: block;
@@ -67,14 +85,6 @@ textarea {
 input.form-disabled {
   border-color: @greyLighter;
   color: @greyLight;
-}
-input[type="checkbox"] {
-  -webkit-transform: scale(2);
-  -moz-transform: scale(2);
-  transform: scale(2);
-  -webkit-transform-origin: center left;
-  -moz-transform-origin: center left;
-  transform-origin: center left;
 }
 .form-appendRight {
   position: absolute;
