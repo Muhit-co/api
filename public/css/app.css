@@ -6587,6 +6587,31 @@ nav a#logout:focus {
 .ion-4x {
   font-size: 4em;
 }
+.ion-spinning {
+  padding-top: 1px;
+  -webkit-animation: spinning 1s infinite linear;
+  animation: spinning 1s infinite linear;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+}
+@-webkit-keyframes spinning {
+  0% {
+    -webkit-transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spinning {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 /* --- main --- */
 main {
   background-color: #eeeeee;
@@ -6619,6 +6644,14 @@ main {
   .row .col-xs-hide {
     display: none;
   }
+}
+/* --- add images --- */
+.add-images .badge-image {
+  background-color: #44a1e0;
+  color: #ffffff;
+}
+.add-images .badge-image a {
+  color: #ffffff;
 }
 /* --- footer --- */
 footer {

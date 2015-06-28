@@ -25,6 +25,10 @@ Route::get('/components', function() {
 Route::get('/user/{username}', function() {
     return view('pages.profile');
 });
+
+Route::get('/register-muhtar', function() {
+    return view('auth.register-muhtar');
+});
 #end of testing routes for dann
 
 Route::get('login', 'AuthController@getLogin');

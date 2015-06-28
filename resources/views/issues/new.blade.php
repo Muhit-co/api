@@ -3,7 +3,7 @@
 
 <section>
 
-    <div class="row">
+    <div class="row u-pt20 u-pb50">
 
         <div class="col-md-10 col-md-offset-1">
             <form method="post" action="/issues/add">
@@ -50,10 +50,12 @@
                 </div>
 
                 <div class="form-group form-fullwidth u-mv20">
-                    <label>Resimler</label>
-                    <div class="badge badge-image u-mr5" style="background-image: url('images/street.jpg')"><a href="badge-close"><i class="ion ion-close u-pt10 c-white"></i></a></div>
-                    <div class="badge badge-image u-mr5" style="background-image: url('images/street.jpg')"><a href="badge-close"><i class="ion ion-close u-pt10 c-white"></i></a></div>
-                    <div class="badge badge-image u-mr5"><a href="badge-close"><i class="ion ion-plus ion-15x u-pt5"></i></a></div>
+                    <div class="add-images">
+                        <label>Resimler</label>
+                        <div class="badge badge-image u-mr5" style="background-image: url('../images/street_thumbnail.jpg')"><a href="badge-close"><i class="ion ion-close u-pt10 c-white"></i></a></div>
+                        <div class="badge badge-image u-mr5 u-pt10" style="background-image: url('../images/street_thumbnail.jpg')"><i class="ion ion-load-a ion-spinning c-white"></i></div>
+                        <div class="badge badge-image u-mr5"><a href="badge-close"><i class="ion ion-plus ion-15x u-pt5"></i></a></div>
+                    </div>
                 </div>
 
                 <div class="form-group u-mv10">

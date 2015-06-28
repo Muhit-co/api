@@ -41,6 +41,28 @@
 .ion-4x {
 	font-size: 4em;
 }
+.ion-spinning {
+  padding-top: 1px;
+  -webkit-animation: spinning 1s infinite linear;
+  -moz-animation: spinning 1s infinite linear;
+  animation: spinning 1s infinite linear;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  transform-origin: center center;
+}
+@-webkit-keyframes spinning {
+    0% { -webkit-transform: rotate(0); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spinning {
+    0% { -moz-transform: rotate(0); }
+  100% { -moz-transform: rotate(360deg); }
+}
+@keyframes spinning {
+    0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
 
 
 
@@ -77,6 +99,19 @@ main {
 @media screen and (max-width: @screen-xs) {
   .row .col-xs-hide {
     display: none;
+  }
+}
+
+
+/* --- add images --- */
+.add-images {
+  .badge-image {
+    background-color: @muhitBlue;
+    color: @white;
+
+    a {
+      color: @white;
+    }
   }
 }
 
