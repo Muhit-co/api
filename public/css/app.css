@@ -5836,6 +5836,14 @@ figure img {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.u-clearfix:before,
+.u-clearfix:after {
+  content: " ";
+  display: table;
+}
+.u-clearfix:after {
+  clear: both;
+}
 /* --- Imports components --- */
 /* --- badge --- */
 .badge {
@@ -5849,7 +5857,12 @@ figure img {
 .badge.badge-circle {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 20px;
+}
+.badge.badge-circle-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
 }
 .badge.badge-user img {
   display: block;

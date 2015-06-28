@@ -21,6 +21,10 @@ Route::get('/issue', function() {
 Route::get('/components', function() {
     return view('pages.components');
 });
+
+Route::get('/user/{username}', function() {
+    return view('pages.profile');
+});
 #end of testing routes for dann
 
 Route::get('login', 'AuthController@getLogin');
