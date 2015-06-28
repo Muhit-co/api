@@ -1,5 +1,5 @@
 <header class="<?php echo (isset($type) && $type === 'show') ? "header-show" : "header-list"; ?>">
-  <div class="row u-pt40 u-pb60">
+  <div class="row u-pv60">
     <div class="col-md-4 col-sm-6">
 
     <!-- search issues -->

@@ -3834,18 +3834,6 @@ hr {
   border: none;
   border-bottom: 1px solid #ccccdd;
 }
-.row {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.row:before,
-.row:after {
-  content: " ";
-  display: table;
-}
-.row:after {
-  clear: both;
-}
 /* --- CSS Resets --- */
 html,
 body,
@@ -5863,6 +5851,9 @@ figure img {
   height: 40px;
   border-radius: 50%;
 }
+.badge.badge-user img {
+  display: block;
+}
 .badge.badge-image {
   width: 50px;
   height: 50px;
@@ -6122,7 +6113,8 @@ dialog.isVisible {
 }
 dialog hr {
   margin: 30px -30px;
-  width: calc(160%);
+  width: calc(100% + 60px);
+  border-color: #eeeeee;
 }
 .mask {
   position: fixed;
@@ -6149,6 +6141,7 @@ dialog hr {
   filter: blur(5px);
 }
 .dialog-content {
+  position: relative;
   max-height: 70vh;
   padding: 5px;
   overflow-y: scroll;
@@ -6175,6 +6168,7 @@ dialog hr {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 2;
   text-align: left;
+  white-space: nowrap;
 }
 .dropdown:before {
   content: "";
@@ -6269,7 +6263,7 @@ textarea {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 1em;
   line-height: 40px;
-  color: #245672;
+  color: #4390c0;
 }
 input[type="text"]:hover,
 input[type="password"]:hover,
@@ -6284,8 +6278,20 @@ textarea:focus {
   color: #44a1e0;
   outline: none;
 }
+.form-input.form-grey {
+  background: rgba(238, 238, 238, 0.8);
+}
+.form-input.form-grey:hover {
+  background: rgba(238, 238, 238, 0.9);
+}
+.form-input.form-grey:focus {
+  background: #eeeeee;
+}
 textarea {
   height: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 1.5em;
 }
 .form-input {
   position: relative;
@@ -6396,18 +6402,18 @@ nav a:focus {
   color: #fff;
 }
 nav #nav_logo {
-  padding: 20px 10px;
+  padding: 20px 15px;
 }
 nav #nav_logo img {
   display: block;
 }
 nav #userinfo {
-  padding: 20px;
+  padding: 20px 15px;
   line-height: 40px;
   font-weight: 700;
 }
-nav #userinfo:hover,
-nav #userinfo:focus {
+nav .userinfo #userinfo:hover,
+nav .userinfo #userinfo:focus {
   background-color: rgba(0, 0, 0, 0.05);
 }
 nav a#logout {
@@ -6417,7 +6423,7 @@ nav a#logout:hover,
 nav a#logout:focus {
   color: #d62c1a;
 }
-/* --- menu --- */
+/* --- nav placeholder --- */
 .navplaceholder {
   display: block;
   height: 80px;
@@ -6440,7 +6446,7 @@ nav a#logout:focus {
 }
 #menu a:hover,
 #menu a:focus {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(51, 51, 68, 0.05);
 }
 #menu a:active {
   -webkit-transform: translateY(2px);
@@ -6450,25 +6456,86 @@ nav a#logout:focus {
   display: block;
 }
 #menu li.active a {
-  color: #fff;
-  border-bottom-color: #fff;
+  color: #ffffff;
+  border-bottom-color: #ffffff;
 }
 #navbutton {
   display: none;
+  height: 80px;
   padding: 20px;
-  line-height: 40px;
+  line-height: 30px;
+}
+#navbutton .ion {
+  width: 35px;
+  margin-top: 3px;
+}
+#navbutton .ion-android-close {
+  display: none;
+}
+#navbutton:hover,
+#navbutton:focus {
+  background-color: rgba(51, 51, 68, 0.05);
 }
 @media screen and (max-width: 768px) {
-  nav #userinfo {
-    padding: 20px 10px;
+  nav {
+    max-width: 100vw;
   }
-  nav #userinfo .text {
+  nav .userinfo #userinfo {
+    padding: 20px 15px;
+  }
+  nav .userinfo #userinfo .badge {
+    margin-left: 0 !important;
+  }
+  nav .userinfo #userinfo .text {
     display: none;
   }
   #menu {
-    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 90vw;
+    height: calc(100vh - 80px);
+    background-color: #245672;
+    box-shadow: inset 0 3px 0 rgba(51, 51, 68, 0.2);
+    -webkit-transform: translateX(-90vw);
+    transform: translateX(-90vw);
+    transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+  }
+  #menu li {
+    display: block;
+    margin-right: 0;
+  }
+  #menu li.active a {
+    border-bottom: none;
+    border-left-color: #ffffff;
+  }
+  #menu li + li {
+    border-top: 1px solid rgba(51, 51, 68, 0.2);
+  }
+  #menu a {
+    height: 60px;
+    text-align: left;
+    border-left: 5px solid transparent;
+  }
+  #menu a .ion {
+    display: inline-block;
+    float: left;
+    width: 30px;
+    margin-right: 25px;
+    text-align: center;
+  }
+  .menu-isActive #menu {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
   }
   #navbutton {
+    display: inline-block;
+  }
+  #navbutton.isActive .ion-navicon {
+    display: none;
+  }
+  #navbutton.isActive .ion-android-close {
     display: inline-block;
   }
 }
@@ -6489,19 +6556,44 @@ nav a#logout:focus {
 main {
   background-color: #eeeeee;
   min-height: calc(100vh - 210px);
-  transition: -webkit-filter 0.5s ease, filter 0.5s ease;
-  transition: filter 0.5s ease;
-  transition: all -webkit-filter 0.5s ease ease-out, all filter 0.5s ease ease-out;
-  transition: all filter 0.5s ease ease-out;
+  transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease, -webkit-transform 0.3s ease-in-out, filter 0.5s ease;
+  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+}
+.menu-isActive main {
+  -webkit-transform: translateX(90vw);
+  transform: translateX(90vw);
 }
 section.login {
   background-color: #44a1e0;
   color: #ffffff;
 }
+/* --- rows (extends bootstrap's grid system) --- */
+.row {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.row:before,
+.row:after {
+  content: " ";
+  display: table;
+}
+.row:after {
+  clear: both;
+}
+.row-nopadding > [class*="col-"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 /* --- footer --- */
 footer {
   padding: 50px 0;
   background-color: #dde;
+  transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease, -webkit-transform 0.3s ease-in-out, filter 0.5s ease;
+  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+}
+.menu-isActive footer {
+  -webkit-transform: translateX(90vw);
+  transform: translateX(90vw);
 }
 
 /*# sourceMappingURL=app.css.map */

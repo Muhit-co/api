@@ -49,7 +49,13 @@ main {
 	background-color: @greyLighter;
 	// main height = 100% minus nav minus footer
 	min-height: calc(100vh ~"-" 130px + 80px);
-	.transition(filter 0.5s ease);
+	// .transition(filter 0.5s ease);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease;
+  -moz-transition: -moz-transform 0.3s ease-in-out, -moz-filter 0.5s ease;
+  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+}
+.menu-isActive main {
+	.transform(translateX(90vw));
 }
 section.login {
 	background-color: @muhitBlue;
@@ -58,8 +64,27 @@ section.login {
 
 
 
+/* --- rows (extends bootstrap's grid system) --- */
+.row {
+  .clearfix;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.row-nopadding > [class*="col-"] {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+
+
 /* --- footer --- */
 footer {
 	padding: 50px 0;
 	background-color: #dde;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease;
+  -moz-transition: -moz-transform 0.3s ease-in-out, -moz-filter 0.5s ease;
+  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+}
+.menu-isActive footer {
+	.transform(translateX(90vw));
 }

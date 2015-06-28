@@ -8,6 +8,7 @@
   
         @include('partials.nav')
 
+        @include('dialogs.report')
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">

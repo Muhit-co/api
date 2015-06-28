@@ -5,11 +5,11 @@
         </span>
       <span class="text">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
     </a>
-    <div class="dropdown">
+    <div class="dropdown u-mr15">
         <ul>
             <li><a href="/issues/new"><i class="ion ion-plus u-mr5"></i> Fikir ekle</a></li>
             <li><a href="user/{{ Auth::user()->username }}"><i class="ion ion-person u-mr5"></i> Profilim</a></li>
-            <li><a href="#"><i class="ion ion-bug u-mr5"></i> Sorunlar ve öneriler</a></li>
+            <li><a href="#" data-dialog="dialog_report"><i class="ion ion-bug u-mr5"></i> Sorunlar ve öneriler</a></li>
             <li><a href="/logout" id="logout"><i class="ion ion-log-out u-mr5"></i> Çıkış</a></li>
         </ul>
     </div>

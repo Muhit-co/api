@@ -33,23 +33,33 @@ textarea {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 1em;
   line-height: 40px;
-  color: @muhitBlueDark;
+  color: @muhitBlueMedium;
 
   &:hover {
     background: fade(@white, 90%);
   }
+  &:focus {
+    background: @white;
+    .box-shadow(0 0 0 3px fade(@black, 10%));
+    color: @muhitBlue;
+    outline: none;
+  }
 }
-input[type="text"]:focus,
-input[type="password"]:focus,
-textarea:focus {
-  background: @white;
-  // border-color: @muhitBlueDark;
-  .box-shadow(0 0 0 3px fade(@black, 10%));
-  color: @muhitBlue;
-  outline: none;
+.form-input.form-grey {
+  background: fade(@greyLighter, 80%);
+
+  &:hover {
+    background: fade(@greyLighter, 90%);
+  }
+  &:focus {
+    background: @greyLighter;
+  }
 }
 textarea {
   height: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 1.5em;
 }
 .form-input {
   position: relative;
