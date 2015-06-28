@@ -3737,8 +3737,11 @@ hr {
 .c-medium {
   color: #9999aa;
 }
-.c-bgBlue {
+.bg-blue {
   background-color: #44a1e0;
+}
+.bg-blueDark {
+  background-color: #245672;
 }
 .bg-tag-blue {
   background-color: #629acc !important;
@@ -6304,6 +6307,15 @@ input[type="checkbox"] {
   height: 40px;
   z-index: 2;
 }
+/* --- header --- */
+header {
+  min-height: 250px;
+  background: url('../images/banner_city.png') no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  background-color: #44a1e0;
+  color: #ffffff;
+}
 /* --- list --- */
 .list {
   transition: width 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -6372,6 +6384,9 @@ nav {
   background-color: #4390c0;
   color: #ffffff;
   z-index: 10;
+}
+nav.nav-muhtar {
+  background-color: #307399;
 }
 nav a {
   color: rgba(255, 255, 255, 0.7);
@@ -6473,22 +6488,13 @@ nav a#logout:focus {
 /* --- main --- */
 main {
   background-color: #eeeeee;
-  min-height: calc(0vh);
+  min-height: calc(100vh - 210px);
   transition: -webkit-filter 0.5s ease, filter 0.5s ease;
   transition: filter 0.5s ease;
   transition: all -webkit-filter 0.5s ease ease-out, all filter 0.5s ease ease-out;
   transition: all filter 0.5s ease ease-out;
 }
 section.login {
-  background-color: #44a1e0;
-  color: #ffffff;
-}
-/* --- header --- */
-header {
-  min-height: 250px;
-  background: url('../images/banner_city.png') no-repeat;
-  background-position: center bottom;
-  background-size: contain;
   background-color: #44a1e0;
   color: #ffffff;
 }

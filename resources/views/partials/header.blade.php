@@ -20,7 +20,7 @@
       <li><a href="#">Kart<b>alt</b>epe, Küçükçekmece</a></li>
       <li><a href="#"><b>Alt</b>ayçeşme, M<b>alt</b>epe</a></li>
       <li><a href="#"><b>Alt</b>ıntepe, M<b>alt</b>epe</a></li>
-      <li><a href="#" class="light">Daha yukle...</a></li>
+      <li><a href="#" class="light">Daha yükle...</a></li>
       </ul>
       </div>
     </div>
@@ -29,6 +29,7 @@
     <div class="col-md-8 col-sm-6">
 
     <div class="u-alignright">
+      <!-- @TODO: @gcg button should only be visible to normal user logged in and public; not formuhtar -->
       <a href="/issues/new" class="btn btn-primary"><i class="ion ion-plus u-mr5"></i> FİKİR EKLE</a>
     </div>
 

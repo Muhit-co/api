@@ -21,6 +21,7 @@
 @import url('components/dropdown.less');
 @import url('components/flashmessage.less');
 @import url('components/form.less');
+@import url('components/header.less');
 @import url('components/list.less');
 @import url('components/nav.less');
 
@@ -46,23 +47,11 @@
 /* --- main --- */
 main {
 	background-color: @greyLighter;
-	min-height: calc(100vh - 100px);
+	// main height = 100% minus nav minus footer
+	min-height: calc(100vh ~"-" 130px + 80px);
 	.transition(filter 0.5s ease);
 }
 section.login {
-	background-color: @muhitBlue;
-	color: @white;
-}
-
-
-
-/* --- header --- */
-header {
-	min-height: 250px;
-	//height: 35vh;
-	background: url('../images/banner_city.png') no-repeat;
-	background-position: center bottom;
-	background-size: contain;
 	background-color: @muhitBlue;
 	color: @white;
 }
