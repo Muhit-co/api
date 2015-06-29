@@ -3741,16 +3741,6 @@ hr {
   background-color: #44a1e0;
   color: #ffffff;
 }
-.bg-blue hr {
-  border-color: #245672;
-}
-.bg-blue a:not(.btn) {
-  color: #245672;
-}
-.bg-blue a:not(.btn):hover,
-.bg-blue a:not(.btn):focus {
-  color: #18394b;
-}
 .bg-blueDark {
   background-color: #245672;
 }
@@ -5938,15 +5928,21 @@ figure img {
   display: inline-block;
   height: 40px;
   padding: 5px 15px;
-  background-color: #aab;
+  background-color: #9999aa;
   border: 1px solid transparent;
+  border-radius: 5px;
   color: #ffffff;
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 1em;
   font-weight: 600;
   letter-spacing: 0.05em;
   line-height: 30px;
-  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #7d7d93;
+  color: #ffffff;
 }
 .btn .ion-15x {
   line-height: 1em;
@@ -5959,11 +5955,6 @@ figure img {
   padding: 5px 10px;
   height: 30px;
   line-height: 20px;
-}
-.btn:hover,
-.btn:focus {
-  background-color: #99a;
-  color: #ffffff;
 }
 .btn:active {
   -webkit-transform: translateY(2px);
@@ -6047,7 +6038,7 @@ figure img {
 .card {
   display: block;
   min-height: 100px;
-  margin-top: -50px;
+  margin-top: -100px;
   margin-bottom: 50px;
   background-color: #ffffff;
   overflow: hidden;
@@ -6622,6 +6613,20 @@ main {
 .menu-isActive main {
   -webkit-transform: translateX(90vw);
   transform: translateX(90vw);
+}
+section.login {
+  background-color: #44a1e0;
+  color: #ffffff;
+}
+section.login hr {
+  border-color: #245672;
+}
+section.login a:not(.btn) {
+  color: #245672;
+}
+section.login a:not(.btn):hover,
+section.login a:not(.btn):focus {
+  color: #18394b;
 }
 /* --- rows (extends bootstrap's grid system) --- */
 .row {

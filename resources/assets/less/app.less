@@ -79,10 +79,21 @@ main {
 .menu-isActive main {
 	.transform(translateX(90vw));
 }
-// section.login {
-// 	background-color: @muhitBlue;
-// 	color: @white;
-// }
+section.login {
+	background-color: @muhitBlue;
+	color: @white;
+  
+  hr {
+    border-color: @muhitBlueDark;
+  }
+  a:not(.btn) {
+    color: @muhitBlueDark;
+
+    &:hover, &:focus {
+      color: darken(@muhitBlueDark, 10%);
+    }
+  }
+}
 
 
 

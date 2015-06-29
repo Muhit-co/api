@@ -1,7 +1,7 @@
 @extends('layouts.compact')
 @section('content')
 
-<section class="bg-blue u-pt50 u-pb50">
+<section class="login bg-blue u-pt50 u-pb50">
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
