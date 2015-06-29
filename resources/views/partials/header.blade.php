@@ -1,6 +1,6 @@
 <header class="bg-blue <?php echo (isset($type) && $type === 'show') ? "header-show" : "header-list"; ?>">
 
-    <?php if(isset($type) && $type !== 'show'): ?>
+    <?php if(!isset($type) || $type !== 'show'): ?>
         <div class="row u-pv60">
             <div class="col-md-4 col-md-offset-1 col-sm-6">
 
