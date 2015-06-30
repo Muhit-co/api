@@ -27,7 +27,10 @@ class Kernel extends HttpKernel {
 		'auth' => 'Muhit\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'Muhit\Http\Middleware\RedirectIfAuthenticated',
-		'csrf' => 'App\Http\Middleware\VerifyCsrfToken',
+        'csrf' => 'App\Http\Middleware\VerifyCsrfToken',
+        'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
+        'oauth-owner' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthOwnerMiddleware',
+        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware'
 	];
 
 }
