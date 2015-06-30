@@ -11,7 +11,7 @@
       <div class="card">
         <div class="card-header clearfix">
           <div class="u-floatleft">
-            <a href="javascript:void(0)" class="u-ml10 u-mr20 closeCard"><i class="ion ion-ios-close-empty ion-2x"></i></a>
+            <a href="/" class="u-ml10 u-mr20 closeCard"><i class="ion ion-android-arrow-back ion-2x"></i></a>
           </div>
           <div class="u-floatright">
             <a href="javascript:void(0)" class="btn btn-sm btn-secondary u-mr5"><i class="ion ion-android-share-alt"></i></a>
@@ -40,7 +40,7 @@
             }
           </style>
 
-          <div class="badge badge-large badge-circle badge-support u-floatright">
+          <div class="badge badge-circle-large badge-support u-floatright u-pt15">
             <div class="value">54</div>
             <label>DESTEKÇİ</label>
           </div>

@@ -1,7 +1,7 @@
 @extends('layouts.compact')
 @section('content')
 
-<section class="login u-pt50">
+<section class="login bg-blue u-pt50">
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -28,12 +28,11 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 u-aligncenter u-pv20">
 
-            <em>veya</em>
-            <br />
-            <br />
+            <hr class="u-mb35" />
 
-            <a href="" ng-click='login();' class="btn btn-facebook u-mr10"><i class="ion ion-social-facebook ion-15x"></i> CONNECT</a>
-            <a href="javascript:void(0)" class="btn btn-twitter u-mr10"><i class="ion ion-social-twitter"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i> CONNECT</a>
 
         </div>
     </div>

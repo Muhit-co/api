@@ -17,7 +17,5 @@
                 <a href="javascript:void(0)" id="closeDialog" class="btn btn-tertiary u-mr10">VAZGEÇ</a>
                 <a href="javascript:void(0)" class="btn btn-secondary">KAYDET</a>
             </div>
-
     </div>
 </dialog>
-

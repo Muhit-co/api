@@ -1,13 +1,15 @@
 /* --- Imports vendor dependencies --- */
-@import url('vendors/ionicons.less');
-
-/* --- Imports mixins --- */
-@import url('lesselements.less');
+@import url('vendors/ionicons/ionicons.less');
+@import url('vendors/bootstrap/variables.less');
+@import url('vendors/bootstrap/mixins.less');
+@import url('vendors/bootstrap/scaffolding.less');
+@import url('vendors/bootstrap/grid.less');
+@import url('vendors/lesselements.less');
 
 /* --- Imports basics --- */
 @import url('basics/colours.less');
 @import url('basics/generic.less');
-@import url('basics/grid.less');
+// @import url('basics/grid.less');
 @import url('basics/reset.less');
 @import url('basics/utilities.less');
 
@@ -19,6 +21,7 @@
 @import url('components/dropdown.less');
 @import url('components/flashmessage.less');
 @import url('components/form.less');
+@import url('components/header.less');
 @import url('components/list.less');
 @import url('components/nav.less');
 
@@ -38,31 +41,89 @@
 .ion-4x {
 	font-size: 4em;
 }
+.ion-spinning {
+  padding-top: 1px;
+  -webkit-animation: spinning 1s infinite linear;
+  -moz-animation: spinning 1s infinite linear;
+  animation: spinning 1s infinite linear;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  transform-origin: center center;
+}
+@-webkit-keyframes spinning {
+    0% { -webkit-transform: rotate(0); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spinning {
+    0% { -moz-transform: rotate(0); }
+  100% { -moz-transform: rotate(360deg); }
+}
+@keyframes spinning {
+    0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
 
 
 
 /* --- main --- */
 main {
 	background-color: @greyLighter;
-	min-height: calc(100vh - 100px);
-	.transition(filter 0.5s ease);
+	// main height = 100% minus nav minus footer
+	min-height: calc(100vh ~"-" 130px + 80px);
+	// .transition(filter 0.5s ease);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease;
+  -moz-transition: -moz-transform 0.3s ease-in-out, -moz-filter 0.5s ease;
+  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+}
+.menu-isActive main {
+	.transform(translateX(90vw));
 }
 section.login {
 	background-color: @muhitBlue;
 	color: @white;
+  
+  hr {
+    border-color: @muhitBlueDark;
+  }
+  a:not(.btn) {
+    color: @muhitBlueDark;
+
+    &:hover, &:focus {
+      color: darken(@muhitBlueDark, 10%);
+    }
+  }
 }
 
 
 
-/* --- header --- */
-header {
-	min-height: 250px;
-	//height: 35vh;
-	background: url('../images/banner_city.png') no-repeat;
-	background-position: center bottom;
-	background-size: contain;
-	background-color: @muhitBlue;
-	color: @white;
+/* --- rows (extends bootstrap's grid system) --- */
+.row {
+  .clearfix;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.row-nopadding > [class*="col-"] {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+@media screen and (max-width: @screen-xs) {
+  .row .col-xs-hide {
+    display: none;
+  }
+}
+
+
+/* --- add images --- */
+.add-images {
+  .badge-image {
+    background-color: @muhitBlue;
+    color: @white;
+
+    a {
+      color: @white;
+    }
+  }
 }
 
 
@@ -71,4 +132,10 @@ header {
 footer {
 	padding: 50px 0;
 	background-color: #dde;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease;
+  -moz-transition: -moz-transform 0.3s ease-in-out, -moz-filter 0.5s ease;
+  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+}
+.menu-isActive footer {
+	.transform(translateX(90vw));
 }

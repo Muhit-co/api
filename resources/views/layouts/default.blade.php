@@ -8,6 +8,7 @@
   
         @include('partials.nav')
 
+        @include('dialogs.report')
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">
@@ -15,12 +16,8 @@
         </a>
 
         <main>
-            <section class="c-bgBlue">
-                <div class="row u-pv10">
-                    <div class="col-md-10 col-md-offset-1">
-                        @include('partials.messages')
-                    </div>
-                </div>
+            <section class="bg-blue">
+                @include('partials.messages')
             </section>
 
             @yield('content')
