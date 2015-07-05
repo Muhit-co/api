@@ -9,12 +9,8 @@
   display: none;
   margin-top: 15px;
   background-color: @white;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .rounded(5px);
+  .box-shadow(0 0 10px fade(@black, 10%));
   z-index: 2;
   text-align: left;
   white-space: nowrap;
@@ -54,4 +50,68 @@
 }
 .form-autosuggest .dropdown ul a {
   font-weight: 300;
+}
+
+
+.pac-container {
+  position: relative;
+  margin-top: 15px;
+  padding: 5px 0;
+  background-color: @white;
+  border: none;
+  .rounded(5px);
+  .box-shadow(0 0 10px fade(@black, 10%));
+  z-index: 2;
+  text-align: left;
+  white-space: nowrap;
+  overflow: visible;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 12px;
+    display: block;
+    border: 8px solid transparent;
+    border-bottom-color: @white;
+  }
+  &:after {
+    display: none;
+  }
+  .pac-item {
+    display: block;
+    min-width: 150px;
+    padding: 5px 15px;
+    border-top: none;
+    color: fade(@greyDark, 50%);
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    &:hover {
+      background-color: fade(@muhitBlueDark, 10%);
+    }
+    .pac-icon {
+      width: 25px;
+      margin: 0;
+      padding: 0;
+      background: none;
+      font-size: 1.5em;
+      font-family: Ionicons;
+      color: fade(@muhitBlueDark, 20%);
+      cursor: pointer;
+      &.pac-icon-marker:before {
+        content: "\f1ff";
+      }
+      &.pac-icon-search:before {
+        content: "\f21f";
+      }
+    }
+    .pac-item-query {
+      font-size: 1em;
+      color: @muhitBlue;
+      .pac-matched {
+        font-weight: bold;
+      }
+    }
+  }
 }

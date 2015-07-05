@@ -61,10 +61,10 @@ $(document).ready(function() {
   });
 
   // toggles card/list in listdetail view
-  $('.list ul a, .closeCard').click(function() {
-    $('.list').toggleClass('list-expanded').toggleClass('list-collapsed');
-    $('.card').toggleClass('card-hidden').toggleClass('card-expanded');
-  });
+  // $('.list ul a, .closeCard').click(function() {
+  //   $('.list').toggleClass('list-expanded').toggleClass('list-collapsed');
+  //   $('.card').toggleClass('card-hidden').toggleClass('card-expanded');
+  // });
 
   // closes flash message
   $('.flash #flash_close').click(function() {

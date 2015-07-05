@@ -1,5 +1,5 @@
 <div class="userinfo hasDropdown u-floatright">
-    <a href="javascript:void(0)" id="userinfo" class="u-inlineblock">
+    <a href="javascript:void(0)" id="userinfo" class="u-inlineblock u-nowrap">
         <span class="badge badge-circle badge-user u-floatright u-ml10">
             <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{Auth::user()->picture}}" alt="{{Auth::user()->first_name}}">
         </span>

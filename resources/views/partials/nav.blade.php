@@ -5,6 +5,7 @@
 
             @if(Auth::check())
                 @include('partials.userinfo')
+                <a href="/issues/new" id="nav_quickadd" class="btn btn-sm btn-whiteoutline u-floatright u-mr10 u-mt20"><i class="ion ion-plus"></i></a>
             @else
                 {{-- user is not logged in --}}
                 <div class="u-floatright u-nowrap">
@@ -56,7 +57,7 @@
                     foreach($pages as $page):
                     ?>
                     <li{{ Request::is( $page['uri'] ) ? ' class=active' : '' }}>
-                        <a href="{{ URL::to( $page['uri']) }}">
+                        <a href="{{ URL::to( $page['uri']) }}" class="u-nowrap">
                             <i class="ion <?php echo $page['icon'] ?> ion-15x"></i>
                             <?php echo $page['name'] ?>
                         </a>

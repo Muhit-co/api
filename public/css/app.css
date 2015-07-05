@@ -3738,7 +3738,7 @@ hr {
   color: #9999aa;
 }
 .bg-blue {
-  background-color: #44a1e0;
+  background-color: #51a8e2;
   color: #ffffff;
 }
 .bg-blueDark {
@@ -6048,6 +6048,16 @@ figure img {
 .btn-outline:focus {
   background-color: #44a1e0;
 }
+.btn-whiteoutline {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.btn-whiteoutline:hover,
+.btn-whiteoutline:focus {
+  background-color: #ffffff;
+  color: #44a1e0;
+}
 .btn-facebook {
   background-color: #3b5998;
 }
@@ -6223,7 +6233,7 @@ dialog hr {
   margin-top: 15px;
   background-color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(51, 51, 68, 0.1);
   z-index: 2;
   text-align: left;
   white-space: nowrap;
@@ -6263,6 +6273,67 @@ dialog hr {
 .form-autosuggest .dropdown ul a {
   font-weight: 300;
 }
+.pac-container {
+  position: relative;
+  margin-top: 15px;
+  padding: 5px 0;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(51, 51, 68, 0.1);
+  z-index: 2;
+  text-align: left;
+  white-space: nowrap;
+  overflow: visible;
+}
+.pac-container:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 12px;
+  display: block;
+  border: 8px solid transparent;
+  border-bottom-color: #ffffff;
+}
+.pac-container:after {
+  display: none;
+}
+.pac-container .pac-item {
+  display: block;
+  min-width: 150px;
+  padding: 5px 15px;
+  border-top: none;
+  color: rgba(102, 102, 119, 0.5);
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+}
+.pac-container .pac-item:hover {
+  background-color: rgba(36, 86, 114, 0.1);
+}
+.pac-container .pac-item .pac-icon {
+  width: 25px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-size: 1.5em;
+  font-family: Ionicons;
+  color: rgba(36, 86, 114, 0.2);
+  cursor: pointer;
+}
+.pac-container .pac-item .pac-icon.pac-icon-marker:before {
+  content: "\f1ff";
+}
+.pac-container .pac-item .pac-icon.pac-icon-search:before {
+  content: "\f21f";
+}
+.pac-container .pac-item .pac-item-query {
+  font-size: 1em;
+  color: #44a1e0;
+}
+.pac-container .pac-item .pac-item-query .pac-matched {
+  font-weight: bold;
+}
 /* --- flashmessage --- */
 .flash {
   background-color: #44a1e0;
@@ -6295,6 +6366,9 @@ dialog hr {
 }
 .form-group.form-fullwidth {
   width: 100%;
+}
+.form-group.hasDropdown .form-input {
+  padding-right: 36px;
 }
 .form-group input[type="checkbox"] {
   position: absolute;
@@ -6382,7 +6456,9 @@ input.form-disabled {
 }
 /* --- header --- */
 header {
-  min-height: 250px;
+  min-height: 200px;
+  padding-top: calc(20px + 3.5vw);
+  padding-bottom: calc(20px + 3.5vw);
   background: url('../images/banner_city.png') no-repeat;
   background-position: center bottom;
   background-size: contain;
@@ -6453,9 +6529,10 @@ nav {
   left: 0;
   width: 100%;
   height: 80px;
-  background-color: #4390c0;
+  background-color: #379ade;
   color: #ffffff;
   z-index: 10;
+  box-shadow: 0 3px 6px rgba(51, 51, 68, 0.2);
 }
 nav.nav-muhtar {
   background-color: #307399;
@@ -6468,7 +6545,7 @@ nav a:focus {
   color: #ffffff;
 }
 nav #nav_logo {
-  padding: 20px 15px;
+  padding: 20px 10px;
 }
 nav #nav_logo img {
   display: block;
@@ -6488,6 +6565,9 @@ nav a#logout {
 nav a#logout:hover,
 nav a#logout:focus {
   color: #d62c1a;
+}
+nav #nav_quickadd {
+  display: none;
 }
 /* --- nav placeholder --- */
 .navplaceholder {
@@ -6528,7 +6608,7 @@ nav a#logout:focus {
 #navbutton {
   display: none;
   height: 80px;
-  padding: 20px;
+  padding: 20px 10px;
   line-height: 30px;
 }
 #navbutton .ion {
@@ -6542,12 +6622,23 @@ nav a#logout:focus {
 #navbutton:focus {
   background-color: rgba(51, 51, 68, 0.05);
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 992px) {
+  #menu a {
+    max-width: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #userinfo {
+    max-width: 180px;
+  }
+}
+@media screen and (max-width: 768px) {
   nav {
     max-width: 100vw;
+    height: 70px;
   }
   nav .userinfo #userinfo {
-    padding: 20px 15px;
+    padding: 15px;
   }
   nav .userinfo #userinfo .badge {
     margin-left: 0 !important;
@@ -6555,12 +6646,21 @@ nav a#logout:focus {
   nav .userinfo #userinfo .text {
     display: none;
   }
+  nav #nav_logo {
+    padding: 15px 10px;
+  }
+  nav #nav_quickadd {
+    display: inline-block;
+  }
+  .navplaceholder {
+    height: 70px;
+  }
   #menu {
     position: fixed;
-    top: 80px;
+    top: 70px;
     left: 0;
     width: 90vw;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     background-color: #245672;
     box-shadow: inset 0 3px 0 rgba(51, 51, 68, 0.2);
     -webkit-transform: translateX(-90vw);
@@ -6581,6 +6681,8 @@ nav a#logout:focus {
   }
   #menu a {
     height: 60px;
+    max-width: 100%;
+    padding: 13px 15px 8px;
     text-align: left;
     border-left: 5px solid transparent;
   }
@@ -6597,6 +6699,7 @@ nav a#logout:focus {
   }
   #navbutton {
     display: inline-block;
+    padding: 15px 10px;
   }
   #navbutton.isActive .ion-navicon {
     display: none;
@@ -6690,6 +6793,11 @@ section.login a:not(.btn):focus {
 }
 @media screen and (max-width: 480px) {
   .row .col-xs-hide {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .row .col-sm-hide {
     display: none;
   }
 }
