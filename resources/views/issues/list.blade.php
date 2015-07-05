@@ -14,7 +14,7 @@
                                 <a href="/issues/view/{{$issue['id']}}">
                                     <div class="badge badge-image u-floatleft u-mr15">
                                         @if(isset($issue['images']) and !empty($issue['images']))
-
+                                           <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" /
                                         @else
                                             <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
 
