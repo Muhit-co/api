@@ -72,6 +72,9 @@
   .padding(@steps, @max, (@i + 1));
 }
 
+.u-relative {
+  position: relative;
+}
 .u-inlineblock {
   display: inline-block;
 }
@@ -97,10 +100,19 @@
   top: 50%;
   .transform(translateY(-30px));
 }
+.u-pinned-topleft {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .u-pinned-topright {
   position: absolute;
   top: 0;
   right: 0;
+}
+.u-pinned-cover {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
 }
 .u-fullWidth {
   width: 100%;
@@ -110,6 +122,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.u-noselect {
+  pointer-events: none;
+}
+.u-hidden {
+  display: none;
+}
+.u-opacity50 {
+  opacity: 0.5;
 }
 .u-clearfix {
   .clearfix();
