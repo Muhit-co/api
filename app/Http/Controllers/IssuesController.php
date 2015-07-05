@@ -195,6 +195,20 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getView($id = null) {
+        $issue = Issue::with('user', 'tags', 'images')
+            ->find($id);
+
+        if (null === $issue) {
+            if ($this->isApi) {
+                return response()->api(404, 'Issue not found', ['id' => $id]);
+            }
+            return response()->app(404, 'errors.notfound', ['msg' => 'Fikir bulunamadı, silinmiş olabilir?']);
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issue details: ', ['issue' => $issue->toArray()]);
+        }
+        return response()->app(200, 'issues.show', ['issue' => $issue->toArray()]);
     }
 
     /**
