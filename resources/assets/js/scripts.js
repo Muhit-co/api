@@ -71,4 +71,34 @@ $(document).ready(function() {
     $(this).closest('.flash').fadeOut();
   });
 
+  // create issue file upload handler
+  function handleFiles(files) {
+    $('#image_preview').html('');
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var imageType = /^image\//;
+
+      if(files.length > 5) {
+          alert('You can only upload a maximum of 5 images.');
+          break;
+      }
+      
+      if (!imageType.test(file.type)) {
+        continue;
+      }
+
+      var previewDiv = document.createElement("div");
+      previewDiv.classList.add("badge", "badge-image", "u-relative", "u-mr10");
+      previewDiv.file = file;
+      image_preview.appendChild(previewDiv);
+      
+      var reader = new FileReader();
+      reader.onload = (function(aImg) { return function(e) { aImg.style.backgroundImage = 'url(' + e.target.result + ')'; }; })(previewDiv);
+      reader.readAsDataURL(file);
+    }
+  }
+  $('#image_input').change(function() {
+      handleFiles(this.files);
+  });
+  
 });

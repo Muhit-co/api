@@ -35,6 +35,26 @@
     .ion {
       margin: 7px 0;
     }
+    .ion-onbadge {
+      @size: 40px;
+      position: absolute;
+      top: 50%; 
+      left: 50%;
+      z-index: 3;
+      width: @size;
+      height: @size;
+      margin-left: -@size/2;
+      margin-top: -@size/2;
+      background-color: fade(@black, 30%);
+      text-align: center;
+      line-height: @size;
+      cursor: pointer;
+      .rounded(@size/2);
+
+      &:hover, &:focus {
+        background-color: fade(@black, 40%);
+      }
+    }
   }
   &.badge-status {
     display: block;

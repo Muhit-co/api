@@ -29,21 +29,22 @@
                 </div>
 
                 <div class="form-group form-fullwidth u-mv20">
-                    <label>Etiketler <span class="u-opacity50">(max 3)</span></label>
+                    <label>Etiketler <i class="u-opacity50">(max 3)</i></label>
                     @foreach($tags as $t)
                         <input type="checkbox" id="tag-{{$t->id}}" name="tags[]" value="{{$t->id}}" class="u-floatleft u-mr20">
                         <label class="tag u-mb10" for="tag-{{$t->id}}" style="background-color:#{{$t->background}}">{{$t->name}}</label>
                     @endforeach
 
-
                 </div>
 
                 <div class="form-group form-fullwidth u-mv20">
+                    <label>Resimler <i class="u-opacity50">(max 5)</i></label>
                     <div class="add-images">
-                        <label>Resimler</label>
-                        <div class="badge badge-image u-mr5" style="background-image: url('../images/street_thumbnail.jpg')"><a href="badge-close"><i class="ion ion-close u-pt10 c-white"></i></a></div>
-                        <div class="badge badge-image u-mr5 u-pt10" style="background-image: url('../images/street_thumbnail.jpg')"><i class="ion ion-load-a ion-spinning c-white"></i></div>
-                        <div class="badge badge-image u-mr5"><a href="badge-close"><i class="ion ion-plus ion-15x u-pt5"></i></a></div>
+                        <div id="image_preview" class="u-floatleft"></div>
+                        <div class="badge badge-image u-relative">
+                            <i class="ion u-pt30 u-noselect"><strong>Sec...</strong></i>
+                            <input type="file" id="image_input" class="u-pinned-cover" style="z-index: 2" accept="image/jpg, image/png, image/jpeg" multiple="multiple" />
+                        </div>
                     </div>
                 </div>
 
