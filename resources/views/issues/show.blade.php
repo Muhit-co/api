@@ -17,7 +17,7 @@
             <a href="javascript:void(0)" class="btn btn-sm btn-secondary u-mr5"><i class="ion ion-android-share-alt"></i></a>
             <a href="javascript:void(0)" class="btn btn-sm btn-secondary"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
           </div>
-          <span class="title">Cihangir, Beyoğlu</span>
+          <span class="title">{{$issue['location']}}</span>
         </div>
         <div class="card-content">
 
@@ -45,9 +45,9 @@
             <label>DESTEKÇİ</label>
           </div>
 
-          <h3 class="u-mh5 u-mv10">
-            Sıraselviler’de araç işgali kontrol edilsin. Sıraselviler’de araç işgali kontrol edilsin. Sıraselviler’de araç işgali kontrol edilsin.
-          </h3>
+            <h3 class="u-mh5 u-mv10">
+                {{$issue['title']}}
+            </h3>
 
           <div class="media row row-nopadding u-mv20">
             <div class="media-image col-md-8">
@@ -60,8 +60,9 @@
 
           <div class="row row-nopadding u-mv20">
             <div class="col-md-10">
-              <span class="tag bg-tag-lightgreen u-mr10">AĞAÇLANDIRMA</span>
-              <span class="tag bg-tag-orange">YAYA</span>
+                @foreach($issue['tags'] as $tag)
+                    <span class="tag u-mr10" style="background-color:#{{$tag['background']}}">{{$tag['name']}}</span>
+                @endforeach
             </div>
             <div class="col-md-2 u-alignright">
               <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i> 24 May</label>
@@ -69,7 +70,7 @@
           </div>
 
           <div class="description">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra magna quis lectus eleifend pulvinar. Vivamus pellentesque elit pellentesque tellus accumsan luctus. Suspendisse interdum nibh non dui viverra, quis sagittis justo hendrerit. Donec ac justo eu lorem lobortis vehicula sit amet et eros. In pulvinar felis massa, ac varius eros tempus eget. Sed diam neque, vestibulum eu leo nec, sodales vestibulum elit. Sed lectus ipsum, commodo eu tellus id, malesuada fringilla ex. Nunc ultricies urna felis, non ultrices diam lobortis ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed maximus ex lacus. Vivamus nisi elit, facilisis vel erat at, luctus aliquet dolor. Ut eget mattis arcu, sit amet pretium metus. Aliquam id commodo ipsum. Vivamus ultrices quam non magna consectetur iaculis. Aliquam in viverra lacus, non mollis velit.</p>
+            <p>{{$issue['desc']}}</p>
           </div>
 
         </div>
@@ -86,7 +87,7 @@
       </div>
 
     </div>
-    
+
   </div>
 </section>
 
