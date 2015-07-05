@@ -1,5 +1,7 @@
 $(document).on('click', '#location', function(event){
     // google api & html5 location api based on location guessing
+    $("#location_string").attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
+    
     var map;
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
