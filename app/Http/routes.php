@@ -58,6 +58,10 @@ Route::group(['prefix' => 'api'], function () {
         return response()->api(500, "You have access to the secure calls");
     }]);
 
+    Route::get('/headers', function(){
+        return response()->api(200, 'headers', Request::header());
+    });
+
     Route::controller('auth', 'AuthController');
     Route::controller('hoods', 'HoodsController');
 
