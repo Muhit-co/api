@@ -12,7 +12,7 @@
 
                 <!-- change mahalle -->
                 <div class="form-group form-autosuggest form-fullwidth hasDropdown">
-                    <input type="text" class="form-input" value="Erenköy, Kadıköy" />
+                    <input id="location_string" name="location" type="text" class="form-input" value="Erenköy, Kadıköy" />
                     <a class="form-appendRight"><i class="ion ion-chevron-down u-pa15"></i></a>
                     <div class="dropdown u-fullWidth">
                         <ul>
@@ -25,6 +25,10 @@
                             <li><a href="#" class="light">Daha yükle...</a></li>
                         </ul>
                     </div>
+                </div>
+                <div class="form-group u-mv10">
+                    <input type="checkbox" id="location" value="" class="u-floatleft u-mr20" >
+                    <label for="location">Yerimi belirle</label>
                 </div>
 
             </div>

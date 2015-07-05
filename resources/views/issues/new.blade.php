@@ -24,7 +24,7 @@
 
                 <!-- Mahalle -->
                 <div class="form-group form-autosuggest form-fullwidth hasDropdown">
-                    <input type="text" class="form-input form-disabled" id="location_string" name="location"  placeholder="Erenköy, Kadıköy" />
+                    <input type="text" class="form-input form-disabled" id="location_string" name="location" placeholder="Erenköy, Kadıköy" />
 
                 </div>
 
@@ -43,7 +43,7 @@
                         <div id="image_preview" class="u-floatleft"></div>
                         <div class="badge badge-image u-relative">
                             <i class="ion u-pt30 u-noselect"><strong>Sec...</strong></i>
-                            <input type="file" id="image_input" class="u-pinned-cover" style="z-index: 2" accept="image/jpg, image/png, image/jpeg" multiple="multiple" />
+                            <input type="file" id="image_input" name="images[]" class="u-pinned-cover" style="z-index: 2" accept="image/jpg, image/png, image/jpeg" multiple="multiple" />
                         </div>
                     </div>
                 </div>
