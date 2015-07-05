@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="form-group u-mv10">
-                    <input type="checkbox" id="anonymous" value="" class="u-floatleft u-mr20">
+                    <input type="checkbox" id="anonymous" name="is_anonymous" value="1" class="u-floatleft u-mr20">
                     <label for="anonymous">Anonim olarak başvuru yap</label>
                 </div>
 

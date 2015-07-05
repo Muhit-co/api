@@ -61,6 +61,7 @@ class IssuesController extends Controller {
         $issue->city_id = 0;
         $issue->district_id = 0;
         $issue->hood_id = 0;
+        $issue->is_anonymous = ((isset($data['is_anonymous'])) ? $data['is_anonymous'] : 0);
 
         try {
             $issue->save();
