@@ -42,7 +42,7 @@
                 <div class="form-group form-fullwidth u-mv20">
                     <label>Etiketler <span class="u-opacity50">(max 3)</span></label>
                     @foreach($tags as $t)
-                        <input type="checkbox" id="tag-{{$t->id}}" name=tags[] value="{{$t->id}}" class="u-floatleft u-mr20">
+                        <input type="checkbox" id="tag-{{$t->id}}" name="tags[]" value="{{$t->id}}" class="u-floatleft u-mr20">
                         <label class="tag u-mb10" for="tag-{{$t->id}}" style="background-color:#{{$t->background}}">{{$t->name}}</label>
                     @endforeach
 
