@@ -11541,35 +11541,58 @@ $(document).on('click', '#location', function(event){
 
             geocoder.geocode({'location': latlng}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        //console.log(results[1].address_components);
-                        $("#location_string").val(results[1].formatted_address);
+                    if (results[0]) {
+                        var hood, district, city;
+                        var add = results[0];
+                        if (add.address_components) {
+                            for (var i = 0, l = add.address_components.length; i < l; i ++) {
+                                var a = add.address_components[i];
+                                if (a.types[0]) {
+                                    if (a.types[0] === "administrative_area_level_1") {
+                                        city = a.long_name;    
+                                    }
+                                    if (a.types[0] === "administrative_area_level_2") {
+                                        district = a.long_name;    
+                                    }
+                                    if (a.types[0] === "administrative_area_level_4") {
+                                        hood = a.long_name;    
+                                    }
+                                }
+                            }
+                            $("#location_string").val(hood+", "+district+", "+city);
+                        }
                     } else {
-                        window.alert('No results found');
+                        window.alert('Yerinizi belirleyemedim, elle girsek?');
 
                     }
 
                 } else {
-                    window.alert('Geocoder failed due to: ' + status);
+                    window.alert('Yerinizi belirleyemedim, elle girsek? ');
 
                 }
 
             });
 
         }, function() {
-            alert('No geo location provided.');
+            alert('Yerinizi belirleyemedim, elle girsek?');
         });
 
     } else {
         // Browser doesn't support Geolocation
-        alert('Browser is not supported.');
+        alert('Yerinizi belirleyemedim, elle girsek?');
     }
 });
 
 $(document).ready(function(){
     // google places autocomplete
     var input = (document.getElementById('location_string'));
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    var autocomplete = new google.maps.places.Autocomplete(
+            input, 
+            {
+                types: ['geocode'],
+                componentRestrictions: {country: 'tr'}
+            }
+    );
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var place = autocomplete.getPlace();
         if (!place.geometry) {
@@ -11589,6 +11612,7 @@ $(document).ready(function(){
         }
         console.log(place.name);
         console.log(address);
+        console.log(place.address_components);
     });
 });
 
