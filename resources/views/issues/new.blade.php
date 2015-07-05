@@ -41,12 +41,12 @@
 
                 <div class="form-group form-fullwidth u-mv20">
                     <label>Etiketler <span class="u-opacity50">(max 3)</span></label>
-                    <span class="tag bg-tag-lightgreen u-mb10">AĞAÇLANDIRMA <a href="javascript:void(0)" class="tag-close u-pl10 u-ml5"><i class="ion ion-close ion-x"></i></a></span><br />
-                    <select>
-                        @foreach($tags as $t)
-                            <option value="{{$t->id}}">{{$t->name}}</option>
-                        @endforeach
-                    </select>
+                    @foreach($tags as $t)
+                        <input type="checkbox" id="tag-{{$t->id}}" name=tags[] value="{{$t->id}}" class="u-floatleft u-mr20">
+                        <label class="tag u-mb10" for="tag-{{$t->id}}" style="background-color:#{{$t->background}}">{{$t->name}}</label>
+                    @endforeach
+
+
                 </div>
 
                 <div class="form-group form-fullwidth u-mv20">
