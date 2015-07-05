@@ -51,10 +51,10 @@
 
           <div class="media row row-nopadding u-mv20">
             <div class="media-image col-md-8">
-              <img src="images/street.jpg" alt="" />
+              <img src="/images/street.jpg" alt="" />
             </div>
             <div class="media-map col-md-4">
-              <img src="images/map.jpg" alt="" />
+              <img src="/images/map.jpg" alt="" />
             </div>
           </div>
 
