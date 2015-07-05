@@ -20,7 +20,7 @@
                 </a>
             @endif
             
-            <a href="#top" id="nav_logo" class="u-floatleft"><img src="/images/logo.png" height="40px" alt="" /></a>
+            <a href="<?php echo (Request::is('/')) ? '#top' : '/' ?>" id="nav_logo" class="u-floatleft"><img src="/images/logo.png" height="40px" alt="" /></a>
 
             @if(Auth::check())
                 <ul id="menu">
