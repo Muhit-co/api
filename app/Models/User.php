@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract {
     public function toArray() {
         $array = parent::toArray();
         $array['opened_issue_counter'] = (int) Redis::get('user_opened_issue_counter:' . $this->id);
-        $array['supported_issue_counter'] = (int) Redis::get('user_opened_issue_counter:' . $this->id);
+        $array['supported_issue_counter'] = (int) Redis::get('user_supported_issue_counter:' . $this->id);
         return $array;
     }
 

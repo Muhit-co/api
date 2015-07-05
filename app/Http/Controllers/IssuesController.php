@@ -123,6 +123,8 @@ class IssuesController extends Controller {
 
         DB::commit();
 
+        Redis::incr('user_opened_issue_counter:'.$user_id);
+
         if ($this->isApi) {
             return response()->api(200, 'Issue saved', Issue::with('user', 'tags', 'images')->find($issue->id));
 
