@@ -11,7 +11,6 @@
 		"predis/predis": "~1.0",
 		"lucadegasperi/oauth2-server-laravel": "~4.1@dev",
 		"facebook/php-sdk-v4": "@stable",
-		"barryvdh/laravel-cors": "0.5.x@dev",
 		"league/flysystem-aws-s3-v3": "~1.0",
 		"jenssegers/raven": "@stable"
 	},
