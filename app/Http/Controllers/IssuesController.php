@@ -160,7 +160,7 @@ class IssuesController extends Controller {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
             ->skip($start)
-            ->take(20)
+            ->take($take)
             ->get();
 
         $response = [];
