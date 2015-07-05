@@ -24,4 +24,8 @@
   <meta name="msapplication-navbutton-color" content="#44a1e0">
   <meta name="apple-mobile-web-app-status-bar-style" content="#44a1e0">
 
+    <script type="text/javascript"
+      src="//maps.googleapis.com/maps/api/js?libraries=places">
+    </script>
+
 </head>

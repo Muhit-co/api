@@ -18,25 +18,14 @@
                 </div>
 
                 <div class="form-group u-mv10">
-                    <input type="checkbox" id="location" value="" class="u-floatleft u-mr20" checked>
+                    <input type="checkbox" id="location" value="" class="u-floatleft u-mr20" >
                     <label for="location">Yerimi belirle</label>
                 </div>
 
                 <!-- Mahalle -->
                 <div class="form-group form-autosuggest form-fullwidth hasDropdown">
-                    <input type="text" class="form-input form-disabled" disabled value="Erenköy, Kadıköy" />
-                    <a class="form-appendRight"><i class="ion ion-chevron-down u-pa15"></i></a>
-                    <div class="dropdown u-fullWidth">
-                        <ul>
-                            <li><a href="#"><b>Alt</b>ınşehir, Başakşehir</a></li>
-                            <li><a href="#">Kart<b>alt</b>epe, Bakırköy</a></li>
-                            <li><a href="#"><b>Alt</b>ıntepsi, Bayrampaşa</a></li>
-                            <li><a href="#">Kart<b>alt</b>epe, Küçükçekmece</a></li>
-                            <li><a href="#"><b>Alt</b>ayçeşme, M<b>alt</b>epe</a></li>
-                            <li><a href="#"><b>Alt</b>ıntepe, M<b>alt</b>epe</a></li>
-                            <li><a href="#" class="light">Daha yukle...</a></li>
-                        </ul>
-                    </div>
+                    <input type="text" class="form-input form-disabled" id="location_string" name="location"  placeholder="Erenköy, Kadıköy" />
+
                 </div>
 
                 <div class="form-group form-fullwidth u-mv20">

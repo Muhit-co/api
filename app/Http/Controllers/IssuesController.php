@@ -27,15 +27,7 @@ class IssuesController extends Controller {
         else {
             $user_id = Auth::user()->id;
         }
-        if (!$this->isApi) {
-            #populate dummy data :
 
-            for ($i = 0; $i < 3; $i++) {
-                $tags[] = rand(1,11);
-            }
-            $data['tags'] = $tags;
-            $data['location'] = 'Area51, Istanbul, Turkey';
-        }
 
         $required_fields = ['tags', 'title', 'desc', 'location'];
 
