@@ -18,7 +18,8 @@ elixir(function(mix) {
             "vendors/jquery.smooth-scroll.js",
             "vendors/fastclick.js",
             "app.js",
-            "scripts.js"
+            "scripts.js",
+            "maps.js"
     ]);
 
 });

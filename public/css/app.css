@@ -5797,9 +5797,6 @@ figure img {
 .u-pa200 {
   padding: 200px !important;
 }
-.u-relative {
-  position: relative;
-}
 .u-inlineblock {
   display: inline-block;
 }
@@ -5826,22 +5823,10 @@ figure img {
   -webkit-transform: translateY(-30px);
   transform: translateY(-30px);
 }
-.u-pinned-topleft {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .u-pinned-topright {
   position: absolute;
   top: 0;
   right: 0;
-}
-.u-pinned-cover {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 .u-fullWidth {
   width: 100%;
@@ -5851,15 +5836,6 @@ figure img {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.u-noselect {
-  pointer-events: none;
-}
-.u-hidden {
-  display: none;
-}
-.u-opacity50 {
-  opacity: 0.5;
 }
 .u-clearfix:before,
 .u-clearfix:after {
@@ -5904,25 +5880,6 @@ figure img {
 }
 .badge.badge-image .ion {
   margin: 7px 0;
-}
-.badge.badge-image .ion-onbadge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;
-  margin-top: -20px;
-  background-color: rgba(51, 51, 68, 0.3);
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  border-radius: 20px;
-}
-.badge.badge-image .ion-onbadge:hover,
-.badge.badge-image .ion-onbadge:focus {
-  background-color: rgba(51, 51, 68, 0.4);
 }
 .badge.badge-status {
   display: block;
@@ -6695,21 +6652,11 @@ section.login a:not(.btn):focus {
 }
 /* --- add images --- */
 .add-images .badge-image {
-  width: 100px;
-  height: 100px;
   background-color: #44a1e0;
   color: #ffffff;
 }
-.add-images .badge-image:hover,
-.add-images .badge-image:focus {
-  background-color: #2289cf;
-}
 .add-images .badge-image a {
   color: #ffffff;
-}
-.add-images .badge-image input {
-  cursor: pointer;
-  opacity: 0;
 }
 /* --- footer --- */
 footer {

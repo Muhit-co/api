@@ -27,15 +27,7 @@ class IssuesController extends Controller {
         else {
             $user_id = Auth::user()->id;
         }
-        if (!$this->isApi) {
-            #populate dummy data :
 
-            for ($i = 0; $i < 3; $i++) {
-                $tags[] = rand(1,11);
-            }
-            $data['tags'] = $tags;
-            $data['location'] = 'Area51, Istanbul, Turkey';
-        }
 
         $required_fields = ['tags', 'title', 'desc', 'location'];
 
@@ -131,6 +123,8 @@ class IssuesController extends Controller {
 
         DB::commit();
 
+        Redis::incr('user_opened_issue_counter:'.$user_id);
+
         if ($this->isApi) {
             return response()->api(200, 'Issue saved', Issue::with('user', 'tags', 'images')->find($issue->id));
 
@@ -168,7 +162,7 @@ class IssuesController extends Controller {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
             ->skip($start)
-            ->take(20)
+            ->take($take)
             ->get();
 
         $response = [];
@@ -201,6 +195,20 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getView($id = null) {
+        $issue = Issue::with('user', 'tags', 'images')
+            ->find($id);
+
+        if (null === $issue) {
+            if ($this->isApi) {
+                return response()->api(404, 'Issue not found', ['id' => $id]);
+            }
+            return response()->app(404, 'errors.notfound', ['msg' => 'Fikir bulunamadı, silinmiş olabilir?']);
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issue details: ', ['issue' => $issue->toArray()]);
+        }
+        return response()->app(200, 'issues.show', ['issue' => $issue->toArray()]);
     }
 
     /**

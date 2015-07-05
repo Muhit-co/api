@@ -1,6 +1,7 @@
 <?php namespace Muhit\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Redis;
 
 class Issue extends Model {
 
@@ -18,6 +19,13 @@ class Issue extends Model {
 
 	public function images() {
 		return $this->hasMany('Muhit\Models\IssueImage');
-	}
+
+    }
+
+	public function toArray() {
+		$array = parent::toArray();
+		$array['supporter_counter'] = (int) Redis::get('supporter_counter:' . $this->id);
+		return $array;
+    }
 
 }
