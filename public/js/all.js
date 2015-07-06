@@ -11526,6 +11526,34 @@ $(document).ready(function() {
     $(this).closest('.flash').fadeOut();
   });
 
+
+
+  // filter field interactions
+
+  // when user focuses on input field, value should be emptied and temporarily stored
+  $(document).on('focus', '#location_string', function(event){
+      $(this).attr('data-val', $(this).val());
+      $(this).val('');
+  });
+  // when user blurs input field, value should return to its original state
+  $(document).on('blur', '#location_string', function(event){
+      $('#location_string').val($(this).attr('data-val'));
+      $('#location_string').removeAttr('data-val');
+  });
+  // when user starts typing, field should be in 'busy' state
+  $(document).on('keyup', '#location_string', function(event){
+      if($(this).val().length > 1) {
+          $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
+      }
+  });
+  // when user clicks home button
+  $(document).on('click', '#home_location', function(event){
+    $("#location_string").closest('.form-group').attr('data-form-state','is-home');
+    $("#location_string").val($(this).attr('data-val'));
+  });
+
+
+
   // create issue file upload handler
   function handleFiles(files) {
     $('#image_preview').html('');
@@ -11562,8 +11590,8 @@ $(document).on('change', '#location', function(event){
     if(this.checked) {
         // google api & html5 location api based on location guessing
         var original_placeholder = $("#location_string").attr('placeholder');
-        $("#location_string").attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
-        $("#location_string").closest('.form-group').addClass('isBusy');
+        $("#location_string").val('').attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
+        $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
         
         var map;
         if(navigator.geolocation) {
@@ -11596,8 +11624,7 @@ $(document).on('change', '#location', function(event){
                                 }
                                 $("#location_string").val(hood+", "+district+", "+city);
                                 $("#location_string").attr('placeholder', original_placeholder);
-                                $("#location_string").closest('.form-group').removeClass('isBusy');
-                                $("#location_string").closest('.form-group').addClass('isCurrent');
+                                $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
@@ -11620,6 +11647,7 @@ $(document).on('change', '#location', function(event){
             alert('Yerinizi belirleyemedim, elle girsek?');
         }
     } else {
+        // $fallback = ($('#home_location').attr('data-val')) ? $('#home_location').attr('data-val') : '';
         $("#location_string").val('');
     }
 });
@@ -11652,7 +11680,7 @@ $(document).ready(function(){
 
         }
         console.log(place.address_components);
-        $("#location_string").closest('.form-group').removeClass('isBusy isCurrent');
+        $("#location_string").closest('.form-group').attr('data-form-state','is-static');
         $("#location").attr('checked', false);
     });
 });

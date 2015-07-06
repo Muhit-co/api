@@ -5846,6 +5846,12 @@ figure img {
   bottom: 0;
   left: 0;
 }
+.u-pinned-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
 .u-fullWidth {
   width: 100%;
 }
@@ -6373,24 +6379,6 @@ dialog hr {
 .form-group.hasIconLeft .form-input {
   padding-left: 36px;
 }
-.form-group .form-state-working,
-.form-group .form-state-current {
-  display: none;
-}
-.form-group.isBusy .form-state-static,
-.form-group.isBusy .form-state-current {
-  display: none;
-}
-.form-group.isBusy .form-state-working {
-  display: inline-block;
-}
-.form-group.isCurrent .form-state-static,
-.form-group.isCurrent .form-state-working {
-  display: none;
-}
-.form-group.isCurrent .form-state-current {
-  display: inline-block;
-}
 label {
   display: block;
   margin-bottom: 5px;
@@ -6485,10 +6473,25 @@ input.form-disabled {
 .form-appendLeft {
   left: 0;
 }
+.form-state {
+  display: none;
+}
+.form-group[data-form-state="is-home"] .form-state-home {
+  display: inline-block;
+}
+.form-group[data-form-state="is-static"] .form-state-static {
+  display: inline-block;
+}
+.form-group[data-form-state="is-current"] .form-state-current {
+  display: inline-block;
+}
+.form-group[data-form-state="is-busy"] .form-state-busy {
+  display: inline-block;
+}
 /* --- header --- */
 header {
+  min-height: 100px;
   padding-top: calc(20px + 2vw);
-  padding-bottom: calc(20px + 2vw);
   background: url('../images/banner_city.png') no-repeat;
   background-position: center bottom;
   background-size: contain;
@@ -6740,6 +6743,28 @@ nav #nav_quickadd {
   .extended {
     display: none;
   }
+}
+.tabs li {
+  display: inline-block;
+  float: left;
+  list-style: none;
+}
+.tabs a {
+  display: block;
+  padding: 10px 20px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 20px;
+  border-bottom: 2px solid transparent;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.tabs a:hover,
+.tabs a:focus {
+  color: #ffffff;
+}
+.tabs a.active {
+  border-bottom-color: #ffffff;
 }
 /* --- icons (extends ionicons) --- */
 .ion-15x {

@@ -1,0 +1,24 @@
+.tabs {
+  li {
+    display: inline-block;
+    float: left;
+    list-style: none;
+  }
+  a {
+    display: block;
+    padding: 10px 20px;
+    color: fade(@white, 75%); 
+    line-height: 20px;
+    border-bottom: 2px solid transparent;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+
+    &:hover, &:focus {
+      color: @white;
+    }
+    &.active {
+      border-bottom-color: @white;
+    }
+  }
+}

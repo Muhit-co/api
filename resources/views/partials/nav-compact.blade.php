@@ -6,7 +6,7 @@
       <a href="/" target="_self" class="btn btn-empty u-mt20"><i class="ion ion-android-arrow-back ion-15x"></i></a>
 
     </div>
-    <div class="col-xs-6 col-xs-hide u-aligncenter u-pv25">
+    <div class="col-xs-6 col-sm-hide u-aligncenter u-pv25">
       <h2>Muhit</h2>
     </div>
     <div class="col-sm-3 col-xs-6 u-alignright u-nowrap">

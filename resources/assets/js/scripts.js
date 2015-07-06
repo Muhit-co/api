@@ -71,6 +71,34 @@ $(document).ready(function() {
     $(this).closest('.flash').fadeOut();
   });
 
+
+
+  // filter field interactions
+
+  // when user focuses on input field, value should be emptied and temporarily stored
+  $(document).on('focus', '#location_string', function(event){
+      $(this).attr('data-val', $(this).val());
+      $(this).val('');
+  });
+  // when user blurs input field, value should return to its original state
+  $(document).on('blur', '#location_string', function(event){
+      $('#location_string').val($(this).attr('data-val'));
+      $('#location_string').removeAttr('data-val');
+  });
+  // when user starts typing, field should be in 'busy' state
+  $(document).on('keyup', '#location_string', function(event){
+      if($(this).val().length > 1) {
+          $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
+      }
+  });
+  // when user clicks home button
+  $(document).on('click', '#home_location', function(event){
+    $("#location_string").closest('.form-group').attr('data-form-state','is-home');
+    $("#location_string").val($(this).attr('data-val'));
+  });
+
+
+
   // create issue file upload handler
   function handleFiles(files) {
     $('#image_preview').html('');

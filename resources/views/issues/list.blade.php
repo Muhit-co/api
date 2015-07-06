@@ -14,10 +14,9 @@
                                 <a href="/issues/view/{{$issue['id']}}">
                                     <div class="badge badge-image u-floatleft u-mr15">
                                         @if(isset($issue['images']) and !empty($issue['images']))
-                                           <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" /
+                                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
                                         @else
                                             <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
-
                                         @endif
                                     </div>
                                     <div class="badge badge-status u-floatright u-mt10">
@@ -28,7 +27,7 @@
                                     <p>
                                         @if(isset($issue['tags']) and !empty($issue['tags']))
                                             @foreach($issue['tags'] as $tag)
-                                                <span class="tag u-mr10" style="background-color: #{{$tag['background']}};">
+                                                <span class="tag u-mv5 u-mr10" style="background-color: #{{$tag['background']}};">
                                                     {{$tag['name']}}
                                                 </span>
 

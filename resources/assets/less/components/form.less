@@ -11,29 +11,6 @@
   &.hasIconLeft .form-input {
     padding-left: 36px;
   }
-  .form-state-working,
-  .form-state-current {
-    display: none;
-  }
-  &.isBusy {
-    .form-state-static,
-    .form-state-current {
-      display: none;
-    }
-    .form-state-working {
-      display: inline-block;
-    }
-  }
-  &.isCurrent {
-    .form-state-static,
-    .form-state-working {
-      display: none;
-    }
-    .form-state-current {
-      display: inline-block;
-    }
-
-  }
 }
 label {
   display: block;
@@ -127,4 +104,21 @@ input.form-disabled {
 }
 .form-appendLeft {
   left: 0;
+}
+
+// form states
+.form-state {
+  display: none;
+}
+.form-group[data-form-state="is-home"] .form-state-home {
+  display: inline-block;
+}
+.form-group[data-form-state="is-static"] .form-state-static {
+  display: inline-block;
+}
+.form-group[data-form-state="is-current"] .form-state-current {
+  display: inline-block;
+}
+.form-group[data-form-state="is-busy"] .form-state-busy {
+  display: inline-block;
 }

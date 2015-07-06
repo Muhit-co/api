@@ -61,7 +61,7 @@
           <div class="row row-nopadding u-mv20">
             <div class="col-md-10">
                 @foreach($issue['tags'] as $tag)
-                    <span class="tag u-mr10" style="background-color:#{{$tag['background']}}">{{$tag['name']}}</span>
+                    <span class="tag u-mv5 u-mr10" style="background-color:#{{$tag['background']}}">{{$tag['name']}}</span>
                 @endforeach
             </div>
             <div class="col-md-2 u-alignright">

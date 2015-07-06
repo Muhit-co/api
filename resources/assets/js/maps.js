@@ -2,8 +2,8 @@ $(document).on('change', '#location', function(event){
     if(this.checked) {
         // google api & html5 location api based on location guessing
         var original_placeholder = $("#location_string").attr('placeholder');
-        $("#location_string").attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
-        $("#location_string").closest('.form-group').addClass('isBusy');
+        $("#location_string").val('').attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
+        $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
         
         var map;
         if(navigator.geolocation) {
@@ -36,8 +36,7 @@ $(document).on('change', '#location', function(event){
                                 }
                                 $("#location_string").val(hood+", "+district+", "+city);
                                 $("#location_string").attr('placeholder', original_placeholder);
-                                $("#location_string").closest('.form-group').removeClass('isBusy');
-                                $("#location_string").closest('.form-group').addClass('isCurrent');
+                                $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
@@ -60,6 +59,7 @@ $(document).on('change', '#location', function(event){
             alert('Yerinizi belirleyemedim, elle girsek?');
         }
     } else {
+        // $fallback = ($('#home_location').attr('data-val')) ? $('#home_location').attr('data-val') : '';
         $("#location_string").val('');
     }
 });
@@ -92,7 +92,7 @@ $(document).ready(function(){
 
         }
         console.log(place.address_components);
-        $("#location_string").closest('.form-group').removeClass('isBusy isCurrent');
+        $("#location_string").closest('.form-group').attr('data-form-state','is-static');
         $("#location").attr('checked', false);
     });
 });
