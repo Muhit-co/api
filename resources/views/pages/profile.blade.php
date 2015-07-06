@@ -8,12 +8,12 @@
       <div class="card u-mt0">
         <div class="card-header">
           <div class="badge badge-circle-large u-floatleft u-mr20 u-mb20">
-            <img src="http://d1vwk06lzcci1w.cloudfront.net/80x80/placeholders/profile.png" alt="">
+            <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/{{Auth::user()->picture}}" alt="{{Auth::user()->first_name}}">
           </div>
           <h2 class="u-mt20">
-            Daniel Swakman
+            {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
           </h2>
-          <span class="">daniel-swakman</span>
+          <span class="">{{ Auth::user()->username }}</span>
         </div>
         <div class="card-content">
 
@@ -30,7 +30,7 @@
               <i class="ion ion-email ion-2x c-light"></i>
             </div>
             <div class="col-xs-9">
-              <div class="u-floatleft u-mv5">john@example.com</div>
+              <div class="u-floatleft u-mv5">{{ Auth::user()->email }}</div>
             </div>
           </div>
           <div class="row u-mv10">
@@ -38,7 +38,7 @@
               <i class="ion ion-calendar ion-15x c-light u-mt5"></i>
             </div>
             <div class="col-xs-9">
-              <div class="u-floatleft u-mv5"><span class="c-light">joined:</span> 12 Haz 2015</div>
+              <div class="u-floatleft u-mv5"><span class="c-light">joined:</span> <?php echo date('j M Y', strtotime(Auth::user()->created_at)) ?></div>
             </div>
           </div>
 

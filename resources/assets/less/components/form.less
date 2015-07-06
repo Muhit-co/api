@@ -8,26 +8,32 @@
   &.form-fullwidth {
     width: 100%;
   }
-  &.hasDropdown .form-input {
-    padding-right: 36px;
+  &.hasIconLeft .form-input {
+    padding-left: 36px;
   }
-  input[type="checkbox"] {
-    position: absolute;
-    left: -9999px;
-
-    & + label:before {
-      content: "\f372";
+  .form-state-working,
+  .form-state-current {
+    display: none;
+  }
+  &.isBusy {
+    .form-state-static,
+    .form-state-current {
+      display: none;
+    }
+    .form-state-working {
       display: inline-block;
-      float: left;
-      margin-right: 10px;
-      font-family: "Ionicons";
-      font-size: 1.5em;
-    }
-    &:checked + label:before {
-      content: "\f374";
     }
   }
+  &.isCurrent {
+    .form-state-static,
+    .form-state-working {
+      display: none;
+    }
+    .form-state-current {
+      display: inline-block;
+    }
 
+  }
 }
 label {
   display: block;
@@ -66,6 +72,25 @@ textarea {
     outline: none;
   }
 }
+input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+
+  & + label:before {
+    content: "\f372";
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    font-family: "Ionicons";
+    font-size: 1.5em;
+  }
+  &:checked + label:before {
+    content: "\f374";
+  }
+  &#location + label:before {
+    font-size: 1.2em;
+  }
+}
 .form-input.form-grey {
   background: fade(@greyLighter, 80%);
 
@@ -89,10 +114,17 @@ input.form-disabled {
   border-color: @greyLighter;
   color: @greyLight;
 }
-.form-appendRight {
+.form-appendRight,
+.form-appendLeft {
   position: absolute;
   top: 0;
-  right: 0;
   height: 40px;
   z-index: 2;
+  padding-top: 2px;
+}
+.form-appendRight {
+  right: 0;
+}
+.form-appendLeft {
+  left: 0;
 }

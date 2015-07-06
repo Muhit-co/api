@@ -11558,60 +11558,69 @@ $(document).ready(function() {
   
 });
 
-$(document).on('click', '#location', function(event){
-    // google api & html5 location api based on location guessing
-    $("#location_string").attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
-    
-    var map;
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var lat = position.coords.latitude;
-            var lon = position.coords.longitude;
+$(document).on('change', '#location', function(event){
+    if(this.checked) {
+        // google api & html5 location api based on location guessing
+        var original_placeholder = $("#location_string").attr('placeholder');
+        $("#location_string").attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
+        $("#location_string").closest('.form-group').addClass('isBusy');
+        
+        var map;
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
 
-            var geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(lat, lon);
+                var geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(lat, lon);
 
-            geocoder.geocode({'location': latlng}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        var hood, district, city;
-                        var add = results[0];
-                        if (add.address_components) {
-                            for (var i = 0, l = add.address_components.length; i < l; i ++) {
-                                var a = add.address_components[i];
-                                if (a.types[0]) {
-                                    if (a.types[0] === "administrative_area_level_1") {
-                                        city = a.long_name;    
-                                    }
-                                    if (a.types[0] === "administrative_area_level_2") {
-                                        district = a.long_name;    
-                                    }
-                                    if (a.types[0] === "administrative_area_level_4") {
-                                        hood = a.long_name;    
+                geocoder.geocode({'location': latlng}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            var hood, district, city;
+                            var add = results[0];
+                            if (add.address_components) {
+                                for (var i = 0, l = add.address_components.length; i < l; i ++) {
+                                    var a = add.address_components[i];
+                                    if (a.types[0]) {
+                                        if (a.types[0] === "administrative_area_level_1") {
+                                            city = a.long_name;    
+                                        }
+                                        if (a.types[0] === "administrative_area_level_2") {
+                                            district = a.long_name;    
+                                        }
+                                        if (a.types[0] === "administrative_area_level_4") {
+                                            hood = a.long_name;    
+                                        }
                                     }
                                 }
+                                $("#location_string").val(hood+", "+district+", "+city);
+                                $("#location_string").attr('placeholder', original_placeholder);
+                                $("#location_string").closest('.form-group').removeClass('isBusy');
+                                $("#location_string").closest('.form-group').addClass('isCurrent');
                             }
-                            $("#location_string").val(hood+", "+district+", "+city);
+                        } else {
+                            window.alert('Yerinizi belirleyemedim, elle girsek?');
+
                         }
+
                     } else {
-                        window.alert('Yerinizi belirleyemedim, elle girsek?');
+                        window.alert('Yerinizi belirleyemedim, elle girsek? ');
 
                     }
 
-                } else {
-                    window.alert('Yerinizi belirleyemedim, elle girsek? ');
+                });
 
-                }
-
+            }, function() {
+                alert('Yerinizi belirleyemedim, elle girsek?');
             });
 
-        }, function() {
+        } else {
+            // Browser doesn't support Geolocation
             alert('Yerinizi belirleyemedim, elle girsek?');
-        });
-
+        }
     } else {
-        // Browser doesn't support Geolocation
-        alert('Yerinizi belirleyemedim, elle girsek?');
+        $("#location_string").val('');
     }
 });
 
@@ -11622,7 +11631,7 @@ $(document).ready(function(){
             input, 
             {
                 types: ['geocode'],
-                componentRestrictions: {country: 'tr'}
+                componentRestrictions: {country: 'tr'}, 
             }
     );
     google.maps.event.addListener(autocomplete, 'place_changed', function() {

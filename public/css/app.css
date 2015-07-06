@@ -3737,6 +3737,9 @@ hr {
 .c-medium {
   color: #9999aa;
 }
+.c-blue {
+  color: #44a1e0;
+}
 .bg-blue {
   background-color: #51a8e2;
   color: #ffffff;
@@ -6091,7 +6094,7 @@ figure img {
 .card {
   display: block;
   min-height: 100px;
-  margin-top: -100px;
+  margin-top: -70px;
   margin-bottom: 50px;
   background-color: #ffffff;
   overflow: hidden;
@@ -6367,23 +6370,26 @@ dialog hr {
 .form-group.form-fullwidth {
   width: 100%;
 }
-.form-group.hasDropdown .form-input {
-  padding-right: 36px;
+.form-group.hasIconLeft .form-input {
+  padding-left: 36px;
 }
-.form-group input[type="checkbox"] {
-  position: absolute;
-  left: -9999px;
+.form-group .form-state-working,
+.form-group .form-state-current {
+  display: none;
 }
-.form-group input[type="checkbox"] + label:before {
-  content: "\f372";
+.form-group.isBusy .form-state-static,
+.form-group.isBusy .form-state-current {
+  display: none;
+}
+.form-group.isBusy .form-state-working {
   display: inline-block;
-  float: left;
-  margin-right: 10px;
-  font-family: "Ionicons";
-  font-size: 1.5em;
 }
-.form-group input[type="checkbox"]:checked + label:before {
-  content: "\f374";
+.form-group.isCurrent .form-state-static,
+.form-group.isCurrent .form-state-working {
+  display: none;
+}
+.form-group.isCurrent .form-state-current {
+  display: inline-block;
 }
 label {
   display: block;
@@ -6425,6 +6431,24 @@ textarea:focus {
   color: #44a1e0;
   outline: none;
 }
+input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+input[type="checkbox"] + label:before {
+  content: "\f372";
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  font-family: "Ionicons";
+  font-size: 1.5em;
+}
+input[type="checkbox"]:checked + label:before {
+  content: "\f374";
+}
+input[type="checkbox"]#location + label:before {
+  font-size: 1.2em;
+}
 .form-input.form-grey {
   background: rgba(238, 238, 238, 0.8);
 }
@@ -6447,18 +6471,24 @@ input.form-disabled {
   border-color: #eeeeee;
   color: #ccccdd;
 }
-.form-appendRight {
+.form-appendRight,
+.form-appendLeft {
   position: absolute;
   top: 0;
-  right: 0;
   height: 40px;
   z-index: 2;
+  padding-top: 2px;
+}
+.form-appendRight {
+  right: 0;
+}
+.form-appendLeft {
+  left: 0;
 }
 /* --- header --- */
 header {
-  min-height: 200px;
-  padding-top: calc(20px + 3.5vw);
-  padding-bottom: calc(20px + 3.5vw);
+  padding-top: calc(20px + 2vw);
+  padding-bottom: calc(20px + 2vw);
   background: url('../images/banner_city.png') no-repeat;
   background-position: center bottom;
   background-size: contain;
