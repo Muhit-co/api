@@ -91,8 +91,8 @@ $(document).ready(function(){
             ].join(' ');
 
         }
-        console.log(place.name);
-        console.log(address);
         console.log(place.address_components);
+        $("#location_string").closest('.form-group').removeClass('isBusy isCurrent');
+        $("#location").attr('checked', false);
     });
 });
