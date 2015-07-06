@@ -16,7 +16,7 @@
                 </div>
 
             </div>
-            <div class="col-md-7 col-sm-6 u-clearfix">
+            <div class="col-md-6 col-sm-6 u-clearfix">
 
                 <!-- use current location -->
                 <div class="u-floatleft u-mr20">

@@ -27,13 +27,14 @@
                                     <p>
                                         @if(isset($issue['tags']) and !empty($issue['tags']))
                                             @foreach($issue['tags'] as $tag)
-                                                <span class="tag u-mv5 u-mr10" style="background-color: #{{$tag['background']}};">
+                                                <span class="tag u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
                                                     {{$tag['name']}}
                                                 </span>
 
                                             @endforeach
                                         @endif
-                                        <span class="date">{{$issue['created_at']}}</span>
+                                        <span class="date u-mr10"><?php echo date('j M Y', strtotime($issue['created_at'])) ?></span>
+                                        |<span class="user u-ml10">user id: <?php echo $issue['user_id'] ?></span>
                                     </p>
                                 </a>
                             </li>

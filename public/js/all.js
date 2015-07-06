@@ -11472,7 +11472,7 @@ $(document).ready(function() {
   });
 
   // dropdown toggle
-  $('.hasDropdown > a, .dropdown a').bind(touchEvent, (function(e) {
+  $('.hasDropdown > a, .dropdown a').bind('click', (function(e) {
     $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
     $(this).find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
@@ -11524,6 +11524,13 @@ $(document).ready(function() {
   // closes flash message
   $('.flash #flash_close').click(function() {
     $(this).closest('.flash').fadeOut();
+  });
+
+  // tabs active switch
+  $(document).on('click', '.tabs a', function(event){
+    $(this).closest('.tabs').find('a').removeClass('active');
+    $(this).addClass('active');
+    $(this).blur();
   });
 
 
