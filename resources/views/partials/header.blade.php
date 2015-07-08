@@ -46,17 +46,17 @@
                 <!-- Sorting tabs for issue list -->
                 <ul class="tabs">
                     <li>
-                        <a href="javascript:void(0)" class="active">
+                        <a href="javascript:void(0)" class="active" data-target="list">
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" data-target="list">
                             POPÜLER
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" data-target="map">
                             HARİTA
                         </a>
                     </li>

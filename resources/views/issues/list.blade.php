@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<section>
+<section class="tabsection" id="list">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="list list-expanded list_block u-mt20 u-mb40">
@@ -49,6 +49,16 @@
                         @endif
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map" class="tabsection u-hidden">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="map-container">
+                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?zoom=12&center=41.0686%2C29.0285&key=AIzaSyCFdvxExZmn1ktbIslHDnyOGOp6Dek3asU"></iframe>
             </div>
         </div>
     </div>

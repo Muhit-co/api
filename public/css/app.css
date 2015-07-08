@@ -6862,6 +6862,23 @@ section.login a:not(.btn):focus {
     display: none;
   }
 }
+/* --- map --- */
+#map .map-container {
+  position: relative;
+  padding-bottom: 50vh;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+#map .map-container iframe,
+#map .map-container object,
+#map .map-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 /* --- add images --- */
 .add-images .badge-image {
   width: 100px;

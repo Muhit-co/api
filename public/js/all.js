@@ -11528,6 +11528,13 @@ $(document).ready(function() {
 
   // tabs active switch
   $(document).on('click', '.tabs a', function(event){
+    // target behaviour
+    $target = $(this).attr('data-target');
+    if($target.length > 0) {
+      $('.tabsection').addClass('u-hidden');
+      $('#' + $target).removeClass('u-hidden');
+    }
+    // tab bar behaviour
     $(this).closest('.tabs').find('a').removeClass('active');
     $(this).addClass('active');
     $(this).blur();
@@ -11632,6 +11639,7 @@ $(document).on('change', '#location', function(event){
                                 $("#location_string").val(hood+", "+district+", "+city);
                                 $("#location_string").attr('placeholder', original_placeholder);
                                 $("#location_string").closest('.form-group').attr('data-form-state','is-current');
+                                $('#map .map-container iframe').attr('src', 'https://www.google.com/maps/embed/v1/view?zoom=12&center=' + lat + '%2C' + lon + '&key=AIzaSyCFdvxExZmn1ktbIslHDnyOGOp6Dek3asU');
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');

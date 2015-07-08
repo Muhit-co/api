@@ -73,6 +73,13 @@ $(document).ready(function() {
 
   // tabs active switch
   $(document).on('click', '.tabs a', function(event){
+    // target behaviour
+    $target = $(this).attr('data-target');
+    if($target.length > 0) {
+      $('.tabsection').addClass('u-hidden');
+      $('#' + $target).removeClass('u-hidden');
+    }
+    // tab bar behaviour
     $(this).closest('.tabs').find('a').removeClass('active');
     $(this).addClass('active');
     $(this).blur();
