@@ -79,6 +79,9 @@ $(document).ready(function() {
       $('.tabsection').addClass('u-hidden');
       $('#' + $target).removeClass('u-hidden');
     }
+    if ($target == 'map') {
+      google.maps.event.trigger(map, 'resize');
+    }
     // tab bar behaviour
     $(this).closest('.tabs').find('a').removeClass('active');
     $(this).addClass('active');
@@ -110,8 +113,6 @@ $(document).ready(function() {
     $("#location_string").closest('.form-group').attr('data-form-state','is-home');
     $("#location_string").val($(this).attr('data-val'));
   });
-
-
 
   // create issue file upload handler
   function handleFiles(files) {

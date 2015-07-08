@@ -11534,6 +11534,9 @@ $(document).ready(function() {
       $('.tabsection').addClass('u-hidden');
       $('#' + $target).removeClass('u-hidden');
     }
+    if ($target == 'map') {
+      google.maps.event.trigger(map, 'resize');
+    }
     // tab bar behaviour
     $(this).closest('.tabs').find('a').removeClass('active');
     $(this).addClass('active');
@@ -11566,8 +11569,6 @@ $(document).ready(function() {
     $("#location_string").val($(this).attr('data-val'));
   });
 
-
-
   // create issue file upload handler
   function handleFiles(files) {
     $('#image_preview').html('');
@@ -11599,6 +11600,30 @@ $(document).ready(function() {
   });
   
 });
+
+function mapInitialize() {
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(41.0686, 29.0285),
+      // minZoom: 8,
+      zoom: 11,
+      disableDefaultUI: false,
+      scrollwheel: false,
+      mapTypeControl: false,
+      panControl: false,
+      streetViewControl: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    map.data.loadGeoJson('/mapdata.json');
+    map.data.setStyle({
+        clickable: true,
+        icon: '/images/map-icons/marker.png'
+    });
+    map.data.addListener('click', function(event) {
+        window.location.href = '/issues/view/3';
+    });
+}
 
 $(document).on('change', '#location', function(event){
     if(this.checked) {
@@ -11639,7 +11664,7 @@ $(document).on('change', '#location', function(event){
                                 $("#location_string").val(hood+", "+district+", "+city);
                                 $("#location_string").attr('placeholder', original_placeholder);
                                 $("#location_string").closest('.form-group').attr('data-form-state','is-current');
-                                $('#map .map-container iframe').attr('src', 'https://www.google.com/maps/embed/v1/view?zoom=12&center=' + lat + '%2C' + lon + '&key=AIzaSyCFdvxExZmn1ktbIslHDnyOGOp6Dek3asU');
+                                // $('#map .map-container iframe').attr('src', getMapsLink(lat,lon, zoom));
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');

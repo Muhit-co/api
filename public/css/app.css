@@ -6863,16 +6863,16 @@ section.login a:not(.btn):focus {
   }
 }
 /* --- map --- */
-#map .map-container {
+#map-canvas {
   position: relative;
   padding-bottom: 50vh;
   padding-top: 30px;
   height: 0;
   overflow: hidden;
 }
-#map .map-container iframe,
-#map .map-container object,
-#map .map-container embed {
+#map-canvas iframe,
+#map-canvas object,
+#map-canvas embed {
   position: absolute;
   top: 0;
   left: 0;
@@ -6900,7 +6900,7 @@ section.login a:not(.btn):focus {
 /* --- footer --- */
 footer {
   padding: 50px 0;
-  background-color: #dde;
+  background-color: #ddd;
   transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease, -webkit-transform 0.3s ease-in-out, filter 0.5s ease;
   transition: transform 0.3s ease-in-out, filter 0.5s ease;
 }
