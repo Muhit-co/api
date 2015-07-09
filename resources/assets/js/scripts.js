@@ -10,7 +10,7 @@ $(document).ready(function() {
   // setting loader mask on non-same page links
   $('a').click(function() {
     $href = $(this).attr('href');
-    if (!$href.match("^#") && !$href.match("^javascript")) {
+    if ($href && !$href.match("^#") && !$href.match("^javascript")) {
       $('#loader_mask').addClass('isVisible');
       $('main,nav').addClass('dialogIsOpen');
     }
@@ -76,18 +76,17 @@ $(document).ready(function() {
     // target behaviour
     $target = $(this).attr('data-target');
     if($target.length > 0) {
-      $('.tabsection').addClass('u-hidden');
-      $('#' + $target).removeClass('u-hidden');
+      $('.tabsection').addClass('u-opacity0');
+      $('#' + $target).removeClass('u-opacity0');
     }
     if ($target == 'map') {
-      google.maps.event.trigger(map, 'resize');
+      mapInitialize();
     }
     // tab bar behaviour
     $(this).closest('.tabs').find('a').removeClass('active');
     $(this).addClass('active');
     $(this).blur();
   });
-
 
 
   // filter field interactions

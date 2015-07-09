@@ -3731,6 +3731,9 @@ hr {
     More info at: http://lesselements.com
   ---------------------------------------------------*/
 /* --- Imports basics --- */
+.c-white {
+  color: #ffffff;
+}
 .c-light {
   color: #ccccdd;
 }
@@ -3822,6 +3825,10 @@ p {
   max-width: 35em;
   margin-bottom: 20px;
   color: #666677;
+}
+p small {
+  display: block;
+  line-height: 1.5em;
 }
 a {
   color: #44a1e0;
@@ -5867,6 +5874,10 @@ figure img {
 .u-hidden {
   display: none;
 }
+.u-opacity0 {
+  position: absolute;
+  opacity: 0;
+}
 .u-opacity50 {
   opacity: 0.5;
 }
@@ -5996,6 +6007,9 @@ figure img {
   background-color: #7d7d93;
   color: #ffffff;
 }
+.btn:active {
+  background-color: #707086;
+}
 .btn .ion-15x {
   line-height: 1em;
 }
@@ -6019,12 +6033,18 @@ figure img {
 .btn-primary:focus {
   background-color: #7cbb56;
 }
+.btn-primary:active {
+  background-color: #6eb147;
+}
 .btn-secondary {
   background-color: #44a1e0;
 }
 .btn-secondary:hover,
 .btn-secondary:focus {
   background-color: #2289cf;
+}
+.btn-secondary:active {
+  background-color: #1f7bb9;
 }
 .btn-quaternary {
   background-color: #245672;
@@ -6033,12 +6053,19 @@ figure img {
 .btn-quaternary:focus {
   background-color: #18394b;
 }
+.btn-quaternary:active {
+  background-color: #122a38;
+}
 .btn-tertiary {
-  background-color: #ccd;
+  background-color: #ccccdd;
 }
 .btn-tertiary:hover,
 .btn-tertiary:focus {
-  background-color: #bbc;
+  background-color: #adadc9;
+  color: #ffffff;
+}
+.btn-tertiary:active {
+  background-color: #9e9ebe;
 }
 .btn-white {
   background-color: #fff;
@@ -6755,10 +6782,10 @@ nav #nav_quickadd {
 }
 .tabs a {
   display: block;
-  padding: 10px 20px;
+  padding: 10px 20px 7px;
   color: rgba(255, 255, 255, 0.75);
   line-height: 20px;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   font-size: 0.8em;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -6767,6 +6794,9 @@ nav #nav_quickadd {
 .tabs a:focus {
   color: #ffffff;
   background-color: rgba(51, 51, 68, 0.05);
+}
+.tabs a:active {
+  background-color: rgba(51, 51, 68, 0.1);
 }
 .tabs a.active {
   color: #ffffff;

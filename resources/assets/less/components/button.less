@@ -19,6 +19,7 @@
     background-color: darken(@grey, 10%);
     color: @white;
   }
+  &:active { background-color: darken(@grey, 15%); }
   .ion-15x {
     line-height: 1em;
   }
@@ -41,6 +42,7 @@
   &:hover, &:focus {
     background-color: darken(@muhitGreen, 10%);
   }
+  &:active { background-color: darken(@muhitGreen, 15%); }
 }
 .btn-secondary {
   background-color: @muhitBlue;
@@ -48,6 +50,7 @@
   &:hover, &:focus {
     background-color: darken(@muhitBlue, 10%);
   }
+  &:active { background-color: darken(@muhitBlue, 15%); }
 }
 .btn-quaternary {
   background-color: @muhitBlueDark;
@@ -55,13 +58,16 @@
   &:hover, &:focus {
     background-color: darken(@muhitBlueDark, 10%);
   }
+  &:active { background-color: darken(@muhitBlueDark, 15%); }
 }
 .btn-tertiary {
-  background-color: #ccd;
-}
-.btn-tertiary:hover,
-.btn-tertiary:focus {
-  background-color: #bbc;
+  background-color: @greyLight;
+
+  &:hover, &:focus {
+    background-color: darken(@greyLight, 10%);
+    color: @white; 
+  }
+  &:active { background-color: darken(@greyLight, 15%); }
 }
 .btn-white {
   background-color: #fff;

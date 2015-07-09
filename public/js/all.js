@@ -11465,7 +11465,7 @@ $(document).ready(function() {
   // setting loader mask on non-same page links
   $('a').click(function() {
     $href = $(this).attr('href');
-    if (!$href.match("^#") && !$href.match("^javascript")) {
+    if ($href && !$href.match("^#") && !$href.match("^javascript")) {
       $('#loader_mask').addClass('isVisible');
       $('main,nav').addClass('dialogIsOpen');
     }
@@ -11531,18 +11531,17 @@ $(document).ready(function() {
     // target behaviour
     $target = $(this).attr('data-target');
     if($target.length > 0) {
-      $('.tabsection').addClass('u-hidden');
-      $('#' + $target).removeClass('u-hidden');
+      $('.tabsection').addClass('u-opacity0');
+      $('#' + $target).removeClass('u-opacity0');
     }
     if ($target == 'map') {
-      google.maps.event.trigger(map, 'resize');
+      mapInitialize();
     }
     // tab bar behaviour
     $(this).closest('.tabs').find('a').removeClass('active');
     $(this).addClass('active');
     $(this).blur();
   });
-
 
 
   // filter field interactions
@@ -11618,12 +11617,16 @@ function mapInitialize() {
     map.data.loadGeoJson('/mapdata.json');
     map.data.setStyle({
         clickable: true,
-        icon: '/images/map-icons/marker.png'
+        icon: { url: '/images/map-icons/marker.png', size: new google.maps.Size(29, 41) }
     });
     map.data.addListener('click', function(event) {
         window.location.href = '/issues/view/3';
     });
 }
+
+$(document).on('click', '#map_redraw', function(event){
+    mapInitialize();
+});
 
 $(document).on('change', '#location', function(event){
     if(this.checked) {
@@ -11664,7 +11667,7 @@ $(document).on('change', '#location', function(event){
                                 $("#location_string").val(hood+", "+district+", "+city);
                                 $("#location_string").attr('placeholder', original_placeholder);
                                 $("#location_string").closest('.form-group').attr('data-form-state','is-current');
-                                // $('#map .map-container iframe').attr('src', getMapsLink(lat,lon, zoom));
+                                map.setCenter({lat: lat, lng: lon});
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
