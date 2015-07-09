@@ -3845,6 +3845,21 @@ hr {
   border: none;
   border-bottom: 1px solid #ccccdd;
 }
+/* --- extended/condensed text --- */
+.condensed {
+  display: none;
+}
+.extended {
+  display: inline;
+}
+@media screen and (max-width: 768px) {
+  .extended {
+    display: none;
+  }
+  .condensed {
+    display: inline;
+  }
+}
 /* --- CSS Resets --- */
 html,
 body,
@@ -6770,9 +6785,6 @@ nav #nav_quickadd {
   }
   #navbutton.isActive .ion-android-close {
     display: inline-block;
-  }
-  .extended {
-    display: none;
   }
 }
 .tabs li {

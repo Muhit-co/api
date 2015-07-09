@@ -10,32 +10,41 @@
                 <h2 class="u-mv20">Kayıt Ol</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>Ad</label>
-                    <input type="text" class="form-input" value="" name="first_name" placeholder="i.e. John" />
+                    <label>{{ trans('auth.first_name') }}</label>
+                    <input type="text" class="form-input" value="" name="first_name" placeholder="{{ trans('auth.first_name_placeholder') }}" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>Soyad</label>
-                    <input type="text" class="form-input" value="" name="last_name" placeholder="i.e. Doe" />
+                    <label>{{ trans('auth.last_name') }}</label>
+                    <input type="text" class="form-input" value="" name="last_name" placeholder="{{ trans('auth.last_name_placeholder') }}" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>E-posta adresi</label>
-                    <input type="text" class="form-input" value="" name="email" placeholder="i.e. john@example.com" />
+                    <label>{{ trans('auth.email_address') }}</label>
+                    <input type="text" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>Şifre</label>
-                    <input type="password" class="form-input" value="" name="password" placeholder="min. 8 characters" />
+                    <label>{{ trans('auth.password') }}</label>
+                    <input type="password" class="form-input" value="" name="password" placeholder="{{ trans('auth.password_placeholder') }}" />
                 </div>
 
-                <div class="form-group form-fullwidth u-mb20">
-                    <label>Mahalle</label>
-                    <input type="text" class="form-input" value="" name="user.hood" placeholder="Start typing your mahalle..." />
+                <label>{{ trans('auth.neighbourhood') }}</label>
+                <div class="form-group form-autosuggest form-fullwidth hasIconRight u-mb20" data-form-state="">
+                    <input id="location_string" type="text" class="form-input" value="" name="user.hood" placeholder="{{ trans('auth.neighbourhood_placeholder') }}" />
+                    <div class="form-appendRight u-aligncenter" style="width: 40px;">
+                        <i class="form-state form-state-home ion ion-home ion-15x u-mt5 c-blue"></i>
+                        <i class="form-state form-state-static ion ion-location ion-2x c-blue u-hidden"></i>
+                        <i class="form-state form-state-current ion ion-android-locate ion-15x u-mt5 c-blue u-hidden"></i>
+                        <i class="form-state form-state-busy ion ion-load-a ion-15x u-ml10 u-mt5 ion-spinning c-blue u-hidden" style="margin-right: 7px"></i>
+                    </div>
                 </div>
+
                 <div class="form-group form-fullwidth u-mt30 u-mb20">
                     <input id="termsagree" type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" />
-                    <label for="termsagree">I agree with the <a href="javascript:void(0)">Terms of service</a></label>
+                    <label for="termsagree">
+                        {{ trans('auth.agree_with_terms', ['tagstart' => '<a href="javascript:void(0)">', 'tagend' => '</a>']) }}
+                    </label>
                 </div>
 
                 <button type="submit" class="btn btn-primary u-floatright">KAYIT OL</i></button>
@@ -48,9 +57,9 @@
 
             <hr class="u-mb35" />
 
-            <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> CONNECT</a>
-            <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i> CONNECT</a>
-            <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> {{ trans('auth.connect_cap') }}</a>
+            <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i> {{ trans('auth.connect_cap') }}</a>
+            <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i> {{ trans('auth.connect_cap') }}</a>
 
         </div>
     </div>

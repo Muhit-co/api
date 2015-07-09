@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<section class="tabsection" id="list">
+<section class="tabsection" id="latest">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 

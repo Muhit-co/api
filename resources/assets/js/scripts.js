@@ -78,6 +78,7 @@ $(document).ready(function() {
     if($target.length > 0) {
       $('.tabsection').addClass('u-opacity0');
       $('#' + $target).removeClass('u-opacity0');
+      window.location.hash = "mode_" + $target;
     }
     if ($target == 'map') {
       mapInitialize();
@@ -87,6 +88,18 @@ $(document).ready(function() {
     $(this).addClass('active');
     $(this).blur();
   });
+
+
+
+  // switches to selected tab in location hash
+  if(window.location.hash) {
+    hash = window.location.hash.replace('#', '').replace('mode_', '');
+    $intented_target = $('.tabs a[data-target="' + hash + '"]');
+    if($intented_target.length > 0) {
+      $intented_target.click();
+    }
+  }
+
 
 
   // filter field interactions

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="post" action="/login">
-                <h2 class="u-mv20">Giriş yap</h2>
+                <h2 class="u-mv20">{{ trans('auth.log_in') }}</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <input type="text" class="form-input" name="email" value="" placeholder="Eposta Adresi" />
@@ -17,7 +17,7 @@
                 </div>
 
                 <button type="submit"class="btn btn-primary u-floatright">
-                    GİRİŞ YAP
+                    {{ trans('auth.log_in_cap') }}
                     <i class="ion ion-log-in ion-15x"></i>
                 </button>
             </form>
@@ -30,9 +30,9 @@
 
             <hr class="u-mb35" />
 
-            <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> CONNECT</a>
-            <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i> CONNECT</a>
-            <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i> CONNECT</a>
+            <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> {{ trans('auth.connect_cap') }}</a>
+            <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i> {{ trans('auth.connect_cap') }}</a>
+            <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i> {{ trans('auth.connect_cap') }}</a>
 
         </div>
     </div>

@@ -50,3 +50,21 @@ hr {
   border: none;
   border-bottom: 1px solid @greyLight;
 }
+
+
+
+/* --- extended/condensed text --- */
+.condensed {
+  display: none;
+}
+.extended {
+  display: inline;
+}
+@media screen and (max-width: @screen-sm) {
+  .extended {
+    display: none;
+  }
+  .condensed {
+    display: inline;
+  }
+}

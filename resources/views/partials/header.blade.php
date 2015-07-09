@@ -82,12 +82,12 @@
                 <!-- Sorting tabs for issue list -->
                 <ul class="tabs">
                     <li>
-                        <a href="javascript:void(0)" class="active" data-target="list">
+                        <a href="javascript:void(0)" class="active" data-target="latest">
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" data-target="list">
+                        <a href="javascript:void(0)" data-target="popular">
                             POPÜLER
                         </a>
                     </li>
