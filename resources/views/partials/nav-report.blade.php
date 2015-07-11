@@ -7,7 +7,7 @@
 
         </div>
         <div class="col-xs-6 col-sm-hide u-aligncenter u-pv20">
-            <img src="/images/logo_grey.png" height="40px" alt="" />
+            <img src="/images/logo_blue.png" height="40px" alt="" />
         </div>
         <div class="col-sm-3 col-xs-6 u-alignright u-nowrap">
             @if(Auth::check())

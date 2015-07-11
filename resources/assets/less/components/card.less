@@ -2,8 +2,6 @@
 .card {
   display: block;
   min-height: 100px;
-  margin-top: -70px;
-  margin-bottom: 50px;
   background-color: @white;
   overflow: hidden;
   .rounded(5px);
@@ -12,6 +10,11 @@
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   .transform(translateX(0));
+
+  &.card-issue {
+    margin-top: -70px;
+    margin-bottom: 50px;
+  }
 
   .card-header {
     padding: 20px;

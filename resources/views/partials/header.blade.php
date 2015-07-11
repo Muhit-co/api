@@ -53,27 +53,27 @@
                         <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="Erenköy" />
                         <input id="location_string" name="location" class="u-hidden" />
                     </div>
-                    <div class="u-floatleft u-mt5">icin fikirler</div>
+                    <div class="u-floatleft u-mt5"><span class="extended">icin fikirler</span></div>
                     <br />
                 </h2>
 
-                <h3 id="district" class="u-floatleft u-ml50 u-mb20">Kadıköy, İstanbul</h3>
+                <div id="location_form_message" class="form-message u-ml45 u-mb20 u-hidden">
+                    <a href="javascript:void(0)" id="message_close" class="u-floatright u-ph10 u-pv5">
+                        <i class="ion ion-android-close ion-15x"></i>
+                    </a>
+                    <span class="message"></span>
+                </div>
 
-                <a href="/report" class="btn btn-sm btn-whiteoutline u-floatleft u-ml15 u-has-hidden-content">
-                    <i class="ion ion-clipboard"></i> 
-                    <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
-                </a>
+                <h3 id="district" class="u-floatleft u-ml50 u-mb20">
 
-                <!-- change mahalle -->
-                <!-- <div class="form-group form-autosuggest form-fullwidth hasIconLeft" data-form-state="is-home">
-                    <input id="location_string" name="location" type="text" class="form-input" placeholder="Mahalleni seç..." />
-                    <div class="form-appendLeft u-aligncenter" style="width: 40px;">
-                        <i class="form-state form-state-home ion ion-home ion-15x u-mt5 c-blue"></i>
-                        <i class="form-state form-state-static ion ion-location ion-2x c-blue u-hidden"></i>
-                        <i class="form-state form-state-current ion ion-android-locate ion-15x u-mt5 c-blue u-hidden"></i>
-                        <i class="form-state form-state-busy ion ion-load-a ion-15x u-ml10 u-mt5 ion-spinning c-blue u-hidden" style="margin-right: 7px"></i>
-                    </div>
-                </div> -->
+                    <span class="text">Kadıköy, İstanbul</span>
+
+                    <a href="/report" class="btn btn-sm btn-whiteoutline u-ml15 u-has-hidden-content">
+                        <i class="ion ion-clipboard"></i> 
+                        <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
+                    </a>
+
+                </h3>
 
             </div>
             <div class="col-md-4 col-sm-6 u-clearfix">
@@ -86,7 +86,7 @@
 
                 <!-- use profile home location -->
                 <div class="u-floatleft u-mr10">
-                    <a href="javascript:void(0)" id="home_location" data-val="Firuzağa Mahallesi, Beyoğlu, Turkey" class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
+                    <a href="javascript:void(0)" id="home_location" data-val="Firuzağa Mahallesi, Beyoğlu, İstanbul" class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
                 </div>
                 
                 <!-- search issues -->

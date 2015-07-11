@@ -24,6 +24,18 @@
         background: fade(@black, 10%);
         border-style: solid;
       }
+      &::-webkit-input-placeholder {
+        color: fade(@black, 25%);
+      }
+      &:-moz-placeholder {
+        color: fade(@black, 25%);
+      }
+      &::-moz-placeholder {
+        color: fade(@black, 25%);
+      }
+      &:-ms-input-placeholder {  
+        color: fade(@black, 25%);
+      }
     }
   }
 }
@@ -119,6 +131,24 @@ input.form-disabled {
 }
 .form-appendLeft {
   left: 0;
+}
+
+.form-message {
+  position: relative;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: fade(@black, 20%);
+  .rounded(3px);
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 10px;
+    display: block;
+    border: 5px solid transparent;
+    border-bottom-color: fade(@black, 20%);
+  }
 }
 
 // form states

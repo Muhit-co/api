@@ -6155,8 +6155,6 @@ figure img {
 .card {
   display: block;
   min-height: 100px;
-  margin-top: -70px;
-  margin-bottom: 50px;
   background-color: #ffffff;
   overflow: hidden;
   border-radius: 5px;
@@ -6164,6 +6162,10 @@ figure img {
   transition: all 0.3s ease-in-out;
   -webkit-transform: translateX(0);
   transform: translateX(0);
+}
+.card.card-issue {
+  margin-top: -70px;
+  margin-bottom: 50px;
 }
 .card .card-header {
   padding: 20px;
@@ -6447,6 +6449,18 @@ dialog hr {
   background: rgba(51, 51, 68, 0.1);
   border-style: solid;
 }
+.form-group.form-autosuggest input::-webkit-input-placeholder {
+  color: rgba(51, 51, 68, 0.25);
+}
+.form-group.form-autosuggest input:-moz-placeholder {
+  color: rgba(51, 51, 68, 0.25);
+}
+.form-group.form-autosuggest input::-moz-placeholder {
+  color: rgba(51, 51, 68, 0.25);
+}
+.form-group.form-autosuggest input:-ms-input-placeholder {
+  color: rgba(51, 51, 68, 0.25);
+}
 label {
   display: block;
   margin-bottom: 5px;
@@ -6540,6 +6554,22 @@ input.form-disabled {
 }
 .form-appendLeft {
   left: 0;
+}
+.form-message {
+  position: relative;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: rgba(51, 51, 68, 0.2);
+  border-radius: 3px;
+}
+.form-message:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 10px;
+  display: block;
+  border: 5px solid transparent;
+  border-bottom-color: rgba(51, 51, 68, 0.2);
 }
 .form-state {
   display: none;
@@ -6643,6 +6673,9 @@ nav {
   background-color: #44a1e0;
   color: #ffffff;
   z-index: 10;
+}
+nav.nav-isFixed {
+  box-shadow: 0 3px 6px rgba(51, 51, 68, 0.2);
 }
 nav.nav-muhtar {
   background-color: #307399;

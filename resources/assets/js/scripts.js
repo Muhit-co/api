@@ -70,9 +70,13 @@ $(document).ready(function() {
   $('.flash #flash_close').click(function() {
     $(this).closest('.flash').fadeOut();
   });
+  // closes form message
+  $('.form-message #message_close').click(function(e) {
+    $(this).closest('.form-message').fadeOut();
+  });
 
   // tabs active switch
-  $(document).on('click', '.tabs a', function(event){
+  $(document).on('click', '.tabs a', function(e){
     // target behaviour
     $target = $(this).attr('data-target');
     if($target.length > 0) {
@@ -103,27 +107,22 @@ $(document).ready(function() {
 
 
   // filter field interactions
-
-  // when user focuses on input field, value should be emptied and temporarily stored
-  $(document).on('focus', '#location_string', function(event){
-      $(this).attr('data-val', $(this).val());
-      $(this).val('');
-  });
-  // when user blurs input field, value should return to its original state
-  $(document).on('blur', '#location_string', function(event){
-      $('#location_string').val($(this).attr('data-val'));
-      $('#location_string').removeAttr('data-val');
-  });
   // when user starts typing, field should be in 'busy' state
-  $(document).on('keyup', '#location_string', function(event){
+  $(document).on('keyup', '#location_string', function(e){
       if($(this).val().length > 1) {
           $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
       }
   });
   // when user clicks home button
-  $(document).on('click', '#home_location', function(event){
+  $(document).on('click', '#home_location', function(e){
+    e.preventDefault();
     $("#location_string").closest('.form-group').attr('data-form-state','is-home');
-    $("#location_string").val($(this).attr('data-val'));
+    $("#location_string").val( $(this).attr('data-val') );
+    loc = $(this).attr('data-val').split(', ');
+    $("#hood").val( loc[0] );
+    console.log( loc[0] );
+    $("#district").find('.text').html( loc[1] + ', ' + loc[2] );
+    console.log( loc[1] + ', ' + loc[2] );
   });
 
   // create issue file upload handler

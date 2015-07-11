@@ -99,7 +99,7 @@ $(document).on('change', '#current_location', function(event){
 
 $(document).ready(function(){
     // google places autocomplete
-    var input = (document.getElementById('location_string'));
+    var input = (document.getElementById('hood'));
     var autocomplete = new google.maps.places.Autocomplete(
             input, 
             {
@@ -136,18 +136,24 @@ $(document).ready(function(){
                     }
                 }
             }
-            // assigning found location data to input fields
-            if($("#hood").length > 0 && hood) {
+            // evaluating if correct mahalle or not
+            if($("#hood").length > 0 && hood.length > 0) {
+                // hiding form message
+                $("#location_form_message").hide().find('.message').html('');
+                // assigning found location data to input fields
                 $("#hood").val(hood);
+                if($("#district").length > 0 && district.length > 0) {
+                    if(!city) { city = '' }
+                    $("#district").show().find('.text').html(district+", "+city);
+                }
+                $("#location_string").val(hood+", "+district+", "+city);
+                $("#location_string").closest('.form-group').attr('data-form-state','is-current');
+
+            } else {
+                $("#hood").val('');
+                $("#district").hide();
+                $("#location_form_message").show().find('.message').html('Aradığınız kriterleri mahalle değildir.');
             }
-            if($("#district").length > 0 && district) {
-                if(!city) { city = '' }
-                $("#district").val(district+", "+city);
-            }
-            $("#location_string").val(hood+", "+district+", "+city);
-            $("#location_string").closest('.form-group').attr('data-form-state','is-current');
-            // $("#location_string").closest('.form-group').attr('data-form-state','is-empty').css('border', '2px solid red');
-            // console.log('incorrect location info');
         }
         console.log(place.address_components);
         $("#location_string").closest('.form-group').attr('data-form-state','is-static');

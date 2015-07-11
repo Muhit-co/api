@@ -8,7 +8,7 @@
 
     <div class="col-md-10 col-md-offset-1">
 
-      <div class="card">
+      <div class="card card-issue">
         <div class="card-header clearfix">
           <div class="u-floatleft">
             <a href="/" class="u-ml10 u-mr20 closeCard"><i class="ion ion-android-arrow-back ion-2x"></i></a>
