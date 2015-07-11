@@ -29,11 +29,9 @@ Route::get('/user/{username}', function() {
 Route::get('/register-muhtar', function() {
     return view('auth.register-muhtar');
 });
-Route::get('/report', function() {
-    return view('reports.show');
-});
 #end of testing routes for dann
 
+# reports routing
 Route::get('report', 'IssuesController@getList');
 Route::get('/report', function() {
     return view('reports.show');

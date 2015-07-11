@@ -18,11 +18,6 @@
                 @include('partials.messages')
             </section>
 
-            <section class="bg-white">
-                <div class="row">
-                </div>
-            </section>
-
             @yield('content')
 
         </main>
