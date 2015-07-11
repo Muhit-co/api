@@ -5,17 +5,17 @@ return [
     "log_in_cap" => "GİRİŞ YAP",
     "log_in_short_cap" => "GİRİŞ",
     "connect_cap" => "BAĞLAN",
-    "muhtar_signup_title" => "Activate your mahalle",
+    "muhtar_signup_title" => "Mahalleni aktif hale getir",
     "neighbourhood" => "Mahalleniz",
     "neighbourhood_placeholder" => "Start typing your mahalle...",
     "first_name" => "Adınız",
-    "first_name_placeholder" => "i.e. John",
+    "first_name_placeholder" => "i.e. Ahmet",
     "last_name" => "Soyadınız",
-    "last_name_placeholder" => "i.e. Doe",
+    "last_name_placeholder" => "i.e. Muhittin",
     "email_address" => "E-posta adresiniz",
-    "email_address_placeholder" => "i.e. john@example.com",
+    "email_address_placeholder" => "i.e. ahmet@ornek.com",
     "password" => "Şifreniz",
     "password_placeholder" => "min. 8 characters",
-    "agree_with_terms" => ":tagstartKullanım koşullarıyı:tagend tamamlıyorum.",
-    "request_access_cap" => "REQUEST ACCESS"
+    "agree_with_terms" => ":tagstartKullanım koşulları:tagend kabul ediyorum.",
+    "request_access_cap" => "GİRİŞ İZNİ İSTE"
 ];
