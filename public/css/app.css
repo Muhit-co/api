@@ -3744,11 +3744,14 @@ hr {
   color: #44a1e0;
 }
 .bg-blue {
-  background-color: #51a8e2;
+  background-color: #44a1e0;
   color: #ffffff;
 }
 .bg-blueDark {
   background-color: #245672;
+}
+.bg-white {
+  background-color: #ffffff;
 }
 .bg-tag-blue {
   background-color: #629acc !important;
@@ -5904,6 +5907,15 @@ figure img {
 .u-clearfix:after {
   clear: both;
 }
+.u-has-hidden-content .u-show-on-hover {
+  display: none;
+}
+.u-has-hidden-content:hover .u-show-on-hover {
+  display: inline-block;
+}
+.u-has-hidden-content:hover .u-hide-on-hover {
+  display: none;
+}
 /* --- Imports components --- */
 /* --- badge --- */
 .badge {
@@ -6036,6 +6048,7 @@ figure img {
   padding: 5px 10px;
   height: 30px;
   line-height: 20px;
+  letter-spacing: 0;
 }
 .btn:active {
   -webkit-transform: translateY(2px);
@@ -6411,6 +6424,7 @@ dialog hr {
 /* --- forms --- */
 .form-group {
   position: relative;
+  display: inline-block;
   width: 300px;
   min-width: 150px;
   margin-bottom: 10px;
@@ -6420,6 +6434,18 @@ dialog hr {
 }
 .form-group.hasIconLeft .form-input {
   padding-left: 36px;
+}
+.form-group.form-autosuggest {
+  color: #ffffff;
+}
+.form-group.form-autosuggest input {
+  background: none;
+  border-bottom: 2px dotted #ffffff;
+  color: #ffffff;
+}
+.form-group.form-autosuggest input:not(:focus):hover {
+  background: rgba(51, 51, 68, 0.1);
+  border-style: solid;
 }
 label {
   display: block;
@@ -6539,6 +6565,11 @@ header {
   background-size: contain;
   color: #ffffff;
 }
+header h1,
+header h2,
+header h3 {
+  font-weight: normal;
+}
 /* --- list --- */
 .list {
   transition: width 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -6607,14 +6638,20 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
+  max-width: 100vw;
   height: 80px;
-  background-color: #379ade;
+  background-color: #44a1e0;
   color: #ffffff;
   z-index: 10;
-  box-shadow: 0 3px 6px rgba(51, 51, 68, 0.2);
 }
 nav.nav-muhtar {
   background-color: #307399;
+}
+nav.nav-report {
+  background-color: #ffffff;
+}
+nav.nav-report a {
+  color: #44a1e0;
 }
 nav a {
   color: rgba(255, 255, 255, 0.7);
@@ -6682,7 +6719,6 @@ nav #nav_quickadd {
 }
 #menu li.active a {
   color: #ffffff;
-  border-bottom-color: #ffffff;
 }
 #navbutton {
   display: none;

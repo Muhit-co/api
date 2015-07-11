@@ -1,6 +1,7 @@
 /* --- forms --- */
 .form-group {
   position: relative;
+  display: inline-block;
   width: 300px;
   min-width: 150px;
   margin-bottom: 10px;
@@ -10,6 +11,20 @@
   }
   &.hasIconLeft .form-input {
     padding-left: 36px;
+  }
+  &.form-autosuggest {
+    color: @white;
+
+    input {
+      background: none;
+      border-bottom: 2px dotted @white;;
+      color: @white;
+
+      &:not(:focus):hover {
+        background: fade(@black, 10%);
+        border-style: solid;
+      }
+    }
   }
 }
 label {
