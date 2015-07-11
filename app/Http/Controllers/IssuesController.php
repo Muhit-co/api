@@ -5,6 +5,9 @@ use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\Issue;
+use Muhit\Models\City;
+use Muhit\Models\District;
+use Muhit\Models\Hood;
 use Redis;
 use Request;
 use Storage;
@@ -54,6 +57,60 @@ class IssuesController extends Controller {
         $issue->district_id = 0;
         $issue->hood_id = 0;
         $issue->is_anonymous = ((isset($data['is_anonymous'])) ? $data['is_anonymous'] : 0);
+        if (isset($data['coordinates'])) {
+            $issue->coordinates = $data['coordinates'];
+        }
+
+        #lets figure out the location.
+        $location_parts = explode(",", $data['location']);
+        if (count($location_parts) === 3) {
+            foreach ($location_parts as $index => $lp) {
+                $location_parts[$index] = trim($lp);
+            }
+
+            try {
+                $city = City::firstOrCreate(['name' => $location_parts[2]]);
+                $issue->city_id = $city->id;
+            } catch (Exception $e) {
+                Log::error('IssuesController/city', (array) $e);
+                DB::rollback();
+                if ($this->isApi) {
+                    return response()->api(500, 'Error on saving the city. ', []);
+                }
+                return redirect('/issues/new')
+                    ->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi. ');
+            }
+
+            try {
+                $district = District::firstOrCreate(['name' => $location_parts[1], 'city_id' => $city->id]);
+                $issue->district_id = $district->id;
+            } catch (Exception $e) {
+                Log::error('IssuesController/district', (array) $e);
+                DB::rollback();
+                if ($this->isApi) {
+                    return response()->api(500, 'Error on saving the district. ', []);
+                }
+                return redirect('/issues/new')
+                    ->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi. ');
+            }
+
+            try {
+                $hood = Hood::firstOrCreate([
+                    'name' => $location_parts[0],
+                    'city_id' => $city->id,
+                    'district_id' => $district->id]);
+                $issue->hood_id = $hood->id;
+            } catch (Exception $e) {
+                Log::error('IssuesController/district', (array) $e);
+                DB::rollback();
+                if ($this->isApi) {
+                    return response()->api(500, 'Error on saving the district. ', []);
+                }
+                return redirect('/issues/new')
+                    ->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi. ');
+            }
+        }
+
 
         try {
             $issue->save();

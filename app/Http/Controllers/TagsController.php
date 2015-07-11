@@ -14,7 +14,7 @@ class TagsController extends Controller {
 	public function getList($q = null) {
 		$tags = Tag::orderBy('name', 'asc');
 
-		if ($q !== null and $q !== 'null') {
+		if (!empty($q)) {
 			$tags->where('name', 'LIKE', '%' . $q . '%');
 		}
 
