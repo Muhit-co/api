@@ -17,21 +17,13 @@
                     <textarea class="form-input" value="" name="desc" placeholder="Yazin..." rows="3"></textarea>
                 </div>
 
+                <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
+                @include('partials.field-hood')
+
                 <div class="form-group u-relative u-mv10">
                     <input type="hidden" id="coordinates" value="" name="coordinates">
                     <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
                     <label for="current_location">Yerimi belirle</label>
-                </div>
-
-                <!-- Mahalle -->
-                <div class="form-group form-fullwidth hasDropdown hasIconRight" data-form-state="">
-                    <div class="form-appendRight u-aligncenter u-mt5" style="width: 40px;">
-                        <i class="form-state form-state-home ion ion-home ion-1x u-mt5 u-hidden"></i>
-                        <i class="form-state form-state-static ion ion-location ion-15x u-hidden"></i>
-                        <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
-                        <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
-                    </div>
-                    <input type="text" class="form-input" id="location_string" name="location" placeholder="Erenköy, Kadıköy" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mv20">
