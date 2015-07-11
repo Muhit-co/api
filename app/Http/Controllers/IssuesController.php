@@ -276,6 +276,24 @@ class IssuesController extends Controller {
      **/
     public function getByTag($tag_id = null, $start = 0, $take = 20) {
 
+        $issues = Issue::with('user', 'tags', 'images')
+            ->orderBy('id', 'desc')
+            ->skip($start)
+            ->take($take)
+            ->get();
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.list', ['issues' => $response]);
     }
 
     /**
@@ -285,6 +303,25 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getByHood($hood_id = null, $start = 0, $take = 20) {
+        $issues = Issue::with('user', 'tags', 'images')
+            ->where('hood_id', $hood_id)
+            ->orderBy('id', 'desc')
+            ->skip($start)
+            ->take($take)
+            ->get();
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.list', ['issues' => $response]);
     }
 
     /**
@@ -294,6 +331,25 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getByDistrict($district_id = null, $start = 0, $take = 20) {
+        $issues = Issue::with('user', 'tags', 'images')
+            ->where('district_id', $district_id)
+            ->orderBy('id', 'desc')
+            ->skip($start)
+            ->take($take)
+            ->get();
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.list', ['issues' => $response]);
     }
 
     /**
@@ -303,6 +359,25 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getByCity($city_id = null, $start = 0, $take = 20) {
+        $issues = Issue::with('user', 'tags', 'images')
+            ->where('city_id', $city_id)
+            ->orderBy('id', 'desc')
+            ->skip($start)
+            ->take($take)
+            ->get();
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.list', ['issues' => $response]);
     }
 
     /**
@@ -312,6 +387,26 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getByUser($user_id = null, $start = 0, $take = 20) {
+
+        $issues = Issue::with('user', 'tags', 'images')
+            ->where('user_id', $user_id)
+            ->orderBy('id', 'desc')
+            ->skip($start)
+            ->take($take)
+            ->get();
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.list', ['issues' => $response]);
     }
 
     /**
