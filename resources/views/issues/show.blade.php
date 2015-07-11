@@ -78,8 +78,9 @@
         <div class="card-footer clearfix">
           <div class="u-floatright">
             <a href="javascript:void(0)" class="btn btn-sm btn-tertiary u-mr5"><i class="ion ion-alert-circled"></i></a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-tertiary u-mr5"><i class="ion ion-edit u-mr5"></i> DÜZENLE</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-tertiary"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+            @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
+                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-sm btn-tertiary" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+            @endif
           </div>
           <span class="title">A019 8589910</span>
         </div>
