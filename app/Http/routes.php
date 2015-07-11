@@ -63,6 +63,9 @@ Route::get('profile/{id}', 'MembersController@getProfile');
 Route::controller('issues', 'IssuesController');
 Route::get('issues', 'IssuesController@getList');
 
+Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
+
+
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', function () {
         return response()->api(200, "Welcome to the Muhit API. ");
@@ -92,6 +95,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('issues/by-supporter/{user_id}/{start?}/{take?}', 'IssuesController@getBySupporter');
 
     Route::get('profile/{user_id}', 'MembersController@getProfile');
+    Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
 
     Route::group(['middleware' => 'oauth'], function () {
         Route::get('profile', 'MembersController@getMyProfile');

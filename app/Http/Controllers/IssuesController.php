@@ -9,6 +9,7 @@ use Muhit\Models\IssueSupporter;
 use Muhit\Models\City;
 use Muhit\Models\District;
 use Muhit\Models\Hood;
+use Muhit\Models\User;
 use Redis;
 use Request;
 use Storage;
@@ -653,6 +654,53 @@ class IssuesController extends Controller {
 
         return redirect('/issues/view/'.$id)
             ->with('success', 'Bu fikri artık desteklemiyorsunuz');
+
+    }
+
+
+
+    /**
+     * get supporter list for an issue
+     *
+     * @return mixed
+     * @author gcg
+     */
+    public function getSupporters($id = null, $start = 0, $take = 20)
+    {
+        $issue = Issue::find($id);
+
+        if ($issue === null) {
+            if ($this->isApi) {
+                return response()->api(404, 'Issue not found', []);
+            }
+            return redirect('/issues')
+                ->with('error', 'Fikir bulunamadı.');
+        }
+
+        $supporter_ids = [];
+        $supporter_ids = DB::table('issue_supporters')
+            ->where('issue_id', $issue->id)
+            ->orderBy('created_at', 'desc')
+            ->skip($start)
+            ->take($take)
+            ->lists('user_id');
+
+        $users = [];
+
+        if (!empty($supporter_ids)) {
+            $users = User::whereIn('id', $supporter_ids)
+                ->get();
+
+            if (!empty($users)) {
+                $users = $users->toArray();
+            }
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'List of issue supporters: '.$id, $users);
+        }
+
+        return response()->app(200, 'issues.supporters', ['users' => $users]);
 
     }
 }
