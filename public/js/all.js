@@ -11678,6 +11678,7 @@ $(document).on('change', '#location', function(event){
                                     }
                                 }
                                 $("#location_string").val(hood+", "+district+", "+city);
+                                $("#coordinates").val(lat + ", " + lon);
                                 $("#location_string").attr('placeholder', original_placeholder);
                                 $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                                 map.setCenter({lat: lat, lng: lon});

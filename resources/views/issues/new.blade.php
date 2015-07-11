@@ -19,6 +19,7 @@
 
                 <div class="form-group u-mv10">
                     <input type="checkbox" id="location" value="" class="u-floatleft u-mr20" >
+                    <input type="hidden" id="coordinates" value="" name="coordinates">
                     <label for="location">Yerimi belirle</label>
                 </div>
 
