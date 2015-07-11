@@ -50,7 +50,8 @@
                             <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
                         </div>
-                        <input id="location_string" name="location" type="text" class="form-input u-floatleft" style="width: 260px;" placeholder="Mahalleni seç..." value="Erenköy" />
+                        <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="Erenköy" />
+                        <input id="location_string" name="location" class="u-hidden" />
                     </div>
                     <div class="u-floatleft u-mt5">icin fikirler</div>
                     <br />
@@ -79,8 +80,8 @@
 
                 <!-- use current location -->
                 <div class="u-floatleft u-mr20">
-                    <input type="checkbox" id="location" value="" class="u-floatleft u-mr20" >
-                    <label for="location" class="btn btn-whiteoutline"><i class="ion ion-android-locate ion-15x"></i></label>
+                    <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
+                    <label for="current_location" class="btn btn-whiteoutline"><i class="ion ion-android-locate ion-15x"></i></label>
                 </div>
 
                 <!-- use profile home location -->

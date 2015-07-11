@@ -157,3 +157,20 @@ $(document).ready(function() {
   });
   
 });
+
+// parallax functionality
+function scrollActions() {
+  scroll = $(window).scrollTop();
+  threshold = 100;
+
+  if ((scroll + $('nav').outerHeight()) > threshold) {
+    $('nav').addClass('nav-isFixed');
+  } else {
+    $('nav').removeClass('nav-isFixed');
+  }
+}
+
+$(window).scroll(function() { scrollActions(); });
+$(window).resize(function() { scrollActions(); });
+$(document).bind("scrollstart", function() { scrollActions(); });
+$(document).bind("scrollstop", function() { scrollActions(); });

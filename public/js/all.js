@@ -11613,6 +11613,22 @@ $(document).ready(function() {
   
 });
 
+// parallax functionality
+function scrollActions() {
+  scroll = $(window).scrollTop();
+  threshold = 100;
+
+  if ((scroll + $('nav').outerHeight()) > threshold) {
+    $('nav').addClass('nav-isFixed');
+  } else {
+    $('nav').removeClass('nav-isFixed');
+  }
+}
+
+$(window).scroll(function() { scrollActions(); });
+$(window).resize(function() { scrollActions(); });
+$(document).bind("scrollstart", function() { scrollActions(); });
+$(document).bind("scrollstop", function() { scrollActions(); });
 function mapInitialize() {
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
@@ -11641,7 +11657,7 @@ $(document).on('click', '#map_redraw', function(event){
     mapInitialize();
 });
 
-$(document).on('change', '#location', function(event){
+$(document).on('change', '#current_location', function(event){
     if(this.checked) {
         // google api & html5 location api based on location guessing
         var original_placeholder = $("#location_string").attr('placeholder');
@@ -11678,12 +11694,14 @@ $(document).on('change', '#location', function(event){
                                     }
                                 }
                             }
-                            $("#location_string").val(hood);
+                            // visible data
+                            $("#hood").val(hood);
                             $("#district").html(district+", "+city);
+                            // backend data
                             $("#coordinates").val(lat + ", " + lon);
-                            $("#location_string").attr('placeholder', original_placeholder);
+                            $("#location_string").html(hood+", "+district+", "+city);
                             $("#location_string").closest('.form-group').attr('data-form-state','is-current');
-                            map.setCenter({lat: lat, lng: lon});
+                            // map.setCenter({lat: lat, lng: lon});
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
 
@@ -11749,12 +11767,22 @@ $(document).ready(function(){
                     }
                 }
             }
-            $("#location_string").val(hood);
-            $("#district").html(district+", "+city);
+            // assigning found location data to input fields
+            if($("#hood").length > 0 && hood) {
+                $("#hood").val(hood);
+            }
+            if($("#district").length > 0 && district) {
+                if(!city) { city = '' }
+                $("#district").val(district+", "+city);
+            }
+            $("#location_string").html(hood+", "+district+", "+city);
+            $("#location_string").closest('.form-group').attr('data-form-state','is-current');
+            // $("#location_string").closest('.form-group').attr('data-form-state','is-empty').css('border', '2px solid red');
+            // console.log('incorrect location info');
         }
         console.log(place.address_components);
         $("#location_string").closest('.form-group').attr('data-form-state','is-static');
-        $("#location").attr('checked', false);
+        $("#current_location").attr('checked', false);
     });
 });
 

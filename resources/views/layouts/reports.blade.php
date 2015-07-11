@@ -13,8 +13,14 @@
         </a>
 
         <main>
-            <section class="bg-white">
+        
+            <section>
                 @include('partials.messages')
+            </section>
+
+            <section class="bg-white">
+                <div class="row">
+                </div>
             </section>
 
             @yield('content')
