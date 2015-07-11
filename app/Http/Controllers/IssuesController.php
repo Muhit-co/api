@@ -69,17 +69,13 @@ class IssuesController extends Controller {
             $issue->coordinates = $data['coordinates'];
         }
 
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
 
-        die();
 
         #lets figure out the location.
         $location_parts = explode(",", $data['location']);
         $hood = false;
         if (count($location_parts) === 3) {
-            $hood = Hood::getFromLocation($data['location']);
+            $hood = Hood::fromLocation($data['location']);
         }
 
         if ($hood === false or $hood === null or !isset($hood->id) or !isset($hood->city_id) or !isset($hood->district_id)) {
