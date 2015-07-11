@@ -11699,7 +11699,7 @@ $(document).on('change', '#current_location', function(event){
                             $("#district").html(district+", "+city);
                             // backend data
                             $("#coordinates").val(lat + ", " + lon);
-                            $("#location_string").html(hood+", "+district+", "+city);
+                            $("#location_string").val(hood+", "+district+", "+city);
                             $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                             // map.setCenter({lat: lat, lng: lon});
                         } else {
@@ -11775,7 +11775,7 @@ $(document).ready(function(){
                 if(!city) { city = '' }
                 $("#district").val(district+", "+city);
             }
-            $("#location_string").html(hood+", "+district+", "+city);
+            $("#location_string").val(hood+", "+district+", "+city);
             $("#location_string").closest('.form-group').attr('data-form-state','is-current');
             // $("#location_string").closest('.form-group').attr('data-form-state','is-empty').css('border', '2px solid red');
             // console.log('incorrect location info');
