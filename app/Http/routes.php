@@ -63,6 +63,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::controller('hoods', 'HoodsController');
 
     Route::get('tags/{q?}', 'TagsController@getList');
+    Route::get('tags', 'TagsController@getList');
     Route::get('announcements/{hood_id}/{start?}/{take?}', 'AnnouncementsController@getList');
 
     Route::get('issues/view/{id}', 'IssuesController@getView');
