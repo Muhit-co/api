@@ -11677,11 +11677,12 @@ $(document).on('change', '#location', function(event){
                                         }
                                     }
                                 }
-                                $("#location_string").val(hood+", "+district+", "+city);
+                            }
+                                $("#location_string").val(hood);
+                                $("#district").html(district+", "+city);
                                 $("#location_string").attr('placeholder', original_placeholder);
                                 $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                                 map.setCenter({lat: lat, lng: lon});
-                            }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
 
@@ -11733,7 +11734,22 @@ $(document).ready(function(){
                 (place.address_components[2] && place.address_components[2].short_name || '')
 
             ].join(' ');
-
+            for (var i = 0, l = place.address_components.length; i < l; i ++) {
+                var a = place.address_components[i];
+                if (a.types[0]) {
+                    if (a.types[0] === "administrative_area_level_1") {
+                        city = a.long_name;    
+                    }
+                    if (a.types[0] === "administrative_area_level_2") {
+                        district = a.long_name;    
+                    }
+                    if (a.types[0] === "administrative_area_level_4") {
+                        hood = a.long_name;    
+                    }
+                }
+            }
+            $("#location_string").val(hood);
+            $("#district").html(district+", "+city);
         }
         console.log(place.address_components);
         $("#location_string").closest('.form-group').attr('data-form-state','is-static');

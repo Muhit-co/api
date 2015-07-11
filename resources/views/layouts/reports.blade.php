@@ -6,14 +6,14 @@
 
     <body>
 
-        @include('partials.nav-compact')
+        @include('partials.nav-report')
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">
             <img src="/images/preloader.gif" alt="" class="u-valignmiddle" />
         </a>
 
         <main>
-            <section class="bg-blue">
+            <section class="bg-white">
                 @include('partials.messages')
             </section>
 

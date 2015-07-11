@@ -2,7 +2,8 @@
 
     <?php if(!isset($type) || $type !== 'show'): ?>
 
-        @if(!Auth::check())
+        @if(Auth::check())
+        @else
         <div class="row">
             <div class="col-md-10 col-md-offset-1 u-pt20 u-ph0">
                 <div class="u-ph15">
@@ -38,10 +39,32 @@
         @endif
 
         <div class="row">
-            <div class="col-md-4 col-md-offset-1 col-sm-6">
+            <div class="col-md-6 col-md-offset-1 col-sm-6">
+
+                <h2 class="u-clearfix">
+                    <!-- change mahalle -->
+                    <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="is-home">
+                        <div class="u-floatleft u-aligncenter" style="width: 40px;">
+                            <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
+                            <i class="form-state form-state-static ion ion-location ion-15x u-hidden"></i>
+                            <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
+                            <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
+                        </div>
+                        <input id="location_string" name="location" type="text" class="form-input u-floatleft" style="width: 260px;" placeholder="Mahalleni seç..." value="Erenköy" />
+                    </div>
+                    <div class="u-floatleft u-mt5">icin fikirler</div>
+                    <br />
+                </h2>
+
+                <h3 id="district" class="u-floatleft u-ml50 u-mb20">Kadıköy, İstanbul</h3>
+
+                <a href="/report" class="btn btn-sm btn-whiteoutline u-floatleft u-ml15 u-has-hidden-content">
+                    <i class="ion ion-clipboard"></i> 
+                    <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
+                </a>
 
                 <!-- change mahalle -->
-                <div class="form-group form-autosuggest form-fullwidth hasIconLeft" data-form-state="is-home">
+                <!-- <div class="form-group form-autosuggest form-fullwidth hasIconLeft" data-form-state="is-home">
                     <input id="location_string" name="location" type="text" class="form-input" placeholder="Mahalleni seç..." />
                     <div class="form-appendLeft u-aligncenter" style="width: 40px;">
                         <i class="form-state form-state-home ion ion-home ion-15x u-mt5 c-blue"></i>
@@ -49,10 +72,10 @@
                         <i class="form-state form-state-current ion ion-android-locate ion-15x u-mt5 c-blue u-hidden"></i>
                         <i class="form-state form-state-busy ion ion-load-a ion-15x u-ml10 u-mt5 ion-spinning c-blue u-hidden" style="margin-right: 7px"></i>
                     </div>
-                </div>
+                </div> -->
 
             </div>
-            <div class="col-md-6 col-sm-6 u-clearfix">
+            <div class="col-md-4 col-sm-6 u-clearfix">
 
                 <!-- use current location -->
                 <div class="u-floatleft u-mr20">

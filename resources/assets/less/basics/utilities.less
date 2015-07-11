@@ -145,3 +145,16 @@
 .u-clearfix {
   .clearfix();
 }
+.u-has-hidden-content {
+  .u-show-on-hover {
+    display: none;
+  }
+  &:hover {
+    .u-show-on-hover {
+      display: inline-block;
+    }
+    .u-hide-on-hover {
+      display: none;
+    }
+  }
+}
