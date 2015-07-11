@@ -64,6 +64,10 @@ class IssuesController extends Controller {
         #lets figure out the location.
         $location_parts = explode(",", $data['location']);
         if (count($location_parts) === 3) {
+            foreach ($location_parts as $index => $lp) {
+                $location_parts[$index] = trim($lp);
+            }
+
             try {
                 $city = City::firstOrCreate(['name' => $location_parts[2]]);
                 $issue->city_id = $city->id;
