@@ -393,7 +393,7 @@ class IssuesController extends Controller {
                 ->with('error', 'Silmek istediğiniz fikiri bulamadım.');
         }
 
-        $cal_delete = false;
+        $can_delete = false;
         if ($user_id === $issue->user_id) {
             $can_delete = true;
         }

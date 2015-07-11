@@ -51,7 +51,10 @@ Route::get('logout', function(){
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('issues/new', 'IssuesController@getNew');
+    Route::controller('members', 'MembersController');
 });
+
+Route::get('profile/{id?}', 'MembersController@getProfile');
 
 #issue routing
 Route::controller('issues', 'IssuesController');
