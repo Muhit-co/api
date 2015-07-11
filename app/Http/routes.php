@@ -52,9 +52,10 @@ Route::get('logout', function(){
 Route::group(['middleware' => 'auth'], function(){
     Route::get('issues/new', 'IssuesController@getNew');
     Route::controller('members', 'MembersController');
+    Route::get('profile', 'MembersController@getMyProfile');
 });
 
-Route::get('profile/{id?}', 'MembersController@getProfile');
+Route::get('profile/{id}', 'MembersController@getProfile');
 
 #issue routing
 Route::controller('issues', 'IssuesController');
@@ -89,9 +90,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('issues/by-status/{status}/{start?}/{take?}', 'IssuesController@getByStatus');
     Route::get('issues/by-supporter/{user_id}/{start?}/{take?}', 'IssuesController@getBySupporter');
 
-    Route::get('profile/{user_id?}', 'MembersController@getProfile');
+    Route::get('profile/{user_id}', 'MembersController@getProfile');
 
     Route::group(['middleware' => 'oauth'], function () {
+        Route::get('profile', 'MembersController@getMyProfile');
         Route::post('issues/add', 'IssuesController@postAdd');
         Route::post('issues/support/{id}', 'IssuesController@getSupport');
         Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');

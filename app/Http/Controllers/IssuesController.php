@@ -47,7 +47,7 @@ class IssuesController extends Controller {
                 if ($this->isApi) {
                     return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
                 }
-                return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin.');
+                return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. '.$key);
             }
         }
 
@@ -69,54 +69,26 @@ class IssuesController extends Controller {
             $issue->coordinates = $data['coordinates'];
         }
 
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
+        die();
+
         #lets figure out the location.
         $location_parts = explode(",", $data['location']);
+        $hood = false;
         if (count($location_parts) === 3) {
-            foreach ($location_parts as $index => $lp) {
-                $location_parts[$index] = trim($lp);
-            }
+            $hood = Hood::getFromLocation($data['location']);
+        }
 
-            try {
-                $city = City::firstOrCreate(['name' => $location_parts[2]]);
-                $issue->city_id = $city->id;
-            } catch (Exception $e) {
-                Log::error('IssuesController/city', (array) $e);
-                DB::rollback();
-                if ($this->isApi) {
-                    return response()->api(500, 'Error on saving the city. ', []);
-                }
-                return redirect('/issues/new')
-                    ->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi. ');
+        if ($hood === false or $hood === null or !isset($hood->id) or !isset($hood->city_id) or !isset($hood->district_id)) {
+            DB::rollback();
+            if ($this->isApi) {
+                return response()->api(401, 'Cant get the hood information from the location provided.', ['data' => $data]);
             }
-
-            try {
-                $district = District::firstOrCreate(['name' => $location_parts[1], 'city_id' => $city->id]);
-                $issue->district_id = $district->id;
-            } catch (Exception $e) {
-                Log::error('IssuesController/district', (array) $e);
-                DB::rollback();
-                if ($this->isApi) {
-                    return response()->api(500, 'Error on saving the district. ', []);
-                }
-                return redirect('/issues/new')
-                    ->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi. ');
-            }
-
-            try {
-                $hood = Hood::firstOrCreate([
-                    'name' => $location_parts[0],
-                    'city_id' => $city->id,
-                    'district_id' => $district->id]);
-                $issue->hood_id = $hood->id;
-            } catch (Exception $e) {
-                Log::error('IssuesController/district', (array) $e);
-                DB::rollback();
-                if ($this->isApi) {
-                    return response()->api(500, 'Error on saving the district. ', []);
-                }
-                return redirect('/issues/new')
-                    ->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi. ');
-            }
+            return redirect('issues/new')
+                ->with('error', 'Lokasyonunuzu girerken bir hata oldu, lütfen tekrar deneyin.');
         }
 
 

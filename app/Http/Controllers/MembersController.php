@@ -12,13 +12,14 @@ use Str;
 
 class MembersController extends Controller {
 
+
     /**
      * get user profile
      *
      * @return mixed
      * @author gcg
      */
-    public function getProfile($id = null)
+    public function getMyProfile()
     {
         if ($this->isApi) {
             $user_id = Authorizer::getResourceOwnerId();
@@ -27,9 +28,31 @@ class MembersController extends Controller {
             $user_id = Auth::user()->id;
         }
 
-        if ($id === null) {
-            $id = $user_id;
+        $user = User::find($user_id);
+
+        if ($user === null) {
+            if($this->isApi) {
+                return response()->api(404, 'User not found', ['id' => $user_id]);
+            }
+            return redirect('/')
+                ->with('error', 'Aradığınız kullanıcı bulunamadı.');
         }
+
+        if($this->isApi) {
+            return response()->api(200, 'User profile information', ['user' => $user->toArray()]);
+        }
+
+        return response()->app(200, 'members.profile', ['user' => $user->toArray()]);
+    }
+
+    /**
+     * get user profile
+     *
+     * @return mixed
+     * @author gcg
+     */
+    public function getProfile($id = null)
+    {
 
         $user = User::find($id);
 
@@ -98,6 +121,7 @@ class MembersController extends Controller {
         }
         if (isset($data['location']) and !empty($data['location'])) {
             $user->location = $data['location'];
+
         }
         if (isset($data['coordinates']) and !empty($data['coordinates'])) {
             $user->coordinates = $data['coordinates'];
