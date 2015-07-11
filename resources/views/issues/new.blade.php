@@ -17,10 +17,10 @@
                     <textarea class="form-input" value="" name="desc" placeholder="Yazin..." rows="3"></textarea>
                 </div>
 
-                <div class="form-group u-mv10">
-                    <input type="checkbox" id="location" value="" class="u-floatleft u-mr20" >
+                <div class="form-group u-relative u-mv10">
                     <input type="hidden" id="coordinates" value="" name="coordinates">
-                    <label for="location">Yerimi belirle</label>
+                    <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
+                    <label for="current_location">Yerimi belirle</label>
                 </div>
 
                 <!-- Mahalle -->
