@@ -366,6 +366,7 @@ class IssuesController extends Controller {
         }
 
         $can_delete = false;
+        $user_id = (int) $user_id;
         if ($user_id === $issue->user_id) {
             $can_delete = true;
         }
@@ -377,6 +378,9 @@ class IssuesController extends Controller {
                 $can_delete = true;
             }
         }
+
+        return response()->api(200, '', ['can_delete' => $can_delete, 'user_id' => $user_id, 'issue_user_id' => $issue->user_id]);
+
 
         if ($can_delete === false) {
 
