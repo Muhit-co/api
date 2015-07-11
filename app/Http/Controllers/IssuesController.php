@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\Issue;
+use Muhit\Models\IssueSupporter;
 use Muhit\Models\City;
 use Muhit\Models\District;
 use Muhit\Models\Hood;
@@ -507,5 +508,151 @@ class IssuesController extends Controller {
         }
         return redirect('/issues')
             ->with('success', 'Fikriniz başarılı bir şekilde silindi. ');
+    }
+
+    /**
+     * support an issue
+     *
+     * @return mixed
+     * @author gcg
+     */
+    public function getSupport($id = null)
+    {
+        if ($this->isApi) {
+            $user_id = Authorizer::getResourceOwnerId();
+        }
+        else {
+            $user_id = Auth::user()->id;
+        }
+
+        if (empty($user_id)) {
+            if ($this->isApi) {
+                return response()->api(403, 'Auth required', []);
+            }
+            return redirect('/login')
+                ->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+        }
+
+        $issue = Issue::find($id);
+
+        if ($issue === null) {
+            if ($this->isApi) {
+                return response()->api(404, 'Issue not found', []);
+            }
+            return redirect('/issues')
+                ->with('error', 'Silmek istediğiniz fikiri bulamadım.');
+        }
+
+        $check = (int) DB::table('issue_supporters')
+            ->where('user_id', $user_id)
+            ->where('issue_id', $issue->id)
+            ->count();
+
+        if ($check > 0) {
+            if ($this->isApi) {
+                return response()->api(200, 'Already supported', []);
+            }
+            return redirect('/issues/view/'.$id)
+                ->with('warning', 'Bu fikri zaten destekliyorsunuz.');
+        }
+
+        try {
+            DB::table('issue_supporters')
+                ->insert([
+                    'user_id' => $user_id,
+                    'issue_id' => $id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+            Redis::incr('user_supported_issue_counter:'.$user_id);
+            $su_counter = (int) Redis::incr('supporter_counter:'.$id);
+        } catch (Exception $e) {
+            Log::error('IssuesController/getSupport', (array) $e);
+            if ($this->isApi) {
+                return response()->api(500, 'Tech problem while supporting the issue', []);
+            }
+            return redirect('/issues/view/'.$id)
+                ->with('error', 'Fikri desteklerken teknik bir hata meydana geldi. Lütfen tekrar deneyin.');
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issue supported', ['current_supporter_counter' => $su_counter, 'issue_id' => $id]);
+        }
+
+        return redirect('/issues/view/'.$id)
+            ->with('success', 'Fikir desteklendi.');
+
+    }
+
+
+    /**
+     * un-support an issue
+     *
+     * @return mixed
+     * @author gcg
+     */
+    public function getUnSupport($id = null)
+    {
+        if ($this->isApi) {
+            $user_id = Authorizer::getResourceOwnerId();
+        }
+        else {
+            $user_id = Auth::user()->id;
+        }
+
+        if (empty($user_id)) {
+            if ($this->isApi) {
+                return response()->api(403, 'Auth required', []);
+            }
+            return redirect('/login')
+                ->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+        }
+
+        $issue = Issue::find($id);
+
+        if ($issue === null) {
+            if ($this->isApi) {
+                return response()->api(404, 'Issue not found', []);
+            }
+            return redirect('/issues')
+                ->with('error', 'Silmek istediğiniz fikiri bulamadım.');
+        }
+
+        $check = DB::table('issue_supporters')
+            ->where('user_id', $user_id)
+            ->where('issue_id', $issue->id)
+            ->first();
+
+        if (empty($check)) {
+            if ($this->isApi) {
+                return response()->api(200, 'User did not support this issue', []);
+            }
+            return redirect('/issues/view/'.$id)
+                ->with('warning', 'Bu fikri desteklemiyorsunuz.');
+        }
+
+        try {
+            DB::table('issue_supporters')
+                ->where('id', $check->id)
+                ->delete();
+
+            Redis::decr('user_supported_issue_counter:'.$user_id);
+            $su_counter = (int) Redis::decr('supporter_counter:'.$id);
+        } catch (Exception $e) {
+            Log::error('IssuesController/getUnSupport', (array) $e);
+            if ($this->isApi) {
+                return response()->api(500, 'Tech problem while unsupporting the issue', []);
+            }
+            return redirect('/issues/view/'.$id)
+                ->with('error', 'Fikri desteklerken teknik bir hata meydana geldi. Lütfen tekrar deneyin.');
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issue un-supported', ['current_supporter_counter' => $su_counter, 'issue_id' => $id]);
+        }
+
+        return redirect('/issues/view/'.$id)
+            ->with('success', 'Bu fikri artık desteklemiyorsunuz');
+
     }
 }

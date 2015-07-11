@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('issues/new', 'IssuesController@getNew');
     Route::controller('members', 'MembersController');
     Route::get('profile', 'MembersController@getMyProfile');
+    Route::get('support/{id}', 'IssuesController@getSupport');
+    Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
 });
 
 Route::get('profile/{id}', 'MembersController@getProfile');
@@ -69,7 +71,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('secure', ['before' => 'oauth', function () {
         return response()->api(500, "You have access to the secure calls");
     }]);
-
 
     Route::controller('auth', 'AuthController');
     Route::controller('hoods', 'HoodsController');
@@ -100,6 +101,8 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('issues/comment/', 'IssuesController@postComment');
         Route::get('issues/delete/{id}', 'IssuesController@getDelete');
         Route::controller('members', 'MembersController');
+        Route::get('support/{id}', 'IssuesController@getSupport');
+        Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
     });
 
 });
