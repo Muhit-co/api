@@ -85,6 +85,7 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('issues/support/{id}', 'IssuesController@getSupport');
         Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');
         Route::post('issues/comment/', 'IssuesController@postComment');
+        Route::get('issues/delete/{id}', 'IssuesController@getDelete');
         Route::controller('members', 'MembersController');
     });
 

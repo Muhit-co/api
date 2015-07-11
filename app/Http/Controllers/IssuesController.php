@@ -31,6 +31,14 @@ class IssuesController extends Controller {
             $user_id = Auth::user()->id;
         }
 
+        if (empty($user_id)) {
+            if ($this->isApi) {
+                return response()->api(403, 'Auth required', []);
+            }
+            return redirect('/login')
+                ->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+        }
+
 
         $required_fields = ['tags', 'title', 'desc', 'location'];
 
@@ -352,5 +360,86 @@ class IssuesController extends Controller {
     public function getBySupporter($user_id = null, $start = 0, $take = 20) {
     }
 
+    /**
+     * deletes an issue
+     *
+     * @return mixed
+     * @author gcg
+     */
+    public function getDelete($id = null)
+    {
+        if ($this->isApi) {
+            $user_id = Authorizer::getResourceOwnerId();
+        }
+        else {
+            $user_id = Auth::user()->id;
+        }
 
+        if (empty($user_id)) {
+            if ($this->isApi) {
+                return response()->api(403, 'Auth required', []);
+            }
+            return redirect('/login')
+                ->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+        }
+
+        $issue = Issue::find($id);
+
+        if ($issue === null) {
+            if ($this->isApi) {
+                return response()->api(404, 'Issue not found', []);
+            }
+            return redirect('/issues')
+                ->with('error', 'Silmek istediğiniz fikiri bulamadım.');
+        }
+
+        $cal_delete = false;
+        if ($user_id === $issue->user_id) {
+            $can_delete = true;
+        }
+        else {
+            $user_level = (int) DB::table('users')
+                ->where('id', $user_id)
+                ->value('level');
+            if ($user_level > 5) {
+                $can_delete = true;
+            }
+        }
+
+        if ($can_delete === false) {
+
+            if ($this->isApi) {
+                return response()->api(403, 'You are not authorized to delete this issue');
+            }
+            return redirect('/issues/view/'.$id)
+                ->with('error', 'Fikri silmek için yeterli yetkiniz yok.');
+
+        }
+
+        try {
+            $issue->delete();
+            DB::table('issue_updates')
+                ->insert([
+                    'user_id' => $user_id,
+                    'issue_id' => $id,
+                    'old_status' => $issue->status,
+                    'new_status' => 'deleted',
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+        } catch (Exception $e) {
+            Log::error('IssuesController/getDelete', (array) $e);
+            if ($this->isApi) {
+                return response()->api(500, 'Tech problem while deleting the issue', []);
+            }
+            return redirect('/issues')
+                ->with('error', 'Fikrinizi silmeye çalışırken teknik bir hata meydana geldi.');
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issue deleted.', ['id' => $id]);
+        }
+        return redirect('/issues')
+            ->with('success', 'Fikriniz başarılı bir şekilde silindi. ');
+    }
 }
