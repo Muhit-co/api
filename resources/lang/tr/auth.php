@@ -7,7 +7,7 @@ return [
     "connect_cap" => "BAĞLAN",
     "muhtar_signup_title" => "Mahalleni aktif hale getir",
     "neighbourhood" => "Mahalleniz",
-    "neighbourhood_placeholder" => "Start typing your mahalle...",
+    "neighbourhood_placeholder" => "Mahallenizin adını yazmaya başlayın...",
     "first_name" => "Adınız",
     "first_name_placeholder" => "i.e. Ahmet",
     "last_name" => "Soyadınız",
@@ -15,7 +15,7 @@ return [
     "email_address" => "E-posta adresiniz",
     "email_address_placeholder" => "i.e. ahmet@ornek.com",
     "password" => "Şifreniz",
-    "password_placeholder" => "min. 8 characters",
+    "password_placeholder" => "En az 8 karakter",
     "agree_with_terms" => ":tagstartKullanım koşulları:tagend kabul ediyorum.",
     "request_access_cap" => "GİRİŞ İZNİ İSTE"
 ];
