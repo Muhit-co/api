@@ -17,12 +17,17 @@
 
     input {
       background: none;
+      .rounded(0);
       border-bottom: 2px dotted @white;;
       color: @white;
 
       &:not(:focus):hover {
         background: fade(@black, 10%);
         border-style: solid;
+      }
+      &:hover,
+      &:focus {
+        .rounded(5px);
       }
       &::-webkit-input-placeholder {
         color: fade(@black, 25%);

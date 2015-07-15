@@ -99,64 +99,66 @@ $(document).on('change', '#current_location', function(event){
 
 $(document).ready(function(){
     // google places autocomplete
-    var input = (document.getElementById('hood'));
-    var autocomplete = new google.maps.places.Autocomplete(
-            input, 
-            {
-                types: ['geocode'],
-                componentRestrictions: {country: 'tr'}, 
+    if($('#hood').size() > 0) {
+        var input = (document.getElementById('hood'));
+        var autocomplete = new google.maps.places.Autocomplete(
+                input, 
+                {
+                    types: ['geocode'],
+                    componentRestrictions: {country: 'tr'}, 
+                }
+        );
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
             }
-    );
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        var place = autocomplete.getPlace();
-        if (!place.geometry) {
-            window.alert("Autocomplete's returned place contains no geometry");
-            return;
-        }
 
-        var address = '';
-        if (place.address_components) {
-            address = [
-                (place.address_components[0] && place.address_components[0].short_name || ''),
-                (place.address_components[1] && place.address_components[1].short_name || ''),
-                (place.address_components[2] && place.address_components[2].short_name || '')
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
 
-            ].join(' ');
-            for (var i = 0, l = place.address_components.length; i < l; i ++) {
-                var a = place.address_components[i];
-                if (a.types[0]) {
-                    if (a.types[0] === "administrative_area_level_1") {
-                        city = a.long_name;    
-                    }
-                    if (a.types[0] === "administrative_area_level_2") {
-                        district = a.long_name;    
-                    }
-                    if (a.types[0] === "administrative_area_level_4") {
-                        hood = a.long_name;    
+                ].join(' ');
+                for (var i = 0, l = place.address_components.length; i < l; i ++) {
+                    var a = place.address_components[i];
+                    if (a.types[0]) {
+                        if (a.types[0] === "administrative_area_level_1") {
+                            city = a.long_name;    
+                        }
+                        if (a.types[0] === "administrative_area_level_2") {
+                            district = a.long_name;    
+                        }
+                        if (a.types[0] === "administrative_area_level_4") {
+                            hood = a.long_name;    
+                        }
                     }
                 }
-            }
-            // evaluating if correct mahalle or not
-            if($("#hood").length > 0 && hood.length > 0) {
-                // hiding form message
-                $("#location_form_message").hide().find('.message').html('');
-                // assigning found location data to input fields
-                $("#hood").val(hood);
-                if($("#district").length > 0 && district.length > 0) {
-                    if(!city) { city = '' }
-                    $("#district").show().find('.text').html(district+", "+city);
-                }
-                $("#location_string").val(hood+", "+district+", "+city);
-                $("#location_string").closest('.form-group').attr('data-form-state','is-current');
+                // evaluating if correct mahalle or not
+                if($("#hood").length > 0 && hood.length > 0) {
+                    // hiding form message
+                    $("#location_form_message").hide().find('.message').html('');
+                    // assigning found location data to input fields
+                    $("#hood").val(hood);
+                    if($("#district").length > 0 && district.length > 0) {
+                        if(!city) { city = '' }
+                        $("#district").show().find('.text').html(district+", "+city);
+                    }
+                    $("#location_string").val(hood+", "+district+", "+city);
+                    $("#location_string").closest('.form-group').attr('data-form-state','is-current');
 
-            } else {
-                $("#hood").val('');
-                $("#district").hide();
-                $("#location_form_message").show().find('.message').html('Aradığınız kriterleri mahalle değildir.');
+                } else {
+                    $("#hood").val('');
+                    $("#district").hide();
+                    $("#location_form_message").show().find('.message').html('Aradığınız kriterleri mahalle değildir.');
+                }
             }
-        }
-        console.log(place.address_components);
-        $("#location_string").closest('.form-group').attr('data-form-state','is-static');
-        $("#current_location").attr('checked', false);
-    });
+            console.log(place.address_components);
+            $("#location_string").closest('.form-group').attr('data-form-state','is-static');
+            $("#current_location").attr('checked', false);
+        });
+    }
 });

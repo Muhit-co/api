@@ -3743,9 +3743,24 @@ hr {
 .c-blue {
   color: #44a1e0;
 }
+.c-inprogress {
+  color: #c678ea;
+}
+.c-solved {
+  color: #27ae60;
+}
 .bg-blue {
   background-color: #44a1e0;
   color: #ffffff;
+}
+.bg-lightest {
+  background-color: #f9f9f9;
+}
+.bg-lighter {
+  background-color: #eeeeee;
+}
+.bg-light {
+  background-color: #ccccdd;
 }
 .bg-blueDark {
   background-color: #245672;
@@ -5828,6 +5843,9 @@ figure img {
 .u-relative {
   position: relative;
 }
+.u-block {
+  display: block;
+}
 .u-inlineblock {
   display: inline-block;
 }
@@ -6049,6 +6067,7 @@ figure img {
   height: 30px;
   line-height: 20px;
   letter-spacing: 0;
+  font-size: 0.8em;
 }
 .btn:active {
   -webkit-transform: translateY(2px);
@@ -6185,6 +6204,7 @@ figure img {
 }
 .card .media .media-image {
   min-height: 100px;
+  height: 200px;
   max-height: 200px;
   background-color: #eeeeee;
 }
@@ -6214,6 +6234,19 @@ figure img {
   -webkit-transform: translateX(200px);
   transform: translateX(200px);
   opacity: 0;
+}
+.chartloader {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  background-color: #eeeeee;
+}
+.chart-number {
+  text-align: center;
+  color: #44a1e0;
+}
+.chart-number big {
+  font-size: 3em;
 }
 /* --- dialog --- */
 dialog {
@@ -6442,12 +6475,17 @@ dialog hr {
 }
 .form-group.form-autosuggest input {
   background: none;
+  border-radius: 0;
   border-bottom: 2px dotted #ffffff;
   color: #ffffff;
 }
 .form-group.form-autosuggest input:not(:focus):hover {
   background: rgba(51, 51, 68, 0.1);
   border-style: solid;
+}
+.form-group.form-autosuggest input:hover,
+.form-group.form-autosuggest input:focus {
+  border-radius: 5px;
 }
 .form-group.form-autosuggest input::-webkit-input-placeholder {
   color: rgba(51, 51, 68, 0.25);
@@ -6602,64 +6640,58 @@ header h3 {
 }
 /* --- list --- */
 .list {
-  transition: width 0.3s ease-in-out, margin 0.3s ease-in-out;
-}
-.list-expanded a {
-  background-color: #ffffff;
-}
-.list-collapsed {
-  display: inline-block;
-  float: left;
-  width: 33.33333333%;
-}
-.list-collapsed a {
-  background-color: #f9f9f9;
-}
-.list ul {
-  list-style: none;
   border-radius: 5px;
   overflow: hidden;
 }
-.list.list_block a {
+.list-header {
+  padding: 15px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+.list ul {
+  list-style: none;
+}
+.list a {
   display: block;
   padding: 15px;
   line-height: 1.2em;
+  background-color: #ffffff;
 }
-.list.list_block a:before,
-.list.list_block a:after {
+.list a:before,
+.list a:after {
   content: " ";
   display: table;
 }
-.list.list_block a:after {
+.list a:after {
   clear: both;
 }
-.list.list_block a:hover,
-.list.list_block a:focus {
-  background-color: #f5f5f5;
+.list a:hover,
+.list a:focus {
+  background-color: #f9f9f9;
 }
-.list.list_block a:hover .badge,
-.list.list_block a:focus .badge {
+.list a:hover .badge,
+.list a:focus .badge {
   opacity: 1;
 }
-.list.list_block a .badge {
+.list a .badge {
   opacity: 0.75;
 }
-.list.list_block a p {
-  color: #bbc;
+.list a p {
+  color: #9999aa;
   margin-bottom: 5px;
 }
-.list.list_block a p.title {
+.list a p.title {
   color: #44a1e0;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.list.list_block a .tag {
+.list a .tag {
   font-size: 0.8em;
   padding: 2px 6px;
 }
-.list.list_block li + li {
+.list li + li {
   border-top: 1px solid #eeeeee;
 }
 /* --- nav --- */
@@ -6683,7 +6715,7 @@ nav.nav-muhtar {
 nav.nav-report {
   background-color: #ffffff;
 }
-nav.nav-report a {
+nav.nav-report .userinfo a {
   color: #44a1e0;
 }
 nav a {

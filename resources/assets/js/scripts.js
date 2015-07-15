@@ -13,8 +13,23 @@ $(document).ready(function() {
     if ($href && !$href.match("^#") && !$href.match("^javascript")) {
       $('#loader_mask').addClass('isVisible');
       $('main,nav').addClass('dialogIsOpen');
+
+      // automatically removing loader blurring
+      setTimeout(function() {
+        $('#loader_mask').removeClass('isVisible');
+        $('main,nav').removeClass('dialogIsOpen');
+      }, 5000);
     }
   });
+
+  // removing loader mask & page loader on init
+  $('#loader_mask').removeClass('isVisible');
+  $('main,nav').removeClass('dialogIsOpen');
+
+
+
+
+  // start listeners
 
   // dropdown toggle
   $('.hasDropdown > a, .dropdown a').bind('click', (function(e) {

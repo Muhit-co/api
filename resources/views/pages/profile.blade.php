@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-md-5">
-      <div class="list list_block list-expanded">
+      <div class="list">
         <!-- <div class="list-header u-pa15">
           <h3>
             Eklediği fikirleri
