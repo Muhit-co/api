@@ -11515,6 +11515,40 @@ $(document).ready(function() {
   e.preventDefault();
   }));
 
+  // (un)support button interactions
+  $('#action_support, #action_unsupport').bind(touchEvent, (function(e) {
+    if ($(this).attr('id') == 'action_support') {
+      $this = $('#action_support');
+      $other = $('#action_unsupport');
+    } else {
+      $this = $('#action_unsupport');
+      $other = $('#action_support');
+    }
+
+    e.preventDefault();
+    $this.addClass('isBusy');
+
+    // 'fake' delay for mockups
+    setTimeout(function() {
+      
+      $('#support_counter').removeClass('isGrowing isSlinking');
+      previous = parseInt($('#support_counter .value').html());
+
+      // add support to counter
+      if ($this.attr('id') == 'action_support') {
+        $('#support_counter').addClass('isGrowing');
+        $('#support_counter .value').html(previous+1);
+      } else {
+        $('#support_counter').addClass('isSlinking');
+        $('#support_counter .value').html(previous-1);
+      }
+
+      $this.removeClass('isBusy').addClass('u-hidden');
+      $other.removeClass('u-hidden');
+
+    }, 500);
+  }));
+
   // toggles dialog close on Esc key
   $('body').bind('keyup', (function(e) {
   if(e.keyCode == 27) {

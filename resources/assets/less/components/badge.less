@@ -22,6 +22,49 @@
       display: block;
     }
   }
+  &.badge-large {
+    width: 80px;
+    height: 80px;
+    padding: 18px 10px;
+  }
+  &.badge-support {
+    background-color: @greyLight;
+    color: @white;
+    z-index: 3;
+
+    label {
+      font-size: 0.75em;
+    }
+    .value {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    &.badge-created {
+      background-color: @muhitBlue;
+    }
+    &.badge-progress {
+      background-color: darken(@purple, 15%);
+    }
+    &.badge-solved {
+      background-color: darken(@deepGreen, 15%);
+    }
+    &.isGrowing {
+      -webkit-animation: isGrowing 0.3s ease-in-out;
+      -moz-animation: isGrowing 0.3s ease-in-out;
+      animation: isGrowing 0.3s ease-in-out;
+      -webkit-transform-origin: center center;
+      -moz-transform-origin: center center;
+      transform-origin: center center;
+    }
+    &.isSlinking {
+      -webkit-animation: isSlinking 0.3s ease-in-out;
+      -moz-animation: isSlinking 0.3s ease-in-out;
+      animation: isSlinking 0.3s ease-in-out;
+      -webkit-transform-origin: center center;
+      -moz-transform-origin: center center;
+      transform-origin: center center;
+    }
+  }
   &.badge-image {
     width: 50px;
     height: 50px;
@@ -65,6 +108,10 @@
     color: @white;
   }
 }
+
+
+
+// tag
 .tag {
   position: relative;
   display: inline-block;
@@ -98,4 +145,78 @@
       color: @white;
     }
   }
+}
+
+
+
+// label
+.label {
+  display: inline-block;
+  padding: 10px 15px;
+  .rounded(10px);
+  background-color: @grey;
+  font-size: 1.1em;
+  line-height: 20px;
+  font-weight: bold;
+  cursor: pointer;
+
+  .text {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    .transition(width 0.2s ease-in-out);
+  }
+  &.label-created {
+    background-color: @white;
+    color: @muhitBlue;
+  }
+  &.label-progress {
+    background-color: @purple;
+    color: @white;
+  }
+  &.label-solved {
+    background-color: @deepGreen;
+    color: @white;
+  }
+  &.label-created:hover .text {
+    width: 100px;
+  }
+  &.label-progress:hover .text {
+    width: 100px;
+  }
+  &.label-solved:hover .text {
+    width: 100px;
+  }
+}
+
+@-webkit-keyframes isGrowing {
+    0% { -webkit-transform: scale(1); }
+   50% { -webkit-transform: scale(1.25); }
+  100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes isGrowing {
+    0% { -moz-transform: scale(1); }
+   50% { -moz-transform: scale(1.25); }
+  100% { -moz-transform: scale(1); }
+}
+@keyframes isGrowing {
+    0% { transform: scale(1); }
+   50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+@-webkit-keyframes isSlinking {
+    0% { -webkit-transform: scale(1); }
+   50% { -webkit-transform: scale(0.85); }
+  100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes isSlinking {
+    0% { -moz-transform: scale(1); }
+   50% { -moz-transform: scale(0.85); }
+  100% { -moz-transform: scale(1); }
+}
+@keyframes isSlinking {
+    0% { transform: scale(1); }
+   50% { transform: scale(0.85); }
+  100% { transform: scale(1); }
 }

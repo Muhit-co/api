@@ -9,47 +9,57 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="card card-issue">
-                <div class="card-header clearfix u-pv15">
+                <div class="card-header u-clearfix u-pv15">
                     <div class="u-floatleft">
-                        <a href="/" class="u-ml10 u-mr20 closeCard"><i class="ion ion-android-arrow-back ion-2x"></i></a>
+                        <a href="/" class="u-mr20 closeCard"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     </div>
                     <div class="u-floatright u-clearfix">
-                        <a href="javascript:void(0)" class="btn btn-secondary u-mr5"><i class="ion ion-android-share-alt"></i></a>
-                        <a href="javascript:void(0)" class="btn btn-secondary"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
+                        <a href="javascript:void(0)" class="btn btn-secondary btn-twitter u-ml5 u-width50"><i class="ion ion-social-twitter"></i></a>
+                        <a href="javascript:void(0)" class="btn btn-secondary btn-facebook u-ml5 u-width50"><i class="ion ion-social-facebook ion-15x"></i></a>
+
+                        <a id="action_support" href="javascript:void(0)" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
+
+                        <!-- Button if user supported issue -->
+                        <a id="action_unsupport" href="javascript:void(0)" class="btn btn-tertiary u-ml5 u-hidden u-has-hidden-content">
+                            <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
+                            <i class="ion ion-fw ion-android-close u-show-on-hover"></i>
+                            DESTEKLEDİM
+                        </a>
+
+                        <!-- Action button for Muhtar -->
+                        <!-- <div class="hasDropdown u-inlineblock u-ml5">
+                            <a href="javascript:void(0)" class="btn btn-secondary">HAREKETE GEÇ <i class="ion ion-chevron-down u-ml5"></i></a>
+                            <div class="dropdown dropdown-outline">
+                                <ul>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-muhit-tea u-mr5"></i> Çayımı iç...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-wrench u-mr5"></i> Gelişmekte...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-checkmark-circled u-mr5"></i> Çözüldü...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-chatboxes u-mr5"></i> Yorum Yaz...</a></li>
+                                </ul>
+                            </div>
+                        </div> -->
+
                     </div>
-                    <span class="title">{{$issue['location']}}</span>
+                    <span class="title u-inlineblock u-mt5">{{$issue['location']}}</span>
                 </div>
                 <div class="card-content">
 
-                    <style>
-                        .badge.badge-large {
-                            width: 80px;
-                            height: 80px;
-                            padding: 18px 10px;
-                        }
-                        .badge.badge-support {
-                            background-color: #44a1e0;
-                            color: #fff;
-                        }
-                        .badge.badge-support label {
-                            font-size: 0.75em;
-                        }
-                        .badge.badge-support .value {
-                            font-size: 2em;
-                            font-weight: bold;
-                        }
-                    </style>
-
-                    <div class="badge badge-circle-large badge-support u-floatright u-pt15">
-                        <div class="value">54</div>
-                        <label>DESTEKÇİ</label>
+                    <div class="u-floatright u-relative">
+                        <div class="label label-progress u-pr80 u-mr10">
+                            <i class="ion ion-wrench"></i>
+                            <span class="text">Gelişmekte</span>
+                        </div>
+                        <div id="support_counter" class="badge badge-circle-large badge-support badge-progress u-pinned-topright u-pt15" style="margin-top: -15px;">
+                            <div class="value">54</div>
+                            <label>DESTEKÇİ</label>
+                        </div>
                     </div>
 
-                        <h3 class="u-mh5 u-mv10">
-                                {{$issue['title']}}
-                        </h3>
+                    <h3 class="u-mh5 u-mv10">
+                        {{$issue['title']}}
+                    </h3>
 
-                    <div class="media u-mv20">
+                    <div class="row row-nopadding media u-mv20">
                         <div class="media-image col-md-8">
                             <img src="/images/street.jpg" alt="" />
 
@@ -78,6 +88,7 @@
                     </div>
 
                     <div class="description">
+                        <p>{{$issue['is_anonymous']}}</p>
                         <p>{{$issue['desc']}}</p>
                     </div>
 
@@ -98,11 +109,6 @@
                             </em>
                         </p>
                     </div>
-                </div>
-
-                <div class="card-footer clearfix">
-                    <em class="c-light u-block u-mb10">For development purposes only: all available issue data</em>
-                    <p>...</p>
                 </div>
 
                 <div class="card-footer clearfix">
