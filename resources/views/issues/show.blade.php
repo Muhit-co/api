@@ -14,20 +14,24 @@
                         <a href="/" class="u-mr20 closeCard"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     </div>
                     <div class="u-floatright u-clearfix">
+
+                        <!-- Share buttons -->
                         <a href="javascript:void(0)" class="btn btn-secondary btn-twitter u-ml5 u-width50"><i class="ion ion-social-twitter"></i></a>
                         <a href="javascript:void(0)" class="btn btn-secondary btn-facebook u-ml5 u-width50"><i class="ion ion-social-facebook ion-15x"></i></a>
 
+                        <!-- (Un)Support button -->
+                        @if($role =='public')
+                        <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
+                        @elseif($role =='user')
                         <a id="action_support" href="javascript:void(0)" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
-
-                        <!-- Button if user supported issue -->
                         <a id="action_unsupport" href="javascript:void(0)" class="btn btn-tertiary u-ml5 u-hidden u-has-hidden-content">
                             <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
-                            <i class="ion ion-fw ion-android-close u-show-on-hover"></i>
+                            <i class="ion ion-fw ion-close u-show-on-hover"></i>
                             DESTEKLEDİM
                         </a>
-
+                        @elseif($role =='admin')
                         <!-- Action button for Muhtar -->
-                        <!-- <div class="hasDropdown u-inlineblock u-ml5">
+                        <div class="hasDropdown u-inlineblock u-ml5">
                             <a href="javascript:void(0)" class="btn btn-secondary">HAREKETE GEÇ <i class="ion ion-chevron-down u-ml5"></i></a>
                             <div class="dropdown dropdown-outline">
                                 <ul>
@@ -37,19 +41,51 @@
                                     <li><a href="javascript:void(0)"><i class="ion ion-chatboxes u-mr5"></i> Yorum Yaz...</a></li>
                                 </ul>
                             </div>
-                        </div> -->
+                        </div>
+                        @endif
 
                     </div>
                     <span class="title u-inlineblock u-mt5">{{$issue['location']}}</span>
                 </div>
                 <div class="card-content">
 
+                    <?php
+                    $issue_supporters = 6; // temporary value until real value is available in view
+                    // issue status badge fallback
+                    $issue_status = array(
+                        'class' => '',
+                        'icon' => 'ion-lightbulb',
+                        'title' => ''
+                    );
+                    if($issue['status'] == 'new') {
+                        $issue_status = array(
+                            'class' => $issue['status'],
+                            'icon' => 'ion-lightbulb',
+                            'title' => 'Oluşturuldu'
+                        );
+                        if($issue_supporters < 5) {
+                            $issue_status['class'] = $issue['status'] . '-empty';
+                        }
+                    } elseif($issue['status'] == 'progress') {
+                        $issue_status = array(
+                            'class' => $issue['status'],
+                            'icon' => 'ion-wrench',
+                            'title' => 'Gelişmekte'
+                        );
+                    } elseif($issue['status'] == 'solved') {
+                        $issue_status = array(
+                            'class' => $issue['status'],
+                            'icon' => 'ion-ios-checkmark',
+                            'title' => 'Çözüldü'
+                        );
+                    }
+                    ?>
                     <div class="u-floatright u-relative">
-                        <div class="label label-progress u-pr80 u-mr10">
-                            <i class="ion ion-wrench"></i>
-                            <span class="text">Gelişmekte</span>
+                        <div class="label label-{{$issue_status['class']}} u-pr80 u-mr10">
+                            <i class="ion {{$issue_status['icon']}}"></i>
+                            <span class="text">{{$issue_status['title']}}</span>
                         </div>
-                        <div id="support_counter" class="badge badge-circle-large badge-support badge-progress u-pinned-topright u-pt15" style="margin-top: -15px;">
+                        <div id="support_counter" class="badge badge-circle-large badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
                             <div class="value">54</div>
                             <label>DESTEKÇİ</label>
                         </div>

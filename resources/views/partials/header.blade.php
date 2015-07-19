@@ -1,4 +1,4 @@
-<header class="u-relative bg-blue <?php echo (isset($type) && $type === 'show') ? "header-show" : "header-list"; ?>">
+<header class="u-relative <?php echo (isset($type) && $type === 'show') ? "header-show" : "header-list"; ?>">
 
     <?php if(!isset($type) || $type !== 'show'): ?>
 
@@ -63,9 +63,11 @@
                     <a class="form-appendRight"><i class="ion ion-search ion-15x u-pa10"></i></a>
                 </div> -->
 
-                <!-- @TODO: @gcg button should only be visible to normal user logged in and public; not formuhtar -->
-                <a href="/issues/new" class="btn btn-primary u-floatright"><i class="ion ion-plus u-mr5"></i> FİKİR <span class="extended">EKLE</span></a>
-
+                @if($role =='public')
+                <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-primary u-floatright"><i class="ion ion-plus u-mr5"></i> FİKİR <span class="extended">EKLE</span></a>
+                @elseif($role =='user')
+                    <a href="/issues/new" class="btn btn-primary u-floatright"><i class="ion ion-plus u-mr5"></i> FİKİR <span class="extended">EKLE</span></a>
+                @endif
             </div>
         </div>
 
