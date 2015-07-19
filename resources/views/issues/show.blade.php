@@ -61,11 +61,27 @@
 
                     <div class="row row-nopadding media u-mv20">
                         <div class="media-image col-md-8">
-                            <img src="/images/street.jpg" alt="" />
 
-                            @foreach($issue['images'] as $image)
-                                <img src="//d1vwk06lzcci1w.cloudfront.net/100x100/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
-                            @endforeach
+                            <div id="slides">
+                                <!-- wrap with a <a href="javascript:void(0)"></a> to enlarge -->
+                                <img src="/images/street.jpg" alt="" />
+                                <img src="/images/street.jpg" alt="" />
+                                <img src="/images/street.jpg" alt="" />
+
+                                <!-- @foreach($issue['images'] as $image)
+                                    <img src="//d1vwk06lzcci1w.cloudfront.net/100x100/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
+                                @endforeach -->
+                            </div>
+
+                            <script>
+                                $(function(){
+                                    $("#slides").slidesjs({
+                                        width: 500,
+                                        height: 300,
+                                    });
+                                });
+                            </script>
+
                         </div>
                         <div class="media-map col-md-4">
                             <div id="map-canvas">
