@@ -65,6 +65,22 @@
       color: @greyLight;
     }
   }
+  .issue-history {
+    list-style: none;
+
+    li + li {
+      position: relative;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -9px;
+        left: 6px;
+        height: 16px;
+        border-left: 2px solid @greyLight;
+      }
+    }
+  }
 }
 .card.card-hidden {
   width: 0 !important;

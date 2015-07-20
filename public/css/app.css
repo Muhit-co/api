@@ -6391,6 +6391,20 @@ figure img {
 .card .card-footer .title {
   color: #ccccdd;
 }
+.card .issue-history {
+  list-style: none;
+}
+.card .issue-history li + li {
+  position: relative;
+}
+.card .issue-history li + li:before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 6px;
+  height: 16px;
+  border-left: 2px solid #ccccdd;
+}
 .card.card-hidden {
   width: 0 !important;
   -webkit-transform: translateX(200px);
@@ -6876,8 +6890,8 @@ header h3 {
 }
 .list a p {
   color: #9999aa;
-  line-height: 1em;
   margin-bottom: 0;
+  line-height: 1em;
 }
 .list a p.title {
   color: #44a1e0;

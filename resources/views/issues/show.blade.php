@@ -168,10 +168,15 @@
                     <div class="u-floatright">
                         <a href="javascript:void(0)" class="btn btn-sm btn-tertiary u-mr5"><i class="ion ion-alert-circled"></i></a>
                         @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
-                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-sm btn-tertiary" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                            <a href="/issues/delete/{{$issue['id']}}" class="btn btn-sm btn-tertiary" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
                         @endif
                     </div>
-                    <span class="title">A019 8589910</span>
+                    <ul class="issue-history title">
+                        <li><i class="ion ion-android-checkmark-circle u-mr10"></i> <span class="date">15 Tem 2015</span> <strong>Issue solved</strong>.</li>
+                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">13 Tem 2015</span> <strong>Issue status changed to 'in development'</strong>.</li>
+                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">2 Tem 2015</span> <strong>Issue received more than 10 supporters</strong>.</li>
+                        <li><i class="ion ion-record u-mr10"></i> <span class="date">27 Haz 2015</span> <strong>Issue created</strong>.</li>
+                    </ul>
                 </div>
 
             </div>
