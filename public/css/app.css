@@ -6876,7 +6876,8 @@ header h3 {
 }
 .list a p {
   color: #9999aa;
-  margin-bottom: 5px;
+  line-height: 1em;
+  margin-bottom: 0;
 }
 .list a p.title {
   color: #44a1e0;

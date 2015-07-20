@@ -50,6 +50,7 @@
                 <div class="card-content">
 
                     <?php
+                    // @TODO: logic should be available in list.blade.php and show.blade.php --> @gcg refactor to be generic logic
                     $issue_supporters = 6; // temporary value until real value is available in view
                     // issue status badge fallback
                     $issue_status = array(
@@ -86,7 +87,7 @@
                             <span class="text">{{$issue_status['title']}}</span>
                         </div>
                         <div id="support_counter" class="badge badge-circle-large badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
-                            <div class="value">54</div>
+                            <div class="value">{{(int) Redis::get('issue_counter:'.$issue['id'])}}</div>
                             <label>DESTEKÇİ</label>
                         </div>
                     </div>

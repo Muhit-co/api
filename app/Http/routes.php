@@ -29,6 +29,10 @@ Route::get('/user/{username}', function() {
 Route::get('/register-muhtar', function() {
     return view('auth.register-muhtar');
 });
+
+Route::get('/issues/supported', function() {
+    return view('issues.supported');
+});
 #end of testing routes for dann
 
 # reports routing
