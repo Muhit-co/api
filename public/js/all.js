@@ -12228,34 +12228,85 @@ $(document).ready(function() {
     console.log( loc[1] + ', ' + loc[2] );
   });
 
+  // set maximum number of allowed image uploads
+  $maxImages = 5;
+
   // create issue file upload handler
   function handleFiles(files) {
-    $('#image_preview').html('');
+
+    var existingImageCount = $("#issue_images > *").length;
+
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       var imageType = /^image\//;
-
-      if(files.length > 5) {
-          alert('You can only upload a maximum of 5 images.');
-          break;
-      }
       
       if (!imageType.test(file.type)) {
         continue;
       }
 
+      if((files.length + existingImageCount) > $maxImages) {
+        alert('You can only upload a maximum of ' + $maxImages + ' images.');
+        break;
+      }
+
       var previewDiv = document.createElement("div");
       previewDiv.classList.add("badge", "badge-image", "u-relative", "u-mr10");
       previewDiv.file = file;
-      image_preview.appendChild(previewDiv);
+      issue_images.appendChild(previewDiv);
       
       var reader = new FileReader();
-      reader.onload = (function(aImg) { return function(e) { aImg.style.backgroundImage = 'url(' + e.target.result + ')'; }; })(previewDiv);
+      reader.onload = (function(aImg) {
+        return function(e) {
+
+          // convert string to form value
+          var base64string = '';
+          if (e.target.result.split(',')[0].indexOf('base64') >= 0) {
+            base64string = e.target.result.split(',')[1];
+            var resultInput = document.createElement("input");
+            resultInput.type = 'hidden';
+            resultInput.name = 'images[]';
+            resultInput.value = base64string;
+            aImg.appendChild(resultInput);
+          } else {
+            alert('There was a problem with your image.');
+            return false;
+          }
+
+          // output preview image
+          aImg.style.backgroundImage = 'url(' + e.target.result + ')';
+
+          // add remove button
+          var closeButtonIcon = document.createElement("i");
+          closeButtonIcon.classList.add("ion", "ion-onbadge", "ion-android-close");
+          var closeButton = document.createElement("a");
+          closeButton.href = 'javascript:void(0)';
+          closeButton.class = 'remove-image';
+          closeButton.appendChild(closeButtonIcon);
+
+          aImg.appendChild(closeButton);
+
+          closeButton.addEventListener('click', function(e) {
+            $(this).closest('.badge').remove();
+            checkImageCount();
+          });
+        }; 
+      })(previewDiv);
       reader.readAsDataURL(file);
     }
   }
+  // check amount of images and hide 'add' button if needed
+  function checkImageCount() {
+    var newImageCount = document.querySelectorAll("#issue_images > *").length;
+    if (newImageCount < $maxImages) {
+      $('#image_input').closest('.badge').removeClass('u-hidden');
+    } else {
+      $('#image_input').closest('.badge').addClass('u-hidden');
+    }
+  }
+  // add listener for input field change
   $('#image_input').change(function() {
-      handleFiles(this.files);
+    handleFiles(this.files);
+    checkImageCount();
   });
   
 });
@@ -12417,6 +12468,7 @@ $(document).ready(function(){
                 }
                 // evaluating if correct mahalle or not
                 if($("#hood").length > 0 && hood.length > 0) {
+                    console('found hood!');
                     // hiding form message
                     $("#location_form_message").hide().find('.message').html('');
                     // assigning found location data to input fields

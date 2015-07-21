@@ -139,6 +139,7 @@ $(document).ready(function(){
                 }
                 // evaluating if correct mahalle or not
                 if($("#hood").length > 0 && hood.length > 0) {
+                    console('found hood!');
                     // hiding form message
                     $("#location_form_message").hide().find('.message').html('');
                     // assigning found location data to input fields

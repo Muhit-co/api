@@ -38,11 +38,18 @@
                 <div class="form-group form-fullwidth u-mv20">
                     <label>Resimler <i class="u-opacity50">(max 5)</i></label>
                     <div class="add-images">
-                        <div id="image_preview" class="u-floatleft"></div>
-                        <div class="badge badge-image u-relative">
-                            <i class="ion u-pt30 u-noselect"><strong>Sec...</strong></i>
-                            <input type="file" id="image_input" name="images[]" class="u-pinned-cover" style="z-index: 2" accept="image/jpg, image/png, image/jpeg" multiple="multiple" />
+
+                        <!-- Preview images & form data -->
+                        <div id="issue_images" class="u-floatleft">
                         </div>
+
+                        <!-- Add image button -->
+                        <div class="badge badge-image u-relative">
+                            <i class="ion ion-plus ion-2x u-pt10"></i>
+                            <!-- <i class="ion u-pt30 u-noselect"><strong>Sec...</strong></i> -->
+                            <input type="file" id="image_input" class="u-pinned-cover" style="z-index: 2" accept="image/jpg, image/png, image/jpeg" multiple="multiple" />
+                        </div>
+
                     </div>
                 </div>
 
