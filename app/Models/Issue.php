@@ -28,6 +28,7 @@ class Issue extends Model {
     public function toArray() {
         $array = parent::toArray();
         $array['supporter_counter'] = (int) Redis::get('supporter_counter:' . $this->id);
+        $array['is_supported'] = (((int) Redis::get('issue_supporters:'.$this->id) > 0 ) ? 1 : 0);
         return $array;
     }
 
