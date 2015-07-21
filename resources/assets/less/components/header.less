@@ -7,9 +7,16 @@ header {
   background: url('../images/banner_city.png') no-repeat;
   background-position: center bottom;
   background-size: contain;
+  background-color: @muhitBlue;
   color: @white;
 
   h1, h2, h3 {
     font-weight: normal;
   }
+}
+.role-admin header {
+  background-color: lighten(@muhitBlueDark, 10%);
+}
+.role-superadmin header {
+  background-color: darken(@greyLight, 10%);
 }

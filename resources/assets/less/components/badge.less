@@ -39,14 +39,19 @@
       font-size: 1.5em;
       font-weight: bold;
     }
-    &.badge-created {
+    &.badge-new-empty {
+      background-color: @white;
+      border: 1px solid @greyLight;
+      color: @muhitBlue;
+    }
+    &.badge-new {
       background-color: @muhitBlue;
     }
     &.badge-progress {
-      background-color: darken(@purple, 15%);
+      background-color: @purple;
     }
     &.badge-solved {
-      background-color: darken(@deepGreen, 15%);
+      background-color: @deepGreen;
     }
     &.isGrowing {
       -webkit-animation: isGrowing 0.3s ease-in-out;
@@ -98,14 +103,6 @@
         background-color: fade(@black, 40%);
       }
     }
-  }
-  &.badge-status {
-    display: block;
-    width: auto;
-    height: auto;
-    padding: 5px 10px;
-    background-color: @muhitBlue;
-    color: @white;
   }
 }
 
@@ -159,6 +156,7 @@
   line-height: 20px;
   font-weight: bold;
   cursor: pointer;
+  color: @white;
 
   .text {
     display: inline-block;
@@ -166,26 +164,22 @@
     overflow: hidden;
     .transition(width 0.2s ease-in-out);
   }
-  &.label-created {
+  &:hover .text {
+    width: 100px;
+  }
+  &.label-new-empty {
     background-color: @white;
+    border: 1px solid @greyLight;
     color: @muhitBlue;
   }
+  &.label-new {
+    background-color: darken(@muhitBlue, 15%);
+  }
   &.label-progress {
-    background-color: @purple;
-    color: @white;
+    background-color: darken(@purple, 15%);
   }
   &.label-solved {
-    background-color: @deepGreen;
-    color: @white;
-  }
-  &.label-created:hover .text {
-    width: 100px;
-  }
-  &.label-progress:hover .text {
-    width: 100px;
-  }
-  &.label-solved:hover .text {
-    width: 100px;
+    background-color: darken(@deepGreen, 15%);
   }
 }
 

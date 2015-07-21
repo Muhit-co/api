@@ -4,11 +4,12 @@
 
     @include('partials.head')
 
-    <body>
+    <body <?php echo (isset($role)) ? 'class="role-' . $role . '"' : ''; ?>>
   
         @include('partials.nav')
 
         @include('dialogs.report')
+        @include('dialogs.login')
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">
@@ -16,7 +17,7 @@
         </a>
 
         <main>
-            <section class="bg-blue">
+            <section class="flash-container">
                 @include('partials.messages')
             </section>
 

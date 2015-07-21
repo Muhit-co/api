@@ -1,6 +1,6 @@
 /* --- flashmessage --- */
 .flash {
-  background-color: @muhitBlue;
+  background-color: lighten(@muhitBlueDark, 10%);
   .rounded(5px);
   padding: 20px;
   color: @white;
@@ -22,4 +22,13 @@
   &.flash-warning {
     background-color: @yellow;
   }
+}
+.flash-container {
+  background-color: @muhitBlue;
+}
+.role-admin .flash-container {
+  background-color: lighten(@muhitBlueDark, 10%);
+}
+.role-superadmin .flash-container {
+  background-color: darken(@greyLight, 10%);
 }

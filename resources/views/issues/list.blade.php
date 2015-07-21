@@ -8,10 +8,44 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="list list-expanded list_block u-mt20 u-mb40">
-                <div class="list-header">
-                </div>
+                <!-- <div class="list-header">
+                </div> -->
                 <ul class="list-content">
                     @foreach($issues as $issue)
+
+                        <?php
+                        // @TODO: logic should be available in all issue & reports related  --> @gcg refactor to be generic logic
+                        $issue_supporters = 6; // temporary value until real value is available in view
+                        // issue status badge fallback
+                        $issue_status = array(
+                            'class' => '',
+                            'icon' => 'ion-lightbulb',
+                            'title' => ''
+                        );
+                        if($issue['status'] == 'new') {
+                            $issue_status = array(
+                                'class' => $issue['status'],
+                                'icon' => 'ion-lightbulb',
+                                'title' => 'Oluşturuldu'
+                            );
+                            if($issue_supporters < 5) {
+                                $issue_status['class'] = $issue['status'] . '-empty';
+                            }
+                        } elseif($issue['status'] == 'progress') {
+                            $issue_status = array(
+                                'class' => $issue['status'],
+                                'icon' => 'ion-wrench',
+                                'title' => 'Gelişmekte'
+                            );
+                        } elseif($issue['status'] == 'solved') {
+                            $issue_status = array(
+                                'class' => $issue['status'],
+                                'icon' => 'ion-ios-checkmark',
+                                'title' => 'Çözüldü'
+                            );
+                        }
+                        ?>
+
                         <li>
                             <a href="/issues/view/{{$issue['id']}}">
                                 <div class="badge badge-image u-floatleft u-mr15">
@@ -21,8 +55,8 @@
                                         <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
                                     @endif
                                 </div>
-                                <div class="badge badge-status u-floatright u-mt10">
-                                    <i class="ion ion-wrench u-mr5"></i>
+                                <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10">
+                                    <i class="ion {{$issue_status['icon']}} u-mr5"></i>
                                     <strong>{{(int) Redis::get('issue_counter:'.$issue['id'])}}</strong>
                                 </div>
                                 <strong>{{$issue['title']}}</strong>

@@ -9,11 +9,11 @@
                 <h2 class="u-mv20">{{ trans('auth.log_in') }}</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <input type="text" class="form-input" name="email" value="" placeholder="Eposta Adresi" />
+                    <input type="text" class="form-input" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <input type="password" class="form-input" value="" placeholder="Parola" name="password" />
+                    <input type="password" class="form-input" value="" placeholder="{{ trans('auth.password') }}" name="password" />
                 </div>
 
                 <button type="submit"class="btn btn-primary u-floatright">

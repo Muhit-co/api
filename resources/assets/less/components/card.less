@@ -35,9 +35,9 @@
     overflow: hidden;
 
     .media-image {
-      min-height: 100px;
-      height: 200px;
-      max-height: 200px;
+      // min-height: 100px;
+      // height: 200px;
+      // max-height: 250px;
       background-color: @greyLighter;
 
       img {
@@ -63,6 +63,22 @@
 
     .title {
       color: @greyLight;
+    }
+  }
+  .issue-history {
+    list-style: none;
+
+    li + li {
+      position: relative;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -9px;
+        left: 6px;
+        height: 16px;
+        border-left: 2px solid @greyLight;
+      }
     }
   }
 }
