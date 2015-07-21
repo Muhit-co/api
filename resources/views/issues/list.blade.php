@@ -45,8 +45,10 @@
                                         @endforeach
                                     @endif
                                     <span class="date u-mr10"><?php echo date('j M Y', strtotime($issue['created_at'])) ?></span>
-                                    |<span class="user u-ml10">
+                                    <span class="extended">
+                                        |<span class="user u-ml10">
                                         {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
+                                    </span>
                                 </p>
                             </a>
                         </li>

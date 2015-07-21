@@ -6048,15 +6048,6 @@ figure img {
   font-size: 0.9em;
   font-weight: bold;
 }
-.tag.tag-collapsed {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  -webkit-transform: translateY(2px);
-  transform: translateY(2px);
-  margin-right: 5px;
-  padding: 0;
-}
 .tag .tag-close {
   display: inline-block;
   float: right;
@@ -6071,6 +6062,15 @@ figure img {
 .tag .tag-close:hover,
 .tag .tag-close:focus {
   color: #ffffff;
+}
+.tag-collapsed {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  margin-right: 5px;
+  padding: 0;
 }
 .label {
   display: inline-block;
@@ -6906,6 +6906,25 @@ header h3 {
 }
 .list li + li {
   border-top: 1px solid #eeeeee;
+}
+@media screen and (max-width: 480px) {
+  .list strong {
+    font-size: 0.9em;
+  }
+  .list p {
+    font-size: 0.75em;
+  }
+  .list .tag {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    margin-right: 5px;
+    padding: 0;
+    font-size: 0;
+    color: transparent;
+  }
 }
 /* --- nav --- */
 nav {
