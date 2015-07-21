@@ -116,7 +116,6 @@
                     </div>
 
                     <div class="description">
-                        <p>{{$issue['is_anonymous']}}</p>
                         <p>{{$issue['desc']}}</p>
                     </div>
 
