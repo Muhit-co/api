@@ -55,7 +55,7 @@
                         <li class="u-aligncenter u-pt20">
                             <span class="c-light">
                                 <i class="ion ion-checkmark-circled ion-2x"></i><br />
-                                <strong>Fikirleri şu an bulunamadı...</strong>
+                                <strong>{{ trans('issues.issues_cant_be_found') }}</strong>
                             </span>
                         </li>
                     @endif

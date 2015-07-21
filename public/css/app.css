@@ -3734,6 +3734,9 @@ hr {
 .c-white {
   color: #ffffff;
 }
+.c-lighter {
+  color: #eeeeee;
+}
 .c-light {
   color: #ccccdd;
 }
@@ -6367,9 +6370,6 @@ figure img {
   border-radius: 5px;
   overflow: hidden;
 }
-.card .media .media-image {
-  background-color: #eeeeee;
-}
 .card .media .media-image img {
   max-width: 100%;
 }
@@ -7386,8 +7386,8 @@ section.login a:not(.btn):focus {
 }
 /* --- add images --- */
 .add-images .badge-image {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background-color: #44a1e0;
   color: #ffffff;
 }

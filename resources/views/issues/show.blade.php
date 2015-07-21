@@ -75,24 +75,36 @@
                         <div class="media-image col-md-8">
 
                             <div id="slides">
+                                <?php $numimages = count($issue['images']); ?>
+
+                                @if($numimages == 0)
+                                    <div class="bg-lightest u-pa50 u-aligncenter">
+                                        <i class="ion ion-image ion-4x c-lighter"></i>
+                                        <p class="c-light"><strong>{{ trans('issues.no_images_present') }}</strong></p>
+                                    </div>
+                                @elseif($numimages >= 1)
+                                    @foreach($issue['images'] as $image)
+                                        <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
+                                    @endforeach
+                                @endif
+
+                                @if($numimages > 1)
+                                    <script>
+                                        $(function(){
+                                            $("#slides").slidesjs({
+                                                width: 500,
+                                                height: 300,
+                                            });
+                                        });
+                                    </script>
+                                @endif
+
                                 <!-- wrap with a <a href="javascript:void(0)"></a> to enlarge -->
+                                <!-- <img src="/images/street.jpg" alt="" />
                                 <img src="/images/street.jpg" alt="" />
-                                <img src="/images/street.jpg" alt="" />
-                                <img src="/images/street.jpg" alt="" />
+                                <img src="/images/street.jpg" alt="" /> -->
 
-                                <!-- @foreach($issue['images'] as $image)
-                                    <img src="//d1vwk06lzcci1w.cloudfront.net/100x100/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
-                                @endforeach -->
                             </div>
-
-                            <script>
-                                $(function(){
-                                    $("#slides").slidesjs({
-                                        width: 500,
-                                        height: 300,
-                                    });
-                                });
-                            </script>
 
                         </div>
                         <div class="media-map col-md-4">
@@ -111,7 +123,7 @@
                                 @endforeach
                         </div>
                         <div class="col-md-2 u-alignright">
-                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>[Date]</label>
+                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>{{ date('j M Y', strtotime($issue['created_at'])) }}</label>
                         </div>
                     </div>
 
@@ -123,10 +135,10 @@
 
                 <div class="card-footer clearfix">
                     <h3 class="c-blue u-mb10">{{ trans('issues.comments_from_muhtar') }}</h3>
-                    <div class="comment u-ph50">
+                    <div class="comment u-ph20">
                         <h4 class="title">
                             <div class="u-floatright">
-                                <small>Date...</small>
+                                <small>{{ date('j M Y', strtotime($issue['created_at'])) }}</small>
                             </div>
                             Comment title
                         </h4>
