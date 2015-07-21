@@ -109,6 +109,10 @@ Route::group(['prefix' => 'api'], function () {
         Route::controller('members', 'MembersController');
         Route::get('support/{id}', 'IssuesController@getSupport');
         Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
+
+        Route::get('test', function(){
+            return response()->api(200, 'passed', []);
+        });
     });
 
 });
