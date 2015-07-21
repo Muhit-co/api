@@ -53,33 +53,8 @@
                     // @TODO: logic should be available in list.blade.php and show.blade.php --> @gcg refactor to be generic logic
                     $issue_supporters = 6; // temporary value until real value is available in view
                     // issue status badge fallback
-                    $issue_status = array(
-                        'class' => '',
-                        'icon' => 'ion-lightbulb',
-                        'title' => ''
-                    );
-                    if($issue['status'] == 'new') {
-                        $issue_status = array(
-                            'class' => $issue['status'],
-                            'icon' => 'ion-lightbulb',
-                            'title' => 'Oluşturuldu'
-                        );
-                        if($issue_supporters < 5) {
-                            $issue_status['class'] = $issue['status'] . '-empty';
-                        }
-                    } elseif($issue['status'] == 'progress') {
-                        $issue_status = array(
-                            'class' => $issue['status'],
-                            'icon' => 'ion-wrench',
-                            'title' => 'Gelişmekte'
-                        );
-                    } elseif($issue['status'] == 'solved') {
-                        $issue_status = array(
-                            'class' => $issue['status'],
-                            'icon' => 'ion-ios-checkmark',
-                            'title' => 'Çözüldü'
-                        );
-                    }
+                    $issue_status = getIssueStatus($issue['status'], $issue_supporters);
+
                     ?>
                     <div class="u-floatright u-relative">
                         <div class="label label-{{$issue_status['class']}} u-pr80 u-mr10">

@@ -9,10 +9,10 @@
 		"laravel/framework": "5.1.*",
 		"guzzlehttp/guzzle": "~5.0",
 		"predis/predis": "~1.0",
-		"lucadegasperi/oauth2-server-laravel": "~4.1@dev",
 		"facebook/php-sdk-v4": "4.0.*",
 		"league/flysystem-aws-s3-v3": "~1.0",
-		"jenssegers/raven": "@stable"
+		"jenssegers/raven": "@stable",
+        "lucadegasperi/oauth2-server-laravel": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -25,7 +25,8 @@
 		],
 		"psr-4": {
 			"Muhit\\": "app/"
-		}
+		},
+		"files": ["app/Http/helpers.php"]
 	},
 	"autoload-dev": {
 		"classmap": [
@@ -45,8 +46,5 @@
 			"npm install",
 			"gulp"
 		]
-	},
-	"config": {
-		"preferred-install": "dist"
 	}
 }
