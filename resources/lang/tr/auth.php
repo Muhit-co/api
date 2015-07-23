@@ -23,4 +23,6 @@ return [
     "cancel_cap" => "VAZGEÇ",
     "send_cap" => "GÖNDER",
     "save_cap" => "KAYDET",
+    "edit_cap" => "DÜZENLE",
+    "delete_account_cap" => "ÜYEMİ SİL"
 ];

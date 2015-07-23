@@ -17,8 +17,7 @@
   vertical-align: top;
   text-align: center;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken(@grey, 10%);
     color: @white;
   }
@@ -75,6 +74,9 @@
     background-color: darken(@muhitGreen, 10%);
   }
   &:active { background-color: darken(@muhitGreen, 15%); }
+  &.isBusy:before {
+    background-color: fade(@muhitGreen, 75%);
+  }
 }
 .btn-secondary {
   background-color: @muhitBlue;
@@ -117,8 +119,7 @@
   border-color: @muhitBlue;
   color: @muhitBlue;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: @muhitBlue;
   }
 }
@@ -127,8 +128,7 @@
   border-color: @white;
   color: @white;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: @white;
     color: @muhitBlue;
   }
@@ -137,24 +137,21 @@
   line-height: 1em;
   background-color: @facebookBlue;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken(@facebookBlue, 10%);
   }
 }
 .btn-twitter {
   background-color: @twitterBlue;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken(@twitterBlue, 10%);
   }
 }
 .btn-googleplus {
   background-color: @googleplusRed;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken(@googleplusRed, 10%);
   }
 }
@@ -162,8 +159,7 @@
   background-color: transparent;
   border-color: transparent;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: fade(@black, 10%)
   }
 }
@@ -172,8 +168,16 @@
   border-color: transparent;
   color: @muhitBlue;
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: @muhitBlue;
+  }
+}
+.btn-greytored {
+  background-color: @greyLighter;
+  color: @red;
+
+  &:hover {
+    background-color: @red;
+    color: @white;
   }
 }

@@ -94,6 +94,11 @@ $(document).ready(function() {
     }, 500);
   }));
 
+  // login button interaction
+  $('.login button[type="submit"]').bind(touchEvent, (function(e) {
+    $(this).addClass('isBusy');
+  }));
+
   // toggles dialog close on Esc key
   $('body').bind('keyup', (function(e) {
   if(e.keyCode == 27) {

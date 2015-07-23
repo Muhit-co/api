@@ -25,6 +25,9 @@ Route::get('/components', function() {
 Route::get('/user/{username}', function() {
     return view('pages.profile');
 });
+Route::get('/user-edit', function() {
+    return view('pages.profile-edit');
+});
 
 Route::get('/register-muhtar', function() {
     return view('auth.register-muhtar');
