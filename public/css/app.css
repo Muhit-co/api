@@ -7057,6 +7057,9 @@ nav #nav_quickadd {
     max-width: 180px;
   }
 }
+#menu-drawer {
+  display: none;
+}
 @media screen and (max-width: 768px) {
   nav {
     max-width: 100vw;
@@ -7080,47 +7083,47 @@ nav #nav_quickadd {
   .navplaceholder {
     height: 70px;
   }
-  #menu {
+  nav #menu {
+    display: none;
+  }
+  #menu-drawer {
     position: fixed;
-    top: 70px;
+    top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 90vw;
-    height: calc(100vh - 70px);
+    z-index: 0;
+    display: none;
+    width: 260px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: #245672;
     box-shadow: inset 0 3px 0 rgba(51, 51, 68, 0.2);
-    -webkit-transform: translateX(-90vw);
-    transform: translateX(-90vw);
-    transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
   }
-  #menu li {
+  #menu-drawer li {
     display: block;
     margin-right: 0;
   }
-  #menu li.active a {
+  #menu-drawer li.active a {
     border-bottom: none;
     border-left-color: #ffffff;
   }
-  #menu li + li {
+  #menu-drawer li + li {
     border-top: 1px solid rgba(51, 51, 68, 0.2);
   }
-  #menu a {
+  #menu-drawer a {
     height: 60px;
     max-width: 100%;
     padding: 13px 15px 8px;
     text-align: left;
     border-left: 5px solid transparent;
   }
-  #menu a .ion {
+  #menu-drawer a .ion {
     display: inline-block;
     float: left;
     width: 30px;
     margin-right: 25px;
     text-align: center;
-  }
-  .menu-isActive #menu {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
   }
   #navbutton {
     display: inline-block;
@@ -7131,6 +7134,9 @@ nav #nav_quickadd {
   }
   #navbutton.isActive .ion-android-close {
     display: inline-block;
+  }
+  .slideout-open #menu-drawer {
+    display: block;
   }
 }
 #slides {
@@ -7330,13 +7336,33 @@ nav #nav_quickadd {
 /* --- main --- */
 main {
   background-color: #eeeeee;
-  min-height: calc(100vh - 210px);
-  transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease, -webkit-transform 0.3s ease-in-out, filter 0.5s ease;
-  transition: transform 0.3s ease-in-out, filter 0.5s ease;
+  z-index: 1;
+}
+main:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(68, 161, 224, 0.5);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  transition: all opacity 0.2s ease ease-out;
 }
 .menu-isActive main {
   -webkit-transform: translateX(90vw);
   transform: translateX(90vw);
+}
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+.slideout-open main:before {
+  opacity: 1;
 }
 section.login {
   background-color: #44a1e0;
