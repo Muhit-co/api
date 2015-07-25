@@ -5,6 +5,7 @@ return [
     "my_supported_ones_cap" => "DESTEKLEDİKLERİM",
     "my_ideas" => "Fikirlerim",
     "my_ideas_cap" => "FİKİRLERİM",
+    "announcements" => "Duyurular",
     "announcements_cap" => "DUYURULAR",
     "my_announcements_cap" => "DUYURULARIM",
     "my_muhtar_cap" => "MUHTARIM",
@@ -21,6 +22,7 @@ return [
     "no_images_present" => "Resim yüklenmemiş.",  // @seratolgay
     "ideas_i_supported" => "Desteklediklerim fikirler",
     "ideas_i_added" => "Eklediğim fikirler",
+    "announcements_from_muhtar" => "Muhtardan gelen duyurular",
     "support" => "Destekle",
     "support_cap" => "DESTEKLE",
     "supported" => "Destekledim",

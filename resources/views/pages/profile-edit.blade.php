@@ -8,7 +8,7 @@
             <div class="card u-mt0">
                 <div class="card-header u-clearfix">
                     <div class="u-floatright">
-                        <a href="/user/daniel-swakman" class="btn btn-outline u-mr10">
+                        <a href="javascript:window.history.back()" class="btn btn-outline u-mr10">
                             <i class="ion ion-android-close u-mr5"></i>
                             {{ trans('auth.cancel_cap') }}
                         </a>

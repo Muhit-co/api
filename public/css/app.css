@@ -5955,6 +5955,9 @@ figure img {
   height: 40px;
   border-radius: 20px;
 }
+.badge.badge-circle img {
+  max-width: 100%;
+}
 .badge.badge-circle-large {
   width: 80px;
   height: 80px;

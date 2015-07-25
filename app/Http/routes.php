@@ -39,6 +39,9 @@ Route::get('/issues/supported', function() {
 Route::get('/issues/created', function() {
     return view('issues.created');
 });
+Route::get('/announcements', function() {
+    return view('announcements.list');
+});
 #end of testing routes for dann
 
 # reports routing
