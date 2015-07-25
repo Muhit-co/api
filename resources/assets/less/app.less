@@ -92,31 +92,27 @@ main {
   // -moz-transition: -moz-transform 0.3s ease-in-out, -moz-filter 0.5s ease;
   // transition: transform 0.3s ease-in-out, filter 0.5s ease;
   z-index: 1;
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: fade(@muhitBlue, 50%);
-    z-index: 10;
-    opacity: 0;
-    pointer-events: none;
-    .transition(opacity 0.2s ease);
-  }
 }
-.menu-isActive main {
-	.transform(translateX(90vw));
+#panel-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: fade(@muhitBlue, 75%);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  .transition(all 0.1s ease);
 }
 .slideout-open,
 .slideout-open body,
 .slideout-open .slideout-panel {
   overflow: hidden;
 }
-.slideout-open main:before {
+.slideout-open #panel-mask {
   opacity: 1;
+  pointer-events: all;
 }
 
 

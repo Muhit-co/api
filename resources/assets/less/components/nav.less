@@ -126,6 +126,7 @@ nav {
   .ion {
     width: 35px;
     margin-top: 3px;
+    text-align: center;
   }
   .ion-android-close {
     display: none;
@@ -189,18 +190,19 @@ nav {
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: -30px;
     z-index: 0;
     display: none;
     width: 260px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     background-color: @muhitBlueDark;
-    .box-shadow(inset 0 3px 0 fade(@black, 20%));
-    // .transform(translateX(-90vw));
-    // -webkit-transition: -webkit-transform 0.3s ease-in-out;
-    // -moz-transition: -moz-transform 0.3s ease-in-out;
-    // transition: transform 0.3s ease-in-out;
+    .box-shadow(inset -5px 0 0 fade(@black, 30%));
+
+    #menu {
+      .transition(all 0.1s ease);
+      opacity: 0;
+    }
 
     li {
       display: block;
@@ -230,24 +232,16 @@ nav {
       }
     }
   }
-  // .menu-isActive #menu {
-  //   // display: block;
-  //   .transform(translateX(0));
-  // }
   #navbutton {
     display: inline-block;
     padding: 15px 10px;
-
-    &.isActive {
-      .ion-navicon {
-        display: none;
-      }
-      .ion-android-close {
-        display: inline-block;
-      }
-    }
   }
   .slideout-open #menu-drawer {
     display: block;
+    left: 0;
+
+    #menu {
+      opacity: 1;
+    }
   }
 }

@@ -12532,6 +12532,17 @@ $(document).ready(function() {
   $('#loader_mask').removeClass('isVisible');
   $('main,nav').removeClass('dialogIsOpen');
 
+  // mobile menu init
+  if($('#menu-drawer').length > 0 && $('#panel').length > 0) {
+    slideout = new Slideout({
+      'panel': document.getElementById('panel'),
+      'menu': document.getElementById('menu-drawer'),
+      'padding': 260,
+      'tolerance': 70
+    });
+    $('#panel').append('<a id="panel-mask"></a>');
+  }
+
 
 
 
@@ -12543,17 +12554,43 @@ $(document).ready(function() {
     $(this).find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
 
-  // mobile menu init & toggle
-  var slideout = new Slideout({
-    'panel': document.getElementById('panel'),
-    'menu': document.getElementById('menu-drawer'),
-    'padding': 260,
-    'tolerance': 70
-  });
-  $('#navbutton').bind(touchEvent, (function(e) {
-    slideout.toggle();
-    e.preventDefault();
-  }));
+  if(window.slideout) {
+
+    // mobile menu toggle button
+    $('#navbutton').bind(touchEvent, (function(e) {
+      slideout.toggle();
+      e.preventDefault();
+    }));
+
+    // mobile menu toggle button
+    $('#panel-mask').bind(touchEvent, (function(e) {
+      slideout.close();
+      e.preventDefault();
+    }));
+
+    // mobile menu translation functions
+    slideout.on('translate', function(translated) {
+      slideratio = translated/260;
+      $('#menu-drawer #menu').css('opacity', slideratio);
+      $('#menu-drawer').css('left', (30 * slideratio) - 30);
+      $('#panel #panel-mask').css('opacity', slideratio);
+    });
+    slideout.on('open', function() {
+      $('#menu-drawer #menu').attr('style', '');
+      $('#menu-drawer').attr('style', '');
+      $('#panel #panel-mask').attr('style', '');
+      $('#navbutton .ion-navicon').hide();
+      $('#navbutton .ion-android-close').css( "display", "block");
+    });
+    slideout.on('close', function() {
+      $('#menu-drawer #menu').attr('style', '');
+      $('#menu-drawer').attr('style', '');
+      $('#panel #panel-mask').attr('style', '');
+      $('#navbutton .ion-navicon').show();
+      $('#navbutton .ion-android-close').hide();
+    });
+
+  }
 
   // dialog open
   $('a[data-dialog]').bind(touchEvent, (function(e) {
@@ -12783,7 +12820,7 @@ function scrollActions() {
   } else {
     $('nav').removeClass('nav-isFixed');
   }
-  if (slideout && $(window).outerWidth() > 768) {
+  if (window.slideout && $(window).outerWidth() > 768) {
     slideout.close();
   }
 }
