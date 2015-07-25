@@ -7,6 +7,12 @@
     <div class="col-md-7">
       <div class="card u-mt0">
         <div class="card-header">
+          <div class="u-floatright">
+            <a href="/user-edit" class="btn btn-outline u-mt20">
+              <!-- <i class="ion ion-edit u-mr5"></i> -->
+              {{ trans('auth.edit_cap') }}
+            </a>
+          </div>
           <div class="badge badge-circle-large u-floatleft u-mr20 u-mb20">
             <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/{{Auth::user()->picture}}" alt="{{Auth::user()->first_name}}">
           </div>
@@ -48,18 +54,18 @@
 
     <div class="col-md-5">
       <div class="list">
-        <!-- <div class="list-header u-pa15">
-          <h3>
+        <div class="list-header u-pa15">
+          <h4>
             Eklediği fikirleri
-          </h3>
-        </div> -->
+          </h4>
+        </div>
         <ul>
           <li>
             <a href="javascript:void(0)">
               <div class="badge badge-image u-floatleft u-mr15">
                 <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
               </div>
-              <div class="badge badge-status u-floatright u-mt10">
+              <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
                 <i class="ion ion-wrench u-mr5"></i>
                 <strong>14</strong>
               </div>
@@ -72,7 +78,7 @@
               <div class="badge badge-image u-floatleft u-mr15">
                 <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
               </div>
-              <div class="badge badge-status u-floatright u-mt10">
+              <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
                 <i class="ion ion-wrench u-mr5"></i>
                 <strong>14</strong>
               </div>
@@ -85,7 +91,7 @@
               <div class="badge badge-image u-floatleft u-mr15">
                 <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
               </div>
-              <div class="badge badge-status u-floatright u-mt10">
+              <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
                 <i class="ion ion-wrench u-mr5"></i>
                 <strong>14</strong>
               </div>
@@ -98,7 +104,7 @@
               <div class="badge badge-image u-floatleft u-mr15">
                 <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
               </div>
-              <div class="badge badge-status u-floatright u-mt10">
+              <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
                 <i class="ion ion-wrench u-mr5"></i>
                 <strong>14</strong>
               </div>

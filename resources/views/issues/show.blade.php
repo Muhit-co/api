@@ -21,24 +21,24 @@
 
                         <!-- (Un)Support button -->
                         @if($role =='public')
-                        <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
+                        <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         @elseif($role =='user')
-                        <a id="action_support" href="javascript:void(0)" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> DESTEKLE</a>
+                        <a id="action_support" href="javascript:void(0)" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         <a id="action_unsupport" href="javascript:void(0)" class="btn btn-tertiary u-ml5 u-hidden u-has-hidden-content">
                             <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
                             <i class="ion ion-fw ion-close u-show-on-hover"></i>
-                            DESTEKLEDİM
+                            {{ trans('issues.supported_cap') }}
                         </a>
                         @elseif($role =='admin')
                         <!-- Action button for Muhtar -->
                         <div class="hasDropdown u-inlineblock u-ml5">
-                            <a href="javascript:void(0)" class="btn btn-secondary">HAREKETE GEÇ <i class="ion ion-chevron-down u-ml5"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
                             <div class="dropdown dropdown-outline">
                                 <ul>
-                                    <li><a href="javascript:void(0)"><i class="ion ion-muhit-tea u-mr5"></i> Çayımı iç...</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ion ion-wrench u-mr5"></i> Gelişmekte...</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ion ion-checkmark-circled u-mr5"></i> Çözüldü...</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ion ion-chatboxes u-mr5"></i> Yorum Yaz...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-wrench u-mr5"></i> {{ trans('issues.in_progress') }}...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-checkmark-circled u-mr5"></i> {{ trans('issues.solved') }}...</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -75,24 +75,31 @@
                         <div class="media-image col-md-8">
 
                             <div id="slides">
-                                <!-- wrap with a <a href="javascript:void(0)"></a> to enlarge -->
-                                <img src="/images/street.jpg" alt="" />
-                                <img src="/images/street.jpg" alt="" />
-                                <img src="/images/street.jpg" alt="" />
+                                <?php $numimages = count($issue['images']); ?>
 
-                                <!-- @foreach($issue['images'] as $image)
-                                    <img src="//d1vwk06lzcci1w.cloudfront.net/100x100/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
-                                @endforeach -->
+                                @if($numimages == 0)
+                                    <div class="bg-lightest u-pa50 u-aligncenter">
+                                        <i class="ion ion-image ion-4x c-lighter"></i>
+                                        <p class="c-light"><strong>{{ trans('issues.no_images_present') }}</strong></p>
+                                    </div>
+                                @elseif($numimages >= 1)
+                                    @foreach($issue['images'] as $image)
+                                        <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
+                                    @endforeach
+                                @endif
+
+                                @if($numimages > 1)
+                                    <script>
+                                        $(function(){
+                                            $("#slides").slidesjs({
+                                                width: 500,
+                                                height: 300,
+                                            });
+                                        });
+                                    </script>
+                                @endif
+
                             </div>
-
-                            <script>
-                                $(function(){
-                                    $("#slides").slidesjs({
-                                        width: 500,
-                                        height: 300,
-                                    });
-                                });
-                            </script>
 
                         </div>
                         <div class="media-map col-md-4">
@@ -111,7 +118,7 @@
                                 @endforeach
                         </div>
                         <div class="col-md-2 u-alignright">
-                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>[Date]</label>
+                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>{{ date('j M Y', strtotime($issue['created_at'])) }}</label>
                         </div>
                     </div>
 
@@ -123,10 +130,10 @@
 
                 <div class="card-footer clearfix">
                     <h3 class="c-blue u-mb10">{{ trans('issues.comments_from_muhtar') }}</h3>
-                    <div class="comment u-ph50">
+                    <div class="comment u-ph20">
                         <h4 class="title">
                             <div class="u-floatright">
-                                <small>Date...</small>
+                                <small>{{ date('j M Y', strtotime($issue['created_at'])) }}</small>
                             </div>
                             Comment title
                         </h4>
@@ -146,10 +153,10 @@
                         @endif
                     </div>
                     <ul class="issue-history title">
-                        <li><i class="ion ion-android-checkmark-circle u-mr10"></i> <span class="date">15 Tem 2015</span> <strong>Issue solved</strong>.</li>
-                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">13 Tem 2015</span> <strong>Issue status changed to 'in development'</strong>.</li>
-                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">2 Tem 2015</span> <strong>Issue received more than 10 supporters</strong>.</li>
-                        <li><i class="ion ion-record u-mr10"></i> <span class="date">27 Haz 2015</span> <strong>Issue created</strong>.</li>
+                        <li><i class="ion ion-android-checkmark-circle u-mr10"></i> <span class="date">15 Tem 2015</span> <strong>{{ trans('issues.issue_solved') }}</strong>.</li>
+                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">13 Tem 2015</span> <strong>{{ trans('issues.issue_changed_to_development') }}</strong>.</li>
+                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">2 Tem 2015</span> <strong>{{ trans('issues.issue_10_supporters') }}</strong>.</li>
+                        <li><i class="ion ion-record u-mr10"></i> <span class="date">27 Haz 2015</span> <strong>{{ trans('issues.issue_created') }}</strong>.</li>
                     </ul>
                 </div>
 

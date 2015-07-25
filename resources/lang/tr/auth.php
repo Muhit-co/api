@@ -21,4 +21,8 @@ return [
     "agree_with_terms" => ":tagstartKullanım koşulları:tagend kabul ediyorum.",
     "request_access_cap" => "GİRİŞ İZNİ İSTE",
     "cancel_cap" => "VAZGEÇ",
+    "send_cap" => "GÖNDER",
+    "save_cap" => "KAYDET",
+    "edit_cap" => "DÜZENLE",
+    "delete_account_cap" => "ÜYEMİ SİL"
 ];

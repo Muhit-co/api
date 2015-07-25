@@ -1,33 +1,33 @@
 <?php
-$pages = array();
+$menu_items = array();
 if(isset($role)):
 
     // defining menu items for citizen users
     if ($role == 'user'):
 
-        $pages = array(
+        $menu_items = array(
             array(
-                'name' => 'TÜMÜ',
+                'name' => trans('issues.all_cap'),
                 'uri' => '/',
                 'icon' => 'ion-android-home'
             ),
             array(
-                'name' => 'DESTEKLEDİKLERİM',
+                'name' => trans('issues.my_supported_ones_cap'),
                 'uri' => '/issues/supported',
                 'icon' => 'ion-thumbsup'
             ),
             array(
-                'name' => 'FİKİRLERİM',
+                'name' => trans('issues.my_ideas_cap'),
                 'uri' => '/issues/created',
                 'icon' => 'ion-lightbulb'
             ),
             array(
-                'name' => 'DUYURULAR',
+                'name' => trans('issues.announcements_cap'),
                 'uri' => '/announcements',
                 'icon' => 'ion-speakerphone'
             ),
             array(
-                'name' => 'MUHTARIM',
+                'name' => trans('issues.my_muhtar_cap'),
                 'uri' => '/muhtar',
                 'icon' => 'ion-information-circled'
             ),
@@ -36,29 +36,29 @@ if(isset($role)):
     // defining menu items for muhtar & belediye users
     elseif ($role == 'admin'):
 
-        $pages = array(
+        $menu_items = array(
             array(
-                'name' => 'TÜMÜ',
+                'name' => trans('issues.all_cap'),
                 'uri' => '/',
                 'icon' => 'ion-android-home'
             ),
             array(
-                'name' => 'GELİŞMEKTE',
+                'name' => trans('issues.in_progress_cap'),
                 'uri' => '/issues/development',
                 'icon' => 'ion-wrench'
             ),
             array(
-                'name' => 'ÇÖZÜLENLER',
+                'name' => trans('issues.solved_ones_cap'),
                 'uri' => '/issues/solved',
                 'icon' => 'ion-ios-checkmark'
             ),
             array(
-                'name' => 'DUYURULARIM',
+                'name' => trans('issues.my_announcements_cap'),
                 'uri' => '/announcements',
                 'icon' => 'ion-speakerphone'
             ),
             array(
-                'name' => 'İLETİSİM BİLGİSİ',
+                'name' => trans('issues.contact_info_cap'),
                 'uri' => '/muhtar',
                 'icon' => 'ion-person'
             ),
@@ -67,9 +67,9 @@ if(isset($role)):
     // defining menu items for super admins
     elseif ($role == 'superadmin'):
 
-        $pages = array(
+        $menu_items = array(
             array(
-                'name' => 'TÜMÜ',
+                'name' => trans('issues.all_cap'),
                 'uri' => '/',
                 'icon' => 'ion-android-home'
             ),
@@ -84,12 +84,12 @@ endif;
 <ul id="menu">
     <?php
     // output menu content
-    foreach($pages as $page):
+    foreach($menu_items as $menu_item):
     ?>
-    <li{{ Request::is( $page['uri'] ) ? ' class=active' : '' }}>
-        <a href="{{ URL::to( $page['uri']) }}" class="u-nowrap">
-            <i class="ion <?php echo $page['icon'] ?> ion-15x"></i>
-            <?php echo $page['name'] ?>
+    <li{{ Request::is( $menu_item['uri'] ) ? ' class=active' : '' }}>
+        <a href="{{ URL::to( $menu_item['uri']) }}" class="u-nowrap">
+            <i class="ion <?php echo $menu_item['icon'] ?> ion-15x"></i>
+            <?php echo $menu_item['name'] ?>
         </a>
     </li>
     <?php endforeach; ?>

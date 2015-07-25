@@ -49,3 +49,19 @@
 .list li + li {
   border-top: 1px solid @greyLighter;
 }
+@media screen and (max-width: @screen-xs) {
+  .list {
+    strong {
+      font-size: 0.9em;
+    }
+    p {
+      font-size: 0.75em;
+    }
+    .tag {
+      .tag-collapsed;
+      font-size: 0;
+      color: transparent;
+    }
+  }
+}
+

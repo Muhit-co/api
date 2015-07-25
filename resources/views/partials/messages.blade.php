@@ -10,6 +10,9 @@
             </div>
         </div>
     </div>
+    <script>
+        setTimeout(function() { $('.flash').fadeOut(); }, 6000);
+    </script>
 @endif
 @if (session('warning'))
     <div class="row u-pv10">

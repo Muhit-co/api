@@ -45,8 +45,10 @@
                                         @endforeach
                                     @endif
                                     <span class="date u-mr10"><?php echo date('j M Y', strtotime($issue['created_at'])) ?></span>
-                                    |<span class="user u-ml10">
+                                    <span class="extended">
+                                        |<span class="user u-ml10">
                                         {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
+                                    </span>
                                 </p>
                             </a>
                         </li>
@@ -55,7 +57,7 @@
                         <li class="u-aligncenter u-pt20">
                             <span class="c-light">
                                 <i class="ion ion-checkmark-circled ion-2x"></i><br />
-                                <strong>Fikirleri şu an bulunamadı...</strong>
+                                <strong>{{ trans('issues.issues_cant_be_found') }}</strong>
                             </span>
                         </li>
                     @endif

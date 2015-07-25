@@ -4,7 +4,7 @@
 <header class="u-relative header-list">
     <div class="row u-pb40">
         <div class="col-md-10 col-md-offset-1">
-            <h2>Desteklediklerim fikirler</h2>
+            <h2>{{ trans('issues.ideas_i_supported') }}</h2>
         </div>
     </div>
 </header>

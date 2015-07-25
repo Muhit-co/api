@@ -5,8 +5,6 @@
     @include('partials.head')
 
     <body <?php echo (isset($role)) ? 'class="role-' . $role . '"' : ''; ?>>
-  
-        @include('partials.nav')
 
         @include('dialogs.report')
         @include('dialogs.login')
@@ -16,16 +14,25 @@
             <img src="/images/preloader.gif" alt="" class="u-valignmiddle" />
         </a>
 
-        <main>
+        @if(Auth::check())
+        <div id="menu-drawer">
+            @include('partials.menu')
+        </div>
+        @endif
+
+        <main id="panel">
+
+            @include('partials.nav')
+
             <section class="flash-container">
                 @include('partials.messages')
             </section>
 
             @yield('content')
+            
+            @include('partials.footer')
 
         </main>
-
-        @include('partials.footer')
         
     </body>
 

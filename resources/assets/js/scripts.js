@@ -37,10 +37,15 @@ $(document).ready(function() {
     $(this).find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
 
-  // mobile menu toggle
+  // mobile menu init & toggle
+  var slideout = new Slideout({
+    'panel': document.getElementById('panel'),
+    'menu': document.getElementById('menu-drawer'),
+    'padding': 260,
+    'tolerance': 70
+  });
   $('#navbutton').bind(touchEvent, (function(e) {
-    $(this).toggleClass('isActive');
-    $('body').toggleClass('menu-isActive');
+    slideout.toggle();
     e.preventDefault();
   }));
 
@@ -92,6 +97,11 @@ $(document).ready(function() {
       $other.removeClass('u-hidden');
 
     }, 500);
+  }));
+
+  // login button interaction
+  $('.login button[type="submit"]').bind(touchEvent, (function(e) {
+    $(this).addClass('isBusy');
   }));
 
   // toggles dialog close on Esc key
@@ -266,6 +276,9 @@ function scrollActions() {
     $('nav').addClass('nav-isFixed');
   } else {
     $('nav').removeClass('nav-isFixed');
+  }
+  if (slideout && $(window).outerWidth() > 768) {
+    slideout.close();
   }
 }
 
