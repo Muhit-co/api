@@ -12,7 +12,7 @@
 		"facebook/php-sdk-v4": "4.0.*",
 		"league/flysystem-aws-s3-v3": "~1.0",
 		"jenssegers/raven": "@stable",
-        "lucadegasperi/oauth2-server-laravel": "dev-master"
+        "lucadegasperi/oauth2-server-laravel": "~5.0@dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
