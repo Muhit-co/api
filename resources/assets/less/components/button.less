@@ -16,10 +16,15 @@
   cursor: pointer;
   vertical-align: top;
   text-align: center;
+  -webkit-tap-highlight-color: fade(@white, 0%);
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background-color: darken(@grey, 10%);
     color: @white;
+  }
+  &:focus {
+    outline: none;
   }
   &:active { background-color: darken(@grey, 15%); }
   .ion-15x {

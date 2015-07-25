@@ -2,7 +2,7 @@
 $inputClassList = (isset($inputClassList)) ? $inputClassList : ''; 
 ?>
 <!-- Choose mahalle (location) field -->
-<div class="form-group form-fullwidth hasDropdown hasIconRight" data-form-state="is-home">
+<div class="form-group form-fullwidth hasDropdown hasIconRight" data-form-state="is-empty">
     <div class="form-appendRight u-aligncenter u-mt5" style="width: 40px;">
         <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
         <i class="form-state form-state-static ion ion-location ion-15x"></i>

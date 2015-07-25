@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
-                    <label>{{ trans('issues.images') }} <i class="u-opacity50">(max 5)</i></label>
+                    <label>{{ trans('issues.images') }} <i class="u-opacity50">(max 3)</i></label>
                     <div class="add-images">
 
                         <!-- Preview images & form data -->
@@ -66,8 +66,8 @@
                 <hr>
 
                 <div class="u-alignright">
-                    <a href="javascript:void(0)" id="closeDialog" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
-                    <button type="submit" class="btn btn-secondary">{{ trans('auth.save_cap') }}</button>
+                    <a href="javascript:window.history.back()" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
+                    <button type="submit" onclick="addIsBusy($(this))" class="btn btn-secondary">{{ trans('auth.save_cap') }}</button>
                 </div>
             </form>
         </div>

@@ -3,6 +3,7 @@
 return [
     "all_cap" => "TÜMÜ",
     "my_supported_ones_cap" => "DESTEKLEDİKLERİM",
+    "my_ideas" => "Fikirlerim",
     "my_ideas_cap" => "FİKİRLERİM",
     "announcements_cap" => "DUYURULAR",
     "my_announcements_cap" => "DUYURULARIM",
@@ -19,6 +20,7 @@ return [
     "issues_cant_be_found" => "Fikirleri şu an bulunamadı...",  // @seratolgay
     "no_images_present" => "Resim yüklenmemiş.",  // @seratolgay
     "ideas_i_supported" => "Desteklediklerim fikirler",
+    "ideas_i_added" => "Eklediğim fikirler",
     "support" => "Destekle",
     "support_cap" => "DESTEKLE",
     "supported" => "Destekledim",

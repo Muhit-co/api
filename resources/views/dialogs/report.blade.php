@@ -1,5 +1,5 @@
 <dialog id="dialog_report">
-    <a href="javascript:void(0)" id="closeDialog" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
+    <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
     <div class="dialog-content">
         <h2 class="u-mr30">
             {{ trans('issues.problems_or_suggestions') }}.

@@ -36,6 +36,9 @@ Route::get('/register-muhtar', function() {
 Route::get('/issues/supported', function() {
     return view('issues.supported');
 });
+Route::get('/issues/created', function() {
+    return view('issues.created');
+});
 #end of testing routes for dann
 
 # reports routing

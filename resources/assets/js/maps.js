@@ -15,7 +15,7 @@ function mapInitialize() {
     map.data.loadGeoJson('/mapdata.json');
     map.data.setStyle({
         clickable: true,
-        icon: { url: '/images/map-icons/marker.png', size: new google.maps.Size(29, 41) }
+        icon: { url: '/images/map-icons/marker_new.png', size: new google.maps.Size(29, 41) }
     });
     map.data.addListener('click', function(event) {
         window.location.href = '/issues/view/3';

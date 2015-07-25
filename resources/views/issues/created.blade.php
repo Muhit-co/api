@@ -5,7 +5,7 @@
 
     <div class="row u-pb20">
         <div class="col-md-10 col-md-offset-1">
-            <h2>{{ trans('issues.ideas_i_supported') }}</h2>
+            <h2>{{ trans('issues.ideas_i_added') }}</h2>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
             </ul>
         </div>
     </div>
-    
+
 </header>
 
 <section class="tabsection" id="latest">

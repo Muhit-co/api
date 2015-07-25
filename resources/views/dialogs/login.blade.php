@@ -5,17 +5,9 @@
                 {{ trans('issues.log_in_needed') }}.
             </h2>
 
-            <div class="form-group form-fullwidth">
-                <input type="text" class="form-input form-grey" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
-            </div>
-
-            <div class="form-group form-fullwidth">
-                <input type="password" class="form-input form-grey" value="" placeholder="{{ trans('auth.password') }}" name="password" />
-            </div>
-
-            <div class="u-alignright u-mt10">
-                <a href="javascript:void(0)" id="closeDialog" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
-                <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('auth.log_in_cap') }}</a>
+            <div class="u-aligncenter u-mt10">
+                <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
+                <a href="/login" onclick="closeDialog();" class="btn btn-secondary">{{ trans('auth.log_in_cap') }}</a>
             </div>
 
             <hr />
@@ -27,7 +19,7 @@
             </p>
 
             <div class="u-nowrap u-aligncenter">
-                <a href="javascript:void(0)" class="btn btn-primary u-ma5">{{ trans('auth.sign_up_cap') }}</a>
+                <a href="/register" onclick="closeDialog();" class="btn btn-primary u-ma5">{{ trans('auth.sign_up_cap') }}</a>
                 <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i></a>
                 <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i></a>
                 <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i></a>

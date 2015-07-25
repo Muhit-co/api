@@ -5,7 +5,7 @@
 
             @if(Auth::check())
                 @include('partials.userinfo')
-                <a href="/issues/new" id="nav_quickadd" class="btn btn-sm btn-whiteoutline u-floatright u-mr10 u-mt20"><i class="ion ion-plus"></i></a>
+                <a href="/issues/new" id="nav_quickadd" class="btn btn-sm btn-primary u-floatright u-mr10 u-mt20"><i class="ion ion-plus"></i></a>
             @else
                 {{-- user is not logged in --}}
                 <div class="u-floatright u-nowrap">

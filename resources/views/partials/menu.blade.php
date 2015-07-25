@@ -12,14 +12,14 @@ if(isset($role)):
                 'icon' => 'ion-android-home'
             ),
             array(
-                'name' => trans('issues.my_supported_ones_cap'),
-                'uri' => '/issues/supported',
-                'icon' => 'ion-thumbsup'
-            ),
-            array(
                 'name' => trans('issues.my_ideas_cap'),
                 'uri' => '/issues/created',
                 'icon' => 'ion-lightbulb'
+            ),
+            array(
+                'name' => trans('issues.my_supported_ones_cap'),
+                'uri' => '/issues/supported',
+                'icon' => 'ion-thumbsup'
             ),
             array(
                 'name' => trans('issues.announcements_cap'),
