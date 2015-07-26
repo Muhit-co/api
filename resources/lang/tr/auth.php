@@ -22,9 +22,12 @@ return [
     "password_placeholder" => "En az 8 karakter",
     "agree_with_terms" => ":tagstartKullanım koşulları:tagend kabul ediyorum.",
     "request_access_cap" => "GİRİŞ İZNİ İSTE",
+    "delete_account_cap" => "ÜYEMİ SİL",
+    // these will be moved to a separate file called UI
     "cancel_cap" => "VAZGEÇ",
     "send_cap" => "GÖNDER",
     "save_cap" => "KAYDET",
     "edit_cap" => "DÜZENLE",
-    "delete_account_cap" => "ÜYEMİ SİL"
+    "add_to_home" => "Uygulama olarak kullanmak için ana ekrana ekle!",
+    "add_to_home_explain" => "In order to add Muhit to your homescreen, click the :icon button, then click 'Add to Home Screen'.",
 ];

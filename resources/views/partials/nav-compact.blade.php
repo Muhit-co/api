@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-4 col-xs-6">
 
-            <a href="/" target="_self" class="btn btn-empty u-mt20"><i class="ion ion-android-arrow-back ion-15x"></i></a>
+            <a href="javascript:window.history.back()" target="_self" class="btn btn-empty u-mt20"><i class="ion ion-android-arrow-back ion-15x"></i></a>
 
         </div>
         <div class="col-xs-4 col-sm-hide u-aligncenter u-pv25">

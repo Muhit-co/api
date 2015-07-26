@@ -18,7 +18,7 @@
     <link href="/images/favicon.ico" type="image/x-icon" rel="icon" />
     <link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 
-    @include('partials.add-to-homescreen')
+    @include('partials.web-app-meta-tags')
     @include('partials.google-analytics')
 
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places">

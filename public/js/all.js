@@ -12506,7 +12506,10 @@ module.exports = exports["default"];
 
 $(document).ready(function() {
 
-  // touch device detection
+  // platform, touch device & standalone detection
+  $ios = ( navigator.userAgent.toLowerCase().match(/(iPad|iPhone|iPod)/i) ? true : false );
+  $android = ( navigator.userAgent.toLowerCase().match(/(android)/i) ? true : false );
+  $standalone = (window.navigator.standalone) ? true : false;
   $touch = ( navigator.userAgent.match(/(Android|webOS|iPad|iPhone|iPod|BlackBerry)/i) ? true : false );
   var touchEvent = $touch ? 'touchstart' : 'click';
 
@@ -12544,6 +12547,22 @@ $(document).ready(function() {
   }
 
   // display 'add to homescreen' popup
+  if(!$standalone) {
+
+    if($ios) {
+      $('#add_home_message').removeClass('u-hidden');
+    } else if($android) {
+      $('#add_home_message').removeClass('u-hidden');
+      $('#add_home_message .text-ios').addClass('u-hidden');
+      $('#add_home_message .text-android').removeClass('u-hidden');
+    }
+
+  }
+
+
+
+
+
 
 
 
@@ -12656,20 +12675,20 @@ $(document).ready(function() {
     $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
   });
 
-  // toggles card/list in listdetail view
-  // $('.list ul a, .closeCard').click(function() {
-  //   $('.list').toggleClass('list-expanded').toggleClass('list-collapsed');
-  //   $('.card').toggleClass('card-hidden').toggleClass('card-expanded');
-  // });
-
   // closes flash message
   $('.flash #flash_close').click(function() {
     $(this).closest('.flash').fadeOut();
   });
-  // closes form message
-  $('.form-message #message_close').click(function(e) {
-    $(this).closest('.form-message').fadeOut();
+  // closes message
+  $('.message #message_close').click(function(e) {
+    $(this).closest('.message').fadeOut();
   });
+  // epxand message
+  $('.message #message_expand').bind('click', function(e) {
+    $(this).toggleClass('c-white').toggleClass('c-light');
+    $(this).closest('.message').find('.message-expanded').toggleClass('u-hidden');
+  });
+
 
   // tabs active switch
   $(document).on('click', '.tabs a', function(e){

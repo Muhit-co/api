@@ -154,7 +154,7 @@
                                     <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>
                                     <span class="tooltip tooltip-alignright">
                                         <i class="ion ion-information-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
-                                        <div class="u-ml30">This issue cannot be deleted because it has more than 10 supporters.</div>
+                                        <div class="u-ml30">{{ trans('issues.delete_restricted_supporters') }}.</div>
                                     </span>
                                 </span>
                             @endif

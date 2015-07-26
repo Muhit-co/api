@@ -38,16 +38,30 @@
   }
 
   // sizes
-  .btn-lg {
+  &.btn-lg {
     padding: 10px 20px;
     height: 60px;
   }
-  .btn-sm {
+  &.btn-sm {
     padding: 5px 10px;
     height: 30px;
     line-height: 20px;
     letter-spacing: 0;
     font-size: 0.8em;
+  }
+  &.btn-circle {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    .rounded(20px);
+
+    &.btn-sm {
+      width: 25px;
+      height: 25px;
+      padding: 3px;
+      line-height: 19px;
+      .rounded(13px);
+    }
   }
 
   // busy state

@@ -86,4 +86,6 @@
     </div>
 </section>
 
+@include('partials.web-app-message')
+
 @stop

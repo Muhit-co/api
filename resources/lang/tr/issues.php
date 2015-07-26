@@ -50,4 +50,5 @@ return [
     "tags" => "Etiketler",
     "images" => "Resimler",
     "submit_anonymously" => "Anonim olarak başvuru yap",
+    "delete_restricted_supporters" => "This idea cannot be deleted because it has more than 10 supporters", // @seratolgay
 ];
