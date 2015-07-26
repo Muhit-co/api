@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        <div class="flash message u-mb20">
+        <div id="intro_message" class="flash message u-mb20 u-hidden">
 
-            <a href="javascript:void(0)" id="flash_close">
+            <a href="javascript:void(0)" id="message_close">
                 <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
             </a>
 
@@ -11,7 +11,7 @@
                 <h3 style="font-weight: normal;">Nasıl çalışıyor?</h3>
             </div>
 
-            <div class="row u-aligncenter u-pv20 u-">
+            <div class="row u-aligncenter u-pv20">
                 <div class="col-sm-3 col-xs-6 u-pv20">
                     <i class="ion ion-iphone ion-3x"></i>
                     <h3 class="u-mb20">Fikir Yarat<br /><br /></h3>
@@ -32,6 +32,9 @@
                     <h3 class="u-mb20">Muhtarına Kolayca Ulaş</h3>
                     <p class="c-white u-alignleft"><small>Muhtarının ve ilgili belediye kurumlarının iletişim bilgilerine kolayca ulaşabilirsin.</small></p>
                 </div>
+            </div>
+            <div class="row u-aligncenter u-pv10">
+                <a class="btn btn-sm btn-whiteoutline">{{ trans('auth.learn_more_cap') }}</a>
             </div>
 
         </div>

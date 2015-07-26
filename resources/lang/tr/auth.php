@@ -28,6 +28,7 @@ return [
     "send_cap" => "GÖNDER",
     "save_cap" => "KAYDET",
     "edit_cap" => "DÜZENLE",
-    "add_to_home" => "Uygulama olarak kullanmak için ana ekrana ekle!",
-    "add_to_home_explain" => "In order to add Muhit to your homescreen, click the :icon button, then click 'Add to Home Screen'.",
+    "add_to_home" => "Uygulama olarak kullanmak için ana ekrana ekle!", // @seratolgay
+    "add_to_home_explain" => "In order to add Muhit to your homescreen, click the :icon button, then click 'Add to Home Screen'.",  // @seratolgay
+    "learn_more_cap" => "FAZLA ÖĞRENİN", // @seratolgay
 ];

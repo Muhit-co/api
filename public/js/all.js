@@ -12513,6 +12513,8 @@ $(document).ready(function() {
   $touch = ( navigator.userAgent.match(/(Android|webOS|iPad|iPhone|iPod|BlackBerry)/i) ? true : false );
   var touchEvent = $touch ? 'touchstart' : 'click';
 
+  // console.log('cookies on pageload: ' + document.cookie);
+
   // initiating smoothscroll
   $('a[href^="#"]').smoothScroll();
 
@@ -12546,8 +12548,8 @@ $(document).ready(function() {
     $('#panel').append('<a id="panel-mask"></a>');
   }
 
-  // display 'add to homescreen' popup
-  if(!$standalone) {
+  // display 'add to homescreen' message
+  if(!$standalone && getCookie('add_home_message') != "false") {
 
     if($ios) {
       $('#add_home_message').removeClass('u-hidden');
@@ -12559,6 +12561,10 @@ $(document).ready(function() {
 
   }
 
+  // display intro message
+  if(typeof $('#intro_message') != 'undefined' && getCookie('intro_message') != "false" ) {
+    $('#intro_message').removeClass('u-hidden');
+  }
 
 
 
@@ -12681,9 +12687,18 @@ $(document).ready(function() {
   });
   // closes message
   $('.message #message_close').click(function(e) {
-    $(this).closest('.message').fadeOut();
+    $messageObj = $(this).closest('.message');
+    $messageID = $messageObj.attr('id');
+    $messageObj.fadeOut();
+
+    // set cookies for remembering closing message (if it has an id)
+    if($messageID) {
+      document.cookie=$messageID+"=false";
+      // setMessageCookie( $messageID );
+    }
+
   });
-  // epxand message
+  // expand message
   $('.message #message_expand').bind('click', function(e) {
     $(this).toggleClass('c-white').toggleClass('c-light');
     $(this).closest('.message').find('.message-expanded').toggleClass('u-hidden');
@@ -12850,6 +12865,18 @@ function closeDialog(obj) {
     $('#dialog_mask').removeClass('isVisible');
     $('main,nav').removeClass('dialogIsOpen');
     // e.preventDefault();
+  }
+}
+
+// gets page cookies
+// from http://www.w3schools.com/js/js_cookies.asp
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') { c = c.substring(1) };
+    if (c.indexOf(nameEQ) != -1) { return c.substring(nameEQ.length,c.length) };
   }
 }
 
