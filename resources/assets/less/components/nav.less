@@ -84,7 +84,7 @@ nav {
 
 
 /* --- menu --- */
-#menu {
+.menu {
   li {
     display: inline-block;
     margin-right: -0.25em;
@@ -139,7 +139,7 @@ nav {
 
 
 @media screen and (max-width: @screen-md) {
-  #menu {
+  .menu {
     a {
       max-width: 100px;
       padding-left: 10px;
@@ -182,7 +182,7 @@ nav {
   .navplaceholder {
     height: @compactNavHeight;
   }
-  nav #menu {
+  nav .menu {
     display: none;
   }
   #menu-drawer {
@@ -190,7 +190,7 @@ nav {
     top: 0;
     right: 0;
     bottom: 0;
-    left: -30px;
+    left: 0;
     z-index: 0;
     display: none;
     width: 260px;
@@ -199,7 +199,7 @@ nav {
     background-color: @muhitBlueDark;
     .box-shadow(inset -5px 0 0 fade(@black, 30%));
 
-    #menu {
+    .menu {
       .transition(all 0.1s ease);
       opacity: 0;
     }
@@ -217,18 +217,24 @@ nav {
       border-top: 1px solid fade(@black, 20%);
     }
     a {
+      display: block;
       height: 60px;
       max-width: 100%;
-      padding: 13px 15px 8px;
+      padding: 15px;
       text-align: left;
-      border-left: 5px solid transparent;
+      border-left: 3px solid transparent;
 
       .ion {
         display: inline-block;
         float: left;
         width: 30px;
-        margin-right: 25px;
+        margin-right: 20px;
+        margin-top: 4px;
         text-align: center;
+      }
+      .text {
+        font-size: 1.1em;
+        line-height: 30px;
       }
     }
   }
@@ -238,9 +244,8 @@ nav {
   }
   .slideout-open #menu-drawer {
     display: block;
-    left: 0;
 
-    #menu {
+    .menu {
       opacity: 1;
     }
   }

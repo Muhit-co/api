@@ -81,7 +81,7 @@ endif;
 ?>
 
 
-<ul id="menu">
+<ul class="menu">
     <?php
     // output menu content
     foreach($menu_items as $menu_item):
@@ -89,7 +89,7 @@ endif;
     <li{{ Request::is( $menu_item['uri'] ) ? ' class=active' : '' }}>
         <a href="{{ URL::to( $menu_item['uri']) }}" class="u-nowrap">
             <i class="ion <?php echo $menu_item['icon'] ?> ion-15x"></i>
-            <?php echo $menu_item['name'] ?>
+            <span class="text"><?php echo $menu_item['name'] ?></span>
         </a>
     </li>
     <?php endforeach; ?>

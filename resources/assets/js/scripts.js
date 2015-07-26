@@ -37,6 +37,8 @@ $(document).ready(function() {
     $('#panel').append('<a id="panel-mask"></a>');
   }
 
+  // display 'add to homescreen' popup
+
 
 
 
@@ -65,20 +67,17 @@ $(document).ready(function() {
     // mobile menu translation functions
     slideout.on('translate', function(translated) {
       slideratio = translated/260;
-      $('#menu-drawer #menu').css('opacity', slideratio);
-      $('#menu-drawer').css('left', (30 * slideratio) - 30);
+      $('#menu-drawer .menu').css('opacity', slideratio);
       $('#panel #panel-mask').css('opacity', slideratio);
     });
     slideout.on('open', function() {
-      $('#menu-drawer #menu').attr('style', '');
-      $('#menu-drawer').attr('style', '');
+      $('#menu-drawer .menu').attr('style', '');
       $('#panel #panel-mask').attr('style', '');
       $('#navbutton .ion-navicon').hide();
       $('#navbutton .ion-android-close').css( "display", "block");
     });
     slideout.on('close', function() {
-      $('#menu-drawer #menu').attr('style', '');
-      $('#menu-drawer').attr('style', '');
+      $('#menu-drawer .menu').attr('style', '');
       $('#panel #panel-mask').attr('style', '');
       $('#navbutton .ion-navicon').show();
       $('#navbutton .ion-android-close').hide();

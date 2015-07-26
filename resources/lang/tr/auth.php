@@ -4,6 +4,8 @@ return [
     "log_in" => "Giriş yap",
     "log_in_cap" => "GİRİŞ YAP",
     "log_in_short_cap" => "GİRİŞ",
+    "log_out" => "Çıkış",
+    "log_out_cap" => "ÇIKIŞ",
     "sign_up" => "Kayıt ol",
     "sign_up_cap" => "KAYIT OL",
     "connect_cap" => "BAĞLAN",
