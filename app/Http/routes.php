@@ -42,6 +42,9 @@ Route::get('/issues/created', function() {
 Route::get('/announcements', function() {
     return view('announcements.list');
 });
+Route::get('/muhtar', function() {
+    return view('pages.muhtar');
+});
 #end of testing routes for dann
 
 # reports routing

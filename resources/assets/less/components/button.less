@@ -19,6 +19,7 @@
   -webkit-tap-highlight-color: fade(@white, 0%);
   -webkit-tap-highlight-color: transparent;
 
+  // default pseudo states
   &:hover {
     background-color: darken(@grey, 10%);
     color: @white;
@@ -26,10 +27,30 @@
   &:focus {
     outline: none;
   }
-  &:active { background-color: darken(@grey, 15%); }
+  &:active { 
+    background-color: darken(@grey, 15%); 
+    .transform(translateY(2px));
+  }
+
+  // icon behaviour on button
   .ion-15x {
     line-height: 1em;
   }
+
+  // sizes
+  .btn-lg {
+    padding: 10px 20px;
+    height: 60px;
+  }
+  .btn-sm {
+    padding: 5px 10px;
+    height: 30px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 0.8em;
+  }
+
+  // busy state
   &.isBusy:before {
     content: "";
     position: absolute;
@@ -50,139 +71,137 @@
     padding-top: 1px;
     font-family: "Ionicons";
     font-size: 1.25em;
-    -webkit-animation: spinning 1s infinite linear;
-    -moz-animation: spinning 1s infinite linear;
-    animation: spinning 1s infinite linear;
-    -webkit-transform-origin: center center;
-    -moz-transform-origin: center center;
-    transform-origin: center center;
+    .animation(spinning 1s infinite linear);
+    .transform-origin(center center);
   }
-}
-.btn-lg {
-  padding: 10px 20px;
-  height: 60px;
-}
-.btn-sm {
-  padding: 5px 10px;
-  height: 30px;
-  line-height: 20px;
-  letter-spacing: 0;
-  font-size: 0.8em;
-}
-.btn:active {
-  .transform(translateY(2px));
-}
-.btn-primary {
-  background-color: @muhitGreen;
 
-  &:hover, &:focus {
-    background-color: darken(@muhitGreen, 10%);
-  }
-  &:active { background-color: darken(@muhitGreen, 15%); }
-  &.isBusy:before {
-    background-color: fade(@muhitGreen, 75%);
-  }
-}
-.btn-secondary {
-  background-color: @muhitBlue;
+  // disabled state
+  &[disabled] {
+    background-color: @greyLighter;
+    color: @greyLight;
+    cursor: default;
 
-  &:hover, &:focus {
-    background-color: darken(@muhitBlue, 10%);
+    &:hover {
+      background-color: darken(@greyLighter, 2%);
+    }
   }
-  &:active { background-color: darken(@muhitBlue, 15%); }
-}
-.btn-quaternary {
-  background-color: @muhitBlueDark;
 
-  &:hover, &:focus {
-    background-color: darken(@muhitBlueDark, 10%);
-  }
-  &:active { background-color: darken(@muhitBlueDark, 15%); }
-}
-.btn-tertiary {
-  background-color: @greyLight;
+  // colour appearances (could be a looped array)
+  &.btn-primary {
+    background-color: @muhitGreen;
 
-  &:hover, &:focus {
-    background-color: darken(@greyLight, 10%);
-    color: @white; 
+    &:hover {
+      background-color: darken(@muhitGreen, 10%);
+    }
+    &:active { background-color: darken(@muhitGreen, 15%); }
+    &.isBusy:before {
+      background-color: fade(@muhitGreen, 75%);
+    }
   }
-  &:active { background-color: darken(@greyLight, 15%); }
-  &.isBusy:before {
-    background-color: fade(@greyLight, 75%);
-  }
-}
-.btn-white {
-  background-color: #fff;
-  color: #44a1e0;
-}
-.btn-white:hover,
-.btn-white:focus {
-  background-color: #eee;
-}
-.btn-outline {
-  background-color: transparent;
-  border-color: @muhitBlue;
-  color: @muhitBlue;
-
-  &:hover {
+  &.btn-secondary {
     background-color: @muhitBlue;
-  }
-}
-&.btn-whiteoutline {
-  background-color: transparent;
-  border-color: @white;
-  color: @white;
 
-  &:hover {
+    &:hover {
+      background-color: darken(@muhitBlue, 10%);
+    }
+    &:active { background-color: darken(@muhitBlue, 15%); }
+  }
+  &.btn-quaternary {
+    background-color: @muhitBlueDark;
+
+    &:hover {
+      background-color: darken(@muhitBlueDark, 10%);
+    }
+    &:active { background-color: darken(@muhitBlueDark, 15%); }
+  }
+  &.btn-tertiary {
+    background-color: @greyLight;
+
+    &:hover {
+      background-color: darken(@greyLight, 10%);
+      color: @white; 
+    }
+    &:active { background-color: darken(@greyLight, 15%); }
+    &.isBusy:before {
+      background-color: fade(@greyLight, 75%);
+    }
+  }
+  &.btn-white {
     background-color: @white;
     color: @muhitBlue;
-  }
-}
-.btn-facebook {
-  line-height: 1em;
-  background-color: @facebookBlue;
 
-  &:hover {
-    background-color: darken(@facebookBlue, 10%);
+    &:hover {
+      background-color: @greyLighter;
+    }
   }
-}
-.btn-twitter {
-  background-color: @twitterBlue;
-
-  &:hover {
-    background-color: darken(@twitterBlue, 10%);
-  }
-}
-.btn-googleplus {
-  background-color: @googleplusRed;
-
-  &:hover {
-    background-color: darken(@googleplusRed, 10%);
-  }
-}
-.btn-empty {
-  background-color: transparent;
-  border-color: transparent;
-
-  &:hover {
-    background-color: fade(@black, 10%)
-  }
-}
-.btn-blueempty {
-  background-color: transparent;
-  border-color: transparent;
-  color: @muhitBlue;
-
-  &:hover {
+  &.btn-outline {
+    background-color: transparent;
     border-color: @muhitBlue;
-  }
-}
-.btn-greytored {
-  background-color: @greyLighter;
-  color: @red;
+    color: @muhitBlue;
 
-  &:hover {
-    background-color: @red;
-    color: @white;
+    &:hover {
+      background-color: @muhitBlue;
+    }
   }
+  &.btn-whiteoutline {
+    background-color: transparent;
+    border-color: @white;
+    color: @white;
+
+    &:hover {
+      background-color: @white;
+      color: @muhitBlue;
+    }
+  }
+  &.btn-empty {
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover {
+      background-color: fade(@black, 10%)
+    }
+  }
+  &.btn-blueempty {
+    background-color: transparent;
+    border-color: transparent;
+    color: @muhitBlue;
+
+    &:hover {
+      border-color: @muhitBlue;
+    }
+  }
+  &.btn-greytored {
+    background-color: @greyLighter;
+    color: @red;
+
+    &:hover {
+      background-color: @red;
+      color: @white;
+    }
+  }
+
+  // social colours
+  &.btn-facebook {
+    line-height: 1em;
+    background-color: @facebookBlue;
+
+    &:hover {
+      background-color: darken(@facebookBlue, 10%);
+    }
+  }
+  &.btn-twitter {
+    background-color: @twitterBlue;
+
+    &:hover {
+      background-color: darken(@twitterBlue, 10%);
+    }
+  }
+  &.btn-googleplus {
+    background-color: @googleplusRed;
+
+    &:hover {
+      background-color: darken(@googleplusRed, 10%);
+    }
+  }
+
 }

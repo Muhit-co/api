@@ -8,6 +8,11 @@
 
         <div class="col-md-10 col-md-offset-1">
 
+            <?php
+            $issue_supporters = (int) Redis::get('issue_counter:'.$issue['id']);
+            $issue_status = getIssueStatus($issue['status'], $issue_supporters);
+            ?>
+
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
                     <div class="u-floatleft">
@@ -20,7 +25,7 @@
                         <a href="javascript:void(0)" class="btn btn-secondary btn-facebook u-ml5 u-width50"><i class="ion ion-social-facebook ion-15x"></i></a>
 
                         <!-- (Un)Support button -->
-                        @if($role =='public')
+                        @if($role =='public' && $issue['status'] != "solved")
                         <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         @elseif($role =='user')
                         <a id="action_support" href="javascript:void(0)" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
@@ -49,20 +54,13 @@
                 </div>
                 <div class="card-content">
 
-                    <?php
-                    // @TODO: logic should be available in list.blade.php and show.blade.php --> @gcg refactor to be generic logic
-                    $issue_supporters = 6; // temporary value until real value is available in view
-                    // issue status badge fallback
-                    $issue_status = getIssueStatus($issue['status'], $issue_supporters);
-
-                    ?>
                     <div class="u-floatright u-relative">
                         <div class="label label-{{$issue_status['class']}} u-pr80 u-mr10">
                             <i class="ion {{$issue_status['icon']}}"></i>
                             <span class="text">{{$issue_status['title']}}</span>
                         </div>
                         <div id="support_counter" class="badge badge-circle-large badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
-                            <div class="value">{{(int) Redis::get('issue_counter:'.$issue['id'])}}</div>
+                            <div class="value">{{ $issue_supporters }}</div>
                             <label>DESTEKÇİ</label>
                         </div>
                     </div>
@@ -147,9 +145,19 @@
 
                 <div class="card-footer clearfix">
                     <div class="u-floatright">
-                        <a href="javascript:void(0)" class="btn btn-sm btn-tertiary u-mr5"><i class="ion ion-alert-circled"></i></a>
+                        <a href="javascript:void(0)" class="btn btn-tertiary u-mr5"><i class="ion ion-alert-circled"></i></a>
                         @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
-                            <a href="/issues/delete/{{$issue['id']}}" class="btn btn-sm btn-tertiary" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                            @if($issue_supporters < 10)
+                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                            @else
+                                <span class="hasTooltip">
+                                    <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                                    <span class="tooltip tooltip-alignright">
+                                        <i class="ion ion-information-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
+                                        <div class="u-ml30">This issue cannot be deleted because it has more than 10 supporters.</div>
+                                    </span>
+                                </span>
+                            @endif
                         @endif
                     </div>
                     <ul class="issue-history title">

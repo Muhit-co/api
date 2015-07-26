@@ -1,0 +1,46 @@
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  display: block;
+  max-width: 200px;
+  width: 200px;
+  margin-bottom: 20px; 
+  padding: 10px 15px;
+  .rounded(5px);
+  background-color: fade(@muhitBlueDark, 60%);
+  color: @white;
+  font-size: 0.9em;
+  line-height: 1.25em;
+  opacity: 0;
+  pointer-events: none;
+  .transition(opacity 0.2s ease);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 10px;
+    border: 7px solid transparent;
+    border-top-color: fade(@muhitBlueDark, 60%);
+  }
+
+  &.tooltip-alignright {
+    left: auto;
+    right: 0;
+
+    &:before {
+      left: auto; 
+      right: 10px;
+    }
+  }
+}
+
+.hasTooltip {
+  position: relative;
+
+  &:hover .tooltip {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

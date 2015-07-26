@@ -6086,16 +6086,6 @@ figure img {
   cursor: pointer;
   color: #ffffff;
 }
-.label .text {
-  display: inline-block;
-  width: 0;
-  overflow: hidden;
-  transition: width 0.2s ease-in-out;
-  transition: all width 0.2s ease-in-out ease-out;
-}
-.label:hover .text {
-  width: 100px;
-}
 .label.label-new-empty {
   background-color: #ffffff;
   border: 1px solid #ccccdd;
@@ -6190,9 +6180,22 @@ figure img {
 }
 .btn:active {
   background-color: #707086;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
 }
 .btn .ion-15x {
   line-height: 1em;
+}
+.btn .btn-lg {
+  padding: 10px 20px;
+  height: 60px;
+}
+.btn .btn-sm {
+  padding: 5px 10px;
+  height: 30px;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-size: 0.8em;
 }
 .btn.isBusy:before {
   content: "";
@@ -6220,134 +6223,122 @@ figure img {
   -webkit-transform-origin: center center;
   transform-origin: center center;
 }
-.btn-lg {
-  padding: 10px 20px;
-  height: 60px;
+.btn[disabled] {
+  background-color: #eeeeee;
+  color: #ccccdd;
+  cursor: default;
 }
-.btn-sm {
-  padding: 5px 10px;
-  height: 30px;
-  line-height: 20px;
-  letter-spacing: 0;
-  font-size: 0.8em;
+.btn[disabled]:hover {
+  background-color: #e9e9e9;
 }
-.btn:active {
-  -webkit-transform: translateY(2px);
-  transform: translateY(2px);
-}
-.btn-primary {
+.btn.btn-primary {
   background-color: #98ca7a;
 }
-.btn-primary:hover,
-.btn-primary:focus {
+.btn.btn-primary:hover {
   background-color: #7cbb56;
 }
-.btn-primary:active {
+.btn.btn-primary:active {
   background-color: #6eb147;
 }
-.btn-primary.isBusy:before {
+.btn.btn-primary.isBusy:before {
   background-color: rgba(152, 202, 122, 0.75);
 }
-.btn-secondary {
+.btn.btn-secondary {
   background-color: #44a1e0;
 }
-.btn-secondary:hover,
-.btn-secondary:focus {
+.btn.btn-secondary:hover {
   background-color: #2289cf;
 }
-.btn-secondary:active {
+.btn.btn-secondary:active {
   background-color: #1f7bb9;
 }
-.btn-quaternary {
+.btn.btn-quaternary {
   background-color: #245672;
 }
-.btn-quaternary:hover,
-.btn-quaternary:focus {
+.btn.btn-quaternary:hover {
   background-color: #18394b;
 }
-.btn-quaternary:active {
+.btn.btn-quaternary:active {
   background-color: #122a38;
 }
-.btn-tertiary {
+.btn.btn-tertiary {
   background-color: #ccccdd;
 }
-.btn-tertiary:hover,
-.btn-tertiary:focus {
+.btn.btn-tertiary:hover {
   background-color: #adadc9;
   color: #ffffff;
 }
-.btn-tertiary:active {
+.btn.btn-tertiary:active {
   background-color: #9e9ebe;
 }
-.btn-tertiary.isBusy:before {
+.btn.btn-tertiary.isBusy:before {
   background-color: rgba(204, 204, 221, 0.75);
 }
-.btn-white {
-  background-color: #fff;
+.btn.btn-white {
+  background-color: #ffffff;
   color: #44a1e0;
 }
-.btn-white:hover,
-.btn-white:focus {
-  background-color: #eee;
+.btn.btn-white:hover {
+  background-color: #eeeeee;
 }
-.btn-outline {
+.btn.btn-outline {
   background-color: transparent;
   border-color: #44a1e0;
   color: #44a1e0;
 }
-.btn-outline:hover {
+.btn.btn-outline:hover {
   background-color: #44a1e0;
 }
-.btn-whiteoutline {
+.btn.btn-whiteoutline {
   background-color: transparent;
   border-color: #ffffff;
   color: #ffffff;
 }
-.btn-whiteoutline:hover {
+.btn.btn-whiteoutline:hover {
   background-color: #ffffff;
   color: #44a1e0;
 }
-.btn-facebook {
-  line-height: 1em;
-  background-color: #3b5998;
-}
-.btn-facebook:hover {
-  background-color: #2d4373;
-}
-.btn-twitter {
-  background-color: #55ceee;
-}
-.btn-twitter:hover {
-  background-color: #27c1e9;
-}
-.btn-googleplus {
-  background-color: #dd4b39;
-}
-.btn-googleplus:hover {
-  background-color: #c23321;
-}
-.btn-empty {
+.btn.btn-empty {
   background-color: transparent;
   border-color: transparent;
 }
-.btn-empty:hover {
+.btn.btn-empty:hover {
   background-color: rgba(51, 51, 68, 0.1);
 }
-.btn-blueempty {
+.btn.btn-blueempty {
   background-color: transparent;
   border-color: transparent;
   color: #44a1e0;
 }
-.btn-blueempty:hover {
+.btn.btn-blueempty:hover {
   border-color: #44a1e0;
 }
-.btn-greytored {
+.btn.btn-greytored {
   background-color: #eeeeee;
   color: #e74c3c;
 }
-.btn-greytored:hover {
+.btn.btn-greytored:hover {
   background-color: #e74c3c;
   color: #ffffff;
+}
+.btn.btn-facebook {
+  line-height: 1em;
+  background-color: #3b5998;
+}
+.btn.btn-facebook:hover {
+  background-color: #2d4373;
+}
+.btn.btn-twitter {
+  background-color: #55ceee;
+}
+.btn.btn-twitter:hover {
+  background-color: #27c1e9;
+}
+.btn.btn-googleplus {
+  background-color: #dd4b39;
+}
+.btn.btn-googleplus:hover {
+  background-color: #c23321;
 }
 /* --- card --- */
 .card {
@@ -7292,6 +7283,48 @@ nav #nav_quickadd {
 .tabs a.active {
   color: #ffffff;
   border-bottom-color: #ffffff;
+}
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  display: block;
+  max-width: 200px;
+  width: 200px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: rgba(36, 86, 114, 0.6);
+  color: #ffffff;
+  font-size: 0.9em;
+  line-height: 1.25em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  transition: all opacity 0.2s ease ease-out;
+}
+.tooltip:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 10px;
+  border: 7px solid transparent;
+  border-top-color: rgba(36, 86, 114, 0.6);
+}
+.tooltip.tooltip-alignright {
+  left: auto;
+  right: 0;
+}
+.tooltip.tooltip-alignright:before {
+  left: auto;
+  right: 10px;
+}
+.hasTooltip {
+  position: relative;
+}
+.hasTooltip:hover .tooltip {
+  opacity: 1;
+  pointer-events: all;
 }
 /* --- icons (extends ionicons) --- */
 .ion-15x {
