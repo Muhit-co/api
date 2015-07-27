@@ -53,6 +53,13 @@ Route::get('/report', function() {
     return view('reports.show');
 });
 
+
+# email routing
+Route::get('/emails', function() {
+    return view('emails.created_idea_into_development');
+});
+
+
 Route::get('login', 'AuthController@getLogin');
 Route::get('register', 'AuthController@getRegister');
 Route::post('login', 'AuthController@postLogin');
