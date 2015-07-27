@@ -56,7 +56,10 @@ Route::get('/report', function() {
 
 # email routing
 Route::get('/emails', function() {
-    return view('emails.created_idea_into_development');
+    return view('emails.index');
+});
+Route::get('/email/{page}', function($page) {
+    return view('emails.' . $page);
 });
 
 

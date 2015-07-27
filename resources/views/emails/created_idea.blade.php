@@ -2,7 +2,7 @@
 
 @section('title')
 
-    {{ trans('email.created_idea_into_development_title') }}
+    {{ trans('email.created_idea_title') }}
 
 @stop
 
@@ -10,7 +10,7 @@
 
     @include('emails.partials.header')
 
-    {{ trans('email.created_idea_into_development_content', array('sender' => '[X Muhtarı/ Y Belediyesi]')) }}
+    {{ trans('email.created_idea_content') }}
 
     <br /><br />
     
