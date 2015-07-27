@@ -53,6 +53,20 @@ class IssuesController extends Controller {
             }
         }
 
+        $check_duplicate = DB::table('issues')
+            ->where('user_id', $user_id)
+            ->where('title', $data['title'])
+            ->where('location', $data['location'])
+            ->first();
+
+        if (!empty($check_duplicate)) {
+            if ($this->isApi) {
+                return response()->api(400, 'Duplicate request', []);
+            }
+            return redirect('/issues/view/'.$check_duplicate->id)
+                ->with('warning', 'Daha önceden açtığınız bir fikri tekrar açmak istiyorsunuz gibi.');
+        }
+
 
         DB::beginTransaction();
         #save the issue;
