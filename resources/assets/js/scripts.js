@@ -76,38 +76,35 @@ $(document).ready(function() {
   }));
 
   if(window.slideout) {
-
     // mobile menu toggle button
     $('#navbutton').bind(touchEvent, (function(e) {
       slideout.toggle();
       e.preventDefault();
     }));
-
     // mobile menu toggle button
     $('#panel-mask').bind(touchEvent, (function(e) {
       slideout.close();
       e.preventDefault();
     }));
 
-    // mobile menu translation functions
-    slideout.on('translate', function(translated) {
-      slideratio = translated/260;
-      $('#menu-drawer .menu').css('opacity', slideratio);
-      $('#panel #panel-mask').css('opacity', slideratio);
-    });
-    slideout.on('open', function() {
-      $('#menu-drawer .menu').attr('style', '');
-      $('#panel #panel-mask').attr('style', '');
-      $('#navbutton .ion-navicon').hide();
-      $('#navbutton .ion-android-close').css( "display", "block");
-    });
-    slideout.on('close', function() {
-      $('#menu-drawer .menu').attr('style', '');
-      $('#panel #panel-mask').attr('style', '');
-      $('#navbutton .ion-navicon').show();
-      $('#navbutton .ion-android-close').hide();
-    });
-
+    // mobile menu translation functions – WARNING: disabled because of poor performance
+    // slideout.on('translate', function(translated) {
+    //   slideratio = translated/260;
+    //   $('#menu-drawer .menu').css('opacity', slideratio);
+    //   $('#panel #panel-mask').css('opacity', slideratio);
+    // });
+    // slideout.on('open', function() {
+    //   $('#menu-drawer .menu').attr('style', '');
+    //   $('#panel #panel-mask').attr('style', '');
+    //   $('#navbutton .ion-navicon').hide();
+    //   $('#navbutton .ion-android-close').css( "display", "block");
+    // });
+    // slideout.on('close', function() {
+    //   $('#menu-drawer .menu').attr('style', '');
+    //   $('#panel #panel-mask').attr('style', '');
+    //   $('#navbutton .ion-navicon').show();
+    //   $('#navbutton .ion-android-close').hide();
+    // });
   }
 
   // dialog open
