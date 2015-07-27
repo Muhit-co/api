@@ -472,8 +472,6 @@ class IssuesController extends Controller {
             }
         }
 
-
-
         if ($can_delete === false) {
 
             if ($this->isApi) {
@@ -482,6 +480,14 @@ class IssuesController extends Controller {
             return redirect('/issues/view/'.$id)
                 ->with('error', 'Fikri silmek için yeterli yetkiniz yok.');
 
+        }
+
+        if ($issue->status != 'new' or (int) Redis::get('issue_counter:'.$issue->id) > 10) {
+            if ($this->isApi) {
+                return response()->api(403, 'You are not authorized to delete this issue');
+            }
+            return redirect('/issues/view/'.$id)
+                ->with('error', 'Issue silinebilir durumda değil. ');
         }
 
         try {
