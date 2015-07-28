@@ -82,7 +82,7 @@
                                     </div>
                                 @elseif($numimages >= 1)
                                     @foreach($issue['images'] as $image)
-                                        <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
+                                        <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}" alt="{{$issue['title']}}" />
                                     @endforeach
                                 @endif
 
