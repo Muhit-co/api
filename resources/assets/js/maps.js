@@ -22,6 +22,28 @@ function mapInitialize() {
     });
 }
 
+function mapInitializeForIssue(lon, lan) {
+    var mapCanvas = document.getElementById('map-canvas');
+    var LtLng = new google.maps.LatLng(lon, lan);
+    var mapOptions = {
+      center: LtLng,
+      // minZoom: 8,
+      zoom: 11,
+      disableDefaultUI: false,
+      scrollwheel: false,
+      mapTypeControl: false,
+      panControl: false,
+      streetViewControl: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({
+        position: LtLng,
+        map: map,
+        title: "Test"
+    });
+}
+
 $(document).on('click', '#map_redraw', function(event){
     mapInitialize();
 });

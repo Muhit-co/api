@@ -101,10 +101,14 @@
 
                         </div>
                         <div class="media-map col-md-4">
+                            <?php
+                                $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
+                                $lan = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
+                            ?>
                             <div id="map-canvas">
                             </div>
                             <script>
-                                mapInitialize();
+                                mapInitializeForIssue({{$lon}}, {{$lan}});
                             </script>
                         </div>
                     </div>
