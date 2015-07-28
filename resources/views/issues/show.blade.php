@@ -165,10 +165,15 @@
                         @endif
                     </div>
                     <ul class="issue-history title">
-                        <li><i class="ion ion-android-checkmark-circle u-mr10"></i> <span class="date">15 Tem 2015</span> <strong>{{ trans('issues.issue_solved') }}</strong>.</li>
-                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">13 Tem 2015</span> <strong>{{ trans('issues.issue_changed_to_development') }}</strong>.</li>
-                        <li><i class="ion ion-android-time u-mr10"></i> <span class="date">2 Tem 2015</span> <strong>{{ trans('issues.issue_10_supporters') }}</strong>.</li>
-                        <li><i class="ion ion-record u-mr10"></i> <span class="date">27 Haz 2015</span> <strong>{{ trans('issues.issue_created') }}</strong>.</li>
+
+                        @foreach($issue['updates'] as $update)
+                            <li>
+                                <i class="ion ion-record u-mr10"></i>
+                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span>
+                                <strong>{{ trans('issues.'.$update['new_status']) }}</strong>.
+                            </li>
+                        @endforeach
+
                     </ul>
                 </div>
 

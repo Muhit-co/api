@@ -25,6 +25,11 @@ class Issue extends Model {
 
     }
 
+    public function updates() {
+        return $this->hasMany('Muhit\Models\IssueUpdate');
+
+    }
+
     public function toArray() {
         $array = parent::toArray();
         $array['supporter_counter'] = (int) Redis::get('supporter_counter:' . $this->id);

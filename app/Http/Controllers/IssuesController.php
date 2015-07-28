@@ -244,7 +244,7 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getView($id = null) {
-        $issue = Issue::with('user', 'tags', 'images')
+        $issue = Issue::with('user', 'tags', 'images', 'updates')
             ->find($id);
 
         if (null === $issue) {
