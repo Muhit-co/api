@@ -69,9 +69,24 @@ if(isset($role)):
 
         $menu_items = array(
             array(
-                'name' => trans('issues.all_cap'),
+                'name' => trans('issues.ideas_cap'),
                 'uri' => '/',
-                'icon' => 'ion-android-home'
+                'icon' => 'ion-lightbulb'
+            ),
+            array(
+                'name' => trans('issues.users_cap'),
+                'uri' => '/',
+                'icon' => 'ion-person-stalker'
+            ),
+            array(
+                'name' => trans('issues.muhtars_cap'),
+                'uri' => '/',
+                'icon' => 'ion-person'
+            ),
+            array(
+                'name' => trans('issues.announcements_cap'),
+                'uri' => '/',
+                'icon' => 'ion-speakerphone'
             ),
         );
 
