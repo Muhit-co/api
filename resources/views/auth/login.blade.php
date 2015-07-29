@@ -13,13 +13,16 @@
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <input type="password" class="form-input" value="" placeholder="{{ trans('auth.password') }}" name="password" />
+                    <input type="password" class="form-input" value="" placeholder="{{ trans('auth.your_password') }}" name="password" />
                 </div>
 
-                <button type="submit"class="btn btn-primary u-floatright">
+                <button type="submit" class="btn btn-primary u-floatright">
                     {{ trans('auth.log_in_cap') }}
                     <i class="ion ion-log-in ion-15x"></i>
                 </button>
+                <a href="/forgot-password" class="btn btn-empty btn-sm u-mr10 u-mt5">
+                    {{ trans('auth.forgot_password_cap') }}
+                </a>
             </form>
 
         </div>
