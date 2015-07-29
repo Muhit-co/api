@@ -62,6 +62,19 @@
                         </li>
                     @endif
                 </ul>
+                <div class="pagination u-mt20 u-aligncenter">
+                    <div class="btn-group">
+                        <div class="btn btn-white u-floatleft btn-disabled">
+                            <i class="ion ion-chevron-left"></i>
+                        </div>
+                        <div class="btn btn-white u-floatleft isActive">1</div>
+                        <div class="btn btn-white u-floatleft">2</div>
+                        <div class="btn btn-white u-floatleft">3</div>
+                        <div class="btn btn-white u-floatleft">
+                            <i class="ion ion-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

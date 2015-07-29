@@ -1,0 +1,17 @@
+.pagination {
+  .btn {
+    border: 0;
+
+    & + .btn {
+      border-left: 1px solid @greyLighter;
+    }
+    &.btn-disabled {
+      color: @greyLight;
+      background-color: lighten(@greyLighter, 2%);
+    }
+    &.isActive {
+      background-color: @muhitBlue;
+      color: @white;
+    }
+  }
+}
