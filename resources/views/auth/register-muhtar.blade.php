@@ -34,10 +34,10 @@
                 <div class="form-group form-fullwidth u-mt30 u-mb20">
                     <input id="termsagree" type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" />
                     <label for="termsagree">
-                        {{ trans('auth.agree_with_terms', ['tagstart' => '<a href="javascript:void(0)">', 'tagend' => '</a>']) }}
+                        {!! trans('auth.agree_with_terms', ['tagstart' => '<a href="javascript:void(0)">', 'tagend' => '</a>']) !!}
                     </label>
                 </div>
-
+                <input type="hidden" name="level" value="4">
                 <button type="submit" class="btn btn-quaternary u-floatright">{{ trans('auth.request_access_cap') }}</i></button>
             </form>
         </div>

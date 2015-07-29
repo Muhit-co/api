@@ -69,7 +69,28 @@ class AuthController extends Controller {
         }
 
 
+        #lets figure out the location.
+        $location_parts = explode(",", $data['location']);
+        $hood = false;
+        if (count($location_parts) === 3) {
+            $hood = Hood::fromLocation($data['location']);
+        }
+
+        if ($hood === false or $hood === null or !isset($hood->id) or !isset($hood->city_id) or !isset($hood->district_id)) {
+
+            if (isset($data['level']) and $data['level'] == 4) {
+                if ($this->isApi) {
+                    return response()->api(401, 'Cant get the hood information from the location provided.', ['data' => $data]);
+                }
+                return redirect('/register-muhtar')
+                    ->with('error', 'Lokasyonunuzu girerken bir hata oldu, lütfen tekrar deneyin.');
+            }
+        }
+
+
         $user = new User;
+
+        $user->level = ((isset($data['level']) and $data['level'] == 4) ? 4 : 0);
 
         if (!isset($data['username'])) {
             $data['username'] = '';
@@ -102,9 +123,11 @@ class AuthController extends Controller {
         $user->first_name = $data['first_name'];
         $user->last_name = $data['last_name'];
 
-        if (isset($data['active_hood']) and !empty($data['active_hood'])) {
-            $user->active_hood = $data['active_hood'];
+        if (isset($hood) and isset($hood->id)) {
+            $user->hood_id = $hood->id;
+            $user->location = $data['location'];
         }
+
 
         try {
             $user->save();

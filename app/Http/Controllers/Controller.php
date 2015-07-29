@@ -20,8 +20,11 @@ abstract class Controller extends BaseController {
             $this->isApi = false;
             $role = 'public';
             if (Auth::check()) {
-                if (Auth::user()->level < 5) {
+                if (Auth::user()->level < 4) {
                     $role = 'user';
+                }
+                elseif (Auth::user()->level == 4) {
+                    $role = 'unapproved-admin';
                 }
                 elseif (Auth::user()->level >= 5 and Auth::user()->level < 10) {
                     $role = 'admin';
