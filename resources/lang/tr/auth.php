@@ -23,6 +23,9 @@ return [
     "agree_with_terms" => ":tagstartKullanım koşulları:tagend kabul ediyorum.",
     "request_access_cap" => "GİRİŞ İZNİ İSTE",
     "delete_account_cap" => "ÜYEMİ SİL",
+    "reset_password" => "Reset password",
+    "forgot_password_cap" => "ŞİFREMİ UNUTTUM",
+    "send_info_cap" => "BİLGİLERİ GÖNDER",
     // these will be moved to a separate file called UI
     "cancel_cap" => "VAZGEÇ",
     "send_cap" => "GÖNDER",
