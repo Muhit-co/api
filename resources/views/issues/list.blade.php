@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
-            <div class="list list-expanded list_block u-mt20 u-mb40">
+            <div class="list list-expanded list_block u-mt20 u-mb20">
                 <!-- <div class="list-header">
                 </div> -->
                 <ul class="list-content">
@@ -63,6 +63,8 @@
                         </li>
                     @endif
                 </ul>
+            </div>
+            <div class="u-aligncenter u-mb40">
                 {!! $issues->render() !!}
             </div>
         </div>
