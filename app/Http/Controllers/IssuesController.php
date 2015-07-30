@@ -219,7 +219,7 @@ class IssuesController extends Controller {
         }
 
         if ($this->isApi) {
-            return response()->api(200, 'Issues starting with: ' . $start, $response);
+            return response()->api(200, 'Issues ', $response);
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
@@ -264,8 +264,23 @@ class IssuesController extends Controller {
      * @return json
      * @author
      **/
-    public function getPopular($start = 0, $take = 20) {
+    public function getPopular() {
+        $issues = Issue::with('user', 'tags', 'images')
+            ->orderBy('supporter_count', 'desc')
+            ->paginate(3);
 
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues', $response);
+        }
+
+        view()->share('pageTitle', 'Popüler Fikirler - ');
+        return response()->app(200, 'issues.list', ['issues' => $issues]);
     }
 
     /**
