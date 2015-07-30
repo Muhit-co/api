@@ -37,7 +37,7 @@
                     <span class="text">Kadıköy, İstanbul</span>
 
                     <a href="/report" class="btn btn-sm btn-whiteoutline u-ml15 u-has-hidden-content">
-                        <i class="ion ion-clipboard"></i> 
+                        <i class="ion ion-clipboard"></i>
                         <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
                     </a>
 
@@ -56,7 +56,7 @@
                 <div class="u-floatleft u-mr10">
                     <a href="javascript:void(0)" id="home_location" data-val="Firuzağa Mahallesi, Beyoğlu, İstanbul" class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
                 </div>
-                
+
                 <!-- search issues -->
                 <!-- <div class="form-group form-fullwidth">
                     <input type="text" class="form-input" value="" placeholder="Ara..." />
@@ -76,17 +76,17 @@
                 <!-- Sorting tabs for issue list -->
                 <ul class="tabs">
                     <li>
-                        <a href="javascript:void(0)" class="active" data-target="latest">
+                        <a href="/" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" data-target="popular">
+                        <a href="/popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
                             POPÜLER
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" data-target="map">
+                        <a href="/map" <?php echo ((isset($active_tab) and $active_tab == 'map') ? 'class="active"' : ''); ?>>
                             HARİTA
                         </a>
                     </li>

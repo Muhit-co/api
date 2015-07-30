@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-@include('partials.header', array('type'=>'show'))
+@include('partials.header', array('type'=>'show', 'active_tab' => $active_tab))
 
 <section>
     <div class="row">
@@ -169,7 +169,7 @@
                         @foreach($issue['updates'] as $update)
                             <li>
                                 <i class="ion ion-record u-mr10"></i>
-                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span> – 
+                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span> –
                                 <strong>{{ trans('issues.issue_status_' . $update['new_status']) }}</strong>.
                             </li>
                         @endforeach

@@ -223,9 +223,35 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues]);
+        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'latest']);
     }
 
+
+
+     /**
+     * map issues
+     *
+     * @return json
+     * @author
+     **/
+    public function getMap() {
+        $issues = Issue::with('user', 'tags', 'images')
+            ->orderBy('id', 'desc')
+            ->paginate(3);
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues ', $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Haritesi - ');
+        return response()->app(200, 'issues.map', ['issues' => $issues, 'active_tab' => 'map']);
+    }
     /**
      * search issues
      *
@@ -280,7 +306,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Popüler Fikirler - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues]);
+        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'popular']);
     }
 
     /**

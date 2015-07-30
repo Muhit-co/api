@@ -96,6 +96,8 @@ Route::get('issues', 'IssuesController@getList');
 
 Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
 
+Route::get('popular', 'IssuesController@getPopular');
+Route::get('map', 'IssuesController@getMap');
 
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', function () {
