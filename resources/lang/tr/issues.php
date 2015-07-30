@@ -9,6 +9,7 @@ return [
     "my_ideas_cap" => "FİKİRLERİM",
     "announcements" => "Duyurular",
     "announcements_cap" => "DUYURULAR",
+    "my_announcements" => "Duyurularım",
     "my_announcements_cap" => "DUYURULARIM",
     "my_muhtar_cap" => "MUHTARIM",
     "users" => "Kullanıcılar",
@@ -63,5 +64,8 @@ return [
     "tags" => "Etiketler",
     "images" => "Resimler",
     "submit_anonymously" => "Anonim olarak başvuru yap",
-    "delete_restricted_supporters" => "This idea cannot be deleted because it has more than 10 supporters",
+    "delete_restricted_supporters" => "This idea cannot be deleted because it has more than 10 supporters", // @seratolgay
+    "post_new_announcement_cap" => "YENİ DUYURU YAZ", // @seratolgay
+    "post_new_announcement" => "Yeni duyuru yaz", // @seratolgay
+    "post_new_announcement_descr" => "If there are general updates, problems or important changes in your neighbourhood, post an announcement here. Connected citizens will get a notification.", // @seratolgay
 ];

@@ -103,6 +103,25 @@ input[type="checkbox"] {
     font-size: 1.2em;
   }
 }
+input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+
+  & + label:before {
+    content: "\f3a6";
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    font-family: "Ionicons";
+    font-size: 1.5em;
+  }
+  &:checked + label:before {
+    content: "\f3a7";
+  }
+  &#location + label:before {
+    font-size: 1.2em;
+  }
+}
 .form-input.form-grey {
   background: fade(@greyLighter, 80%);
 

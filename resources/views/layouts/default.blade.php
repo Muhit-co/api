@@ -8,6 +8,8 @@
 
         @include('dialogs.report')
         @include('dialogs.login')
+        @include('dialogs.new_announcement')
+        
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">

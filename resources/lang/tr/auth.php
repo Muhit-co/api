@@ -23,6 +23,7 @@ return [
     "password_again" => "Şifre (tekrar)",
     "password_placeholder" => "En az 8 karakter",
     "agree_with_terms" => ":tagstartKullanım koşulları:tagend kabul ediyorum.",
+    "sign_up_muhtar_link" => "Muhtar/Belediye olarak kayıt ol", // @seratolgay
     "request_access_cap" => "GİRİŞ İZNİ İSTE",
     "delete_account_cap" => "ÜYEMİ SİL",
     "forgot_password" => "Şifremi unuttum",
@@ -40,4 +41,6 @@ return [
     "add_to_home" => "Uygulama olarak kullanmak için ana ekrana ekle!", // @seratolgay
     "add_to_home_explain" => "Muhit'i ana ekranına eklemek için :icon button butonuna basın ve daha sonra'Ana Ekrana Ekle'ye tıklayın.",  // @seratolgay
     "learn_more_cap" => "DAHA FAZLA BİLGİ", // @seratolgay
+    "muhtar" => "Muhtarlık", // @seratolgay
+    "municipality" => "Belediye", // @seratolgay
 ];

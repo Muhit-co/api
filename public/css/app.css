@@ -6852,6 +6852,24 @@ input[type="checkbox"]:checked + label:before {
 input[type="checkbox"]#location + label:before {
   font-size: 1.2em;
 }
+input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+}
+input[type="radio"] + label:before {
+  content: "\f3a6";
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  font-family: "Ionicons";
+  font-size: 1.5em;
+}
+input[type="radio"]:checked + label:before {
+  content: "\f3a7";
+}
+input[type="radio"]#location + label:before {
+  font-size: 1.2em;
+}
 .form-input.form-grey {
   background: rgba(238, 238, 238, 0.8);
 }

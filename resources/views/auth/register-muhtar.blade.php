@@ -8,6 +8,20 @@
             <form method="post" action="/register">
                 <h2 class="u-mv20">{{ trans('auth.muhtar_signup_title') }}</h2>
 
+                <!-- TODO: @gcg how to we switch the sign up logic from muhtar to belediye? -->
+                <div class="form-group form-fullwidth u-mb10">
+                    <div class="row row-nopadding">
+                        <div class="col-xs-6">
+                            <input id="type_muhtar" type="radio" checked="checked" class="form-input" value="" name="admin_type" />
+                            <label for="type_muhtar">{{ trans('auth.muhtar') }}</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <input id="type_municipality" type="radio" class="form-input" value="" name="admin_type" />
+                            <label for="type_municipality">{{ trans('auth.municipality') }}</label>
+                        </div>
+                    </div>
+                </div>
+
                 <label>{{ trans('auth.neighbourhood') }}</label>
                 @include('partials.field-hood')
 
