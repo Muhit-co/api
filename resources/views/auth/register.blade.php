@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="post" action="/register">
-                <a href="/register-muhtar" class="u-floatright"><em>Ben muhtarım</em> <i class="ion ion-android-arrow-forward u-ml5"></i></a>
+                <a href="/register-muhtar" class="u-floatright"><em>{{ trans('auth.sign_up_muhtar_link') }}</em> <i class="ion ion-android-arrow-forward u-ml5"></i></a>
                 <h2 class="u-mv20">{{ trans('auth.sign_up') }}</h2>
 
                 <div class="form-group form-fullwidth u-mb20">

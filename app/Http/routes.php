@@ -29,10 +29,6 @@ Route::get('/user-edit', function() {
     return view('pages.profile-edit');
 });
 
-Route::get('/register-muhtar', function() {
-    return view('auth.register-muhtar');
-});
-
 Route::get('/issues/supported', function() {
     return view('issues.supported');
 });
@@ -63,6 +59,7 @@ Route::get('/email/{page}', function($page) {
 });
 
 
+# auth routing
 Route::get('login', 'AuthController@getLogin');
 Route::get('register', 'AuthController@getRegister');
 Route::post('login', 'AuthController@postLogin');
@@ -70,6 +67,16 @@ Route::post('register', 'AuthController@postRegister');
 Route::get('logout', function(){
     Auth::logout();
     return redirect('/');
+});
+
+Route::get('/register-muhtar', function() {
+    return view('auth.register-muhtar');
+});
+Route::get('/forgot-password', function() {
+    return view('auth.forgot-password');
+});
+Route::get('/reset-password', function() {
+    return view('auth.reset-password');
 });
 
 

@@ -153,7 +153,7 @@ $(document).ready(function() {
   }));
 
   // login button interaction
-  $('.login button[type="submit"]').bind(touchEvent, (function(e) {
+  $('.login, #dialog_report, #dialog_new_announcement').find('button[type="submit"]').bind(touchEvent, (function(e) {
     $(this).addClass('isBusy');
   }));
 

@@ -5,13 +5,24 @@
 
     <div class="row u-pb40">
         <div class="col-md-6 col-sm-7 col-md-offset-1 u-mb10">
-            <h2>{{ trans('issues.announcements_from_muhtar') }}</h2>
+            <?php $role = 'admin' ?>
+            @if($role =='admin')
+                <h2>{{ trans('issues.my_announcements') }}</h2>
+                <h4 class="u-opacity50">[Mahalle name], [Ilçe name]</h4>
+            @endif
         </div>
         <div class="col-md-4 col-sm-5">
-            <a href="/user-edit" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
-                <i class="ion ion-edit"></i>
-            </a>
-            <p class="c-white u-nowrap"><strong>Erenköy, Kadıköy</strong> <span class="u-ml10">İstanbul</span></p>
+            @if($role =='admin')
+                <a href="javascript:void(0)" data-dialog="dialog_new_announcement" class="btn btn-primary u-floatright u-ml10">
+                    <i class="ion ion-compose u-mr5"></i>
+                    {{ trans('issues.post_new_announcement_cap') }}
+                </a>
+            @else
+                <a href="/user-edit" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
+                    <i class="ion ion-edit"></i>
+                </a>
+                <p class="c-white u-nowrap"><strong>Erenköy, Kadıköy</strong> <span class="u-ml10">İstanbul</span></p>
+            @endif
         </div>
     </div>
 

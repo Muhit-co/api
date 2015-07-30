@@ -169,8 +169,8 @@
                         @foreach($issue['updates'] as $update)
                             <li>
                                 <i class="ion ion-record u-mr10"></i>
-                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span>
-                                <strong>{{ trans('issues.'.$update['new_status']) }}</strong>.
+                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span> – 
+                                <strong>{{ trans('issues.issue_status_' . $update['new_status']) }}</strong>.
                             </li>
                         @endforeach
 

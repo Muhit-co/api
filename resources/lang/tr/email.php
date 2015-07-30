@@ -1,10 +1,10 @@
 <?php
 
 return [
-    "automated_message_from_muhit" => "This is an automated message sent from :tagstart Muhit. :tagend", // @seratolgay
+    "automated_message_from_muhit" => "Bu:tagstart Muhit. :tagend tarafından gönderilen bir otomatik mesajdır",
     "welcome" => "Merhaba :username",
-    "greetings" => "Sayın", // @seratolgay
-    "muhit_team" => "Muhit ekibi", // @seratolgay
+    "greetings" => "Sayın", 
+    "muhit_team" => "Muhit ekibi",
     "go_to_idea" => "Fikrine git",
     "go_to_homepage" => "Anasayfaya git",
     "go_to_announcement" => "Duyuruna git",
