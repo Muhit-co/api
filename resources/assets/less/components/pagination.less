@@ -1,17 +1,45 @@
 .pagination {
-  .btn {
-    border: 0;
+  .clearfix;
+  display: inline-block;
+  
+  li {
+    display: inline-block;
+    float: left;
 
-    & + .btn {
+    & + li {
       border-left: 1px solid @greyLighter;
     }
-    &.btn-disabled {
-      color: @greyLight;
-      background-color: lighten(@greyLighter, 2%);
+    &:first-child {
+      a, span {
+        .border-radius(0, 0, 5px, 5px);
+      }
     }
-    &.isActive {
-      background-color: @muhitBlue;
-      color: @white;
+    &:last-child {
+      a, span {
+        .border-radius(5px, 5px, 0, 0);
+      }
+    }
+    a, span {
+      .btn;
+      .btn.btn-white;
+      display: block;
+      .rounded(0);
+      border: 0;
+    }
+    span {
+      cursor: default;
+    }
+    &.disabled {
+      a, span {
+        color: @greyLight;
+        background-color: lighten(@greyLighter, 2%);
+      }
+    }
+    &.active {
+      a, span {
+        background-color: @muhitBlue;
+        color: @white;
+      }
     }
   }
 }

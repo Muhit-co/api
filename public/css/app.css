@@ -7251,17 +7251,326 @@ nav #nav_quickadd {
     opacity: 1;
   }
 }
-.pagination .btn {
-  border: 0;
+.pagination {
+  display: inline-block;
 }
-.pagination .btn + .btn {
+.pagination:before,
+.pagination:after {
+  content: " ";
+  display: table;
+}
+.pagination:after {
+  clear: both;
+}
+.pagination li {
+  display: inline-block;
+  float: left;
+}
+.pagination li + li {
   border-left: 1px solid #eeeeee;
 }
-.pagination .btn.btn-disabled {
+.pagination li:first-child a,
+.pagination li:first-child span {
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background-clip: padding-box;
+}
+.pagination li:last-child a,
+.pagination li:last-child span {
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  background-clip: padding-box;
+}
+.pagination li a,
+.pagination li span {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  padding: 5px 15px;
+  background-color: #9999aa;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 30px;
+  cursor: pointer;
+  vertical-align: top;
+  text-align: center;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  background-color: #ffffff;
+  color: #44a1e0;
+  display: block;
+  border-radius: 0;
+  border: 0;
+}
+.pagination li a:hover,
+.pagination li span:hover {
+  background-color: #7d7d93;
+  color: #ffffff;
+}
+.pagination li a:focus,
+.pagination li span:focus {
+  outline: none;
+}
+.pagination li a:active,
+.pagination li span:active {
+  background-color: #707086;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+}
+.pagination li a .ion-15x,
+.pagination li span .ion-15x {
+  line-height: 1em;
+}
+.pagination li a.btn-lg,
+.pagination li span.btn-lg {
+  padding: 10px 20px;
+  height: 60px;
+}
+.pagination li a.btn-sm,
+.pagination li span.btn-sm {
+  padding: 5px 10px;
+  height: 30px;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-size: 0.8em;
+}
+.pagination li a.btn-circle,
+.pagination li span.btn-circle {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 20px;
+}
+.pagination li a.btn-circle.btn-sm,
+.pagination li span.btn-circle.btn-sm {
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  line-height: 19px;
+  border-radius: 13px;
+}
+.pagination li a.isBusy:before,
+.pagination li span.isBusy:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(68, 161, 224, 0.75);
+  border-radius: 5px;
+}
+.pagination li a.isBusy:after,
+.pagination li span.isBusy:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -7px;
+  content: "\f29a";
+  padding-top: 1px;
+  font-family: "Ionicons";
+  font-size: 1.25em;
+  -webkit-animation: spinning 1s infinite linear;
+  animation: spinning 1s infinite linear;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+}
+.pagination li a[disabled],
+.pagination li span[disabled],
+.pagination li a.btn-disabled,
+.pagination li span.btn-disabled {
+  background-color: #eeeeee;
+  color: #ccccdd;
+  cursor: default;
+}
+.pagination li a[disabled]:hover,
+.pagination li span[disabled]:hover,
+.pagination li a.btn-disabled:hover,
+.pagination li span.btn-disabled:hover {
+  background-color: #e9e9e9;
+}
+.pagination li a.btn-primary,
+.pagination li span.btn-primary {
+  background-color: #98ca7a;
+}
+.pagination li a.btn-primary:hover,
+.pagination li span.btn-primary:hover {
+  background-color: #7cbb56;
+}
+.pagination li a.btn-primary:active,
+.pagination li span.btn-primary:active {
+  background-color: #6eb147;
+}
+.pagination li a.btn-primary.isBusy:before,
+.pagination li span.btn-primary.isBusy:before {
+  background-color: rgba(152, 202, 122, 0.75);
+}
+.pagination li a.btn-secondary,
+.pagination li span.btn-secondary {
+  background-color: #44a1e0;
+}
+.pagination li a.btn-secondary:hover,
+.pagination li span.btn-secondary:hover {
+  background-color: #2289cf;
+}
+.pagination li a.btn-secondary:active,
+.pagination li span.btn-secondary:active {
+  background-color: #1f7bb9;
+}
+.pagination li a.btn-quaternary,
+.pagination li span.btn-quaternary {
+  background-color: #245672;
+}
+.pagination li a.btn-quaternary:hover,
+.pagination li span.btn-quaternary:hover {
+  background-color: #18394b;
+}
+.pagination li a.btn-quaternary:active,
+.pagination li span.btn-quaternary:active {
+  background-color: #122a38;
+}
+.pagination li a.btn-tertiary,
+.pagination li span.btn-tertiary {
+  background-color: #ccccdd;
+}
+.pagination li a.btn-tertiary:hover,
+.pagination li span.btn-tertiary:hover {
+  background-color: #adadc9;
+  color: #ffffff;
+}
+.pagination li a.btn-tertiary:active,
+.pagination li span.btn-tertiary:active {
+  background-color: #9e9ebe;
+}
+.pagination li a.btn-tertiary.isBusy:before,
+.pagination li span.btn-tertiary.isBusy:before {
+  background-color: rgba(204, 204, 221, 0.75);
+}
+.pagination li a.btn-white,
+.pagination li span.btn-white {
+  background-color: #ffffff;
+  color: #44a1e0;
+}
+.pagination li a.btn-white:hover,
+.pagination li span.btn-white:hover {
+  background-color: #eeeeee;
+}
+.pagination li a.btn-outline,
+.pagination li span.btn-outline {
+  background-color: transparent;
+  border-color: #44a1e0;
+  color: #44a1e0;
+}
+.pagination li a.btn-outline:hover,
+.pagination li span.btn-outline:hover {
+  background-color: #44a1e0;
+}
+.pagination li a.btn-whiteoutline,
+.pagination li span.btn-whiteoutline {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.pagination li a.btn-whiteoutline:hover,
+.pagination li span.btn-whiteoutline:hover {
+  background-color: #ffffff;
+  color: #44a1e0;
+}
+.pagination li a.btn-empty,
+.pagination li span.btn-empty {
+  background-color: transparent;
+  border-color: transparent;
+}
+.pagination li a.btn-empty:hover,
+.pagination li span.btn-empty:hover {
+  background-color: rgba(51, 51, 68, 0.1);
+}
+.pagination li a.btn-blueempty,
+.pagination li span.btn-blueempty {
+  background-color: transparent;
+  border-color: transparent;
+  color: #44a1e0;
+}
+.pagination li a.btn-blueempty:hover,
+.pagination li span.btn-blueempty:hover {
+  border-color: #44a1e0;
+}
+.pagination li a.btn-greytored,
+.pagination li span.btn-greytored {
+  background-color: #eeeeee;
+  color: #e74c3c;
+}
+.pagination li a.btn-greytored:hover,
+.pagination li span.btn-greytored:hover {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+.pagination li a.btn-facebook,
+.pagination li span.btn-facebook {
+  line-height: 1em;
+  background-color: #3b5998;
+}
+.pagination li a.btn-facebook:hover,
+.pagination li span.btn-facebook:hover {
+  background-color: #2d4373;
+}
+.pagination li a.btn-twitter,
+.pagination li span.btn-twitter {
+  background-color: #55ceee;
+}
+.pagination li a.btn-twitter:hover,
+.pagination li span.btn-twitter:hover {
+  background-color: #27c1e9;
+}
+.pagination li a.btn-googleplus,
+.pagination li span.btn-googleplus {
+  background-color: #dd4b39;
+}
+.pagination li a.btn-googleplus:hover,
+.pagination li span.btn-googleplus:hover {
+  background-color: #c23321;
+}
+.pagination li a:hover,
+.pagination li span:hover {
+  background-color: #eeeeee;
+}
+.pagination li span {
+  cursor: default;
+}
+.pagination li.disabled a,
+.pagination li.disabled span {
   color: #ccccdd;
   background-color: #f3f3f3;
 }
-.pagination .btn.isActive {
+.pagination li.active a,
+.pagination li.active span {
   background-color: #44a1e0;
   color: #ffffff;
 }
