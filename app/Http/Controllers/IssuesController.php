@@ -210,7 +210,7 @@ class IssuesController extends Controller {
     public function getList() {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
-            ->paginate(3);
+            ->paginate(20);
 
         $response = [];
 
@@ -237,7 +237,7 @@ class IssuesController extends Controller {
     public function getMap() {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
-            ->paginate(3);
+            ->paginate(20);
 
         $response = [];
 
@@ -293,7 +293,7 @@ class IssuesController extends Controller {
     public function getPopular() {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('supporter_count', 'desc')
-            ->paginate(3);
+            ->paginate(20);
 
         $response = [];
 

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-@include('partials.header', array('type'=>'show', 'active_tab' => $active_tab))
+@include('partials.header', array('type'=>'show'))
 
 <section>
     <div class="row">

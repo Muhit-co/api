@@ -13,13 +13,10 @@
                 <ul class="list-content">
                     @foreach($issues as $issue)
 
-                    <?php
-                        $issue = $issue->toArray();
-                        // @TODO: logic should be available in all issue & reports related  --> @gcg refactor to be generic logic
-                        $issue_supporters = 6; // temporary value until real value is available in view
-                        // issue status badge fallback
-                        $issue_status = getIssueStatus($issue['status'], $issue_supporters);
-
+                        <?php
+                            $issue = $issue->toArray();
+                            $issue_supporters = (int) Redis::get('issue_counter:'.$issue['id']);
+                            $issue_status = getIssueStatus($issue['status'], $issue_supporters);
                         ?>
 
                         <li>
