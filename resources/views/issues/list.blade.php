@@ -13,7 +13,8 @@
                 <ul class="list-content">
                     @foreach($issues as $issue)
 
-                        <?php
+                    <?php
+                        $issue = $issue->toArray();
                         // @TODO: logic should be available in all issue & reports related  --> @gcg refactor to be generic logic
                         $issue_supporters = 6; // temporary value until real value is available in view
                         // issue status badge fallback
@@ -62,19 +63,7 @@
                         </li>
                     @endif
                 </ul>
-                <div class="pagination u-mt20 u-aligncenter">
-                    <div class="btn-group">
-                        <div class="btn btn-white u-floatleft btn-disabled">
-                            <i class="ion ion-chevron-left"></i>
-                        </div>
-                        <div class="btn btn-white u-floatleft isActive">1</div>
-                        <div class="btn btn-white u-floatleft">2</div>
-                        <div class="btn btn-white u-floatleft">3</div>
-                        <div class="btn btn-white u-floatleft">
-                            <i class="ion ion-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
+                {!! $issues->render() !!}
             </div>
         </div>
     </div>

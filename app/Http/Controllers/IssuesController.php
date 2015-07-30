@@ -207,12 +207,10 @@ class IssuesController extends Controller {
      * @return json
      * @author
      **/
-    public function getList($start = 0, $take = 20) {
+    public function getList() {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
-            ->skip($start)
-            ->take($take)
-            ->get();
+            ->paginate(3);
 
         $response = [];
 
@@ -225,7 +223,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $response]);
+        return response()->app(200, 'issues.list', ['issues' => $issues]);
     }
 
     /**
