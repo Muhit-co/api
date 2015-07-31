@@ -16,18 +16,27 @@
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
                     <div class="u-floatleft">
-                        <a href="/" class="u-mr20 closeCard"><i class="ion ion-android-arrow-back ion-2x"></i></a>
+                        <a href="/" class="u-mr20"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     </div>
                     <div class="u-floatright u-clearfix">
 
                         <!-- Share buttons -->
-                        <?php 
+                        <?php
+
+                        // @gcg what is a good location for this function?s
+                        function str_trtoeng($source) {
+                            $turkish = array("Ü", "Ş", "Ğ", "Ç", "İ", "Ö", "ü", "ş", "ç", "ı", "ö", "ğ"); // turkish letters
+                            $english   = array("U", "S", "G", "C", "I", "O", "u", "s", "c", "i", "o", "g"); // corresponding english letters
+                            $result = str_replace($turkish, $english, $source); //replace php function
+                            return $result;
+                        }
+
                         $twitter_url = "http://twitter.com/share";
                         $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)) );
                         $twitter_url .= "&url=" . Request::url();
                         $twitter_url .= "&hashtags=muhit";
                         foreach($issue['tags'] as $tag):
-                            $twitter_url .= "," . strtolower($tag['name']);
+                            $twitter_url .= "," . str_trtoeng(strtolower($tag['name']));
                         endforeach;
                         $facebook_url = "http://www.facebook.com/dialog/feed";
                         $facebook_url .= "?app_id=" . "1458298001134890";
