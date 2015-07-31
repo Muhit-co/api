@@ -225,7 +225,11 @@ $(document).ready(function() {
     }
   }
 
-
+  $('.card .share').click(function(e) {
+    e.preventDefault();
+    $url = $(this).attr('href');
+    window.open($url, '_blank', 'width=600, height=300, menubar=no, top=300, left=450');
+  });
 
   // filter field interactions
   // when user starts typing, field should be in 'busy' state

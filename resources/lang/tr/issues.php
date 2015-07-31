@@ -68,4 +68,5 @@ return [
     "post_new_announcement_cap" => "YENİ DUYURU YAZ", 
     "post_new_announcement" => "Yeni duyuru yaz", 
     "post_new_announcement_descr" => "Mahallenizdeki önemli gelişmeleri buradan duyurabilirsiniz. Muhit'e üye olan mahalleliler duyurularınız hakkında bildirim alacaktır.",
+    "twitter_text" => ":issue_title – Muhit",
 ];
