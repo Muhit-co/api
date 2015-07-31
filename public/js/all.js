@@ -12996,6 +12996,22 @@ $(document).on('change', '#current_location', function(event){
                             $("#location_string").val(hood+", "+district+", "+city);
                             $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                             // map.setCenter({lat: lat, lng: lon});
+                            
+                            //do we need to do something? 
+                            if ($("#redir").size() > 0) {
+                                var redir = $("#redir").val();
+                                var loca = hood+", "+district+", "+city
+                                if (redir == 'list') {
+                                    $.ajax({
+                                        url: '/fikirler',
+                                        method: 'post',
+                                        data: 'location='+loca,
+                                        success: function(r){
+                                            $("#issueListContainer").html(r);
+                                        }
+                                    });
+                                }
+                            }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
 
@@ -13087,9 +13103,6 @@ $(document).ready(function(){
     }
 });
 
-$(document).on('change', '#location_string', function(event){
-    var hood = $(this).val();
-    console.log('Hood changed: '+hood);
-});
+
 
 //# sourceMappingURL=all.js.map

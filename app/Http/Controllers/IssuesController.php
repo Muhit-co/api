@@ -104,6 +104,9 @@ class IssuesController extends Controller {
                 ->with('error', 'Lokasyonunuzu girerken bir hata oldu, lütfen tekrar deneyin.');
         }
 
+        $issue->city_id = $hood->city_id;
+        $issue->district_id = $hood->district_id;
+        $issue->hood_id = $hood->id;
 
         try {
             $issue->save();
@@ -227,6 +230,49 @@ class IssuesController extends Controller {
         return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'latest']);
     }
 
+
+    /**
+     * get issues based on pagination and filters
+     *
+     * @return view
+     * @author Me
+     */
+    public function getIssues()
+    {
+        $issues = Issue::with('user', 'tags', 'images');
+
+        if (Request::has('location')) {
+            $hood = Hood::fromLocation(Request::get('location'));
+            if (isset($hood) and isset($hood->id)) {
+                $issues->where('hood_id', $hood->id);
+            }
+        }
+
+        $o1 = 'id';
+        $o2 = 'desc';
+
+        if (Request::has('sort')) {
+            $sort = Request::get('sort');
+            if ($sort == 'popular') {
+                $o1 = 'supporter_count';
+            }
+        }
+
+        $issues->orderBy($o1, $o2);
+
+
+        if (Request::ajax()) {
+            return view('partials.issues', ['issues' => $issues->paginate(20)]);
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues', $issues->toArray());
+        }
+
+        view()->share('pageTitle', 'Fikir listesi - ');
+        return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20)]);
+
+    }
 
 
      /**

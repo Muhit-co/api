@@ -20,6 +20,10 @@
                         </div>
                         <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="Erenköy" />
                         <input id="location_string" name="location" class="u-hidden" value="" />
+
+                        @if(isset($redir) and $redir == 'list')
+                            <input type="hidden" id="redir" value="list">
+                        @endif
                     </div>
                     <div class="u-floatleft u-mt5"><span class="extended">icin fikirler</span></div>
                     <br />
