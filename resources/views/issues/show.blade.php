@@ -21,7 +21,7 @@
                     <div class="u-floatright u-clearfix">
 
                         <!-- Share buttons -->
-                        <?php 
+                        <?php
                         $twitter_url = "http://twitter.com/share";
                         $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)) );
                         $twitter_url .= "&url=" . Request::url();
@@ -35,8 +35,8 @@
                         $facebook_url .= "?picture=";
                         $facebook_url .= "?name=" . $issue['title'];
                         $facebook_url .= "?caption=" . $issue['title'];
-                        $facebook_url .= "?description=" . $issue['desc'];
-                        $facebook_url .= "?message=" . $issue['desc'];
+                        $facebook_url .= "?description=" . $issue['problem'];
+                        $facebook_url .= "?message=" . $issue['problem'];
                         $facebook_url .= "?redirect_uri" . Request::url();
 
                         ?>
@@ -143,10 +143,12 @@
                         </div>
                     </div>
 
-                    <div class="description">
-                        <p>{{$issue['desc']}}</p>
+                    <div class="problem">
+                        <p>{{$issue['problem']}}</p>
                     </div>
-
+                    <div class="solution">
+                        <p>{{$issue['solution']}}</p>
+                    </div>
                 </div>
 
                 <div class="card-footer clearfix">

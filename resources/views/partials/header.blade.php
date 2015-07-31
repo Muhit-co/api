@@ -19,7 +19,7 @@
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
                         </div>
                         <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="Erenköy" />
-                        <input id="location_string" name="location" class="u-hidden" />
+                        <input id="location_string" name="location" class="u-hidden" value="" />
                     </div>
                     <div class="u-floatleft u-mt5"><span class="extended">icin fikirler</span></div>
                     <br />

@@ -14,12 +14,12 @@
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.problem') }}</label>
-                    <textarea class="form-input" value="" name="desc" placeholder="{{ trans('issues.what_is_wrong') }}?" rows="1"></textarea>
+                    <textarea class="form-input" value="" name="problem" placeholder="{{ trans('issues.what_is_wrong') }}?" rows="1"></textarea>
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.solution') }}</label>
-                    <textarea class="form-input" value="" placeholder="{{ trans('issues.idea_for_improving_descr') }}?" rows="3"></textarea>
+                    <textarea class="form-input" value="" name="solution"  placeholder="{{ trans('issues.idea_for_improving_descr') }}?" rows="3"></textarea>
                 </div>
 
                 <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>

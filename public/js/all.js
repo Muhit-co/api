@@ -13018,7 +13018,7 @@ $(document).on('change', '#current_location', function(event){
         }
     } else {
         // $fallback = ($('#home_location').attr('data-val')) ? $('#home_location').attr('data-val') : '';
-        $("#location_string").val('');
+        //$("#location_string").val('');
     }
 });
 
@@ -13064,7 +13064,6 @@ $(document).ready(function(){
                 }
                 // evaluating if correct mahalle or not
                 if($("#hood").length > 0 && hood.length > 0) {
-                    console('found hood!');
                     // hiding form message
                     $("#location_form_message").hide().find('.message').html('');
                     // assigning found location data to input fields
@@ -13082,11 +13081,15 @@ $(document).ready(function(){
                     $("#location_form_message").show().find('.message').html('Aradığınız kriterleri mahalle değildir.');
                 }
             }
-            console.log(place.address_components);
             $("#location_string").closest('.form-group').attr('data-form-state','is-static');
             $("#current_location").attr('checked', false);
         });
     }
+});
+
+$(document).on('change', '#location_string', function(event){
+    var hood = $(this).val();
+    console.log('Hood changed: '+hood);
 });
 
 //# sourceMappingURL=all.js.map

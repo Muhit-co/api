@@ -42,7 +42,7 @@ class IssuesController extends Controller {
         }
 
 
-        $required_fields = ['tags', 'title', 'desc', 'location'];
+        $required_fields = ['tags', 'title', 'problem', 'location', 'solution'];
 
         foreach ($required_fields as $key) {
             if (!isset($data[$key]) or empty($data[$key])) {
@@ -74,7 +74,8 @@ class IssuesController extends Controller {
         $issue = new Issue;
         $issue->user_id = $user_id;
         $issue->title = $data['title'];
-        $issue->desc = $data['desc'];
+        $issue->problem = $data['problem'];
+        $issue->solution = $data['solution'];
         $issue->status = 'new';
         $issue->location = $data['location'];
         $issue->city_id = 0;
@@ -207,7 +208,7 @@ class IssuesController extends Controller {
      * @return json
      * @author
      **/
-    public function getList() {
+    public function getList($hood_id = null) {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
             ->paginate(20);
@@ -234,7 +235,7 @@ class IssuesController extends Controller {
      * @return json
      * @author
      **/
-    public function getMap() {
+    public function getMap($hood_id = null) {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
             ->paginate(20);
@@ -290,7 +291,7 @@ class IssuesController extends Controller {
      * @return json
      * @author
      **/
-    public function getPopular() {
+    public function getPopular($hood_id = null) {
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('supporter_count', 'desc')
             ->paginate(20);
