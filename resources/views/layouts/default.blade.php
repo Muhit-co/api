@@ -8,7 +8,7 @@
 
         @include('dialogs.report')
         @include('dialogs.login')
-        @include('dialogs.new_announcement')
+        @yield('dialogs')
         
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 

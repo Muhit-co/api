@@ -47,6 +47,7 @@ return [
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
     "write_comment" => "Yorum Yaz",
+    "write_comment_descr" => "Do you have a reaction to this idea, or are there updates on their status? Write your comment here. This comment will be publicly visible.",
     "created" => "Oluşturuldu", 
     "issue_status_new" => "Fikir Oluşturuldu",  
     "issue_status_supported" => "Fikrin 10'dan fazla destekçisi var",  

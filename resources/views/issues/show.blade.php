@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')
+@section('dialogs')
+    @if($role =='admin')
+        @include('dialogs.write_comment')
+    @endif
+@stop
 
 @include('partials.header', array('type'=>'show'))
 
@@ -71,7 +76,7 @@
                                     <li><a href="javascript:void(0)"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li>
                                     <li><a href="javascript:void(0)"><i class="ion ion-wrench u-mr5"></i> {{ trans('issues.in_progress') }}...</a></li>
                                     <li><a href="javascript:void(0)"><i class="ion ion-checkmark-circled u-mr5"></i> {{ trans('issues.solved') }}...</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
+                                    <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
                                 </ul>
                             </div>
                         </div>
