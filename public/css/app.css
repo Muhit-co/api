@@ -7946,9 +7946,16 @@ footer {
   transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease, -webkit-transform 0.3s ease-in-out, filter 0.5s ease;
   transition: transform 0.3s ease-in-out, filter 0.5s ease;
 }
-.menu-isActive footer {
-  -webkit-transform: translateX(90vw);
-  transform: translateX(90vw);
+footer a {
+  color: #9999aa;
+}
+footer a:hover {
+  color: #44a1e0;
+}
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 20px 0;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
