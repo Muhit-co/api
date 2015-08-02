@@ -35,6 +35,10 @@ class User extends Model implements AuthenticatableContract {
         return $this->belongsTo('Muhit\Models\Hood');
     }
 
+    public function issues() {
+        return $this->hasMany('Muhit\Models\Issue');
+    }
+
     public function toArray() {
         $array = parent::toArray();
         $array['opened_issue_counter'] = (int) Redis::get('user_opened_issue_counter:' . $this->id);

@@ -1,5 +1,6 @@
-<?php 
-$inputClassList = (isset($inputClassList)) ? $inputClassList : ''; 
+<?php
+$inputClassList = (isset($inputClassList)) ? $inputClassList : '';
+$defaultValue = (isset($defaultValue)) ? $defaultValue : '';
 ?>
 <!-- Choose mahalle (location) field -->
 <div class="form-group form-fullwidth hasDropdown hasIconRight" data-form-state="is-empty">
@@ -9,6 +10,6 @@ $inputClassList = (isset($inputClassList)) ? $inputClassList : '';
         <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5"></i>
         <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning" style="margin-right: 7px"></i>
     </div>
-    <input id="hood" type="text" class="form-input u-floatleft <?php echo $inputClassList ?>" placeholder="Mahalleni seç..." />
+    <input id="hood" type="text" class="form-input u-floatleft <?php echo $inputClassList ?>" placeholder="Mahalleni seç..." value="{{$defaultValue}}" />
     <input id="location_string" name="location" class="u-hidden" />
 </div>
