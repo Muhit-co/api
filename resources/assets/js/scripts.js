@@ -72,7 +72,7 @@ $(document).ready(function() {
   // dropdown toggle
   $('.hasDropdown > a, .dropdown a').bind('click', (function(e) {
     $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
-    $(this).find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
+    $(this).closest('.hasDropdown').find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
 
   if(window.slideout) {

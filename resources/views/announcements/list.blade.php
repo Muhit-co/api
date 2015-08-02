@@ -1,11 +1,22 @@
 @extends('layouts.default')
+
+<?php
+// @gcg $role is apparently not defined in this view, but it should be. Temporarily manually defined:
+$role = 'admin'
+?>
+
+@section('dialogs')
+    @if($role =='admin')
+        @include('dialogs.new_announcement')
+    @endif
+@stop
+
 @section('content')
 
 <header class="u-relative header-list">
 
     <div class="row u-pb40">
         <div class="col-md-6 col-sm-7 col-md-offset-1 u-mb10">
-            <?php $role = 'admin' ?>
             @if($role =='admin')
                 <h2>{{ trans('issues.my_announcements') }}</h2>
                 <h4 class="u-opacity50">[Mahalle name], [Ilçe name]</h4>

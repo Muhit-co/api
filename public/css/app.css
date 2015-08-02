@@ -6212,9 +6212,13 @@ figure img {
 }
 .btn:focus {
   outline: none;
+  text-decoration: none;
+  color: #ffffff;
 }
 .btn:active {
   background-color: #707086;
+  text-decoration: none;
+  color: #ffffff;
   -webkit-transform: translateY(2px);
   transform: translateY(2px);
 }
@@ -7335,10 +7339,14 @@ nav #nav_quickadd {
 .pagination li a:focus,
 .pagination li span:focus {
   outline: none;
+  text-decoration: none;
+  color: #ffffff;
 }
 .pagination li a:active,
 .pagination li span:active {
   background-color: #707086;
+  text-decoration: none;
+  color: #ffffff;
   -webkit-transform: translateY(2px);
   transform: translateY(2px);
 }
@@ -7938,9 +7946,16 @@ footer {
   transition: -webkit-transform 0.3s ease-in-out, -webkit-filter 0.5s ease, -webkit-transform 0.3s ease-in-out, filter 0.5s ease;
   transition: transform 0.3s ease-in-out, filter 0.5s ease;
 }
-.menu-isActive footer {
-  -webkit-transform: translateX(90vw);
-  transform: translateX(90vw);
+footer a {
+  color: #9999aa;
+}
+footer a:hover {
+  color: #44a1e0;
+}
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 20px 0;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
