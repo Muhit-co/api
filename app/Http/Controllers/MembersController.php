@@ -7,7 +7,7 @@ use Request;
 use Muhit\Models\User;
 
 use Authorizer;
-
+use Auth;
 use Str;
 
 class MembersController extends Controller {
@@ -28,7 +28,7 @@ class MembersController extends Controller {
             $user_id = Auth::user()->id;
         }
 
-        $user = User::find($user_id);
+        $user = User::with('hood.district.city')->find($user_id);
 
         if ($user === null) {
             if($this->isApi) {
@@ -43,6 +43,30 @@ class MembersController extends Controller {
         }
 
         return response()->app(200, 'members.profile', ['user' => $user->toArray()]);
+    }
+
+    /**
+     * displays a form for user editing profile
+     *
+     * @return view
+     * @author Me
+     */
+    public function getEditProfile()
+    {
+
+        if (!Auth::check()) {
+            return redirect('/')
+                ->with('error', 'Giriş yapıp tekrar deneyebilirsiniz.');
+        }
+
+        $user = User::with('hood.district.city')->find(Auth::user()->id);
+
+        if ($user === null) {
+            return redirect('/')
+                ->with('error', 'Giriş yapıp tekrar deneyebilirsiniz.');
+        }
+
+        return response()->app(200, 'members.edit', ['user' => $user]);
     }
 
     /**

@@ -30,6 +30,11 @@ class User extends Model implements AuthenticatableContract {
      */
     protected $hidden = ['password', 'remember_token', 'level'];
 
+
+    public function hood() {
+        return $this->belongsTo('Muhit\Models\Hood');
+    }
+
     public function toArray() {
         $array = parent::toArray();
         $array['opened_issue_counter'] = (int) Redis::get('user_opened_issue_counter:' . $this->id);

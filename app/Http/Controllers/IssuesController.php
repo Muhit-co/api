@@ -212,7 +212,19 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getList($hood_id = null) {
+
+        if (Auth::check()) {
+            if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
+                $hood_id = Auth::user()->hood_id;
+            }
+            else {
+                #todo
+                $hood_id = 1;
+            }
+        }
+
         $issues = Issue::with('user', 'tags', 'images')
+            ->where('hood_id', $hood_id)
             ->orderBy('id', 'desc')
             ->paginate(20);
 

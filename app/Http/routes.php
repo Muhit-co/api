@@ -25,9 +25,7 @@ Route::get('/components', function() {
 Route::get('/user/{username}', function() {
     return view('pages.profile');
 });
-Route::get('/user-edit', function() {
-    return view('pages.profile-edit');
-});
+
 
 Route::get('/issues/supported', function() {
     return view('issues.supported');
@@ -90,6 +88,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('profile', 'MembersController@getMyProfile');
     Route::get('support/{id}', 'IssuesController@getSupport');
     Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
+
 });
 
 Route::get('profile/{id}', 'MembersController@getProfile');

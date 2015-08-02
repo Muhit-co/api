@@ -11,6 +11,16 @@ class Hood extends Model {
     protected $guarded = ['id'];
 
 
+    public function district() {
+        return $this->belongsTo('Muhit\Models\District');
+    }
+
+
+    public function city() {
+        return $this->belongsTo('Muhit\Models\City');
+    }
+
+
     /**
      * gets the hood_id from location string. creates table records if not exists
      *
