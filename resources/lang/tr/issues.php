@@ -25,11 +25,11 @@ return [
     "contact_info_cap" => "İLETİŞİM BİLGİLERİ",
     "neighbourhood" => "Mahalle",
     "comments_from_muhtar" => "Muhtardan gelen yorumlar",
-    "log_in_needed" => "You need to log in or sign up in order to to this",
-    "log_in_needed_explanation" => "Create a Muhit account for free to be able to support ideas and add new ones",
-    "issues_cant_be_found" => "Fikirleri şu an bulunamadı...",
-    "no_images_present" => "Resim yüklenmemiş.",
-    "ideas_i_supported" => "Desteklediklerim fikirler",
+    "log_in_needed" => "Giriş yapmanız ya da üye olmanız gerekiyor",
+    "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor",
+    "issues_cant_be_found" => "Fikir bulunamadı...",
+    "no_images_present" => "Resim yüklenmedi",
+    "ideas_i_supported" => "Desteklediğim fikirler",
     "ideas_i_added" => "Eklediğim fikirler",
     "announcements_from_muhtar" => "Muhtardan gelen duyurular",
     "comments_from_muhtar" => "Muhtardan ve belediyeden gelen yorumlar",
@@ -47,7 +47,7 @@ return [
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
     "write_comment" => "Yorum Yaz",
-    "write_comment_descr" => "Do you have a reaction to this idea, or are there updates on their status? Write your comment here. This comment will be publicly visible.",
+    "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da statülerinde bir gelişme mi var? Yorumunuzu buraya yazın. Bu yorumu herkes görebilecektir.",
     "created" => "Oluşturuldu", 
     "issue_status_new" => "Fikir Oluşturuldu",  
     "issue_status_supported" => "Fikrin 10'dan fazla destekçisi var",  
@@ -70,8 +70,8 @@ return [
     "post_new_announcement" => "Yeni duyuru yaz", 
     "post_new_announcement_descr" => "Mahallenizdeki önemli gelişmeleri buradan duyurabilirsiniz. Muhit'e üye olan mahalleliler duyurularınız hakkında bildirim alacaktır.",
     "twitter_text" => ":issue_title – Muhit",
-    "how_does_it_work" => "Nasıl çalışıyor?", // @seratolgay
-    "terms_and_conditions" => "Kullanım koşulları", // @seratolgay
-    "about_muhit" => "Muhit hakkında", // @seratolgay
-    "contact" => "İletişim", // @seratolgay
+    "how_does_it_work" => "Nasıl çalışıyor?",
+    "terms_and_conditions" => "Kullanım koşulları",
+    "about_muhit" => "Muhit hakkında",
+    "contact" => "İletişim",
 ];
