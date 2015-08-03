@@ -46,6 +46,7 @@ return [
     "problems_and_recommendations" => "Sorunlar ve öneriler",
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
+    "come_drink_tea_descr" => "Do you want to talk further over tea with the creator of the idea? Write them a message here and they will get notified.", // @seratolgay
     "write_comment" => "Yorum Yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
     "created" => "Oluşturuldu", 
@@ -74,4 +75,6 @@ return [
     "terms_and_conditions" => "Kullanım koşulları",
     "about_muhit" => "Muhit hakkında",
     "contact" => "İletişim",
+    "placeholder_yourmessage" => "Write your message here...", // @seratolgay
+    "our_manifesto" => "Manifestomuz",
 ];

@@ -1,13 +1,14 @@
-<dialog id="dialog_new_announcement">
+<dialog id="dialog_come_drink_tea">
+
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
 
     <form method="post" action="">
 
         <div class="dialog-content">
             <h2 class="u-mr30">
-                {{ trans('issues.post_new_announcement') }}
+                {{ trans('issues.come_drink_tea') }}
             </h2>
-            <p class="u-mv20">{{ trans('issues.post_new_announcement_descr') }}</p>
+            <p class="u-mv20">{{ trans('issues.come_drink_tea_descr') }}</p>
 
             <div class="form-group form-fullwidth">
                 <textarea class="form-input form-grey" value="" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
