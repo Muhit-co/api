@@ -6328,6 +6328,32 @@ figure img {
 .btn.btn-tertiary.isBusy:before {
   background-color: rgba(204, 204, 221, 0.75);
 }
+.btn.btn-inprogress {
+  background-color: #c678ea;
+}
+.btn.btn-inprogress:hover {
+  background-color: #b34ce3;
+  color: #ffffff;
+}
+.btn.btn-inprogress:active {
+  background-color: #aa36e0;
+}
+.btn.btn-inprogress.isBusy:before {
+  background-color: rgba(198, 120, 234, 0.75);
+}
+.btn.btn-solved {
+  background-color: #27ae60;
+}
+.btn.btn-solved:hover {
+  background-color: #1e8449;
+  color: #ffffff;
+}
+.btn.btn-solved:active {
+  background-color: #19703e;
+}
+.btn.btn-solved.isBusy:before {
+  background-color: rgba(39, 174, 96, 0.75);
+}
 .btn.btn-white {
   background-color: #ffffff;
   color: #44a1e0;
@@ -7480,6 +7506,40 @@ nav #nav_quickadd {
 .pagination li a.btn-tertiary.isBusy:before,
 .pagination li span.btn-tertiary.isBusy:before {
   background-color: rgba(204, 204, 221, 0.75);
+}
+.pagination li a.btn-inprogress,
+.pagination li span.btn-inprogress {
+  background-color: #c678ea;
+}
+.pagination li a.btn-inprogress:hover,
+.pagination li span.btn-inprogress:hover {
+  background-color: #b34ce3;
+  color: #ffffff;
+}
+.pagination li a.btn-inprogress:active,
+.pagination li span.btn-inprogress:active {
+  background-color: #aa36e0;
+}
+.pagination li a.btn-inprogress.isBusy:before,
+.pagination li span.btn-inprogress.isBusy:before {
+  background-color: rgba(198, 120, 234, 0.75);
+}
+.pagination li a.btn-solved,
+.pagination li span.btn-solved {
+  background-color: #27ae60;
+}
+.pagination li a.btn-solved:hover,
+.pagination li span.btn-solved:hover {
+  background-color: #1e8449;
+  color: #ffffff;
+}
+.pagination li a.btn-solved:active,
+.pagination li span.btn-solved:active {
+  background-color: #19703e;
+}
+.pagination li a.btn-solved.isBusy:before,
+.pagination li span.btn-solved.isBusy:before {
+  background-color: rgba(39, 174, 96, 0.75);
 }
 .pagination li a.btn-white,
 .pagination li span.btn-white {
