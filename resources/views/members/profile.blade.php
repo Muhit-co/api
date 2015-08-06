@@ -67,7 +67,7 @@
             @if(isset($user['issues']) and !empty($user['issues']))
                 @foreach($user['issues'] as $issue)
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="/issues/view/{{$issue['id']}}">
                             <div class="badge badge-image u-floatleft u-mr15">
                                 <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
                             </div>
