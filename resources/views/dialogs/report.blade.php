@@ -10,7 +10,7 @@
             <p class="u-mv20">{{ trans('issues.experience_problems_report_well_get_back_to_you') }}</p>
 
             <div class="form-group form-fullwidth">
-                <textarea class="form-input form-grey" value="" rows="4" placeholder="Yazin..."></textarea>
+                <textarea class="form-input form-grey" value="" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
             </div>
         </div>
 

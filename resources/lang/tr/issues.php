@@ -33,8 +33,8 @@ return [
     "ideas_i_added" => "Eklediğim fikirler",
     "announcements_from_muhtar" => "Muhtardan gelen duyurular",
     "comments_from_muhtar" => "Muhtardan ve belediyeden gelen yorumlar",
-    "log_in_needed" => "Giriş yapmanız ya da üye olmanız gerekiyor", 
-    "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor",  // @seratolgay
+    "log_in_needed" => "Giriş yapman ya da üye olman gerekiyor", 
+    "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor", 
     "issues_cant_be_found" => "Fikir bulunamadı",  
     "no_images_present" => "Resim yüklenmedi",  
     "ideas_i_supported" => "Desteklediğim fikirler",
@@ -46,8 +46,9 @@ return [
     "problems_and_recommendations" => "Sorunlar ve öneriler",
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
+    "come_drink_tea_descr" => "Do you want to talk further over tea with the creator of the idea? Write them a message here and they will get notified.", // @seratolgay
     "write_comment" => "Yorum Yaz",
-    "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da statülerinde bir gelişme mi var? Yorumunuzu buraya yazın. Bu yorumu herkes görebilecektir.",
+    "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
     "created" => "Oluşturuldu", 
     "issue_status_new" => "Fikir Oluşturuldu",  
     "issue_status_supported" => "Fikrin 10'dan fazla destekçisi var",  
@@ -74,4 +75,6 @@ return [
     "terms_and_conditions" => "Kullanım koşulları",
     "about_muhit" => "Muhit hakkında",
     "contact" => "İletişim",
+    "placeholder_yourmessage" => "Write your message here...", // @seratolgay
+    "our_manifesto" => "Manifestomuz",
 ];
