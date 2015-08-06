@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Log;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
+use Muhit\Models\Hood;
 use Muhit\Models\UserSocialAccount;
 use Request;
 
