@@ -62,7 +62,7 @@
                         @if($role =='public' && $issue['status'] != "solved")
                         <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         @elseif($role =='user')
-                        <a id="action_support" href="javascript:void(0)" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
+                        <a id="action_support" href="/issues/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         <a id="action_unsupport" href="javascript:void(0)" class="btn btn-tertiary u-ml5 u-hidden u-has-hidden-content">
                             <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
                             <i class="ion ion-fw ion-close u-show-on-hover"></i>
