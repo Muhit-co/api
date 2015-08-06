@@ -165,7 +165,7 @@
                         <p>{{$issue['solution']}}</p>
                     </div>
                 </div>
-
+                <!--
                 <div class="card-footer clearfix">
                     <h3 class="c-blue u-mb10">{{ trans('issues.comments_from_muhtar') }}</h3>
                     <div class="comment u-ph20">
@@ -182,6 +182,7 @@
                         </p>
                     </div>
                 </div>
+                -->
 
                 <div class="card-footer clearfix">
                     <div class="u-floatright">
