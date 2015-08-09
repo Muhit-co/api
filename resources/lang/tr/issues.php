@@ -49,6 +49,10 @@ return [
     "come_drink_tea_descr" => "Do you want to talk further over tea with the creator of the idea? Write them a message here and they will get notified.", // @seratolgay
     "write_comment" => "Yorum Yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
+    "change_status_progress" => "Take this idea into development!", // @seratolgay
+    "change_status_progress_descr" => "Do you want to take this idea into development? This will involve talking with the belediye and other relevant parties to take action.", // @seratolgay
+    "change_status_solved" => "Mark this idea as solved", // @seratolgay
+    "change_status_solved_descr" => "Do you want to mark this idea as 'solved'? This means the idea has been implemented in the neighbourhood.", // @seratolgay
     "created" => "Oluşturuldu", 
     "issue_status_new" => "Fikir Oluşturuldu",  
     "issue_status_supported" => "Fikrin 10'dan fazla destekçisi var",  

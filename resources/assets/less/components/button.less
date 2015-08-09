@@ -144,6 +144,30 @@
       background-color: fade(@greyLight, 75%);
     }
   }
+  &.btn-inprogress {
+    background-color: @purple;
+
+    &:hover {
+      background-color: darken(@purple, 10%);
+      color: @white; 
+    }
+    &:active { background-color: darken(@purple, 15%); }
+    &.isBusy:before {
+      background-color: fade(@purple, 75%);
+    }
+  }
+  &.btn-solved {
+    background-color: @deepGreen;
+
+    &:hover {
+      background-color: darken(@deepGreen, 10%);
+      color: @white; 
+    }
+    &:active { background-color: darken(@deepGreen, 15%); }
+    &.isBusy:before {
+      background-color: fade(@deepGreen, 75%);
+    }
+  }
   &.btn-white {
     background-color: @white;
     color: @muhitBlue;
