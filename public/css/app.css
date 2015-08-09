@@ -5852,7 +5852,12 @@ figure img {
   padding: 200px !important;
 }
 .u-width50 {
+  max-width: 50px !important;
   width: 50px !important;
+}
+.u-width300 {
+  max-width: 300px !important;
+  width: 300px !important;
 }
 .u-relative {
   position: relative;

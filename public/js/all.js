@@ -12626,36 +12626,38 @@ $(document).ready(function() {
 
   // (un)support button interactions
   $('#action_support, #action_unsupport').bind(touchEvent, (function(e) {
-    if ($(this).attr('id') == 'action_support') {
-      $this = $('#action_support');
-      $other = $('#action_unsupport');
-    } else {
-      $this = $('#action_unsupport');
-      $other = $('#action_support');
-    }
+    $(this).addClass('isBusy');
+    $('#loader_mask').removeClass('isVisible');
+    $('main,nav').removeClass('dialogIsOpen');
+    // if ($(this).attr('id') == 'action_support') {
+    //   $this = $('#action_support');
+    //   $other = $('#action_unsupport');
+    // } else {
+    //   $this = $('#action_unsupport');
+    //   $other = $('#action_support');
+    // }
 
-    e.preventDefault();
-    $this.addClass('isBusy');
+    // e.preventDefault();
 
     // 'fake' delay for mockups
-    setTimeout(function() {
+    // setTimeout(function() {
       
-      $('#support_counter').removeClass('isGrowing isSlinking');
-      previous = parseInt($('#support_counter .value').html());
+    //   $('#support_counter').removeClass('isGrowing isSlinking');
+    //   previous = parseInt($('#support_counter .value').html());
 
-      // add support to counter
-      if ($this.attr('id') == 'action_support') {
-        $('#support_counter').addClass('isGrowing');
-        $('#support_counter .value').html(previous+1);
-      } else {
-        $('#support_counter').addClass('isSlinking');
-        $('#support_counter .value').html(previous-1);
-      }
+    //   // add support to counter
+    //   if ($this.attr('id') == 'action_support') {
+    //     $('#support_counter').addClass('isGrowing');
+    //     $('#support_counter .value').html(previous+1);
+    //   } else {
+    //     $('#support_counter').addClass('isSlinking');
+    //     $('#support_counter .value').html(previous-1);
+    //   }
 
-      $this.removeClass('isBusy').addClass('u-hidden');
-      $other.removeClass('u-hidden');
+    //   $this.removeClass('isBusy').addClass('u-hidden');
+    //   $other.removeClass('u-hidden');
 
-    }, 500);
+    // }, 500);
   }));
 
   // login button interaction
