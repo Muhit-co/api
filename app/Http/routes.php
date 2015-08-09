@@ -30,9 +30,7 @@ Route::get('/user/{username}', function() {
 Route::get('/issues/supported', function() {
     return view('issues.supported');
 });
-Route::get('/issues/created', function() {
-    return view('issues.created');
-});
+
 Route::get('/announcements', function() {
     return view('announcements.list');
 });

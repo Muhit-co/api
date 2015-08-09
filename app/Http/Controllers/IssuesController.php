@@ -520,6 +520,44 @@ class IssuesController extends Controller {
     }
 
     /**
+     * get mine issues
+     *
+     * @return json
+     * @author
+     **/
+    public function getCreated($order = 'latest') {
+
+        if (!Auth::check()) {
+            return redirect('/')
+                ->with('error', 'Giriş yapıp tekrar deneyebilirsiniz.');
+        }
+        $user_id = Auth::user()->id;
+
+        $o = 'id';
+        if ($order == 'popular') {
+            $o = 'supporter_count';
+        }
+
+        $issues = Issue::with('user', 'tags', 'images')
+            ->where('user_id', $user_id)
+            ->orderBy($o, 'desc')
+            ->paginate(20);
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order]);
+    }
+
+    /**
      * get issues by status
      *
      * @return json
@@ -684,6 +722,7 @@ class IssuesController extends Controller {
                     'updated_at' => Carbon::now(),
                 ]);
             Redis::incr('user_supported_issue_counter:'.$user_id);
+            DB::table('issues')->where('id', $id)->increment('supporter_count');
             $su_counter = (int) Redis::incr('supporter_counter:'.$id);
         } catch (Exception $e) {
             Log::error('IssuesController/getSupport', (array) $e);
