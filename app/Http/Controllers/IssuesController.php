@@ -558,6 +558,52 @@ class IssuesController extends Controller {
     }
 
     /**
+     * get users supported issues
+     *
+     * @return json
+     * @author
+     **/
+    public function getSupported($order = 'latest') {
+
+        if (!Auth::check()) {
+            return redirect('/')
+                ->with('error', 'Giriş yapıp tekrar deneyebilirsiniz.');
+        }
+
+        $issue_ids = DB::table('issue_supporters')->where('user_id', Auth::user()->id)->lists('issue_id');
+
+        if (empty($issue_ids)) {
+            return redirect('/')
+                ->with('error', 'Henüz hiç bir fikri desteklememişsiniz.');
+        }
+
+        $o = 'id';
+        if ($order == 'popular') {
+            $o = 'supporter_count';
+        }
+
+        $issues = Issue::with('user', 'tags', 'images')
+            ->whereIn('id', $issue_ids)
+            ->orderBy($o, 'desc')
+            ->paginate(20);
+
+        $response = [];
+
+        if ($issues !== null) {
+            $response = $issues->toArray();
+        }
+
+        if ($this->isApi) {
+            return response()->api(200, 'Issues starting with: ' . $start, $response);
+        }
+
+        view()->share('pageTitle', 'Fikir Listesi - ');
+        return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order]);
+    }
+
+
+
+    /**
      * get issues by status
      *
      * @return json

@@ -26,11 +26,6 @@ Route::get('/user/{username}', function() {
     return view('pages.profile');
 });
 
-
-Route::get('/issues/supported', function() {
-    return view('issues.supported');
-});
-
 Route::get('/announcements', function() {
     return view('announcements.list');
 });
