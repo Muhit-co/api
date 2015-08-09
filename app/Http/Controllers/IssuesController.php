@@ -213,22 +213,22 @@ class IssuesController extends Controller {
      **/
     public function getList($hood_id = null) {
 
+
+
+        $issues = Issue::with('user', 'tags', 'images')
+            ->orderBy('id', 'desc');
+
         if (Auth::check()) {
             if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
-                $hood_id = Auth::user()->hood_id;
-            }
-            else {
-                #todo
-                $hood_id = 1;
+                $issues->where('hood_id', $hood_id);
             }
         }
 
-        $issues = Issue::with('user', 'tags', 'images')
-            ->where('hood_id', $hood_id)
-            ->orderBy('id', 'desc')
-            ->paginate(20);
+
+        $issues = $issues->paginate(20);
 
         $response = [];
+
 
         if ($issues !== null) {
             $response = $issues->toArray();
