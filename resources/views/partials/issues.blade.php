@@ -6,7 +6,7 @@
 
             <?php
                 $issue = $issue->toArray();
-                $issue_supporters = (int) Redis::get('issue_counter:'.$issue['id']);
+                $issue_supporters = (int) Redis::get('supporter_counter:'.$issue['id']);
                 $issue_status = getIssueStatus($issue['status'], $issue_supporters);
             ?>
 
@@ -21,7 +21,7 @@
                     </div>
                     <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10">
                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
-                        <strong>{{(int) Redis::get('issue_counter:'.$issue['id'])}}</strong>
+                        <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
                     </div>
                     <strong>{{$issue['title']}}</strong>
                     <p>

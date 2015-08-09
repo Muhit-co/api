@@ -678,7 +678,7 @@ class IssuesController extends Controller {
 
         }
 
-        if ($issue->status != 'new' or (int) Redis::get('issue_counter:'.$issue->id) > 10) {
+        if ($issue->status != 'new' or (int) Redis::get('supporter_counter:'.$issue->id) > 10) {
             if ($this->isApi) {
                 return response()->api(403, 'You are not authorized to delete this issue');
             }

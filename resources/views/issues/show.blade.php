@@ -17,7 +17,7 @@
         <div class="col-md-10 col-md-offset-1">
 
             <?php
-            $issue_supporters = (int) Redis::get('issue_counter:'.$issue['id']);
+            $issue_supporters = (int) Redis::get('supporter_counter:'.$issue['id']);
             $issue_status = getIssueStatus($issue['status'], $issue_supporters);
             ?>
 

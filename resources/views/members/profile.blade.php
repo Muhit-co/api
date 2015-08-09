@@ -73,7 +73,7 @@
                             </div>
                             <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
                                 <i class="ion ion-wrench u-mr5"></i>
-                                <strong>{{(int) Redis::get('issue_counter:'.$issue['id'])}}</strong>
+                                <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
                             </div>
                             <strong>{{$issue['title']}}</strong>
                             <p><span class="date">{{$issue['created_at']}}</span></p>
