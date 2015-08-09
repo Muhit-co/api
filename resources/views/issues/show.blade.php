@@ -188,21 +188,28 @@
                 </div>
                 -->
 
-                <div class="card-footer clearfix">
+                <div class="card-footer u-clearfix">
                     <div class="u-floatright">
-                        <a href="javascript:void(0)" class="btn btn-tertiary u-mr5"><i class="ion ion-alert-circled"></i></a>
                         @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
                             @if($issue_supporters < 10)
                                 <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
                             @else
                                 <span class="hasTooltip">
                                     <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>
-                                    <span class="tooltip tooltip-alignright">
+                                    <span class="tooltip tooltip-alignright u-mr20">
                                         <i class="ion ion-information-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
-                                        <div class="u-ml30">{{ trans('issues.delete_restricted_supporters') }}.</div>
+                                        <div class="u-ml30">{{ trans('issues.delete_restricted_supporters_tooltip') }}.</div>
                                     </span>
                                 </span>
                             @endif
+                        @else
+                            <span class="hasTooltip u-mr10">
+                                <a href="javascript:void(0)" class="btn btn-tertiary"><i class="ion ion-alert-circled"></i></a>
+                                <span class="tooltip tooltip-alignright u-width300 u-mr10">
+                                    <i class="ion ion-alert-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
+                                    <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}.</div>
+                                </span>
+                            </span>
                         @endif
                     </div>
                     <ul class="issue-history title">

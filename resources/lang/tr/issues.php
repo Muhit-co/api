@@ -70,6 +70,7 @@ return [
     "tags" => "Etiketler",
     "images" => "Resimler",
     "submit_anonymously" => "Anonim olarak başvuru yap",
+    "report_issue_tooltip" => "Click here to report this issue for containing inappropriate content", // @seratolgay
     "delete_restricted_supporters" => "Bu fikir 10'dan fazla destekçiye sahip olduğu için silinemiyor",
     "post_new_announcement_cap" => "YENİ DUYURU YAZ", 
     "post_new_announcement" => "Yeni duyuru yaz", 
