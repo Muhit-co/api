@@ -24,6 +24,7 @@ return [
     "solved_ones_cap" => "ÇÖZÜLENLER",
     "contact_info_cap" => "İLETİŞİM BİLGİLERİ",
     "neighbourhood" => "Mahalle",
+    "ideas_for" => "için fikirler",
     "comments_from_muhtar" => "Muhtardan gelen yorumlar",
     "log_in_needed" => "Giriş yapmanız ya da üye olmanız gerekiyor",
     "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor",

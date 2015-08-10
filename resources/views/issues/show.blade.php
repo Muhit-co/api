@@ -6,6 +6,7 @@
         @include('dialogs.come_drink_tea')
         @include('dialogs.change_status_progress')
         @include('dialogs.change_status_solved')
+        @include('dialogs.report')
     @endif
 @stop
 
@@ -192,9 +193,9 @@
                     <div class="u-floatright">
                         @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
                             @if($issue_supporters < 10)
-                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored u-ml10" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
                             @else
-                                <span class="hasTooltip">
+                                <span class="hasTooltip u-ml10">
                                     <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>
                                     <span class="tooltip tooltip-alignright u-mr20">
                                         <i class="ion ion-information-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
@@ -203,9 +204,9 @@
                                 </span>
                             @endif
                         @else
-                            <span class="hasTooltip u-mr10">
-                                <a href="javascript:void(0)" class="btn btn-tertiary"><i class="ion ion-alert-circled"></i></a>
-                                <span class="tooltip tooltip-alignright u-width300 u-mr10">
+                            <span class="hasTooltip u-ml10">
+                                <a href="javascript:void(0)" data-dialog="dialog_report" class="btn btn-tertiary"><i class="ion ion-alert-circled"></i></a>
+                                <span class="tooltip tooltip-alignright u-width300 u-mr5">
                                     <i class="ion ion-alert-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
                                     <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}.</div>
                                 </span>

@@ -25,7 +25,7 @@
                             <input type="hidden" id="redir" value="list">
                         @endif
                     </div>
-                    <div class="u-floatleft u-mt5"><span class="extended">icin fikirler</span></div>
+                    <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
                     <br />
                 </h2>
 
