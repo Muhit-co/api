@@ -50,7 +50,7 @@ return [
     "come_drink_tea_descr" => "Bu fikri oluşturan kişi ile sorunu konuşmak için çay içmek ister misiniz? Buraya yazdığınız mesaj fikri oluşturan kişiye iletilecektir.",
     "write_comment" => "Yorum Yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
-    "change_status_progress" => "Fikri çözüm aşamasına geçir!"
+    "change_status_progress" => "Fikri çözüm aşamasına geçir!",
     "change_status_progress_descr" => "Bu fikri çözüm aşamasına geçirmek mi istiyorsunuz? Çözümün uygulanması için ilgili belediye kurumları ya da müdürlükler ile iletişime geçmeniz gerekebilir.",
     "change_status_solved" => "Fikri 'Çözüldü' olarak değiştir",
     "change_status_solved_descr" => "Bu fikrin statüsünü 'çözüldü' olarak değiştirmek mi istiyorsunuz? 'Çözüldü' statüsü fikrin mahallede uygulandığını gösterir.",
