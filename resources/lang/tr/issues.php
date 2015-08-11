@@ -47,20 +47,20 @@ return [
     "problems_and_recommendations" => "Sorunlar ve öneriler",
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
-    "come_drink_tea_descr" => "Do you want to talk further over tea with the creator of the idea? Write them a message here and they will get notified.", // @seratolgay
+    "come_drink_tea_descr" => "Bu fikri oluşturan kişi ile sorunu konuşmak için çay içmek ister misiniz? Buraya yazdığınız mesaj fikri oluşturan kişiye iletilecektir.",
     "write_comment" => "Yorum Yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
-    "change_status_progress" => "Take this idea into development!", // @seratolgay
-    "change_status_progress_descr" => "Do you want to take this idea into development? This will involve talking with the belediye and other relevant parties to take action.", // @seratolgay
-    "change_status_solved" => "Mark this idea as solved", // @seratolgay
-    "change_status_solved_descr" => "Do you want to mark this idea as 'solved'? This means the idea has been implemented in the neighbourhood.", // @seratolgay
+    "change_status_progress" => "Fikri çözüm aşamasına geçir!"
+    "change_status_progress_descr" => "Bu fikri çözüm aşamasına geçirmek mi istiyorsunuz? Çözümün uygulanması için ilgili belediye kurumları ya da müdürlükler ile iletişime geçmeniz gerekebilir.",
+    "change_status_solved" => "Fikri 'Çözüldü' olarak değiştir",
+    "change_status_solved_descr" => "Bu fikrin statüsünü 'çözüldü' olarak değiştirmek mi istiyorsunuz? 'Çözüldü' statüsü fikrin mahallede uygulandığını gösterir.",
     "created" => "Oluşturuldu", 
     "issue_status_new" => "Fikir Oluşturuldu",  
     "issue_status_supported" => "Fikrin 10'dan fazla destekçisi var",  
     "issue_status_inprogress" => "Fikir statüsü 'gelişmekte' olarak değişti",  
     "issue_status_solved" => "Fikir çözüldü",  
     "problems_or_suggestions" => "Sorunlarını ve önerilerini bizimle paylaş",  
-    "experience_problems_report_well_get_back_to_you" => "Site ile ilgili teknik bir problemin ya da bir önerin mi var? Bize yaz, sana en kısa zamanda geri döneceğiz.", 
+    "experience_problems_report_well_get_back_to_you" => "Teknik bir problemin ya da bir önerin mi var? Bize yaz, sana en kısa zamanda geri döneceğiz.", 
     "title" => "Başlık",
     "your_idea_title" => "Fikrini bir cümlede özetle", 
     "problem" => "Sorun", 
@@ -71,7 +71,7 @@ return [
     "tags" => "Etiketler",
     "images" => "Resimler",
     "submit_anonymously" => "Anonim olarak başvuru yap",
-    "report_issue_tooltip" => "Click here to report this issue for containing inappropriate content", // @seratolgay
+    "report_issue_tooltip" => "Bu fikrin uygun olmayan bir içeriği mi var? Bize rapor et.",
     "delete_restricted_supporters" => "Bu fikir 10'dan fazla destekçiye sahip olduğu için silinemiyor",
     "post_new_announcement_cap" => "YENİ DUYURU YAZ", 
     "post_new_announcement" => "Yeni duyuru yaz", 
@@ -81,6 +81,6 @@ return [
     "terms_and_conditions" => "Kullanım koşulları",
     "about_muhit" => "Muhit hakkında",
     "contact" => "İletişim",
-    "placeholder_yourmessage" => "Write your message here...", // @seratolgay
+    "placeholder_yourmessage" => "Mesajını buraya yaz...",
     "our_manifesto" => "Manifestomuz",
 ];
