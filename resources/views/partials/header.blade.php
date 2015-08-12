@@ -68,7 +68,7 @@
                 @if(Auth::check() and isset(Auth::user()->hood_id) and Auth::user()->hood_id > 0)
                     <!-- use profile home location -->
                     <div class="u-floatleft u-mr10">
-                        <a href="/issues/list/{{Auth::user()->hood_id}}"   class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
+                        <a href="/fikirler/{{Auth::user()->hood_id}}"   class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
                     </div>
                 @endif
 
@@ -91,12 +91,12 @@
                 <!-- Sorting tabs for issue list -->
                 <ul class="tabs">
                     <li>
-                        <a href="/?sort=latest" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
+                        <a href="/{{Request::path()}}?sort=latest" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="/?sort=popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
+                        <a href="/{{Request::path()}}?sort=popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
                             POPÜLER
                         </a>
                     </li>
