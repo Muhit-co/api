@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-@include('partials.header', ['redir' => 'list', 'hood' => $hood]);
+@include('partials.header', ['redir' => 'list', 'hood' => $hood])
 
 <section class="tabsection" id="latest">
     <div class="row">

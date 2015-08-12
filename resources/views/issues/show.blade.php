@@ -163,10 +163,12 @@
                         </div>
                     </div>
 
-                    <div class="problem">
+                    <div class="problem u-mb20">
+                        <h4 class="c-light">{{ trans('issues.problem') }}</h4>
                         <p>{{$issue['problem']}}</p>
                     </div>
-                    <div class="solution">
+                    <div class="solution u-mb5">
+                        <h4 class="c-light">{{ trans('issues.solution') }}</h4>
                         <p>{{$issue['solution']}}</p>
                     </div>
                 </div>
