@@ -65,10 +65,12 @@
                     <label for="current_location" class="btn btn-whiteoutline"><i class="ion ion-android-locate ion-15x"></i></label>
                 </div>
 
-                <!-- use profile home location -->
-                <div class="u-floatleft u-mr10">
-                    <a href="javascript:void(0)" id="home_location" data-val="Firuzağa Mahallesi, Beyoğlu, İstanbul" class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
-                </div>
+                @if(Auth::check() and isset(Auth::user()->hood_id) and Auth::user()->hood_id > 0)
+                    <!-- use profile home location -->
+                    <div class="u-floatleft u-mr10">
+                        <a href="/issues/list/{{Auth::user()->hood_id}}"   class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
+                    </div>
+                @endif
 
                 <!-- search issues -->
                 <!-- <div class="form-group form-fullwidth">
