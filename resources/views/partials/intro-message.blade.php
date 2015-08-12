@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="row u-aligncenter u-pv10">
-                <a href="/hikaye/hakkımızda" class="btn btn-sm btn-whiteoutline">{{ trans('auth.learn_more_cap') }}</a>
+                <a href="http://hikaye.muhit.co" class="btn btn-sm btn-whiteoutline">{{ trans('auth.learn_more_cap') }}</a>
             </div>
 
         </div>
