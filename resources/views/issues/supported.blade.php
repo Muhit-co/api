@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/issues/supported/popular" <?php echo (($order == 'popular') ? 'class="active"' : ''); ?>>
+                    <a href="/issues/supported?sort=popular" <?php echo (($order == 'popular') ? 'class="active"' : ''); ?>>
                         POPÜLER
                     </a>
                 </li>

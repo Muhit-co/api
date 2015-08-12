@@ -91,12 +91,12 @@
                 <!-- Sorting tabs for issue list -->
                 <ul class="tabs">
                     <li>
-                        <a href="/" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
+                        <a href="/?sort=latest" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="/popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
+                        <a href="/?sort=popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
                             POPÜLER
                         </a>
                     </li>

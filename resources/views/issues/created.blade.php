@@ -14,12 +14,12 @@
             <!-- Sorting tabs for issue list -->
             <ul class="tabs">
                 <li>
-                     <a href="/issues/created"  <?php echo (($order == 'latest') ? 'class="active"' : ''); ?>>
+                     <a href="/issues/created?sort=latest"  <?php echo (($order == 'latest') ? 'class="active"' : ''); ?>>
                         EN SON
                     </a>
                 </li>
                 <li>
-                    <a href="/issues/created/popular" <?php echo (($order == 'popular') ? 'class="active"' : ''); ?>>
+                    <a href="/issues/created?sort=popular" <?php echo (($order == 'popular') ? 'class="active"' : ''); ?>>
                         POPÜLER
                     </a>
                 </li>

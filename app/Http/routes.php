@@ -11,7 +11,7 @@
 |
  */
 
-Route::get('/', 'IssuesController@getList');
+Route::get('/', 'IssuesController@getIssues');
 
 #testing routes for dann;
 Route::get('/issue', function() {
@@ -88,7 +88,7 @@ Route::get('profile/{id}', 'MembersController@getProfile');
 
 #issue routing
 Route::controller('issues', 'IssuesController');
-Route::get('issues', 'IssuesController@getList');
+Route::get('issues', 'IssuesController@getIssues');
 
 Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
 

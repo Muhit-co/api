@@ -251,18 +251,34 @@ class IssuesController extends Controller {
      * @return view
      * @author Me
      */
-    public function getIssues()
+    public function getIssues($hood_id = null)
     {
         $issues = Issue::with('user', 'tags', 'images');
 
         $hood = null;
 
-        if (Request::has('location')) {
-            $hood = Hood::fromLocation(Request::get('location'));
-            if (isset($hood) and isset($hood->id)) {
-                $issues->where('hood_id', $hood->id);
+        if (!empty($hood_id)) {
+           $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
+        }
+
+
+        if (empty($hood)) {
+          if (Request::has('location')) {
+                $hood = Hood::fromLocation(Request::get('location'));
+                if (isset($hood) and isset($hood->id)) {
+                    $issues->where('hood_id', $hood->id);
+                }
+            }
+            else {
+                if (Auth::check()) {
+                    if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
+                        $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
+                        $issues->where('hood_id', $hood_id);
+                    }
+                }
             }
         }
+
 
         $o1 = 'id';
         $o2 = 'desc';
@@ -531,7 +547,7 @@ class IssuesController extends Controller {
      * @return json
      * @author
      **/
-    public function getCreated($order = 'latest') {
+    public function getCreated() {
 
         $hood = null;
 
@@ -541,17 +557,25 @@ class IssuesController extends Controller {
         }
         $user_id = Auth::user()->id;
 
-        $o = 'id';
-        if ($order == 'popular') {
-            $o = 'supporter_count';
+        $issues = Issue::with('user', 'tags', 'images')
+            ->where('user_id', $user_id);
+
+        $o1 = 'id';
+        $o2 = 'desc';
+        $order = 'latest';
+        if (Request::has('sort')) {
+            $sort = Request::get('sort');
+            if ($sort == 'popular') {
+                $o1 = 'supporter_count';
+                $order = 'popular';
+            }
         }
 
-        $issues = Issue::with('user', 'tags', 'images')
-            ->where('user_id', $user_id)
-            ->orderBy($o, 'desc')
-            ->paginate(20);
+        $issues->orderBy($o1, $o2);
 
         $response = [];
+
+        $issues = $issues->paginate(20);
 
         if ($issues !== null) {
             $response = $issues->toArray();
@@ -593,9 +617,22 @@ class IssuesController extends Controller {
         }
 
         $issues = Issue::with('user', 'tags', 'images')
-            ->whereIn('id', $issue_ids)
-            ->orderBy($o, 'desc')
-            ->paginate(20);
+            ->whereIn('id', $issue_ids);
+
+        $o1 = 'id';
+        $o2 = 'desc';
+        $order = 'latest';
+        if (Request::has('sort')) {
+            $sort = Request::get('sort');
+            if ($sort == 'popular') {
+                $o1 = 'supporter_count';
+                $order = 'popular';
+            }
+        }
+
+        $issues->orderBy($o1, $o2);
+
+        $issues = $issues->paginate(20);
 
         $response = [];
 
