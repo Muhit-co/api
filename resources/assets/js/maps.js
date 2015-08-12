@@ -188,6 +188,22 @@ $(document).ready(function(){
                     $("#location_string").val(hood+", "+district+", "+city);
                     $("#location_string").closest('.form-group').attr('data-form-state','is-current');
 
+                    //do we need to do something? 
+                    if ($("#redir").size() > 0) {
+                        var redir = $("#redir").val();
+                        var loca = hood+", "+district+", "+city
+                        if (redir == 'list') {
+                            $.ajax({
+                                url: '/fikirler',
+                                method: 'post',
+                                data: 'location='+loca,
+                                success: function(r){
+                                    $("#issueListContainer").html(r);
+                                }
+                            });
+                        }
+                    }
+
                 } else {
                     $("#hood").val('');
                     $("#district").hide();
