@@ -8,7 +8,7 @@ if(isset($role)):
         $menu_items = array(
             array(
                 'name' => trans('issues.all_cap'),
-                'uri' => '/',
+                'uri' => '/fikirler/all',
                 'icon' => 'ion-android-home'
             ),
             array(
@@ -39,7 +39,7 @@ if(isset($role)):
         $menu_items = array(
             array(
                 'name' => trans('issues.all_cap'),
-                'uri' => '/',
+                'uri' => '/fikirler/all',
                 'icon' => 'ion-android-home'
             ),
             array(
@@ -70,7 +70,7 @@ if(isset($role)):
         $menu_items = array(
             array(
                 'name' => trans('issues.ideas_cap'),
-                'uri' => '/',
+                'uri' => '/fikirler/all',
                 'icon' => 'ion-lightbulb'
             ),
             array(

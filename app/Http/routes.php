@@ -51,8 +51,8 @@ Route::get('/email/{page}', function($page) {
 
 
 #issues
-Route::get('fikirler', 'IssuesController@getIssues');
-Route::post('fikirler', 'IssuesController@getIssues');
+Route::get('fikirler/{hood_id?}', 'IssuesController@getIssues');
+Route::post('fikirler/{hood_id?}', 'IssuesController@getIssues');
 
 # auth routing
 Route::get('login', 'AuthController@getLogin');

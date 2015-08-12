@@ -206,43 +206,6 @@ class IssuesController extends Controller {
         return response()->app(200, 'issues.new', ['tags' => $tags]);
     }
 
-    /**
-     * list issues
-     *
-     * @return json
-     * @author
-     **/
-    public function getList($hood_id = null) {
-
-        $hood = null;
-
-        $issues = Issue::with('user', 'tags', 'images')
-            ->orderBy('id', 'desc');
-
-        if (Auth::check()) {
-            if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
-                $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
-                $issues->where('hood_id', $hood_id);
-            }
-        }
-
-
-        $issues = $issues->paginate(20);
-
-        $response = [];
-
-
-        if ($issues !== null) {
-            $response = $issues->toArray();
-        }
-
-        if ($this->isApi) {
-            return response()->api(200, 'Issues ', $response);
-        }
-
-        view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'latest', 'hood' => $hood]);
-    }
 
 
     /**
@@ -257,27 +220,31 @@ class IssuesController extends Controller {
 
         $hood = null;
 
-        if (!empty($hood_id)) {
-           $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
-        }
-
-
-        if (empty($hood)) {
-          if (Request::has('location')) {
-                $hood = Hood::fromLocation(Request::get('location'));
-                if (isset($hood) and isset($hood->id)) {
-                    $issues->where('hood_id', $hood->id);
-                }
+        if ($hood_id != 'all') {
+            if (!empty($hood_id)) {
+                $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
             }
-            else {
-                if (Auth::check()) {
-                    if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
-                        $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
-                        $issues->where('hood_id', $hood_id);
+
+
+            if (empty($hood)) {
+                if (Request::has('location')) {
+                    $hood = Hood::fromLocation(Request::get('location'));
+                    if (isset($hood) and isset($hood->id)) {
+                        $issues->where('hood_id', $hood->id);
+                    }
+                }
+                else {
+                    if (Auth::check()) {
+                        if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
+                            $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
+                            $issues->where('hood_id', $hood_id);
+                        }
                     }
                 }
             }
         }
+
+
 
 
         $o1 = 'id';
@@ -364,41 +331,6 @@ class IssuesController extends Controller {
         return response()->app(200, 'issues.show', ['issue' => $issue->toArray()]);
     }
 
-    /**
-     * get popular issues via paginate
-     *
-     * @return json
-     * @author
-     **/
-    public function getPopular($hood_id = null) {
-        $hood = null;
-        $issues = Issue::with('user', 'tags', 'images')
-            ->orderBy('supporter_count', 'desc')
-            ->paginate(20);
-
-        $response = [];
-
-        if ($issues !== null) {
-            $response = $issues->toArray();
-        }
-
-        if ($this->isApi) {
-            return response()->api(200, 'Issues', $response);
-        }
-
-        view()->share('pageTitle', 'Popüler Fikirler - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'popular', 'hood' => $hood]);
-    }
-
-    /**
-     * get latest issues via paginate
-     *
-     * @return json
-     * @author
-     **/
-    public function getLatest($start = 0, $take = 20) {
-
-    }
 
     /**
      * get issues via tag
@@ -428,118 +360,7 @@ class IssuesController extends Controller {
         return response()->app(200, 'issues.list', ['issues' => $response, 'hood' => $hood]);
     }
 
-    /**
-     * get issues by hood
-     *
-     * @return json
-     * @author
-     **/
-    public function getByHood($hood_id = null, $start = 0, $take = 20) {
-        $issues = Issue::with('user', 'tags', 'images')
-            ->where('hood_id', $hood_id)
-            ->orderBy('id', 'desc')
-            ->skip($start)
-            ->take($take)
-            ->get();
 
-        $response = [];
-
-        if ($issues !== null) {
-            $response = $issues->toArray();
-        }
-
-        if ($this->isApi) {
-            return response()->api(200, 'Issues starting with: ' . $start, $response);
-        }
-
-        view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $response]);
-    }
-
-    /**
-     * get issues by district
-     *
-     * @return json
-     * @author
-     **/
-    public function getByDistrict($district_id = null, $start = 0, $take = 20) {
-        $issues = Issue::with('user', 'tags', 'images')
-            ->where('district_id', $district_id)
-            ->orderBy('id', 'desc')
-            ->skip($start)
-            ->take($take)
-            ->get();
-
-        $response = [];
-
-        if ($issues !== null) {
-            $response = $issues->toArray();
-        }
-
-        if ($this->isApi) {
-            return response()->api(200, 'Issues starting with: ' . $start, $response);
-        }
-
-        view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $response]);
-    }
-
-    /**
-     * get issues by city
-     *
-     * @return json
-     * @author
-     **/
-    public function getByCity($city_id = null, $start = 0, $take = 20) {
-        $issues = Issue::with('user', 'tags', 'images')
-            ->where('city_id', $city_id)
-            ->orderBy('id', 'desc')
-            ->skip($start)
-            ->take($take)
-            ->get();
-
-        $response = [];
-
-        if ($issues !== null) {
-            $response = $issues->toArray();
-        }
-
-        if ($this->isApi) {
-            return response()->api(200, 'Issues starting with: ' . $start, $response);
-        }
-
-        view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $response]);
-    }
-
-    /**
-     * get issues by user
-     *
-     * @return json
-     * @author
-     **/
-    public function getByUser($user_id = null, $start = 0, $take = 20) {
-
-        $issues = Issue::with('user', 'tags', 'images')
-            ->where('user_id', $user_id)
-            ->orderBy('id', 'desc')
-            ->skip($start)
-            ->take($take)
-            ->get();
-
-        $response = [];
-
-        if ($issues !== null) {
-            $response = $issues->toArray();
-        }
-
-        if ($this->isApi) {
-            return response()->api(200, 'Issues starting with: ' . $start, $response);
-        }
-
-        view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $response]);
-    }
 
     /**
      * get mine issues
@@ -650,23 +471,6 @@ class IssuesController extends Controller {
 
 
 
-    /**
-     * get issues by status
-     *
-     * @return json
-     * @author
-     **/
-    public function getByStatus($status = null, $start = 0, $take = 20) {
-    }
-
-    /**
-     * get issues by sporter id
-     *
-     * @return json
-     * @author
-     **/
-    public function getBySupporter($user_id = null, $start = 0, $take = 20) {
-    }
 
     /**
      * deletes an issue
