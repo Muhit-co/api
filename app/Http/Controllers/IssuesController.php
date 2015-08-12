@@ -6,6 +6,7 @@ use DB;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\Issue;
 use Muhit\Models\IssueSupporter;
+use Muhit\Models\IssueReport;
 use Muhit\Models\City;
 use Muhit\Models\District;
 use Muhit\Models\Hood;
@@ -254,6 +255,8 @@ class IssuesController extends Controller {
     {
         $issues = Issue::with('user', 'tags', 'images');
 
+        $hood = null;
+
         if (Request::has('location')) {
             $hood = Hood::fromLocation(Request::get('location'));
             if (isset($hood) and isset($hood->id)) {
@@ -275,7 +278,7 @@ class IssuesController extends Controller {
 
 
         if (Request::ajax()) {
-            return view('partials.issues', ['issues' => $issues->paginate(20)]);
+            return view('partials.issues', ['issues' => $issues->paginate(20), 'hood' => $hood]);
         }
 
         if ($this->isApi) {
@@ -283,7 +286,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20)]);
+        return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'hood' => $hood]);
 
     }
 
@@ -295,6 +298,7 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getMap($hood_id = null) {
+        $hood = null;
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
             ->paginate(20);
@@ -310,7 +314,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Haritesi - ');
-        return response()->app(200, 'issues.map', ['issues' => $issues, 'active_tab' => 'map']);
+        return response()->app(200, 'issues.map', ['issues' => $issues, 'active_tab' => 'map', 'hood' => $hood]);
     }
     /**
      * search issues
@@ -351,6 +355,7 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getPopular($hood_id = null) {
+        $hood = null;
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('supporter_count', 'desc')
             ->paginate(20);
@@ -366,7 +371,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Popüler Fikirler - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'popular']);
+        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'popular', 'hood' => $hood]);
     }
 
     /**
@@ -386,7 +391,7 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getByTag($tag_id = null, $start = 0, $take = 20) {
-
+        $hood = null;
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc')
             ->skip($start)
@@ -404,7 +409,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $response]);
+        return response()->app(200, 'issues.list', ['issues' => $response, 'hood' => $hood]);
     }
 
     /**
@@ -528,6 +533,8 @@ class IssuesController extends Controller {
      **/
     public function getCreated($order = 'latest') {
 
+        $hood = null;
+
         if (!Auth::check()) {
             return redirect('/')
                 ->with('error', 'Giriş yapıp tekrar deneyebilirsiniz.');
@@ -555,7 +562,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order]);
+        return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order, 'hood' => $hood]);
     }
 
     /**
@@ -565,6 +572,8 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getSupported($order = 'latest') {
+
+        $hood = null;
 
         if (!Auth::check()) {
             return redirect('/')
@@ -599,7 +608,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order]);
+        return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order, 'hood' => $hood]);
     }
 
 
@@ -906,5 +915,44 @@ class IssuesController extends Controller {
 
         return response()->app(200, 'issues.supporters', ['users' => $users]);
 
+    }
+
+    /**
+     * submits a report for an issue
+     *
+     * @return redirect
+     * @author Me
+     */
+    public function postReport()
+    {
+
+        if (!Auth::check()) {
+            return redirect('/login')
+             ->with('error', 'Lütfen giriş yapıp tekrar deneyin.');
+        }
+
+        if (!Request::has('issue_id') or !Request::has('feedback')) {
+            return redirect('/')
+                ->with('error', 'Lütfen feedback girip tekrar deneyin.');
+        }
+
+        $data = Request::all();
+
+        $r = new IssueReport;
+
+        $r->issue_id = $data['issue_id'];
+        $r->user_id = Auth::user()->id;
+        $r->feedback = $data['feedback'];
+
+        try {
+            $r->save();
+        } catch (Exception $e) {
+            Log::error('IssuesController/postReport', (array) $e);
+            return redirect('/issues/view/'.$data['issue_id'])
+                ->with('error', 'Geribildiriminizi kaydederken teknik bir hata meydana geldi. Geliştirici ekibimiz konu hakkında uyarıldı.');
+        }
+
+        return redirect('/issues/view/'.$data['issue_id'])
+            ->with('success', 'Geri bildiriminiz için teşekkürler.');
     }
 }

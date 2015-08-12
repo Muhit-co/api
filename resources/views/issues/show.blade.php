@@ -6,7 +6,7 @@
         @include('dialogs.come_drink_tea')
         @include('dialogs.change_status_progress')
         @include('dialogs.change_status_solved')
-        @include('dialogs.report')
+        @include('dialogs.report', ['issue_id' => $issue['id']])
     @endif
 @stop
 
