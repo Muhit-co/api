@@ -213,13 +213,14 @@ class IssuesController extends Controller {
      **/
     public function getList($hood_id = null) {
 
-
+        $hood = null;
 
         $issues = Issue::with('user', 'tags', 'images')
             ->orderBy('id', 'desc');
 
         if (Auth::check()) {
             if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
+                $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
                 $issues->where('hood_id', $hood_id);
             }
         }
@@ -239,7 +240,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
-        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'latest']);
+        return response()->app(200, 'issues.list', ['issues' => $issues, 'active_tab' => 'latest', 'hood' => $hood]);
     }
 
 

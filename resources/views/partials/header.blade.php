@@ -18,7 +18,7 @@
                             <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
                         </div>
-                        <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="Erenköy" />
+                        <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="{{$hood->name or ''}}" />
                         <input id="location_string" name="location" class="u-hidden" value="" />
 
                         @if(isset($redir) and $redir == 'list')
@@ -38,12 +38,21 @@
 
                 <h3 id="district" class="u-floatleft u-ml50 u-mb20">
 
-                    <span class="text">Kadıköy, İstanbul</span>
+                    <span class="text">
+                        @if(isset($hood) and isset($hood->district))
+                            {{$hood->district->name}},
+                        @endif
+                        @if(isset($hood) and isset($hood->district) and isset($hood->district->city))
+                            {{$hood->district->city->name}}
+                        @endif
+                    </span>
 
+                    @if(isset($hood) and isset($hood->district))
                     <a href="/report" class="btn btn-sm btn-whiteoutline u-ml15 u-has-hidden-content">
                         <i class="ion ion-clipboard"></i>
                         <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
                     </a>
+                    @endif
 
                 </h3>
 
