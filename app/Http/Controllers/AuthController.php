@@ -59,13 +59,20 @@ class AuthController extends Controller {
     public function postRegister() {
         $data = Request::all();
 
+        $required_fields = ['email', 'first_name', 'last_name', 'password'];
+
         if ($this->isApi) {
-            $required_fields = ['email', 'first_name', 'last_name', 'password', 'client_id', 'client_secret'];
-            foreach ($required_fields as $key) {
-                if (!isset($data[$key]) or empty($data[$key])) {
+            $required_fields[] = 'client_id';
+            $required_fields[] = 'client_secret';
+        }
+
+        foreach ($required_fields as $key) {
+            if (!isset($data[$key]) or empty($data[$key])) {
+                if ($this->isApi) {
                     return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
                 }
-
+                return redirect('/register')
+                    ->with('error', 'Lütfen formu doldurup tekrar deneyin.');
             }
         }
 
@@ -165,7 +172,7 @@ class AuthController extends Controller {
             return response()->api(200, 'Registered and logged in. ', ['user' => $user, 'oauth2' => $token]);
         }
 
-       return redirect('/')->with('success', 'Hoşgeldin, '.$user->first_name);
+        return redirect('/')->with('success', 'Hoşgeldin, '.$user->first_name);
 
     }
 
