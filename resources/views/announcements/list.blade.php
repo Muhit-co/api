@@ -1,9 +1,6 @@
 @extends('layouts.default')
 
-<?php
-// @gcg $role is apparently not defined in this view, but it should be. Temporarily manually defined:
-$role = 'admin'
-?>
+{{$role}}
 
 @section('dialogs')
     @if($role =='admin')
@@ -19,7 +16,7 @@ $role = 'admin'
         <div class="col-md-6 col-sm-7 col-md-offset-1 u-mb10">
             @if($role =='admin')
                 <h2>{{ trans('issues.my_announcements') }}</h2>
-                <h4 class="u-opacity50">[Mahalle name], [Ilçe name]</h4>
+                <h4 class="u-opacity50">[{{$hood->name}}], [{{$hood->district->name}}]</h4>
             @endif
         </div>
         <div class="col-md-4 col-sm-5">
@@ -29,10 +26,10 @@ $role = 'admin'
                     {{ trans('issues.post_new_announcement_cap') }}
                 </a>
             @else
-                <a href="/user-edit" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
+                <a href="/members/edit-profile" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
                     <i class="ion ion-edit"></i>
                 </a>
-                <p class="c-white u-nowrap"><strong>Erenköy, Kadıköy</strong> <span class="u-ml10">İstanbul</span></p>
+                <p class="c-white u-nowrap"><strong>{{$hood->name}}, {{$hood->district->name}}</strong> <span class="u-ml10">{{$hood->district->city->name}}</span></p>
             @endif
         </div>
     </div>
@@ -43,41 +40,45 @@ $role = 'admin'
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
-            <div class="card u-mv20" id="announcement_id"> <!-- id = announement id (for permalink) -->
-                <div class="card-header">
+            @foreach($announcements as $a)
 
-                    <div class="row row-nopadding">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="u-floatright u-ml10">
-                                <span class="date c-medium"><?php echo date('j M Y', strtotime(time())) ?></span>
-                            </div>
-                            <h3 class="u-nowrap">Announcement title</h3>
-                        </div>
-                    </div>
+                <div class="card u-mv20" id="{{$a->id}}"> <!-- id = announement id (for permalink) -->
+                    <div class="card-header">
 
-                </div>
-                <div class="card-content">
-
-                    <div class="row row-nopadding">
-                        <div class="col-md-10 col-md-offset-1">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
-                            <a href="/muhtar" class="u-inlineblock u-clearfix u-mt10">
-                                <div class="badge badge-circle badge-small u-floatleft u-mr10">
-                                    <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/profile.png" alt="" />
+                        <div class="row row-nopadding">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="u-floatright u-ml10">
+                                    <span class="date c-medium"><?php echo date('j M Y', strtotime($a->created_at)); ?></span>
                                 </div>
-                                <strong class="username u-floatleft u-mt5 u-mr20">
-                                    Sayim Çavuş
-                                </strong>
-                                <span class="u-floatleft u-mt5 c-light">
-                                    Erenköy Mahallesi
-                                </span>
-                            </a>
+                                <h3 class="u-nowrap">{{$a->title}}</h3>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row row-nopadding">
+                            <div class="col-md-10 col-md-offset-1">
+                                <p>{{$a->content}}</p>
+
+                                <a href="/muhtar" class="u-inlineblock u-clearfix u-mt10">
+                                    <div class="badge badge-circle badge-small u-floatleft u-mr10">
+                                        <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$a->user->picture}}" alt="" />
+                                    </div>
+                                    <strong class="username u-floatleft u-mt5 u-mr20">
+                                        {{$a->user->first_name}} {{$a->user->last_name}}
+                                    </strong>
+                                    <span class="u-floatleft u-mt5 c-light">
+                                        {{$hood->name}}
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+
+            @endforeach
 
         </div>
     </div>
