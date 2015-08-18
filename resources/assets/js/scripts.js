@@ -120,7 +120,7 @@ $(document).ready(function() {
 
   // (un)support button interactions
   $('#action_support, #action_unsupport').bind(touchEvent, (function(e) {
-    $(this).addClass('isBusy');
+    addIsBusy($(this));
     $('#loader_mask').removeClass('isVisible');
     $('main,nav').removeClass('dialogIsOpen');
     // if ($(this).attr('id') == 'action_support') {
@@ -156,7 +156,7 @@ $(document).ready(function() {
 
   // login button interaction
   $('.login, #dialog_report, #dialog_new_announcement').find('button[type="submit"]').bind(touchEvent, (function(e) {
-    $(this).addClass('isBusy');
+    addIsBusy($(this));
   }));
 
   // toggles dialog close on Esc key
@@ -342,8 +342,19 @@ function checkImageCount() {
 
 // adds isBusy class to button
 function addIsBusy(obj) {
-  if(typeof obj != 'undefined' && obj.hasClass('btn')) {
-    obj.addClass('isBusy');
+  if(typeof obj != 'undefined') {
+    $validated = true;
+    // obj.closest('form').find('input[required]').each(function(i) {
+    //   if($(this).val().length > 0) {
+    //     $validated = true;
+    //   } else {
+    //     $validated = false;
+    //   }
+    //   console.log(i + ' - ' + $validated);
+    // });
+    if(obj.hasClass('btn') && $validated == true) {
+      obj.addClass('isBusy');
+    }
   }
 }
 

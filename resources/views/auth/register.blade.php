@@ -11,29 +11,29 @@
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.first_name') }}</label>
-                    <input type="text" class="form-input" value="" name="first_name" placeholder="{{ trans('auth.first_name_placeholder') }}" />
+                    <input type="text" class="form-input" value="" name="first_name" placeholder="{{ trans('auth.first_name_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.last_name') }}</label>
-                    <input type="text" class="form-input" value="" name="last_name" placeholder="{{ trans('auth.last_name_placeholder') }}" />
+                    <input type="text" class="form-input" value="" name="last_name" placeholder="{{ trans('auth.last_name_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.email_address') }}</label>
-                    <input type="text" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" />
+                    <input type="text" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.password') }}</label>
-                    <input type="password" class="form-input" value="" name="password" placeholder="{{ trans('auth.password_placeholder') }}" />
+                    <input type="password" class="form-input" value="" name="password" placeholder="{{ trans('auth.password_placeholder') }}" required />
                 </div>
 
                 <label>{{ trans('auth.neighbourhood') }}</label>
                 @include('partials.field-hood')
 
                 <div class="form-group form-fullwidth u-mt30 u-mb20">
-                    <input id="termsagree" type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" />
+                    <input id="termsagree" type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" required />
                     <label for="termsagree">
                         {!! trans('auth.agree_with_terms', ['tagstart' => '<a href="javascript:void(0)">', 'tagend' => '</a>']) !!}
                     </label>
