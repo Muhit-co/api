@@ -223,6 +223,7 @@ class IssuesController extends Controller {
         if ($hood_id != 'all') {
             if (!empty($hood_id)) {
                 $hood = Hood::with('district.city')->find(Auth::user()->hood_id);
+                $issues->where('hood_id', $hood->id);
             }
 
 
