@@ -26,9 +26,7 @@ Route::get('/user/{username}', function() {
     return view('pages.profile');
 });
 
-Route::get('/announcements', function() {
-    return view('announcements.list');
-});
+
 Route::get('/muhtar', function() {
     return view('pages.muhtar');
 });
@@ -81,6 +79,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('profile', 'MembersController@getMyProfile');
     Route::get('support/{id}', 'IssuesController@getSupport');
     Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
+    Route::get('duyurular', 'AnnouncementsController@getList');
 
 });
 

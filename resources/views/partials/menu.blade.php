@@ -23,7 +23,7 @@ if(isset($role)):
             ),
             array(
                 'name' => trans('issues.announcements_cap'),
-                'uri' => '/announcements',
+                'uri' => '/duyurular',
                 'icon' => 'ion-speakerphone'
             ),
             array(
@@ -54,7 +54,7 @@ if(isset($role)):
             ),
             array(
                 'name' => trans('issues.my_announcements_cap'),
-                'uri' => '/announcements',
+                'uri' => '/duyurular',
                 'icon' => 'ion-speakerphone'
             ),
             array(
