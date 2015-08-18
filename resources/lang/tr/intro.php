@@ -10,5 +10,5 @@ return [
     "usp3_title" => "Mahallenden Haberdar Ol",
     "usp3_text" => "Muhtardan ve belediyeden gelen duyurulara kolayca erişebilirsin.",
     "usp4_title" => "Muhtarına Kolayca Ulaş", 
-    "usp4_text" => "Muhtarının ve ilgili belediye kurumlarının iletişim bilgilerine kolayca ulaşabilirsin.",
+    "usp4_text" => "Muhtarının ve belediyenin iletişim bilgilerine kolayca ulaşabilirsin.",
 ];
