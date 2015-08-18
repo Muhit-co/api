@@ -86,7 +86,9 @@ input[disabled="disabled"] {
 }
 input[type="checkbox"] {
   position: absolute;
-  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
 
   & + label:before {
     content: "\f372";

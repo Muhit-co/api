@@ -149,7 +149,7 @@ $(document).ready(function(){
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             if (!place.geometry) {
-                window.alert("Autocomplete's returned place contains no geometry");
+                window.alert("Aradığın kriterleri mahalle ismi olmalıdır");
                 return;
             }
 
@@ -207,7 +207,7 @@ $(document).ready(function(){
                 } else {
                     $("#hood").val('');
                     $("#district").hide();
-                    $("#location_form_message").show().find('.message').html('Aradığınız kriterleri mahalle değildir.');
+                    $("#location_form_message").show().find('.message').html('Aradığın kriterleri mahalle ismi olmalıdır.');
                 }
             }
             $("#location_string").closest('.form-group').attr('data-form-state','is-static');
