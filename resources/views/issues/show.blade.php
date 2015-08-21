@@ -64,7 +64,7 @@
                         <!-- (Un)Support button -->
                         @if($role =='public' && $issue['status'] != "solved")
                         <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
-                        @elseif($role =='user')
+                        @elseif($role =='user' || $role =='superadmin')
                         <a id="action_support" href="/issues/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         <a id="action_unsupport" href="javascript:void(0)" class="btn btn-tertiary u-ml5 u-hidden u-has-hidden-content">
                             <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
@@ -109,7 +109,7 @@
                     </h3>
 
                     <div class="row row-nopadding media u-mv20">
-                        <div class="media-image col-md-8">
+                        <div class="media-images col-sm-8">
 
                             <div id="slides">
                                 <?php $numimages = count($issue['images']); ?>
@@ -121,25 +121,29 @@
                                     </div>
                                 @elseif($numimages >= 1)
                                     @foreach($issue['images'] as $image)
-                                        <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}" alt="{{$issue['title']}}" />
+                                        <div style="height: 100%;">
+                                            <div class="media-image" style="background-image: url('//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}')" title="{{$issue['title']}}"></div>
+                                            <!-- <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}" alt="" /> -->
+                                        </div>
+                                        <!-- <img src="" alt="" /> -->
                                     @endforeach
-                                @endif
-
-                                @if($numimages > 1)
-                                    <script>
-                                        $(function(){
-                                            $("#slides").slidesjs({
-                                                width: 500,
-                                                height: 300,
-                                            });
-                                        });
-                                    </script>
                                 @endif
 
                             </div>
 
+                            @if($numimages > 1)
+                                <script>
+                                    $(function(){
+                                        $("#slides").slidesjs({
+                                            width: 500,
+                                            height: 300,
+                                        });
+                                    });
+                                </script>
+                            @endif
+
                         </div>
-                        <div class="media-map col-md-4">
+                        <div class="media-map col-sm-4">
                             <?php
                                 $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
                                 $lan = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);

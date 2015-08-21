@@ -10,17 +10,17 @@
                 <h2 class="u-mv20">{{ trans('auth.sign_up') }}</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>{{ trans('auth.first_name') }}</label>
+                    <label>{{ trans('auth.your_first_name') }}</label>
                     <input type="text" class="form-input" value="" name="first_name" placeholder="{{ trans('auth.first_name_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>{{ trans('auth.last_name') }}</label>
+                    <label>{{ trans('auth.your_last_name') }}</label>
                     <input type="text" class="form-input" value="" name="last_name" placeholder="{{ trans('auth.last_name_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <label>{{ trans('auth.email_address') }}</label>
+                    <label>{{ trans('auth.your_email_address') }}</label>
                     <input type="text" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" required />
                 </div>
 
@@ -29,7 +29,7 @@
                     <input type="password" class="form-input" value="" name="password" placeholder="{{ trans('auth.password_placeholder') }}" required />
                 </div>
 
-                <label>{{ trans('auth.neighbourhood') }}</label>
+                <label>{{ trans('auth.your_neighbourhood') }}</label>
                 @include('partials.field-hood')
 
                 <div class="form-group form-fullwidth u-mt30 u-mb20">

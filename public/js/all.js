@@ -12661,7 +12661,7 @@ $(document).ready(function() {
   }));
 
   // login button interaction
-  $('.login, #dialog_report, #dialog_new_announcement').find('button[type="submit"]').bind(touchEvent, (function(e) {
+  $('.login, #dialog_report, #dialog_new_announcement, .profile-edit').find('button[type="submit"]').bind(touchEvent, (function(e) {
     addIsBusy($(this));
   }));
 

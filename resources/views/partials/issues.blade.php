@@ -43,7 +43,7 @@
             </li>
         @endforeach
         @if (count($issues) == 0)
-            <li class="u-aligncenter u-pt20">
+            <li class="u-aligncenter u-pv20">
                 <span class="c-light">
                     <i class="ion ion-checkmark-circled ion-2x"></i><br />
                     <strong>{{ trans('issues.issues_cant_be_found') }}</strong>

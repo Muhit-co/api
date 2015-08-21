@@ -1,18 +1,12 @@
 @extends('layouts.default')
 @section('content')
 
-<section>
+<section class="profile-edit">
     <div class="row u-pv20">
 
         <div class="col-md-8 col-md-offset-2">
             <div class="card u-mt0">
                 <div class="card-header u-clearfix">
-                    <div class="u-floatright">
-                        <a href="javascript:window.history.back()" class="btn btn-outline u-mr10">
-                            <i class="ion ion-android-close u-mr5"></i>
-                            {{ trans('auth.cancel_cap') }}
-                        </a>
-                  </div>
                     <h2 class="u-mt5">
                         Profil düzenleme
                     </h2>
@@ -63,8 +57,11 @@
                         <hr>
 
                         <div class="u-alignright">
+                            <a href="javascript:window.history.back()" class="btn btn-outline u-mr10">
+                                {{ trans('auth.cancel_cap') }}
+                            </a>
                             <button type="submit" class="btn btn-secondary">
-                                <i class="ion ion-checkmark u-mr5"></i>{{ trans('auth.save_cap') }}
+                                {{ trans('auth.save_cap') }}
                             </button>
                         </div>
                     </form>

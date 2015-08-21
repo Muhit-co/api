@@ -80,6 +80,15 @@
 
             @endforeach
 
+            @if(count($announcements) == 0)
+            <div class="u-aligncenter u-pv20">
+                <span class="c-light">
+                    <i class="ion ion-checkmark-circled ion-2x"></i><br />
+                    <strong>{{ trans('issues.issues_cant_be_found') }}</strong>
+                </span>
+            </div>
+            @endif
+
         </div>
     </div>
 
