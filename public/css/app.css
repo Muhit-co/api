@@ -3857,10 +3857,16 @@ p small {
 a {
   color: #44a1e0;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+  -webkit-tap-highlight-color: rgba(51, 51, 68, 0.05);
 }
 a:hover {
   color: #245672;
+}
+a:hover,
+a:active,
+a:focus,
+a:link,
+a:visited {
   text-decoration: none;
 }
 hr {
@@ -5990,13 +5996,13 @@ figure img {
   border-radius: 5px;
   overflow: hidden;
 }
+.badge img {
+  max-width: 100%;
+}
 .badge.badge-circle {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-}
-.badge.badge-circle img {
-  max-width: 100%;
 }
 .badge.badge-circle-large {
   width: 80px;
@@ -6373,6 +6379,7 @@ figure img {
 }
 .btn.btn-outline:hover {
   background-color: #44a1e0;
+  color: #ffffff;
 }
 .btn.btn-whiteoutline {
   background-color: transparent;
@@ -6493,15 +6500,16 @@ figure img {
   border-radius: 5px;
   overflow: hidden;
 }
-.card .media .media-image img {
-  max-width: 100%;
+.card .media .media-image {
+  height: 100%;
+  width: 100%;
+  background-color: #eeeeee;
+  background-size: cover;
+  background-position: center center;
 }
 .card .media .media-map {
   height: 200px;
   background-color: #44a1e0;
-}
-.card .media .media-map img {
-  max-width: 100%;
 }
 .card label {
   font-weight: 600;
@@ -7566,6 +7574,7 @@ nav #nav_quickadd {
 .pagination li a.btn-outline:hover,
 .pagination li span.btn-outline:hover {
   background-color: #44a1e0;
+  color: #ffffff;
 }
 .pagination li a.btn-whiteoutline,
 .pagination li span.btn-whiteoutline {

@@ -39,11 +39,14 @@ p small {
 a {
   color: @muhitBlue;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0.05);
-}
-a:hover {
-  color: #245672;
-  text-decoration: none;
+  -webkit-tap-highlight-color: fade(@black, 5%);
+
+  &:hover {
+    color: @muhitBlueDark;
+  }
+  &:hover, &:active, &:focus, &:link, &:visited {
+    text-decoration: none;
+  }
 }
 hr {
   margin: 20px 0;
