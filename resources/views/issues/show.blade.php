@@ -156,7 +156,7 @@
                         </div>
                     </div>
 
-                    <div class="row row-nopadding u-mv20">
+                    <div class="row row-nopadding u-mv10">
                         <div class="col-md-10">
                                 @foreach($issue['tags'] as $tag)
                                         <span class="tag u-mv5 u-mr10" style="background-color:#{{$tag['background']}}">{{$tag['name']}}</span>
@@ -167,6 +167,8 @@
                         </div>
                     </div>
 
+                    <p class="u-mb10 c-light">{{$issue['user']['first_name']}} {{$issue['user']['last_name']}}</p>
+
                     <div class="problem u-mb20">
                         <h4 class="c-light">{{ trans('issues.problem') }}</h4>
                         <p>{{$issue['problem']}}</p>
@@ -174,6 +176,15 @@
                     <div class="solution u-mb5">
                         <h4 class="c-light">{{ trans('issues.solution') }}</h4>
                         <p>{{$issue['solution']}}</p>
+                    </div>
+
+                    <div class="u-mv20">
+                        <div class="badge badge-circle badge-user u-floatleft u-mr10">
+                            <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
+                        </div>
+                        <div class="c-light u-pt5">
+                            {{$issue['user']['first_name']}} {{$issue['user']['last_name']}}
+                        </div>
                     </div>
                 </div>
                 <!--
@@ -214,7 +225,7 @@
                                 <a href="javascript:void(0)" data-dialog="dialog_report" class="btn btn-tertiary"><i class="ion ion-alert-circled"></i></a>
                                 <span class="tooltip tooltip-alignright u-width300 u-mr5">
                                     <i class="ion ion-alert-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
-                                    <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}.</div>
+                                    <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}</div>
                                 </span>
                             </span>
                         @endif
