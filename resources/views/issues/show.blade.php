@@ -12,6 +12,10 @@
 
 @include('partials.header', array('type'=>'show'))
 
+<?php
+setlocale(LC_ALL, 'tr_TR');
+?>
+
 <section>
     <div class="row">
 
@@ -163,11 +167,9 @@
                                 @endforeach
                         </div>
                         <div class="col-md-2 u-alignright">
-                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>{{ date('j M Y', strtotime($issue['created_at'])) }}</label>
+                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</label>
                         </div>
                     </div>
-
-                    <p class="u-mb10 c-light">{{$issue['user']['first_name']}} {{$issue['user']['last_name']}}</p>
 
                     <div class="problem u-mb20">
                         <h4 class="c-light">{{ trans('issues.problem') }}</h4>
@@ -193,7 +195,7 @@
                     <div class="comment u-ph20">
                         <h4 class="title">
                             <div class="u-floatright">
-                                <small>{{ date('j M Y', strtotime($issue['created_at'])) }}</small>
+                                <small>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</small>
                             </div>
                             Comment title
                         </h4>
@@ -235,7 +237,7 @@
                         @foreach($issue['updates'] as $update)
                             <li>
                                 <i class="ion ion-record u-mr10"></i>
-                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span> –
+                                <span class="date">{{strftime('%d %h %Y', strtotime($update['created_at']))}}</span> –
                                 <strong>{{ trans('issues.issue_status_' . $update['new_status']) }}</strong>.
                             </li>
                         @endforeach
