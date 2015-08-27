@@ -57,7 +57,7 @@
                         $facebook_url .= "?caption=" . $issue['title'];
                         $facebook_url .= "?description=" . $issue['problem'];
                         $facebook_url .= "?message=" . $issue['problem'];
-                        $facebook_url .= "?redirect_uri" . Request::url();
+                        $facebook_url .= "?redirect_uri" . 'http://www.muhit.co';
 
                         ?>
                         <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter share u-ml5 u-width50" target="_blank"><i class="ion ion-social-twitter"></i></a>
