@@ -12,7 +12,7 @@
 
 @include('partials.header', array('type'=>'show'))
 
-<?php setlocale(LC_ALL, 'tr_TR.UTF-8'); ?>
+<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); ?>
 
 <section>
     <div class="row">
@@ -165,7 +165,7 @@
                                 @endforeach
                         </div>
                         <div class="col-md-2 u-alignright">
-                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</label>
+                            <label class="c-light u-mt10"><i class="ion ion-android-calendar u-mr5"></i>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</label>
                         </div>
                     </div>
 
