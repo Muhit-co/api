@@ -48,7 +48,7 @@
                         <div class="row row-nopadding">
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="u-floatright u-ml10">
-                                    <span class="date c-medium"><?php echo date('j M Y', strtotime($a->created_at)); ?></span>
+                                    <span class="date c-medium">{{strftime('%d %h %Y', strtotime($a->created_at))}}</span>
                                 </div>
                                 <h3 class="u-nowrap">{{$a->title}}</h3>
                             </div>

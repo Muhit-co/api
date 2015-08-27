@@ -44,7 +44,10 @@
               <i class="ion ion-calendar ion-15x c-light u-mt5"></i>
             </div>
             <div class="col-xs-9">
-              <div class="u-floatleft u-mv5"><span class="c-light">joined:</span> <?php echo date('j M Y', strtotime(Auth::user()->created_at)) ?></div>
+              <div class="u-floatleft u-mv5">
+                <!-- <span class="c-light">joined:</span> -->
+                {{strftime('%d %h %Y', strtotime(Auth::user()->created_at))}}
+              </div>
             </div>
           </div>
 

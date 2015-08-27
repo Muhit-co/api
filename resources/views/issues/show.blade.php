@@ -12,6 +12,8 @@
 
 @include('partials.header', array('type'=>'show'))
 
+<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); ?>
+
 <section>
     <div class="row">
 
@@ -55,7 +57,7 @@
                         $facebook_url .= "?caption=" . $issue['title'];
                         $facebook_url .= "?description=" . $issue['problem'];
                         $facebook_url .= "?message=" . $issue['problem'];
-                        $facebook_url .= "?redirect_uri" . Request::url();
+                        $facebook_url .= "?redirect_uri" . 'http://www.muhit.co';
 
                         ?>
                         <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter share u-ml5 u-width50" target="_blank"><i class="ion ion-social-twitter"></i></a>
@@ -156,14 +158,14 @@
                         </div>
                     </div>
 
-                    <div class="row row-nopadding u-mv20">
+                    <div class="row row-nopadding u-mv10">
                         <div class="col-md-10">
                                 @foreach($issue['tags'] as $tag)
                                         <span class="tag u-mv5 u-mr10" style="background-color:#{{$tag['background']}}">{{$tag['name']}}</span>
                                 @endforeach
                         </div>
                         <div class="col-md-2 u-alignright">
-                            <label class="c-light"><i class="ion ion-android-calendar u-mr5"></i>{{ date('j M Y', strtotime($issue['created_at'])) }}</label>
+                            <label class="c-light u-mt10"><i class="ion ion-android-calendar u-mr5"></i>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</label>
                         </div>
                     </div>
 
@@ -175,6 +177,15 @@
                         <h4 class="c-light">{{ trans('issues.solution') }}</h4>
                         <p>{{$issue['solution']}}</p>
                     </div>
+
+                    <div class="u-mv20">
+                        <div class="badge badge-circle badge-user u-floatleft u-mr10">
+                            <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
+                        </div>
+                        <div class="c-light u-pt5">
+                            {{$issue['user']['first_name']}} {{$issue['user']['last_name']}}
+                        </div>
+                    </div>
                 </div>
                 <!--
                 <div class="card-footer clearfix">
@@ -182,7 +193,7 @@
                     <div class="comment u-ph20">
                         <h4 class="title">
                             <div class="u-floatright">
-                                <small>{{ date('j M Y', strtotime($issue['created_at'])) }}</small>
+                                <small>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</small>
                             </div>
                             Comment title
                         </h4>
@@ -214,7 +225,7 @@
                                 <a href="javascript:void(0)" data-dialog="dialog_report" class="btn btn-tertiary"><i class="ion ion-alert-circled"></i></a>
                                 <span class="tooltip tooltip-alignright u-width300 u-mr5">
                                     <i class="ion ion-alert-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
-                                    <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}.</div>
+                                    <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}</div>
                                 </span>
                             </span>
                         @endif
@@ -224,7 +235,7 @@
                         @foreach($issue['updates'] as $update)
                             <li>
                                 <i class="ion ion-record u-mr10"></i>
-                                <span class="date">{{date('d M Y', strtotime($update['created_at']))}}</span> –
+                                <span class="date">{{strftime('%d %h %Y', strtotime($update['created_at']))}}</span> –
                                 <strong>{{ trans('issues.issue_status_' . $update['new_status']) }}</strong>.
                             </li>
                         @endforeach

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-3 u-clearfix u-mb20">
             <a href="#top" id="nav_logo" class="u-floatleft"><img src="/images/logo_grey.png" height="30px" alt="" /></a>
-            <small class="u-floatleft u-ml20" style="margin-top: 3px;">&copy; 2015</small>
+            <small class="u-floatleft u-ml20" style="margin-top: 3px;">&copy; {{strftime('%Y')}}</small>
         </div>
         <div class="col-sm-3">
             <a href="//hikaye.muhit.co/nasil-calisiyor" class="u-inlineblock u-pa5">
