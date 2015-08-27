@@ -12,9 +12,7 @@
 
 @include('partials.header', array('type'=>'show'))
 
-<?php
-setlocale(LC_ALL, 'tr_TR');
-?>
+<?php setlocale(LC_ALL, 'tr_TR.UTF-8'); ?>
 
 <section>
     <div class="row">
