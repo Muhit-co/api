@@ -6,8 +6,9 @@
             </h2>
 
             <div class="u-aligncenter u-mt10">
-                <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
-                <a href="/login" onclick="closeDialog();" class="btn btn-secondary">{{ trans('auth.log_in_cap') }}</a>
+                <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-ma5">{{ trans('auth.cancel_cap') }}</a>
+                <a href="/login" onclick="closeDialog();" class="btn btn-secondary u-ma5">{{ trans('auth.log_in_cap') }}</a>
+                <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> <span class="u-floatleft u-mt5">{{ trans('auth.connect_cap') }}</span></a>
             </div>
 
             <hr />
@@ -20,9 +21,8 @@
 
             <div class="u-nowrap u-aligncenter">
                 <a href="/register" onclick="closeDialog();" class="btn btn-primary u-ma5">{{ trans('auth.sign_up_cap') }}</a>
-                <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i></a>
-                <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i></a>
-                <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i></a>
+                <!-- <a href="javascript:void(0)" class="btn btn-twitter u-ma5"><i class="ion ion-social-twitter u-floatleft u-pa5"></i></a>
+                <a href="javascript:void(0)" class="btn btn-googleplus u-ma5"><i class="ion ion-social-googleplus u-floatleft u-pa5"></i></a> -->
             </div>
     </div>
 </dialog>
