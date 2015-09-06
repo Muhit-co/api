@@ -153,7 +153,7 @@ return [
 		'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
 		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Jenssegers\Raven\RavenServiceProvider',
-
+        'Laravel\Socialite\SocialiteServiceProvider'
 	],
 
 	/*
@@ -201,7 +201,8 @@ return [
 		'URL' => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View' => 'Illuminate\Support\Facades\View',
-		'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+        'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

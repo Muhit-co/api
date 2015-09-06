@@ -37,7 +37,7 @@ return [
 	'facebook' => [
 		'client_id' => env('FB_ID'),
 		'client_secret' => env('FB_SECRET'),
-		'redirect' => env('URL') . 'auth/facebook',
+		'redirect' => env('URL') . 'login/facebook/return',
     ],
 
     'raven' => [
