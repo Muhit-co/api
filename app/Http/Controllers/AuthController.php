@@ -14,7 +14,8 @@ use Muhit\Models\User;
 use Muhit\Models\Hood;
 use Muhit\Models\UserSocialAccount;
 use Request;
-
+use Socialize;
+use Storage;
 
 class AuthController extends Controller {
 
@@ -386,4 +387,124 @@ class AuthController extends Controller {
         return response()->api(200, 'Access token refreshed', ['oauth2' => $token]);
     }
 
+
+    /**
+     * redirects the user to facebook for access token
+     *
+     * @return redirect
+     * @author Me
+     */
+    public function getFacebookLogin()
+    {
+        return Socialize::with('facebook')->redirect();
+    }
+
+    /**
+     * logs in the user using facebook
+     *
+     * @return redirect
+     * @author Me
+     */
+    public function getFacebookLoginReturn()
+    {
+        $user = Socialize::with('facebook')->user();
+
+        #check if we get the user with all the data that we need to login
+        $email = $user->getEmail();
+        $id = $user->getId();
+
+        $userData = $user->user;
+
+
+        if (empty($email) or empty($id)) {
+            return redirect('/signup')
+                ->with('error', 'Facebook ile girişte bir hata meydana geldi, normal login olmayı deneyebilirsiniz.');
+        }
+
+        #check if the user already has an account with the facebook
+        $user_social_account = DB::table('user_social_accounts')
+            ->where('source', 'facebook')
+            ->where('source_id', $id)
+            ->first();
+
+        if (empty($user_social_account)) {
+            #lets register the user_social_account
+
+            #check if the user is already have an account with the same email.
+            $u = User::where('email', $email)->first();
+
+            if (empty($u)) {
+                #lets create the user account
+                $u = new User;
+                $u->username = Str::slug($user->getName());
+                $u->email = $user->getEmail();
+                $u->first_name = $userData['first_name'];
+                $u->last_name = $userData['last_name'];
+                $u->picture = $this->picture($user->avatar_original);
+                $u->is_verified = ((isset($userData['verified']) and $userData['verified']) ? 1 : 0);
+                try {
+                    $u->save();
+                } catch (Exception $e) {
+                    Log::error('User save error', (array) $e);
+                    return redirect('/signup')
+                        ->with('error', 'Kaydınızı yaparken teknik bir hata meydana geldi.');
+                }
+            }
+
+
+
+            $user_social_account = new UserSocialAccount;
+            $user_social_account->user_id = $u->id;
+            $user_social_account->source = 'facebook';
+            $user_social_account->source_id = $id;
+            $user_social_account->access_token = $user->token;
+            try {
+                $user_social_account->save();
+            } catch (Exception $e) {
+                Log::error('AuthController/saveUserSocialAccount', (array) $e);
+            }
+
+        }
+        else {
+            $u = User::find($user_social_account->user_id);
+
+            if (empty($u)) {
+                DB::table('user_social_accounts')->where('id', $user_social_account->id)->delete();
+                return redirect('/login/facebook');
+            }
+        }
+
+        if ($u->picture == "placeholders/profile.png") {
+            $u->picture = $this->picture($user->avatar_original);
+            try {
+                $u->save();
+            } catch (Exception $e) {
+                Log::error('AuthController/updateUserPicture', (array) $e);
+            }
+        }
+
+        Auth::login($u);
+        return redirect('/')->with('success', 'Hoşgeldin, '.$u->first_name);
+
+
+    }
+
+    /**
+     * get user picture from url and save it
+     *
+     * @return string
+     * @author Me
+     */
+    public function picture($url = null)
+    {
+        $name = 'users/'.microtime(true);
+        try {
+            Storage::put($name, file_get_contents($url));
+        } catch (Exception $e) {
+            Log::error('Error on saving the user picture', (array) $e);
+            return 'placeholders/profile.png';
+        }
+
+        return $name;
+    }
 }
