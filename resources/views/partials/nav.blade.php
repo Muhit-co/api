@@ -9,8 +9,18 @@
             @else
                 {{-- user is not logged in --}}
                 <div class="u-floatright u-nowrap">
-                    <a href="/login" class="btn btn-quaternary u-mt20 u-mr5">GİRİŞ<span class="extended"> YAP</span></a>
-                    <a href="/register" class="btn btn-primary u-mt20 u-mr15">KAYIT<span class="extended"> OL</span></a>
+                    <a href="/login" class="btn btn-quaternary u-mt15 u-mr5">
+                        <span class="condensed"><i class="ion ion-log-in ion-15x u-floatleft"></i></span>
+                        <span class="extended">GİRİŞ YAP</span></a>
+                    <a href="/login/facebook" class="btn btn-facebook u-mr5 u-mt15">
+                        <i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i>
+                        <span class="extended">
+                            <span class="u-floatleft u-mt5">{{ trans('auth.connect_cap') }}</span>
+                        </span>
+                    </a>
+                    <span class="extended">
+                        <a href="/register" class="btn btn-primary u-mt15 u-mr15">{{ trans('auth.sign_up_cap') }}</a>
+                    </span>
                 </div>
             @endif
 
