@@ -8,7 +8,7 @@
             <div class="u-aligncenter u-mt10">
                 <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-ma5">{{ trans('auth.cancel_cap') }}</a>
                 <a href="/login" onclick="closeDialog();" class="btn btn-secondary u-ma5">{{ trans('auth.log_in_cap') }}</a>
-                <a href="javascript:void(0)" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> <span class="u-floatleft u-mt5">{{ trans('auth.connect_cap') }}</span></a>
+                <a href="/login/facebook" onclick="closeDialog();" class="btn btn-facebook u-ma5"><i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i> <span class="u-floatleft u-mt5">{{ trans('auth.connect_cap') }}</span></a>
             </div>
 
             <hr />
