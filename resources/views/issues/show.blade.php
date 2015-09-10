@@ -51,17 +51,17 @@
                         endforeach;
                         $facebook_url = "http://www.facebook.com/dialog/feed";
                         $facebook_url .= "?app_id=" . "1458298001134890";
-                        $facebook_url .= "?link=" . Request::url();
-                        $facebook_url .= "?picture=";
-                        $facebook_url .= "?name=" . $issue['title'];
-                        $facebook_url .= "?caption=" . $issue['title'];
-                        $facebook_url .= "?description=" . $issue['problem'];
-                        $facebook_url .= "?message=" . $issue['problem'];
-                        $facebook_url .= "?redirect_uri" . 'http://www.muhit.co';
+                        $facebook_url .= "&link=" . Request::url();
+                        $facebook_url .= "&picture=";
+                        $facebook_url .= "&name=" . $issue['title'];
+                        $facebook_url .= "&caption=" . $issue['problem'];
+                        $facebook_url .= "&description=" . $issue['solution'];
+                        $facebook_url .= "&message=" . $issue['solution'];
+                        $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
 
                         ?>
-                        <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter share u-ml5 u-width50" target="_blank"><i class="ion ion-social-twitter"></i></a>
-                        <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook share u-ml5 u-width50" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
+                        <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-ml5 u-width50" target="_blank"><i class="ion ion-social-twitter"></i></a>
+                        <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-ml5 u-width50" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
                         <!-- (Un)Support button -->
                         @if($role =='public' && $issue['status'] != "solved")
