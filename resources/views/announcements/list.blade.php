@@ -84,7 +84,7 @@
             <div class="u-aligncenter u-pv20">
                 <span class="c-light">
                     <i class="ion ion-checkmark-circled ion-2x"></i><br />
-                    <strong>{{ trans('issues.issues_cant_be_found') }}</strong>
+                    <strong>{{ trans('issues.no_announcements') }}</strong>
                 </span>
             </div>
             @endif
