@@ -34,10 +34,12 @@
                             @endforeach
                         @endif
                         <span class="date u-mr10"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span>
+                        @if($issue['is_anonymous'] == 0)
                         <span class="extended">
                             |<span class="user u-ml10">
-                            {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
+                                {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
                         </span>
+                        @endif
                     </p>
                 </a>
             </li>

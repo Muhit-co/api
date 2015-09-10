@@ -86,4 +86,5 @@ return [
     "my_muhtar_info" => "Muhtarım bilgisi", // @seratolgay
     "your_muhtar_didnt_sign_up_yet" => "Muhtarınız henüz Muhit'e üye değil!", // @seratolgay
     "no_announcements" => "Duyuru yok...", // @seratolgay
+    "submitted_anonymously" => "This issue was submitted anonymously.", // @seratolgay
 ];

@@ -159,33 +159,42 @@
                     </div>
 
                     <div class="row row-nopadding u-mv10">
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                                 @foreach($issue['tags'] as $tag)
                                         <span class="tag u-mv5 u-mr10" style="background-color:#{{$tag['background']}}">{{$tag['name']}}</span>
                                 @endforeach
                         </div>
-                        <div class="col-md-2 u-alignright">
-                            <label class="c-light u-mt10"><i class="ion ion-android-calendar u-mr5"></i>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</label>
+                        <div class="col-md-3 u-alignright">
+                            <label class="c-light u-mt10"><i class="ion ion-android-calendar u-mr5"></i>{{ strftime('%d %B %Y', strtotime($issue['created_at'])) }}</label>
                         </div>
                     </div>
 
+                    @if(strlen($issue['problem']) > 0)
                     <div class="problem u-mb20">
                         <h4 class="c-light">{{ trans('issues.problem') }}</h4>
                         <p>{{$issue['problem']}}</p>
                     </div>
+                    @endif
+                    @if(strlen($issue['solution']) > 0)
                     <div class="solution u-mb5">
                         <h4 class="c-light">{{ trans('issues.solution') }}</h4>
                         <p>{{$issue['solution']}}</p>
                     </div>
+                    @endif
 
                     <div class="u-mv20">
-                        <div class="badge badge-circle badge-user u-floatleft u-mr10">
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
-                        </div>
-                        <div class="c-light u-pt5">
-                            {{$issue['user']['first_name']}} {{$issue['user']['last_name']}}
-                        </div>
+                        @if($issue['is_anonymous'] == 0)
+                            <div class="badge badge-circle badge-user u-floatleft u-mr10">
+                                <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
+                            </div>
+                            <div class="c-light u-pt5">
+                                {{$issue['user']['first_name']}} {{$issue['user']['last_name']}}
+                            </div>
+                        @else
+                            <small class="c-light"><em>{{ trans('issues.submitted_anonymously') }}</em></small>
+                        @endif
                     </div>
+
                 </div>
                 <!--
                 <div class="card-footer clearfix">
