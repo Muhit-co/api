@@ -6844,6 +6844,7 @@ label[for] {
   cursor: pointer;
 }
 input[type="text"],
+input[type="email"],
 input[type="password"],
 textarea {
   display: block;
@@ -6862,11 +6863,13 @@ textarea {
   color: #4390c0;
 }
 input[type="text"]:hover,
+input[type="email"]:hover,
 input[type="password"]:hover,
 textarea:hover {
   background: rgba(255, 255, 255, 0.9);
 }
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus {
   background: #ffffff;

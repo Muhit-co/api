@@ -9,7 +9,7 @@
                 <h2 class="u-mv20">{{ trans('auth.log_in') }}</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <input type="text" class="form-input" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
+                    <input type="email" class="form-input" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
