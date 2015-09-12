@@ -531,7 +531,7 @@ class AuthController extends Controller {
         }
 
         #create a random string as remember token.
-        $string = sub_str(md5(microtime()), 0, 10);
+        $string = substr(md5(microtime()), 0, 10);
         $user->password_reset_token = $string;
         $user->password_token_expires_at = Carbon::now()->addDays(10);
         try {
