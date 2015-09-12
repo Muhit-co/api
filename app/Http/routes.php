@@ -47,9 +47,6 @@ Route::get('/email/{page}', function($page) {
     return view('emails.' . $page);
 });
 
-Route::get('/temails/{email}', 'AuthController@getTestEmails');
-
-
 #issues
 Route::get('fikirler/{hood_id?}', 'IssuesController@getIssues');
 Route::post('fikirler/{hood_id?}', 'IssuesController@getIssues');
@@ -61,6 +58,7 @@ Route::post('login', 'AuthController@postLogin');
 Route::post('register', 'AuthController@postRegister');
 Route::get('login/facebook', 'AuthController@getFacebookLogin');
 Route::get('login/facebook/return', 'AuthController@getFacebookLoginReturn');
+Route::controller('auth', 'AuthController');
 Route::get('logout', function(){
     Auth::logout();
     return redirect('/');

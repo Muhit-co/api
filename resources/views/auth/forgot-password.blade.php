@@ -5,13 +5,13 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 u-mb40">
-            <form method="post" action="">
+            <form method="post" action="/auth/reset-password">
                 <h2 class="u-mv20">{{ trans('auth.forgot_password') }}</h2>
 
                 <p class="c-white u-mb20">{{ trans('auth.forgot_password_msg') }}</p>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <input type="text" class="form-input" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
+                    <input type="email" required class="form-input" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
                 </div>
                 <button type="submit" class="btn btn-primary u-floatright">
                     {{ trans('auth.send_info_cap') }}
