@@ -9,12 +9,12 @@
   </head>
   <body style="margin: 0; padding: 0; background-color: #eeeeee;">
 
-    <table border="0" cellpadding="0" cellspacing="0" width="0" style="width: auto; max-width: 700px; display: block; margin: 0 auto; padding: 20px;">
+    <table border="0" cellpadding="0" cellspacing="0" width="0" style="width: auto; max-width: 700px; display: block; margin: 0 auto; padding: 15px;">
       <tr>
         <td>
-          <div style="padding: 20px 30px; background-color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;">
-            <div style="font-family: Arial, sans-serif; color: #ccccdd; font-size: 13px; text-align: right;">
-              {!! trans('email.automated_message_from_muhit', array('tagstart' => '<a href="http://www.muhit.co" target="_blank" style="color: #ccccdd;">', 'tagend' => '</a>' )) !!}
+          <div style="padding: 20px 20px; background-color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;">
+            <div style="font-family: Arial, sans-serif; color: #ccccdd; font-size: 13px; text-align: center;">
+              <small>{!! trans('email.automated_message_from_muhit', array('tagstart' => '<a href="http://www.muhit.co" target="_blank" style="color: #ccccdd;">', 'tagend' => '</a>' )) !!}</small>
             </div>
             <h3 style="font-family: Arial, sans-serif; color: #44a1e0;">
                 @yield('title')

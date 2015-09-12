@@ -37,7 +37,7 @@
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.email_address') }}</label>
-                    <input type="text" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" />
+                    <input type="email" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
