@@ -16,6 +16,7 @@ use Muhit\Models\UserSocialAccount;
 use Request;
 use Socialize;
 use Storage;
+use Mail;
 
 class AuthController extends Controller {
 
@@ -536,11 +537,19 @@ class AuthController extends Controller {
         ];
 
         foreach ($emails as $e) {
-            Mail::send('emails.'.$e, [], function ($m) use ($e) {
-                $m->to('guneycan@gmail.com')->subject('Test email for: '.$e);
-            });
+
+            try {
+                Mail::send('emails.'.$e, [], function ($m) use ($e) {
+                    $m->to('guneycan@gmail.com')->subject('Test email for: '.$e);
+                });
+                echo "sent $e <br>";
+            } catch (Exception $ex) {
+                echo "error: $e";
+                echo $ex;
+                Log::error('test emails', (array) $ex);
+            }
         }
 
-
+        echo "DONE";
     }
 }
