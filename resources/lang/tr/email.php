@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "automated_message_from_muhit" => "Bu:tagstart Muhit. :tagend tarafından gönderilen bir otomatik mesajdır",
+    "automated_message_from_muhit" => "Bu :tagstartMuhit:tagend tarafından gönderilen bir otomatik mesajdır",
     "welcome" => "Merhaba :username",
     "greetings" => "Sayın", 
     "muhit_team" => "Muhit ekibi",
