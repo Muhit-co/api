@@ -590,7 +590,7 @@ class AuthController extends Controller {
         }
 
         $user = User::where('email', Request::get('email'))
-            ->where('password_reset_token', $code)
+            ->where('password_reset_token', Request::get('code'))
             ->first();
 
         if (empty($user)) {
