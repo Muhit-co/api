@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 u-mb40">
-            <form method="post" action="/auth/reset-password">
+            <form method="post" action="/auth/forgot-password">
                 <h2 class="u-mv20">{{ trans('auth.forgot_password') }}</h2>
 
                 <p class="c-white u-mb20">{{ trans('auth.forgot_password_msg') }}</p>
