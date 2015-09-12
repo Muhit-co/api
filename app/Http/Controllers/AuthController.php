@@ -537,7 +537,7 @@ class AuthController extends Controller {
         $user->password_token_expires_at = Carbon::now()->addDays(10);
         try {
             $user->save();
-            Mail::send('emails.forgot_password', ['string' => $string], function($m) use ($user) {
+            Mail::send('emails.forgot_password', ['string' => $string, 'email' => $user->email], function($m) use ($user) {
                 $m->to($user->email)
                    ->subject('Muhit.co Şifreni unuttuğunu duyduk.');
             });
