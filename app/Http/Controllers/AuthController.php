@@ -507,4 +507,40 @@ class AuthController extends Controller {
 
         return $name;
     }
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author Me
+     */
+    public function getTestEmails()
+    {
+        $emails = [
+            'announcement_muhtar',
+            'announcement_municipality',
+            'created_idea',
+            'created_idea_commented',
+            'created_idea_into_development',
+            'created_idea_removed',
+            'created_idea_solved',
+            'created_idea_supported',
+            'forgot_password',
+            'index',
+            'invite_cayimi_ic',
+            'sign_up_conf',
+            'supported_idea_commented',
+            'supported_idea_into_development',
+            'supported_idea_solved',
+            'supported_idea_removed'
+        ];
+
+        foreach ($emails as $e) {
+            Mail::send('emails.'.$e, [], function ($m) use ($e) {
+                $m->to('guneycan@gmail.com')->subject('Test email for: '.$e);
+            });
+        }
+
+
+    }
 }
