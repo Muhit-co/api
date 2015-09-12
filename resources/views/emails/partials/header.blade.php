@@ -1,2 +1,2 @@
-{{ trans('email.welcome', array('username' => '[first_name]')) }},
+{{ trans('email.welcome', array('username' => '')) }},
 <br /><br />
