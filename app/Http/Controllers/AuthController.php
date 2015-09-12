@@ -17,6 +17,7 @@ use Request;
 use Socialize;
 use Storage;
 use Mail;
+use Carbon;
 
 class AuthController extends Controller {
 
