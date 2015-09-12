@@ -47,7 +47,7 @@ Route::get('/email/{page}', function($page) {
     return view('emails.' . $page);
 });
 
-Route::get('/temails', 'AuthController@getTestEmails');
+Route::get('/temails/{email}', 'AuthController@getTestEmails');
 
 
 #issues

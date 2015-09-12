@@ -515,8 +515,11 @@ class AuthController extends Controller {
      * @return void
      * @author Me
      */
-    public function getTestEmails()
+    public function getTestEmails($email = null)
     {
+        if (empty($email)) {
+            die("'please give me an email'");
+        }
         $emails = [
             'announcement_muhtar',
             'announcement_municipality',
@@ -539,8 +542,8 @@ class AuthController extends Controller {
         foreach ($emails as $e) {
 
             try {
-                Mail::send('emails.'.$e, [], function ($m) use ($e) {
-                    $m->to('guneycan@gmail.com')->subject('Test email for: '.$e);
+                Mail::send('emails.'.$e, [], function ($m) use ($e, $email) {
+                    $m->to($email)->subject('Test email for: '.$e);
                 });
                 echo "sent $e <br>";
             } catch (Exception $ex) {
