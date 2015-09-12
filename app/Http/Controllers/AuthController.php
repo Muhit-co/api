@@ -509,50 +509,108 @@ class AuthController extends Controller {
         return $name;
     }
 
+
     /**
-     * undocumented function
+     * sends an email to the user for reseting password
      *
      * @return void
      * @author Me
      */
-    public function getTestEmails($email = null)
+    public function postForgotPassword()
     {
-        if (empty($email)) {
-            die("'please give me an email'");
-        }
-        $emails = [
-            'announcement_muhtar',
-            'announcement_municipality',
-            'created_idea',
-            'created_idea_commented',
-            'created_idea_into_development',
-            'created_idea_removed',
-            'created_idea_solved',
-            'created_idea_supported',
-            'forgot_password',
-            'index',
-            'invite_cayimi_ic',
-            'sign_up_conf',
-            'supported_idea_commented',
-            'supported_idea_into_development',
-            'supported_idea_solved',
-            'supported_idea_removed'
-        ];
-
-        foreach ($emails as $e) {
-
-            try {
-                Mail::send('emails.'.$e, [], function ($m) use ($e, $email) {
-                    $m->to($email)->subject('Test email for: '.$e);
-                });
-                echo "sent $e <br>";
-            } catch (Exception $ex) {
-                echo "error: $e";
-                echo $ex;
-                Log::error('test emails', (array) $ex);
-            }
+        if (!Request::has('email')) {
+            return redirect('/forgot-password')
+                ->with('error', 'Lütfen eposta adresinizi girip tekrar deneyin.');
         }
 
-        echo "DONE";
+        $user = User::where('email', Request::get('email'))->first();
+
+        if (empty($user)) {
+            return redirect('/forgot-password')
+                ->with('error', 'Girdiğiniz eposta adresi ile ilgili bir kayıt bulamadım. ');
+        }
+
+        #create a random string as remember token.
+        $string = sub_str(md5(microtime()), 0, 10);
+        $user->password_reset_token = $string;
+        $user->password_token_expires_at = Carbon::now()->addDays(10);
+        try {
+            $user->save();
+            Mail::send('emails.forgot_password', ['string' => $string], function($m) use ($user) {
+                $m->to($user->email)
+                   ->subject('Muhit.co Şifreni unuttuğunu duyduk.');
+            });
+        } catch (Exception $e) {
+            Log::error('AuthController/postForgotPassword', (array) $e);
+            return redirect('/forgot-password')
+                ->with('error', 'Şifrenizi sıfırlamak için şu anda mail gönderemiyoruz :/');
+        }
+        return redirect('/')
+            ->with('success', 'Şifre sıfırlama epostanı gönderdik. Epostandaki link ile yeni bir şifre oluşturabilirsin.');
+    }
+
+    /**
+     * checks the password token and displays a form for resetting a password
+     *
+     * @return view
+     * @author Me
+     */
+    public function getResetPassword($email = null, $code = null)
+    {
+        if (empty($email) or empty($code)) {
+            return redirect('/')
+                ->with('error', 'Geçersiz bir linke tıkladın.');
+        }
+
+        $user = User::where('email', $email)
+            ->where('password_reset_token', $code)
+            ->where('password_token_expires_at', '>', Carbon::now())
+            ->first();
+
+        if (empty($user)) {
+            return redirect('/')
+                ->with('error', 'Geçersiz bir kod, süresi dolmuş olabilir. Tekrardan şifre hatırlatmaya girip, yeni bir kod isteyebilirsin.');
+        }
+
+        return response()->app(200, 'auth.reset-password', ['user' => $user]);
+    }
+
+    /**
+     * checks code again, and updates user password
+     *
+     * @return redirect
+     * @author Me
+     */
+    public function postResetPassword()
+    {
+        if (!Request::has('email') or !Request::has('code') or !Request::has('password')) {
+            return redirect('/')
+                ->with('error', 'Geçersiz istek.');
+        }
+
+        $user = User::where('email', $email)
+            ->where('password_reset_token', $code)
+            ->first();
+
+        if (empty($user)) {
+            return redirect('/')
+                ->with('error', 'geçersiz istek');
+        }
+
+        $user->password_reset_token = null;
+        $user->password_token_expires_at = null;
+        $user->password = bcrypt(Request::get('password'));
+
+        try {
+            $user->save();
+            #TODO: maybe send an email to confirm password change.
+        } catch (Exception $e) {
+            Log::error('AuthController/postResetPassword', (array) $e);
+            return redirect('/')
+                ->with('error', 'Teknik bir hatadan dolayı şu anda şifre güncelleme işlemini yapamadım.');
+        }
+
+        return redirect('/login')
+            ->with('success', 'Şifreniz başarılı bir şekilde güncellendi. Yeni şifreniz ile giriş yapabilirsiniz.');
     }
 }
