@@ -589,7 +589,7 @@ class AuthController extends Controller {
                 ->with('error', 'Geçersiz istek.');
         }
 
-        $user = User::where('email', $email)
+        $user = User::where('email', Request::get('email'))
             ->where('password_reset_token', $code)
             ->first();
 
