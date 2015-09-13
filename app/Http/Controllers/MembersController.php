@@ -161,6 +161,16 @@ class MembersController extends Controller {
 
         }
 
+        if (!empty($data['image']) and is_array($data['image'])) {
+            try {
+                $name = str_replace('.', '', microtime(true));
+                Storage::put('users/' . $name, base64_decode($data['image']));
+                $user->picture = $name;
+            } catch (Exception $e) {
+                Log::error('MembersController/postUpdate/SavingTheImage', (array) $e);
+            }
+        }
+
 
         try {
             $user->save();

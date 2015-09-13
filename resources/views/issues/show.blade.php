@@ -27,7 +27,7 @@
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
                     <div class="u-floatleft">
-                        <a href="/" class="u-mr20"><i class="ion ion-android-arrow-back ion-2x"></i></a>
+                        <a href="javascript:window.history.back()" class="u-mr20"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     </div>
                     <div class="u-floatright u-clearfix">
 
@@ -67,12 +67,15 @@
                         @if($role =='public' && $issue['status'] != "solved")
                         <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                         @elseif($role =='user' || $role =='superadmin')
-                        <a id="action_support" href="/issues/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
-                        <a id="action_unsupport" href="javascript:void(0)" class="btn btn-tertiary u-ml5 u-hidden u-has-hidden-content">
-                            <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
-                            <i class="ion ion-fw ion-close u-show-on-hover"></i>
-                            {{ trans('issues.supported_cap') }}
-                        </a>
+                            @if($issue['is_supported'] == 1)
+                                <a href="/unsupport/{{$issue['id']}}" class="btn btn-tertiary u-ml5 u-has-hidden-content">
+                                    <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
+                                    <i class="ion ion-fw ion-close u-show-on-hover"></i>
+                                    {{ trans('issues.supported_cap') }}
+                                </a>
+                            @else
+                                <a id="action_support" href="/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
+                            @endif
                         @elseif($role =='admin')
                         <!-- Action button for Muhtar -->
                         <div class="hasDropdown u-inlineblock u-ml5">
