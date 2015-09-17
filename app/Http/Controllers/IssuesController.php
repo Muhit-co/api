@@ -316,6 +316,18 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getView($id = null) {
+        $user_id = null;
+
+        if ($this->isApi) {
+            $user_id = Authorizer::getResourceOwnerId();
+        }
+        else {
+            if (Auth::check()) {
+                $user_id = Auth::user()->id;
+
+            }
+        }
+
         $issue = Issue::with('user', 'tags', 'images', 'updates')
             ->find($id);
 
@@ -329,7 +341,7 @@ class IssuesController extends Controller {
         if ($this->isApi) {
             return response()->api(200, 'Issue details: ', ['issue' => $issue->toArray()]);
         }
-        return response()->app(200, 'issues.show', ['issue' => $issue->toArray()]);
+        return response()->app(200, 'issues.show', ['issue' => $issue->toArray($user_id)]);
     }
 
 
@@ -573,6 +585,7 @@ class IssuesController extends Controller {
      */
     public function getSupport($id = null)
     {
+
         if ($this->isApi) {
             $user_id = Authorizer::getResourceOwnerId();
         }
@@ -622,6 +635,7 @@ class IssuesController extends Controller {
             Redis::incr('user_supported_issue_counter:'.$user_id);
             DB::table('issues')->where('id', $id)->increment('supporter_count');
             $su_counter = (int) Redis::incr('supporter_counter:'.$id);
+            Redis::zadd('issue_supporters:'.$id, time(), $user_id);
         } catch (Exception $e) {
             Log::error('IssuesController/getSupport', (array) $e);
             if ($this->isApi) {
@@ -694,6 +708,7 @@ class IssuesController extends Controller {
 
             Redis::decr('user_supported_issue_counter:'.$user_id);
             $su_counter = (int) Redis::decr('supporter_counter:'.$id);
+            Redis::zrem('issue_supporters:'.$id, $user_id);
         } catch (Exception $e) {
             Log::error('IssuesController/getUnSupport', (array) $e);
             if ($this->isApi) {
