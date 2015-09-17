@@ -316,7 +316,18 @@ class IssuesController extends Controller {
      * @author
      **/
     public function getView($id = null) {
-        $user_id = (Auth::check()) ? Auth::user()->id : $user_id = null;
+        $user_id = null;
+
+        if ($this->isApi) {
+            $user_id = Authorizer::getResourceOwnerId();
+        }
+        else {
+            if (Auth::check()) {
+                $user_id = Auth::user()->id;
+
+            }
+        }
+
         $issue = Issue::with('user', 'tags', 'images', 'updates')
             ->find($id);
 
