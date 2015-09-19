@@ -199,22 +199,22 @@ $(document).ready(function() {
 
 
   // tabs active switch
-  $(document).on('click', '.tabs a', function(e){
-    // target behaviour
-    $target = $(this).attr('data-target');
-    if($target.length > 0) {
-      $('.tabsection').addClass('u-opacity0');
-      $('#' + $target).removeClass('u-opacity0');
-      window.location.hash = "mode_" + $target;
-    }
-    if ($target == 'map') {
-      mapInitialize();
-    }
-    // tab bar behaviour
-    $(this).closest('.tabs').find('a').removeClass('active');
-    $(this).addClass('active');
-    $(this).blur();
-  });
+  // $(document).on('click', '.tabs a', function(e){
+  //   // target behaviour
+  //   $target = $(this).attr('data-target');
+  //   if($target.length > 0) {
+  //     $('.tabsection').addClass('u-opacity0');
+  //     $('#' + $target).removeClass('u-opacity0');
+  //     window.location.hash = "mode_" + $target;
+  //   }
+  //   if ($target == 'map') {
+  //     mapInitialize();
+  //   }
+  //   // tab bar behaviour
+  //   $(this).closest('.tabs').find('a').removeClass('active');
+  //   $(this).addClass('active');
+  //   $(this).blur();
+  // });
 
 
 
