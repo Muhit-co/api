@@ -29,6 +29,7 @@
     opacity: 0.75;
   }
   p {
+    max-width: 100%;
     color: @grey;
     margin-bottom: 0;
     line-height: 1em;
@@ -51,8 +52,13 @@
 }
 @media screen and (max-width: @screen-xs) {
   .list {
+    .badge.badge-image {
+      width: 40px;
+      height: 40px;
+    }
     strong {
       font-size: 0.9em;
+      line-height: 1em;
     }
     p {
       font-size: 0.75em;
