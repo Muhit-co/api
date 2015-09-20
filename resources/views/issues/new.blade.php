@@ -33,10 +33,14 @@
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.tags') }} <i class="u-opacity50">(max 3)</i></label>
-                    @foreach($tags as $t)
-                        <input type="checkbox" id="tag-{{$t->id}}" name="tags[]" value="{{$t->id}}" class="u-floatleft u-mr20">
-                        <label class="tag u-mb10" for="tag-{{$t->id}}" style="background-color:#{{$t->background}}">{{$t->name}}</label>
-                    @endforeach
+                    <div class="row row-nopadding">
+                        @foreach($tags as $t)
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                <input type="checkbox" id="tag-{{$t->id}}" name="tags[]" value="{{$t->id}}" class="u-floatleft u-mr20">
+                                <label class="tag u-mb10" for="tag-{{$t->id}}" style="background-color:#{{$t->background}}">{{$t->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
 
                 </div>
 
