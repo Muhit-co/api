@@ -7119,6 +7119,7 @@ nav #nav_logo img {
   display: block;
 }
 nav #userinfo {
+  margin-top: -5px;
   padding: 20px 15px;
   line-height: 40px;
   font-weight: 700;
@@ -7160,6 +7161,7 @@ nav #nav_quickadd {
 .menu a {
   display: block;
   height: 80px;
+  margin-top: -5px;
   padding: 18px 20px 8px;
   border-bottom: 2px solid transparent;
   font-size: 0.8em;
@@ -7216,10 +7218,12 @@ nav #nav_quickadd {
 @media screen and (max-width: 768px) {
   nav {
     max-width: 100vw;
+    margin-top: 0;
     padding: 0;
     height: 70px;
   }
   nav .userinfo #userinfo {
+    margin-top: 0;
     padding: 15px;
   }
   nav .userinfo #userinfo .badge {
