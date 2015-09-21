@@ -101,7 +101,7 @@ endif;
     // output menu content
     foreach($menu_items as $menu_item):
     ?>
-    <li{{ Request::is( $menu_item['uri'] ) ? ' class=active' : '' }}>
+    <li{{ ( $menu_item['uri'] == '/' . Request::path() ) ? ' class=active' : '' }}>
         <a href="{{ URL::to( $menu_item['uri']) }}" class="u-nowrap">
             <i class="ion <?php echo $menu_item['icon'] ?> ion-15x"></i>
             <span class="text"><?php echo $menu_item['name'] ?></span>
