@@ -1,6 +1,6 @@
 <head>
 
-    <title>{{ $pageTitle or '' }} MUHIT</title>
+    <title>{{ $pageTitle or '' }} {{trans('intro.fb_meta_sitename') }}</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -17,6 +17,12 @@
 
     <link href="/images/favicon.ico" type="image/x-icon" rel="icon" />
     <link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+
+    <!-- Facebook post image -->
+    <meta property="og:image" content="{{ asset('/images/fb-share-image.jpg') }}" />
+    <meta property="og:title" content="{{ trans('intro.fb_meta_title') }}" />
+    <meta property="og:site_name" content="{{ trans('intro.fb_meta_sitename') }}" />
+    <meta property="og:description" content="{{ trans('intro.fb_meta_description') }}" />
 
     @include('partials.web-app-meta-tags')
     @include('partials.google-analytics')

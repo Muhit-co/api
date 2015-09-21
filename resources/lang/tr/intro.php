@@ -11,4 +11,7 @@ return [
     "usp3_text" => "Muhtardan ve belediyeden gelen duyurulara kolayca erişebilirsin.",
     "usp4_title" => "Muhtarına Kolayca Ulaş", 
     "usp4_text" => "Muhtarının ve belediyenin iletişim bilgilerine kolayca ulaşabilirsin.",
+    "fb_meta_sitename" => "MUHİT",
+    "fb_meta_title" => "Muhit - Mahalleni değiştirmek senin elinde",
+    "fb_meta_description" => "Muhit, mahallelilerin ve yerel yönetimlerin yaşadıkları yerleri iyileştirmek için iletişim kurmasını ve çözüm üretmesini sağlayan bir platformdur.",
 ];
