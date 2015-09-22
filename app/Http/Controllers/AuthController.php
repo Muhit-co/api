@@ -532,9 +532,9 @@ class AuthController extends Controller {
         }
 
         #create a random string as remember token.
-        $string = substr(md5(microtime()), 0, 10);
+        $string = bin2hex(mcrypt_create_iv(17, MCRYPT_DEV_URANDOM));
         $user->password_reset_token = $string;
-        $user->password_token_expires_at = Carbon::now()->addDays(10);
+        $user->password_token_expires_at = Carbon::now()->addDays(7);
         try {
             $user->save();
             Mail::send('emails.forgot_password', ['string' => $string, 'email' => $user->email], function($m) use ($user) {
