@@ -1,6 +1,6 @@
 <head>
 
-    <title>{{ $pageTitle or '' }} {{trans('intro.fb_meta_sitename') }}</title>
+    <title>{{session('last_page')}}  {{ $pageTitle or '' }} {{trans('intro.fb_meta_sitename') }}</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
