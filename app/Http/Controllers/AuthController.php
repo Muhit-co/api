@@ -242,6 +242,8 @@ class AuthController extends Controller {
 
         }
 
+        echo "return path is: ".$this->redirPath;
+        return;
         return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, '.Auth::user()->first_name);
 
     }
