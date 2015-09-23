@@ -270,12 +270,13 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir listesi - ');
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'hood' => $hood]);
 
     }
 
 
-     /**
+    /**
      * map issues
      *
      * @return json
@@ -298,6 +299,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Haritesi - ');
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.map', ['issues' => $issues, 'active_tab' => 'map', 'hood' => $hood]);
     }
     /**
@@ -341,6 +343,7 @@ class IssuesController extends Controller {
         if ($this->isApi) {
             return response()->api(200, 'Issue details: ', ['issue' => $issue->toArray()]);
         }
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.show', ['issue' => $issue->toArray($user_id)]);
     }
 
@@ -370,6 +373,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.list', ['issues' => $response, 'hood' => $hood]);
     }
 
@@ -420,6 +424,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order, 'hood' => $hood]);
     }
 
@@ -479,6 +484,7 @@ class IssuesController extends Controller {
         }
 
         view()->share('pageTitle', 'Fikir Listesi - ');
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order, 'hood' => $hood]);
     }
 
@@ -769,7 +775,7 @@ class IssuesController extends Controller {
         if ($this->isApi) {
             return response()->api(200, 'List of issue supporters: '.$id, $users);
         }
-
+        session(['last_page' => Request::path()]);
         return response()->app(200, 'issues.supporters', ['users' => $users]);
 
     }
@@ -785,7 +791,7 @@ class IssuesController extends Controller {
 
         if (!Auth::check()) {
             return redirect('/login')
-             ->with('error', 'Lütfen giriş yapıp tekrar deneyin.');
+                ->with('error', 'Lütfen giriş yapıp tekrar deneyin.');
         }
 
         if (!Request::has('issue_id') or !Request::has('feedback')) {

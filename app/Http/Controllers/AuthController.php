@@ -21,6 +21,25 @@ use Carbon\Carbon;
 
 class AuthController extends Controller {
 
+    public $redirPath;
+
+    /**
+     * setup the authController
+     *
+     * @return void
+     * @author Me
+     */
+    public function __construct()
+    {
+        $last_page = session('last_page');
+        if (empty($last_page)) {
+            $this->redirPath = '/';
+        }
+        else {
+            $this->redirPath = '/'.$last_page;
+        }
+    }
+
     /**
      * displays a login form
      *
@@ -175,7 +194,7 @@ class AuthController extends Controller {
             return response()->api(200, 'Registered and logged in. ', ['user' => $user, 'oauth2' => $token]);
         }
 
-        return redirect()->intended('/')->with('success', 'Hoşgeldin, '.$user->first_name);
+        return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, '.$user->first_name);
 
     }
 
@@ -223,7 +242,7 @@ class AuthController extends Controller {
 
         }
 
-        return redirect()->intended('/')->with('success', 'Hoşgeldin, '.Auth::user()->first_name);
+        return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, '.Auth::user()->first_name);
 
     }
 
@@ -486,7 +505,7 @@ class AuthController extends Controller {
         }
 
         Auth::login($u);
-        return redirect()->intended('/')->with('success', 'Hoşgeldin, '.$u->first_name);
+        return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, '.$u->first_name);
 
 
     }
