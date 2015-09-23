@@ -12592,25 +12592,6 @@ $(document).ready(function() {
       slideout.close();
       e.preventDefault();
     }));
-
-    // mobile menu translation functions – WARNING: disabled because of poor performance
-    // slideout.on('translate', function(translated) {
-    //   slideratio = translated/260;
-    //   $('#menu-drawer .menu').css('opacity', slideratio);
-    //   $('#panel #panel-mask').css('opacity', slideratio);
-    // });
-    // slideout.on('open', function() {
-    //   $('#menu-drawer .menu').attr('style', '');
-    //   $('#panel #panel-mask').attr('style', '');
-    //   $('#navbutton .ion-navicon').hide();
-    //   $('#navbutton .ion-android-close').css( "display", "block");
-    // });
-    // slideout.on('close', function() {
-    //   $('#menu-drawer .menu').attr('style', '');
-    //   $('#panel #panel-mask').attr('style', '');
-    //   $('#navbutton .ion-navicon').show();
-    //   $('#navbutton .ion-android-close').hide();
-    // });
   }
 
   // dialog open
@@ -12629,35 +12610,6 @@ $(document).ready(function() {
     addIsBusy($(this));
     $('#loader_mask').removeClass('isVisible');
     $('main,nav').removeClass('dialogIsOpen');
-    // if ($(this).attr('id') == 'action_support') {
-    //   $this = $('#action_support');
-    //   $other = $('#action_unsupport');
-    // } else {
-    //   $this = $('#action_unsupport');
-    //   $other = $('#action_support');
-    // }
-
-    // e.preventDefault();
-
-    // 'fake' delay for mockups
-    // setTimeout(function() {
-      
-    //   $('#support_counter').removeClass('isGrowing isSlinking');
-    //   previous = parseInt($('#support_counter .value').html());
-
-    //   // add support to counter
-    //   if ($this.attr('id') == 'action_support') {
-    //     $('#support_counter').addClass('isGrowing');
-    //     $('#support_counter .value').html(previous+1);
-    //   } else {
-    //     $('#support_counter').addClass('isSlinking');
-    //     $('#support_counter .value').html(previous-1);
-    //   }
-
-    //   $this.removeClass('isBusy').addClass('u-hidden');
-    //   $other.removeClass('u-hidden');
-
-    // }, 500);
   }));
 
   // login button interaction
@@ -12703,36 +12655,7 @@ $(document).ready(function() {
     $(this).closest('.message').find('.message-expanded').toggleClass('u-hidden');
   });
 
-
-  // tabs active switch
-  $(document).on('click', '.tabs a', function(e){
-    // target behaviour
-    $target = $(this).attr('data-target');
-    if($target.length > 0) {
-      $('.tabsection').addClass('u-opacity0');
-      $('#' + $target).removeClass('u-opacity0');
-      window.location.hash = "mode_" + $target;
-    }
-    if ($target == 'map') {
-      mapInitialize();
-    }
-    // tab bar behaviour
-    $(this).closest('.tabs').find('a').removeClass('active');
-    $(this).addClass('active');
-    $(this).blur();
-  });
-
-
-
-  // switches to selected tab in location hash
-  if(window.location.hash) {
-    hash = window.location.hash.replace('#', '').replace('mode_', '');
-    $intented_target = $('.tabs a[data-target="' + hash + '"]');
-    if($intented_target.length > 0) {
-      $intented_target.click();
-    }
-  }
-
+  // share buttons on show page
   $('.card .btn-twitter[href*=share]').click(function(e) {
     e.preventDefault();
     $url = $(this).attr('href');

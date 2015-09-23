@@ -86,17 +86,25 @@
             </div>
         </div>
 
-        <div class="row"> <!-- u-pinned-bottom -->
+        <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <!-- Sorting tabs for issue list -->
+                <?php
+                $active_tab = 'latest';
+                if (Request::path() == 'map') {
+                    $active_tab = 'map'; 
+                } else if (isset($_GET['sort'])) {
+                    $active_tab = $_GET['sort'];
+                }
+                ?>
                 <ul class="tabs">
                     <li>
-                        <a href="/{{Request::path()}}?sort=latest" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
+                        <a href="/?sort=latest" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="/{{Request::path()}}?sort=popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
+                        <a href="/?sort=popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
                             POPÜLER
                         </a>
                     </li>
