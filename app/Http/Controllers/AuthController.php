@@ -32,7 +32,7 @@ class AuthController extends Controller {
     public function __construct()
     {
         $last_page = session('last_page');
-        if (empty($last_page)) {
+        if (empty($last_page) or $last_page = '/') {
             $this->redirPath = '/';
         }
         else {
