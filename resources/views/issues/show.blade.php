@@ -111,16 +111,25 @@
                         {{$issue['title']}}
                     </h3>
 
+
+                    <?php
+                    // map longitude & latitude, and hide if no information
+                    $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
+                    $lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
+                    $showmap = ($lon > 0 && $lat > 0) ? true : false;
+                    ?>
+
+
                     <div class="row row-nopadding media u-mv20">
-                        <div class="media-images col-sm-8">
+                        <div class="media-images {{ ($showmap) ? 'col-sm-8' : 'col-xs-12' }}">
 
                             <div id="slides">
                                 <?php $numimages = count($issue['images']); ?>
 
                                 @if($numimages == 0)
-                                    <div class="bg-lightest u-pa50 u-aligncenter">
+                                    <div class="bg-lightest u-pa30 u-aligncenter">
                                         <i class="ion ion-image ion-4x c-lighter"></i>
-                                        <p class="c-light"><strong>{{ trans('issues.no_images_present') }}</strong></p>
+                                        <div class="c-light"><strong>{{ trans('issues.no_images_present') }}</strong></div>
                                     </div>
                                 @elseif($numimages >= 1)
                                     @foreach($issue['images'] as $image)
@@ -144,17 +153,15 @@
                             @endif
 
                         </div>
+                        @if($showmap)
                         <div class="media-map col-sm-4">
-                            <?php
-                                $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
-                                $lan = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
-                            ?>
                             <div id="map-canvas">
                             </div>
                             <script>
-                                mapInitializeForIssue({{$lon}}, {{$lan}});
+                                mapInitializeForIssue({{$lon}}, {{$lat}});
                             </script>
                         </div>
+                        @endif
                     </div>
 
                     <div class="row row-nopadding u-mv10">
@@ -195,7 +202,7 @@
                     </div>
 
                 </div>
-                <!--
+                {{--
                 <div class="card-footer clearfix">
                     <h3 class="c-blue u-mb10">{{ trans('issues.comments_from_muhtar') }}</h3>
                     <div class="comment u-ph20">
@@ -212,7 +219,7 @@
                         </p>
                     </div>
                 </div>
-                -->
+                --}}
 
                 <div class="card-footer u-clearfix">
                     <div class="u-floatright">

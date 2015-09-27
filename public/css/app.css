@@ -6459,6 +6459,11 @@ figure img {
   border-bottom: 1px solid #eeeeee;
   line-height: 30px;
 }
+.card .card-header .btn-facebook,
+.card .card-header .btn-twitter {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .card .card-header .title {
   color: #ccccdd;
 }
