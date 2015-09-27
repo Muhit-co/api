@@ -1,4 +1,7 @@
 /* --- card --- */
+@cardpadding: 20px;
+@cardpadding-small: 15px;
+
 .card {
   display: block;
   min-height: 100px;
@@ -17,7 +20,7 @@
   }
 
   .card-header {
-    padding: 20px;
+    padding: @cardpadding;
     border-bottom: 1px solid @greyLighter;
     line-height: 30px;
 
@@ -26,31 +29,34 @@
     }
   }
   .card-content {
-    padding: 20px;
+    padding: @cardpadding;
   }
 
   .media {
     position: relative;
-    .rounded(5px);
     overflow: hidden;
 
     .media-image {
-      height: 100%;
+      height: 300px;
       width: 100%;
       background-color: @greyLighter;
       background-size: cover;
       background-position: center center;
     }
     .media-map {
-      height: 200px;
+      height: 300px;
       background-color: @muhitBlue;
+
+      #map-canvas {
+        padding-bottom: 270px;
+      }
     }
   }
   label {
     font-weight: 600;
   }
   .card-footer {
-    padding: 20px;
+    padding: @cardpadding;
     border-top: 1px solid @greyLighter;
     line-height: 30px;
 
@@ -80,4 +86,17 @@
   .transform(translateX(200px));
   // visibility: hidden;
   opacity: 0;
+}
+@media screen and (max-width: @screen-sm) {
+  .card {
+    .card-header,
+    .card-content,
+    .card-footer {
+      padding: @cardpadding-small;
+    }
+    .card-header .btn {
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+  }
 }

@@ -1,0 +1,42 @@
+
+// tag
+.tag {
+  position: relative;
+  display: inline-block;
+  background-color: @greyLighter;
+  color: @white;
+  padding: 0 10px;
+  .rounded(5px);
+  font-size: 0.9em;
+  line-height: 30px;
+  font-weight: bold;
+
+  .tag-close {
+    display: inline-block;
+    float: right;
+    height: 32px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    padding-top: 8px;
+    border-left: 1px solid fade(@black, 20%);
+    line-height: 15px;
+    color: fade(@white, 75%);
+
+    &:hover, &:focus {
+      color: @white;
+    }
+  }
+}
+.tag-collapsed {
+  width: 15px;
+  height: 15px;
+  .rounded(50%);
+  .transform(translateY(2px));
+  margin-right: 5px;
+  padding: 0;
+}
+
+.list .tag {
+  font-size: 0.8em;
+  padding: 2px 6px;
+}
