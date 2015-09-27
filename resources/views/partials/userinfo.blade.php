@@ -9,7 +9,7 @@
         <ul>
             <li><a href="/issues/new"><i class="ion ion-plus u-mr5"></i> {{ trans('issues.add_idea') }}</a></li>
             <li><a href="/members/my-profile"><i class="ion ion-person u-mr5"></i> {{ trans('issues.my_profile') }}</a></li>
-            <li><a href="#" data-dialog="dialog_report"><i class="ion ion-bug u-mr5"></i> {{ trans('issues.problems_and_recommendations') }}</a></li>
+            <li><a href="https://docs.google.com/forms/d/1Gwyj1OZ_MkMF7QYBN625ADYWIifMsQdFqACA7uTcof0/viewform" target="_blank"><i class="ion ion-bug u-mr5"></i> {{ trans('issues.problems_and_recommendations') }} <i class="ion ion-android-open u-ml5 c-light"></i></a></li>
             <li><a href="/logout" id="logout"><i class="ion ion-log-out u-mr5"></i> {{ trans('auth.log_out') }}</a></li>
         </ul>
     </div>
