@@ -20,7 +20,7 @@
             </a>
             <a href="/login/facebook" class="btn btn-facebook u-ma5 u-mt15">
                 <i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i>
-                <span class="u-floatleft u-mt5 extended">{{ trans('auth.connect_cap') }}</span>
+                <span class="u-floatleft u-mt5"><span class="extended">{{ trans('auth.connect_cap') }}</span></span>
             </a>
             <a href="/register" class="btn btn-primary u-mt15">
                 <span class="condensed">

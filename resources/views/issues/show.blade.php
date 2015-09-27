@@ -26,15 +26,11 @@
 
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
-                    <div class="u-floatleft">
-                        <a href="javascript:window.history.back()" class="u-mr20"><i class="ion ion-android-arrow-back ion-2x"></i></a>
-                    </div>
                     <div class="u-floatright u-clearfix">
 
                         <!-- Share buttons -->
                         <?php
-                        // @gcg what is a good location for this function?s
-
+                        // @gcg what is a good location for this function?
                         function str_trtoeng($source) {
                             $turkish = array("Ü", "Ş", "Ğ", "Ç", "İ", "Ö", "ü", "ş", "ç", "ı", "ö", "ğ"); // turkish letters
                             $english   = array("U", "S", "G", "C", "I", "O", "u", "s", "c", "i", "o", "g"); // corresponding english letters
@@ -60,8 +56,8 @@
                         $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
 
                         ?>
-                        <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-ml5 u-width50" target="_blank"><i class="ion ion-social-twitter"></i></a>
-                        <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-ml5 u-width50" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
+                        <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-width40" target="_blank"><i class="ion ion-social-twitter"></i></a>
+                        <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
                         <!-- (Un)Support button -->
                         @if($role =='public' && $issue['status'] != "solved")
@@ -71,7 +67,8 @@
                                 <a href="/unsupport/{{$issue['id']}}" class="btn btn-tertiary u-ml5 u-has-hidden-content">
                                     <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
                                     <i class="ion ion-fw ion-close u-show-on-hover"></i>
-                                    {{ trans('issues.supported_cap') }}
+                                    <span class="extended">{{ trans('issues.supported_cap') }}</span>
+                                    <span class="condensed"><i class="ion ion-checkmark"></i></span>
                                 </a>
                             @else
                                 <a id="action_support" href="/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
@@ -94,6 +91,7 @@
                         @endif
 
                     </div>
+                    <a href="javascript:window.history.back()" class="u-floatleft u-mr15"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     <span class="title u-inlineblock u-mt5">{{$issue['location']}}</span>
                 </div>
                 <div class="card-content">
@@ -101,7 +99,7 @@
                     <div class="u-floatright u-relative">
                         <div class="label label-{{$issue_status['class']}} u-pr80 u-mr10">
                             <i class="ion {{$issue_status['icon']}}"></i>
-                            <span class="text">{{$issue_status['title']}}</span>
+                            <span class="text extended">{{$issue_status['title']}}</span>
                         </div>
                         <div id="support_counter" class="badge badge-circle-large badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
                             <div class="value">{{ $issue_supporters }}</div>
@@ -113,24 +111,31 @@
                         {{$issue['title']}}
                     </h3>
 
+
+                    <?php
+                    // map longitude & latitude, and hide if no information
+                    $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
+                    $lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
+                    $showmap = ($lon > 0 && $lat > 0) ? true : false;
+                    ?>
+
+
                     <div class="row row-nopadding media u-mv20">
-                        <div class="media-images col-sm-8">
+                        <div class="media-images {{ ($showmap) ? 'col-sm-8' : 'col-xs-12' }}">
 
                             <div id="slides">
                                 <?php $numimages = count($issue['images']); ?>
 
                                 @if($numimages == 0)
-                                    <div class="bg-lightest u-pa50 u-aligncenter">
+                                    <div class="bg-lightest u-pa30 u-aligncenter">
                                         <i class="ion ion-image ion-4x c-lighter"></i>
-                                        <p class="c-light"><strong>{{ trans('issues.no_images_present') }}</strong></p>
+                                        <div class="c-light"><strong>{{ trans('issues.no_images_present') }}</strong></div>
                                     </div>
                                 @elseif($numimages >= 1)
                                     @foreach($issue['images'] as $image)
                                         <div style="height: 100%;">
                                             <div class="media-image" style="background-image: url('//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}')" title="{{$issue['title']}}"></div>
-                                            <!-- <img src="//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}" alt="" /> -->
                                         </div>
-                                        <!-- <img src="" alt="" /> -->
                                     @endforeach
                                 @endif
 
@@ -148,17 +153,15 @@
                             @endif
 
                         </div>
+                        @if($showmap)
                         <div class="media-map col-sm-4">
-                            <?php
-                                $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
-                                $lan = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
-                            ?>
                             <div id="map-canvas">
                             </div>
                             <script>
-                                mapInitializeForIssue({{$lon}}, {{$lan}});
+                                mapInitializeForIssue({{$lon}}, {{$lat}});
                             </script>
                         </div>
+                        @endif
                     </div>
 
                     <div class="row row-nopadding u-mv10">
@@ -199,7 +202,7 @@
                     </div>
 
                 </div>
-                <!--
+                {{--
                 <div class="card-footer clearfix">
                     <h3 class="c-blue u-mb10">{{ trans('issues.comments_from_muhtar') }}</h3>
                     <div class="comment u-ph20">
@@ -216,7 +219,7 @@
                         </p>
                     </div>
                 </div>
-                -->
+                --}}
 
                 <div class="card-footer u-clearfix">
                     <div class="u-floatright">

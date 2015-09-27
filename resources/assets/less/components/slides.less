@@ -1,11 +1,8 @@
 #slides {
   position: relative;
   max-height: 300px;
-  .border-radius(0, 0, 10px, 10px);
-  overflow: hidden;
+  margin-right: 10px;
 
-  .slidesjs-continer {
-  }
   .slidesjs-navigation {
     @size: 60px;
     position: absolute;
@@ -79,5 +76,11 @@
         }
       }
     }
+  }
+}
+@media screen and (max-width: @screen-sm) {
+  #slides {
+    margin-right: 0;
+      margin-bottom: 10px;
   }
 }
