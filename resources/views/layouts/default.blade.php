@@ -6,7 +6,6 @@
 
     <body <?php echo (isset($role)) ? 'class="role-' . $role . '"' : ''; ?>>
 
-        @include('dialogs.report')
         @include('dialogs.login')
         @yield('dialogs')
         
