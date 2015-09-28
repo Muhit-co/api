@@ -12521,7 +12521,7 @@ $(document).ready(function() {
   // setting loader mask on non-same page links
   $('a').click(function() {
     $href = $(this).attr('href');
-    if ($href && !$href.match("^#") && !$href.match("^javascript")) {
+    if ($href && !$href.match("^#") && !$href.match("^javascript") && $(this).attr('target') != '_blank') {
       $('#loader_mask').addClass('isVisible');
       $('main,nav').addClass('dialogIsOpen');
 

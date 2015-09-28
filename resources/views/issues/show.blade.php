@@ -6,7 +6,6 @@
         @include('dialogs.come_drink_tea')
         @include('dialogs.change_status_progress')
         @include('dialogs.change_status_solved')
-        @include('dialogs.report', ['issue_id' => $issue['id']])
     @endif
 @stop
 
@@ -237,7 +236,7 @@
                             @endif
                         @else
                             <span class="hasTooltip u-ml10">
-                                <a href="javascript:void(0)" data-dialog="dialog_report" class="btn btn-tertiary"><i class="ion ion-alert-circled"></i></a>
+                                <a href="https://docs.google.com/forms/d/1Gwyj1OZ_MkMF7QYBN625ADYWIifMsQdFqACA7uTcof0/viewform?entry.22153642&entry.903793893&entry.960103609&entry.512574518={{$issue['title']}}" class="btn btn-tertiary" target="_blank"><i class="ion ion-alert-circled"></i></a>
                                 <span class="tooltip tooltip-alignright u-width300 u-mr5">
                                     <i class="ion ion-alert-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
                                     <div class="u-ml30">{{ trans('issues.report_issue_tooltip') }}</div>
