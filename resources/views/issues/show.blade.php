@@ -187,7 +187,7 @@
                     </div>
                     @endif
 
-                    <div class="u-mv20">
+                    <div class="u-clearfix u-mt20">
                         @if($issue['is_anonymous'] == 0)
                             <div class="badge badge-circle badge-user u-floatleft u-mr10">
                                 <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
