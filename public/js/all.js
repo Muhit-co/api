@@ -13014,6 +13014,7 @@ $(document).ready(function(){
                         }
                     }
                 }
+
                 // evaluating if correct mahalle or not
                 if($("#hood").length > 0 && hood.length > 0) {
                     // hiding form message
@@ -13024,6 +13025,13 @@ $(document).ready(function(){
                         if(!city) { city = '' }
                         $("#district").show().find('.text').html(district+", "+city);
                     }
+                    
+                    $("#hood").val(hood);
+                    $("#district").html(district+", "+city);
+                            // backend data
+                    var lat = place.geometry.location.lat();
+                    var lon = place.geometry.location.lng();
+                    $("#coordinates").val(lat + ", " + lon);
                     $("#location_string").val(hood+", "+district+", "+city);
                     $("#location_string").closest('.form-group').attr('data-form-state','is-current');
 
