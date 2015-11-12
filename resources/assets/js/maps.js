@@ -26,30 +26,27 @@ function mapInitialize() {
         });
     });
 
-    // // Declare your bounds
-    // var bounds = new google.maps.LatLngBounds();
+    // Declare your bounds
+    var bounds = new google.maps.LatLngBounds();
 
-    // $.getJSON('/mapdata.json', {}, function (data) {
-    //     $.each(data.features, function (i, marker) {
-    //         // Get coordinates from json object
-    //         var item = marker.geometry.coordinates;
-    //         console.log(item);
-    //         // Declare lat/long 
-    //         var latlng = new google.maps.LatLng(item[0], item[1]);
-    //         // Add lat/long to bounds
-    //         bounds.extend(latlng);
-    //     });
-    // });
+    $.getJSON('/mapdata.json', {}, function (data) {
+        $.each(data.features, function (i, marker) {
+            // Get coordinates from json object
+            var item = marker.geometry.coordinates;
+            // Declare lat/long 
+            var latlng = new google.maps.LatLng(item[1], item[0]);
+            // Add lat/long to bounds
+            bounds.extend(latlng);
+        });
+    });
 
-    // console.log(bounds);
-
-    // // Fit map to bounds.
-    //  map.fitBounds(bounds);
+    // Fit map to bounds.
+     map.fitBounds(bounds);
 
 
-    // map.data.addListener('click', function(event) {
-    //     window.location.href = '/issues/view/' + event.feature.getProperty('id');
-    // });
+    map.data.addListener('click', function(event) {
+        window.location.href = '/issues/view/' + event.feature.getProperty('id');
+    });
 }
 
 function mapInitializeForIssue(lon, lan) {
