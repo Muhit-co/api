@@ -31,3 +31,10 @@ function getIssueStatus($status, $issue_supporters) {
 
     return $issue_status;
 }
+
+
+function buildRelativeUrl($param, $value) {
+    parse_str($_SERVER['QUERY_STRING'], $query_string);
+    $query_string[$param] = $value;
+    return http_build_query($query_string);
+}

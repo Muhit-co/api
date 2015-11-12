@@ -92,19 +92,19 @@
                 <?php
                 $active_tab = 'latest';
                 if (Request::path() == 'map') {
-                    $active_tab = 'map'; 
+                    $active_tab = 'map';
                 } else if (isset($_GET['sort'])) {
                     $active_tab = $_GET['sort'];
                 }
                 ?>
                 <ul class="tabs">
                     <li>
-                        <a href="/?sort=latest" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
+                        <a href="?<?php echo buildRelativeUrl('sort', 'latest') ?>" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
                             EN SON
                         </a>
                     </li>
                     <li>
-                        <a href="/?sort=popular" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
+                        <a href="?<?php echo buildRelativeUrl('sort', 'popular') ?>" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
                             POPÜLER
                         </a>
                     </li>

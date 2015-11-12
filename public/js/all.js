@@ -12840,15 +12840,15 @@ $(document).bind("scrollstop", function() { scrollActions(); });
 function mapInitialize() {
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
-      center: new google.maps.LatLng(41.0686, 29.0285),
-      // minZoom: 8,
-      zoom: 11,
-      disableDefaultUI: false,
-      scrollwheel: false,
-      mapTypeControl: false,
-      panControl: false,
-      streetViewControl: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        center: new google.maps.LatLng(41.0686, 29.0285),
+        // minZoom: 8,
+        zoom: 11,
+        disableDefaultUI: false,
+        scrollwheel: false,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
     map.data.loadGeoJson('/mapdata.json');
@@ -12880,7 +12880,7 @@ function mapInitialize() {
     });
 
     // Fit map to bounds.
-     map.fitBounds(bounds);
+    map.fitBounds(bounds);
 
 
     map.data.addListener('click', function(event) {
@@ -12892,15 +12892,15 @@ function mapInitializeForIssue(lon, lan) {
     var mapCanvas = document.getElementById('map-canvas');
     var LtLng = new google.maps.LatLng(lon, lan);
     var mapOptions = {
-      center: LtLng,
-      // minZoom: 8,
-      zoom: 11,
-      disableDefaultUI: false,
-      scrollwheel: false,
-      mapTypeControl: false,
-      panControl: false,
-      streetViewControl: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        center: LtLng,
+        // minZoom: 8,
+        zoom: 11,
+        disableDefaultUI: false,
+        scrollwheel: false,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
     var marker = new google.maps.Marker({
@@ -12920,7 +12920,7 @@ $(document).on('change', '#current_location', function(event){
         var original_placeholder = $("#location_string").attr('placeholder');
         $("#location_string").val('').attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
         $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
-        
+
         var map;
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -12959,21 +12959,22 @@ $(document).on('change', '#current_location', function(event){
                             $("#location_string").val(hood+", "+district+", "+city);
                             $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                             // map.setCenter({lat: lat, lng: lon});
-                            
+
                             //do we need to do something? 
                             if ($("#redir").size() > 0) {
                                 var redir = $("#redir").val();
                                 var loca = hood+", "+district+", "+city
-                                if (redir == 'list') {
-                                    $.ajax({
-                                        url: '/fikirler',
-                                        method: 'post',
-                                        data: 'location='+loca,
-                                        success: function(r){
-                                            $("#issueListContainer").html(r);
-                                        }
-                                    });
-                                }
+                                    if (redir == 'list') {
+                                        window.location = '/fikirler?location='+loca;
+                                        $.ajax({
+                                            url: '/fikirler',
+                                            method: 'post',
+                                            data: 'location='+loca,
+                                            success: function(r){
+                                                $("#issueListContainer").html(r);
+                                            }
+                                        });
+                                    }
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
@@ -13011,7 +13012,7 @@ $(document).ready(function(){
                     types: ['geocode'],
                     componentRestrictions: {country: 'tr'}, 
                 }
-        );
+                );
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -13052,10 +13053,10 @@ $(document).ready(function(){
                         if(!city) { city = '' }
                         $("#district").show().find('.text').html(district+", "+city);
                     }
-                    
+
                     $("#hood").val(hood);
                     $("#district").html(district+", "+city);
-                            // backend data
+                    // backend data
                     var lat = place.geometry.location.lat();
                     var lon = place.geometry.location.lng();
                     $("#coordinates").val(lat + ", " + lon);
@@ -13066,16 +13067,11 @@ $(document).ready(function(){
                     if ($("#redir").size() > 0) {
                         var redir = $("#redir").val();
                         var loca = hood+", "+district+", "+city
-                        if (redir == 'list') {
-                            $.ajax({
-                                url: '/fikirler',
-                                method: 'post',
-                                data: 'location='+loca,
-                                success: function(r){
-                                    $("#issueListContainer").html(r);
-                                }
-                            });
-                        }
+
+                            if (redir == 'list') {
+                                window.location = '/fikirler?location='+loca;
+                                
+                            }
                     }
 
                 } else {
@@ -13089,7 +13085,5 @@ $(document).ready(function(){
         });
     }
 });
-
-
 
 //# sourceMappingURL=all.js.map
