@@ -5,25 +5,34 @@
       "type": "Feature",
       "properties": {
         "status": "new",
-        "id": "1"
+        "id": 1
       },
-      "geometry": { "type": "Point", "coordinates": [28.982681, 41.033458] }
+      "geometry": { 
+        "type": "Point", 
+        "coordinates": [28.982681, 41.033458] 
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "status": "inprogress",
-        "id": "2"
+        "status": "progress",
+        "id": 2
       },
-      "geometry": { "type": "Point", "coordinates": [29.029213, 41.070378] }
+      "geometry": { 
+        "type": "Point", 
+        "coordinates": [29.029213, 41.070378] 
+      }
     },
     {
       "type": "Feature",
       "properties": {
         "status": "solved",
-        "id": "3"
+        "id": 3
       },
-      "geometry": { "type": "Point", "coordinates": [29.025264, 41.048114] }
+      "geometry": { 
+        "type": "Point", 
+        "coordinates": [29.025264, 41.048114] 
+      }
     }
   ]
 }

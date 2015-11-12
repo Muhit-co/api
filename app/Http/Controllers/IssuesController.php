@@ -260,6 +260,11 @@ class IssuesController extends Controller {
 
         $issues->orderBy($o1, $o2);
 
+        if (Request::has('map') and (int) Request::get('map') === 1) {
+            $data = $issues->paginate(20);
+            return $this->displayMapData($data);
+        }
+
 
         if (Request::ajax()) {
             return view('partials.issues', ['issues' => $issues->paginate(20), 'hood' => $hood]);
@@ -275,6 +280,40 @@ class IssuesController extends Controller {
 
     }
 
+
+    /**
+     * returns json format of the issues for map datas
+     *
+     * @return json
+     * @author Me
+     */
+    private function displayMapData($data = [])
+    {
+        $output = [];
+        $output['type'] = 'FeatureCollection';
+        $output['features'] = [];
+        foreach ($data as $d) {
+            if (!empty($d->coordinates) and count(explode(', ', $d->coordinates)) == 2) {
+                $coordinates = null;
+                foreach (explode(", ", $d->coordinates) as $c) {
+                    $coordinates[] = floatval($c);
+                }
+                $output['features'][] = [
+                    'type' => 'Feature',
+                    'proporties' => [
+                        'status' => $d->status,
+                        'id' => $d->id
+                    ],
+                    'geometry' => [
+                        'type' => 'Point',
+                        'coordinates' => $coordinates
+                    ]
+                ];
+            }
+        }
+
+        return response()->json($output);
+    }
 
     /**
      * map issues
@@ -413,6 +452,11 @@ class IssuesController extends Controller {
 
         $response = [];
 
+        if (Request::has('map') and (int) Request::get('map') === 1) {
+            $data = $issues->paginate(20);
+            return $this->displayMapData($data);
+        }
+
         $issues = $issues->paginate(20);
 
         if ($issues !== null) {
@@ -470,6 +514,11 @@ class IssuesController extends Controller {
         }
 
         $issues->orderBy($o1, $o2);
+
+        if (Request::has('map') and (int) Request::get('map') === 1) {
+            $data = $issues->paginate(20);
+            return $this->displayMapData($data);
+        }
 
         $issues = $issues->paginate(20);
 
