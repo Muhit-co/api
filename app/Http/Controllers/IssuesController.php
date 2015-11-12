@@ -306,7 +306,7 @@ class IssuesController extends Controller {
                     ],
                     'geometry' => [
                         'type' => 'Point',
-                        'coordinates' => $coordinates
+                        'coordinates' => array_reverse($coordinates)
                     ]
                 ];
             }
