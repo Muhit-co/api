@@ -17,9 +17,9 @@
                 // google.maps.event.addDomListener(window, 'load', mapInitialize);
             </script>
 
-            <div class="u-aligncenter u-pv20">
+            <!-- <div class="u-aligncenter u-pv20">
                 <a class="btn btn-tertiary" id="map_redraw"><i class="ion ion-refresh"></i></a>
-            </div>
+            </div> -->
 
         </div>
     </div>

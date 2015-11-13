@@ -12838,6 +12838,9 @@ $(window).resize(function() { scrollActions(); });
 $(document).bind("scrollstart", function() { scrollActions(); });
 $(document).bind("scrollstop", function() { scrollActions(); });
 function mapInitialize() {
+
+
+    // Initialise map object
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
         center: new google.maps.LatLng(41.0686, 29.0285),
@@ -12851,6 +12854,23 @@ function mapInitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
+
+
+    // Declare your bounds
+    var bounds = new google.maps.LatLngBounds();
+    $.getJSON('/?map=1', {}, function (data) {
+        $.each(data.features, function (i, marker) {
+            // Get coordinates from json object
+            var item = marker.geometry.coordinates;
+            // Declare lat/long 
+            var latlng = new google.maps.LatLng(item[1], item[0]);
+            // Add lat/long to bounds
+            bounds.extend(latlng);
+        });
+    });
+
+
+    // Load markers to map
     map.data.loadGeoJson('/?map=1');
     map.data.setStyle(function(feature) {
         var status = 'new';
@@ -12863,25 +12883,14 @@ function mapInitialize() {
             clickable: true,
             icon: { url: '/images/map-icons/marker_' + status + '.png', size: new google.maps.Size(29, 41) }
         });
+        console.log(feature.getProperty('id'));
     });
 
-    // Declare your bounds
-    var bounds = new google.maps.LatLngBounds();
 
-    $.getJSON('/?map=1', {}, function (data) {
-        $.each(data.features, function (i, marker) {
-            // Get coordinates from json object
-            var item = marker.geometry.coordinates;
-            // Declare lat/long 
-            var latlng = new google.maps.LatLng(item[1], item[0]);
-            // Add lat/long to bounds
-            bounds.extend(latlng);
-        });
+    // Fit map to bounds once markers are loaded
+    map.data.addListener('addfeature', function(feature) {
+        map.fitBounds(bounds);
     });
-
-    // Fit map to bounds.
-    map.fitBounds(bounds);
-
 
     map.data.addListener('click', function(event) {
         window.location.href = '/issues/view/' + event.feature.getProperty('id');
