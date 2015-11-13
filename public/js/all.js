@@ -12851,7 +12851,7 @@ function mapInitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
-    map.data.loadGeoJson('/mapdata.json');
+    map.data.loadGeoJson('/?map=1');
     map.data.setStyle(function(feature) {
         var status = 'new';
         if (feature.getProperty('status') == 'progress') {
@@ -12868,7 +12868,7 @@ function mapInitialize() {
     // Declare your bounds
     var bounds = new google.maps.LatLngBounds();
 
-    $.getJSON('/mapdata.json', {}, function (data) {
+    $.getJSON('/?map=1', {}, function (data) {
         $.each(data.features, function (i, marker) {
             // Get coordinates from json object
             var item = marker.geometry.coordinates;
