@@ -300,7 +300,7 @@ class IssuesController extends Controller {
                 }
                 $output['features'][] = [
                     'type' => 'Feature',
-                    'proporties' => [
+                    'properties' => [
                         'status' => $d->status,
                         'id' => $d->id
                     ],
