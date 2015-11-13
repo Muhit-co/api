@@ -1,18 +1,38 @@
 function mapInitialize() {
+
+
+    // Initialise map object
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
-      center: new google.maps.LatLng(41.0686, 29.0285),
-      // minZoom: 8,
-      zoom: 11,
-      disableDefaultUI: false,
-      scrollwheel: false,
-      mapTypeControl: false,
-      panControl: false,
-      streetViewControl: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        center: new google.maps.LatLng(41.0686, 29.0285),
+        // minZoom: 8,
+        zoom: 11,
+        disableDefaultUI: false,
+        scrollwheel: false,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
-    map.data.loadGeoJson('/mapdata.json');
+
+
+    // Declare your bounds
+    var bounds = new google.maps.LatLngBounds();
+    $.getJSON('/?map=1', {}, function (data) {
+        $.each(data.features, function (i, marker) {
+            // Get coordinates from json object
+            var item = marker.geometry.coordinates;
+            // Declare lat/long 
+            var latlng = new google.maps.LatLng(item[1], item[0]);
+            // Add lat/long to bounds
+            bounds.extend(latlng);
+        });
+    });
+
+
+    // Load markers to map
+    map.data.loadGeoJson('/?map=1');
     map.data.setStyle(function(feature) {
         var status = 'new';
         if (feature.getProperty('status') == 'progress') {
@@ -24,25 +44,14 @@ function mapInitialize() {
             clickable: true,
             icon: { url: '/images/map-icons/marker_' + status + '.png', size: new google.maps.Size(29, 41) }
         });
+        console.log(feature.getProperty('id'));
     });
 
-    // Declare your bounds
-    var bounds = new google.maps.LatLngBounds();
 
-    $.getJSON('/mapdata.json', {}, function (data) {
-        $.each(data.features, function (i, marker) {
-            // Get coordinates from json object
-            var item = marker.geometry.coordinates;
-            // Declare lat/long 
-            var latlng = new google.maps.LatLng(item[1], item[0]);
-            // Add lat/long to bounds
-            bounds.extend(latlng);
-        });
+    // Fit map to bounds once markers are loaded
+    map.data.addListener('addfeature', function(feature) {
+        map.fitBounds(bounds);
     });
-
-    // Fit map to bounds.
-     map.fitBounds(bounds);
-
 
     map.data.addListener('click', function(event) {
         window.location.href = '/issues/view/' + event.feature.getProperty('id');
@@ -53,15 +62,15 @@ function mapInitializeForIssue(lon, lan) {
     var mapCanvas = document.getElementById('map-canvas');
     var LtLng = new google.maps.LatLng(lon, lan);
     var mapOptions = {
-      center: LtLng,
-      // minZoom: 8,
-      zoom: 11,
-      disableDefaultUI: false,
-      scrollwheel: false,
-      mapTypeControl: false,
-      panControl: false,
-      streetViewControl: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        center: LtLng,
+        // minZoom: 8,
+        zoom: 11,
+        disableDefaultUI: false,
+        scrollwheel: false,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
     var marker = new google.maps.Marker({
@@ -81,7 +90,7 @@ $(document).on('change', '#current_location', function(event){
         var original_placeholder = $("#location_string").attr('placeholder');
         $("#location_string").val('').attr('placeholder', 'Yerinizi belirlemeye çalışıyorum...');
         $("#location_string").closest('.form-group').attr('data-form-state','is-busy');
-        
+
         var map;
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -120,21 +129,22 @@ $(document).on('change', '#current_location', function(event){
                             $("#location_string").val(hood+", "+district+", "+city);
                             $("#location_string").closest('.form-group').attr('data-form-state','is-current');
                             // map.setCenter({lat: lat, lng: lon});
-                            
+
                             //do we need to do something? 
                             if ($("#redir").size() > 0) {
                                 var redir = $("#redir").val();
                                 var loca = hood+", "+district+", "+city
-                                if (redir == 'list') {
-                                    $.ajax({
-                                        url: '/fikirler',
-                                        method: 'post',
-                                        data: 'location='+loca,
-                                        success: function(r){
-                                            $("#issueListContainer").html(r);
-                                        }
-                                    });
-                                }
+                                    if (redir == 'list') {
+                                        window.location = '/fikirler?location='+loca;
+                                        $.ajax({
+                                            url: '/fikirler',
+                                            method: 'post',
+                                            data: 'location='+loca,
+                                            success: function(r){
+                                                $("#issueListContainer").html(r);
+                                            }
+                                        });
+                                    }
                             }
                         } else {
                             window.alert('Yerinizi belirleyemedim, elle girsek?');
@@ -172,7 +182,7 @@ $(document).ready(function(){
                     types: ['geocode'],
                     componentRestrictions: {country: 'tr'}, 
                 }
-        );
+                );
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -202,6 +212,7 @@ $(document).ready(function(){
                         }
                     }
                 }
+
                 // evaluating if correct mahalle or not
                 if($("#hood").length > 0 && hood.length > 0) {
                     // hiding form message
@@ -212,6 +223,13 @@ $(document).ready(function(){
                         if(!city) { city = '' }
                         $("#district").show().find('.text').html(district+", "+city);
                     }
+
+                    $("#hood").val(hood);
+                    $("#district").html(district+", "+city);
+                    // backend data
+                    var lat = place.geometry.location.lat();
+                    var lon = place.geometry.location.lng();
+                    $("#coordinates").val(lat + ", " + lon);
                     $("#location_string").val(hood+", "+district+", "+city);
                     $("#location_string").closest('.form-group').attr('data-form-state','is-current');
 
@@ -219,16 +237,11 @@ $(document).ready(function(){
                     if ($("#redir").size() > 0) {
                         var redir = $("#redir").val();
                         var loca = hood+", "+district+", "+city
-                        if (redir == 'list') {
-                            $.ajax({
-                                url: '/fikirler',
-                                method: 'post',
-                                data: 'location='+loca,
-                                success: function(r){
-                                    $("#issueListContainer").html(r);
-                                }
-                            });
-                        }
+
+                            if (redir == 'list') {
+                                window.location = '/fikirler?location='+loca;
+                                
+                            }
                     }
 
                 } else {
@@ -242,5 +255,3 @@ $(document).ready(function(){
         });
     }
 });
-
-

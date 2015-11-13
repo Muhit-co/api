@@ -261,7 +261,7 @@ class IssuesController extends Controller {
         $issues->orderBy($o1, $o2);
 
         if (Request::has('map') and (int) Request::get('map') === 1) {
-            $data = $issues->paginate(20);
+            $data = $issues->paginate(100);
             return $this->displayMapData($data);
         }
 
@@ -300,13 +300,13 @@ class IssuesController extends Controller {
                 }
                 $output['features'][] = [
                     'type' => 'Feature',
-                    'proporties' => [
+                    'properties' => [
                         'status' => $d->status,
                         'id' => $d->id
                     ],
                     'geometry' => [
                         'type' => 'Point',
-                        'coordinates' => $coordinates
+                        'coordinates' => array_reverse($coordinates)
                     ]
                 ];
             }
