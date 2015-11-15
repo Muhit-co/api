@@ -77,7 +77,7 @@ return [
     "post_new_announcement" => "Yeni duyuru yaz", 
     "post_new_announcement_descr" => "Mahallenizdeki önemli gelişmeleri buradan duyurabilirsiniz. Muhit'e üye olan mahalleliler duyurularınız hakkında bildirim alacaktır.",
     "twitter_text" => ":issue_title – Muhit",
-    "how_does_it_work" => "Nasıl çalışıyor?",
+    "muhit_story" => "Muhit'in Hikayesi",
     "terms_and_conditions" => "Kullanım koşulları",
     "about_muhit" => "Muhit hakkında",
     "contact" => "İletişim",
