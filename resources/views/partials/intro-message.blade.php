@@ -7,12 +7,12 @@
             </a>
 
             <div class="row row-nopadding">
-                <div class="col-sm-4 col-xs-hide">
-                    <span class="message-expanded">
-                        <h3 class="u-floatleft u-mr20">Muhit'e hoş geldin!</h3>
-                    </span>
-                </div>
-                <div class="col-xs-6 col-sm-4 u-aligncenter">
+                <div class="col-xs-10 u-aligncenter">
+                    <div class="col-xs-hide">
+                        <span class="message-expanded">
+                            <h3 class="u-floatleft u-mr20">Muhit'e hoş geldin!</h3>
+                        </span>
+                    </div>
                     <a href="javascript:void(0)" id="message_expand" class="btn btn-sm btn-empty" style="margin-top: -2px;">
                         {{ trans('intro.how_does_it_work_cap') }}
                         <span class="message-expanded">
