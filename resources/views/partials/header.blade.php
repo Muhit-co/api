@@ -109,7 +109,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/map" <?php echo ((isset($active_tab) and $active_tab == 'map') ? 'class="active"' : ''); ?>>
+                        <a href="?<?php echo buildRelativeUrl('sort', 'map') ?>" <?php echo ((isset($active_tab) and $active_tab == 'map') ? 'class="active"' : ''); ?>>
                             HARİTA
                         </a>
                     </li>
