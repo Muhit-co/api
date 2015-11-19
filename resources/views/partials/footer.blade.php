@@ -5,9 +5,9 @@
             <small class="u-floatleft u-ml20" style="margin-top: 3px;">&copy; {{strftime('%Y')}}</small>
         </div>
         <div class="col-sm-3">
-            <a href="//hikaye.muhit.co/nasil-calisiyor" class="u-inlineblock u-pa5">
-                <i class="ion ion-help-circled ion-fw u-aligncenter u-mr5"></i>
-                {{ trans('issues.how_does_it_work') }}
+            <a href="//hikaye.muhit.co/" class="u-inlineblock u-pa5">
+                <i class="ion ion-chatbubble ion-fw u-aligncenter u-mr5"></i>
+                {{ trans('issues.muhit_story') }}
             </a>
             <br />
             <a href="//hikaye.muhit.co/kullanim-kosullari" class="u-inlineblock u-pa5">
