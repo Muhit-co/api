@@ -8,6 +8,7 @@
 
             <div class="row row-nopadding">
                 <div class="col-xs-10 u-aligncenter">
+                    <i class="ion ion-muhit-tea-white u-floatleft u-mr10" style="margin-top: 3px;"></i>
                     <div class="col-xs-hide">
                         <span class="message-expanded">
                             <h3 class="u-floatleft u-mr20">Muhit'e hoş geldin!</h3>
