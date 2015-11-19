@@ -3,6 +3,7 @@
 return [
     "title" => "Mahalleni değiştirmek senin elinde.",
     "subtitle" => "Nasıl çalışıyor?", 
+    "how_does_it_work_cap" => "NASIL ÇALIŞIYOR?", 
     "usp1_title" => "Fikir Yarat",
     "usp1_text" => "Mahalleni geliştirmek için kolayca önerilerini paylaşabilirsin. İstersen bunu anonim olarak yapabilirsin.",
     "usp2_title" => "Beğendiğin Fikirleri Destekle", 
