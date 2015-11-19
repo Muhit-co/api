@@ -12651,7 +12651,6 @@ $(document).ready(function() {
   });
   // expand message
   $('.message #message_expand').bind('click', function(e) {
-    $(this).toggleClass('c-white').toggleClass('c-light');
     $(this).closest('.message').find('.message-expanded').toggleClass('u-hidden');
   });
 
