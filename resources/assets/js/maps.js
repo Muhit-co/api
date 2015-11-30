@@ -31,6 +31,18 @@ function mapInitialize() {
     });
 
 
+    // Determining icon size for markers
+    icon_scaledwidth = 46;
+    icon_scaledheight = 41;
+    icon_density = 1;
+    if (window.devicePixelRatio > 1) {
+        icon_density = 2;
+    }
+    if (window.devicePixelRatio > 2) {
+        icon_density = 3;
+    }
+
+
     // Load markers to map
     map.data.loadGeoJson('/?map=1');
     map.data.setStyle(function(feature) {
@@ -42,9 +54,13 @@ function mapInitialize() {
         }
         return /** @type {google.maps.Data.StyleOptions} */({
             clickable: true,
-            icon: { url: '/images/map-icons/marker_' + status + '.png', size: new google.maps.Size(29, 41) }
+            icon: {
+                url: '/images/map-icons/marker_' + status + '@' + icon_density + 'x.png',
+                size: new google.maps.Size( icon_scaledwidth * icon_density, icon_scaledheight * icon_density ),
+                scaledSize: new google.maps.Size( icon_scaledwidth, icon_scaledheight ),
+                anchor: new google.maps.Point( icon_scaledwidth/2, icon_scaledheight )
+            }
         });
-        console.log(feature.getProperty('id'));
     });
 
 
