@@ -38,6 +38,20 @@ class RouteServiceProvider extends ServiceProvider {
 				return redirect('/');
 			}
 		});
+
+		Route::filter('muhtar', function () {
+			if (Auth::guest()) {
+				if (Request::ajax()) {
+					return Response::make('Unauthorized', 401);
+				} else {
+					return redirect('/login');
+				}
+			}
+
+			if (Auth::user()->level !== 5) {
+				return redirect('/');
+			}
+		});
 	}
 
 	/**

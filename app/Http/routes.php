@@ -82,8 +82,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+# Admin routes
 Route::group(['middleware' => 'auth', 'before' => 'admin'], function () {
 	Route::controller('admin', 'AdminController');
+});
+
+# Muhtar routes
+Route::group(['middleware' => 'auth', 'before' => 'muhtar'], function () {
+	Route::controller('muhtar', 'MuhtarController');
 });
 
 Route::get('profile/{id}', 'MembersController@getProfile');
