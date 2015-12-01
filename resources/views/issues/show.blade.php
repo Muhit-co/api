@@ -11,7 +11,7 @@
 
 @include('partials.header', array('type'=>'show'))
 
-<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); ?>
+<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR');?>
 
 <section>
     <div class="row">
@@ -19,9 +19,9 @@
         <div class="col-md-10 col-md-offset-1">
 
             <?php
-            $issue_supporters = (int) Redis::get('supporter_counter:'.$issue['id']);
-            $issue_status = getIssueStatus($issue['status'], $issue_supporters);
-            ?>
+$issue_supporters = (int) Redis::get('supporter_counter:' . $issue['id']);
+$issue_status = getIssueStatus($issue['status'], $issue_supporters);
+?>
 
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
@@ -29,32 +29,32 @@
 
                         <!-- Share buttons -->
                         <?php
-                        // @gcg what is a good location for this function?
-                        function str_trtoeng($source) {
-                            $turkish = array("Ü", "Ş", "Ğ", "Ç", "İ", "Ö", "ü", "ş", "ç", "ı", "ö", "ğ"); // turkish letters
-                            $english   = array("U", "S", "G", "C", "I", "O", "u", "s", "c", "i", "o", "g"); // corresponding english letters
-                            $result = str_replace($turkish, $english, $source); //replace php function
-                            return $result;
-                        }
+// @gcg what is a good location for this function?
+function str_trtoeng($source) {
+	$turkish = array("Ü", "Ş", "Ğ", "Ç", "İ", "Ö", "ü", "ş", "ç", "ı", "ö", "ğ"); // turkish letters
+	$english = array("U", "S", "G", "C", "I", "O", "u", "s", "c", "i", "o", "g"); // corresponding english letters
+	$result = str_replace($turkish, $english, $source); //replace php function
+	return $result;
+}
 
-                        $twitter_url = "http://twitter.com/share";
-                        $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)) );
-                        $twitter_url .= "&url=" . Request::url();
-                        $twitter_url .= "&hashtags=muhit";
-                        foreach($issue['tags'] as $tag):
-                            $twitter_url .= "," . str_trtoeng(strtolower($tag['name']));
-                        endforeach;
-                        $facebook_url = "http://www.facebook.com/dialog/feed";
-                        $facebook_url .= "?app_id=" . "1458298001134890";
-                        $facebook_url .= "&link=" . Request::url();
-                        $facebook_url .= "&picture=";
-                        $facebook_url .= "&name=" . $issue['title'];
-                        $facebook_url .= "&caption=" . $issue['problem'];
-                        $facebook_url .= "&description=" . $issue['solution'];
-                        $facebook_url .= "&message=" . $issue['solution'];
-                        $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
+$twitter_url = "http://twitter.com/share";
+$twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
+$twitter_url .= "&url=" . Request::url();
+$twitter_url .= "&hashtags=muhit";
+foreach ($issue['tags'] as $tag):
+	$twitter_url .= "," . str_trtoeng(strtolower($tag['name']));
+endforeach;
+$facebook_url = "http://www.facebook.com/dialog/feed";
+$facebook_url .= "?app_id=" . "1458298001134890";
+$facebook_url .= "&link=" . Request::url();
+$facebook_url .= "&picture=";
+$facebook_url .= "&name=" . $issue['title'];
+$facebook_url .= "&caption=" . $issue['problem'];
+$facebook_url .= "&description=" . $issue['solution'];
+$facebook_url .= "&message=" . $issue['solution'];
+$facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
 
-                        ?>
+?>
                         <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-width40" target="_blank"><i class="ion ion-social-twitter"></i></a>
                         <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
@@ -112,18 +112,18 @@
 
 
                     <?php
-                    // map longitude & latitude, and hide if no information
-                    $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
-                    $lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
-                    $showmap = ($lon > 0 && $lat > 0) ? true : false;
-                    ?>
+// map longitude & latitude, and hide if no information
+$lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
+$lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
+$showmap = ($lon > 0 && $lat > 0) ? true : false;
+?>
 
 
                     <div class="row row-nopadding media u-mv20">
                         <div class="media-images {{ ($showmap) ? 'col-sm-8' : 'col-xs-12' }}">
 
                             <div id="slides">
-                                <?php $numimages = count($issue['images']); ?>
+                                <?php $numimages = count($issue['images']);?>
 
                                 @if($numimages == 0)
                                     <div class="bg-lightest u-pa30 u-aligncenter">
@@ -201,23 +201,29 @@
                     </div>
 
                 </div>
-                {{--
-                <div class="card-footer clearfix">
-                    <h3 class="c-blue u-mb10">{{ trans('issues.comments_from_muhtar') }}</h3>
-                    <div class="comment u-ph20">
-                        <h4 class="title">
-                            <div class="u-floatright">
-                                <small>{{ strftime('%d %h %Y', strtotime($issue['created_at'])) }}</small>
+
+                @if(!empty($issue['comments']))
+                    @foreach($issue['comments'] as $comment)
+                        <div class="card-footer clearfix">
+                            <h3 class="c-blue u-mb10">{{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}</h3>
+                            <div class="comment u-ph20">
+                                <h4 class="title">
+                                    <div class="u-floatright">
+                                        <small>{{ strftime('%d %h %Y', strtotime($comment['created_at'])) }}</small>
+                                    </div>
+
+                                </h4>
+                                <p>
+                                    <em>
+                                        {{ $comment['comment'] }}
+                                    </em>
+                                </p>
                             </div>
-                            Comment title
-                        </h4>
-                        <p>
-                            <em>
-                                Lorem ipsum...
-                            </em>
-                        </p>
-                    </div>
-                </div>
+                        </div>
+                    @endforeach
+                @endif
+                {{--
+
                 --}}
 
                 <div class="card-footer u-clearfix">
