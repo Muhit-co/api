@@ -3,6 +3,7 @@
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
 use Request;
+use Auth;
 
 class AdminController extends Controller {
 

@@ -4,6 +4,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Request;
+use Auth;
 
 class RouteServiceProvider extends ServiceProvider {
 

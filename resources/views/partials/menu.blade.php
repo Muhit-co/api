@@ -75,7 +75,7 @@ if(isset($role)):
             ),
             array(
                 'name' => trans('issues.users_cap'),
-                'uri' => '/',
+                'uri' => '/admin/members',
                 'icon' => 'ion-person-stalker'
             ),
             array(
