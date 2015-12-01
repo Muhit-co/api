@@ -52,7 +52,9 @@
 					</li>
                     @endforeach
 
-				</ul>
+                </ul>
+
+                {!! $members->render() !!}
 			</div>
 
 		</div>
