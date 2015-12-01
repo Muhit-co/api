@@ -30,4 +30,65 @@ class AdminController extends Controller {
 		return response()->app(200, 'members.index', ['members' => $users->paginate(30), 'filters' => Request::all()]);
 
 	}
+
+	/**
+	 * displays the information about a muhtar
+	 *
+	 * @return view
+	 * @author gcg
+	 */
+	public function getViewMember($id = null) {
+
+	}
+
+	/**
+	 * displays a form for editing a member
+	 *
+	 * @return view
+	 * @author gcg
+	 */
+	public function getEditMember($id = null) {
+
+	}
+
+	/**
+	 * rejects a pending muhtar
+	 *
+	 * @return redirect
+	 * @author gcg
+	 */
+	public function getRejectMuhtar($id = null) {
+
+	}
+
+	/**
+	 * approves a muhtar
+	 *
+	 * @return redirect
+	 * @author gcg
+	 */
+	public function getApproveMuhtar($id = null) {
+
+	}
+
+	/**
+	 * saves a member information
+	 *
+	 * @return redirect
+	 * @author gcg
+	 */
+	public function postSaveMember() {
+
+	}
+
+	/**
+	 * deletes a member from the database
+	 *
+	 * @return redirect
+	 * @author gcg
+	 */
+	public function getDeleteMember($id = null) {
+
+	}
+
 }

@@ -2,6 +2,8 @@
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
+use Request;
 
 class RouteServiceProvider extends ServiceProvider {
 
