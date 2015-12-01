@@ -23,18 +23,14 @@
 						<small class="u-floatleft u-width30p u-nowrap c-medium"><em>location</em></small>
                     </div>
                 </div>
-				<ul class="list-content">
+                <ul class="list-content">
 
-					<?php 
-					// temporary for loop to mockup list view
-					for($x = 0; $x <= 2; $x++) :
-					?>
-
-					<li>
-						<a href="/">
+                    @foreach($members as $m)
+                    <li>
+                        <a href="/admin/view-member/{{$m->id}}">
 							<div class="badge badge-circle-small u-floatleft u-mt5 u-ml5 u-mr15">
 								<!-- user profile image -->
-								<img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/profile.png" alt="" />
+                                <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$m->picture}}" alt="" />
 							</div>
 							<div class="hasDropdown u-floatright">
 								<button class="btn btn-sm btn-outline u-ml10">
@@ -46,18 +42,15 @@
 							    </div>
 							</div>
 							<div class="u-nowrap u-pt5">
-								<strong class="u-floatleft u-width20p u-nowrap">Fatih Terim</strong>
-								<small class="u-floatleft u-width20p u-nowrap c-medium">fatihterim</small>
-								<small class="u-floatleft u-width10p u-nowrap c-medium">9999</small>
-								<small class="u-floatleft u-width15p u-nowrap c-medium">1 Ara 2015</small>
-								<small class="u-floatleft u-width30p u-nowrap c-medium">Cankurtaran Mahallesi, Fatih, İstanbul</small>
+                                <strong class="u-floatleft u-width20p u-nowrap">{{$m->first_name}} {{$m->last_name}}</strong>
+                                <small class="u-floatleft u-width20p u-nowrap c-medium">{{$m->username}}</small>
+                                <small class="u-floatleft u-width10p u-nowrap c-medium">{{$m->level}}</small>
+                                <small class="u-floatleft u-width15p u-nowrap c-medium">{{$m->created_at}}</small>
+                                <small class="u-floatleft u-width30p u-nowrap c-medium">{{$m->location}}</small>
 							</div>
 						</a>
 					</li>
-
-					<?php 
-					endfor;
-					?>
+                    @endforeach
 
 				</ul>
 			</div>
