@@ -2,7 +2,7 @@
 @section('content')
 @section('dialogs')
     @if($role =='admin')
-        @include('dialogs.write_comment')
+        @include('dialogs.write_comment', ['issue_id' => $issue['id']])
         @include('dialogs.come_drink_tea')
         @include('dialogs.change_status_progress')
         @include('dialogs.change_status_solved')
