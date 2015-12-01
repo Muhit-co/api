@@ -38,7 +38,16 @@ class AdminController extends Controller {
 	 * @author gcg
 	 */
 	public function getViewMember($id = null) {
+		$member = User::find($id);
 
+		if (empty($member)) {
+			return redirect('/admin/members')
+				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
+		}
+
+		$updates = DB::table('user_updates')->where('user_id', $member->id)->get();
+
+		return response()->app(200, 'members.view', ['member' => $member, 'updates' => $updates]);
 	}
 
 	/**
@@ -48,7 +57,14 @@ class AdminController extends Controller {
 	 * @author gcg
 	 */
 	public function getEditMember($id = null) {
+		$member = User::find($id);
 
+		if (empty($member)) {
+			return redirect('/admin/members')
+				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
+		}
+
+		return response()->app(200, 'members.edit', ['member' => $member]);
 	}
 
 	/**
@@ -58,7 +74,39 @@ class AdminController extends Controller {
 	 * @author gcg
 	 */
 	public function getRejectMuhtar($id = null) {
+		$member = User::find($id);
 
+		if (empty($member)) {
+			return redirect('/admin/members')
+				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
+		}
+
+		if ($member->level != 4) {
+			return redirect('/admin/members')
+				->with('error', 'Muhtar onay beklemiyor, onay beklemeyen muhtarları reject edemezsin.');
+		}
+
+		$tmp = [
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			'source_id' => Auth::user()->id,
+			'previous_level' => $member->level,
+			'current_level' => 3,
+			'user_id' => $member->id,
+		];
+
+		try {
+			$member->level = 3;
+			$member->save();
+			DB::table('user_updates')->insert($tmp);
+		} catch (Exception $e) {
+			Log::error('AdminController/getRejectMuhtar', (array) $e);
+			return redirect('/admin/members')
+				->with('error', 'Muhtar güncellenirken bir hata oldu.');
+		}
+
+		return redirect('/admin/view-member/' . $member->id)
+			->with('success', 'Muhtar reject edildi.');
 	}
 
 	/**
@@ -68,7 +116,39 @@ class AdminController extends Controller {
 	 * @author gcg
 	 */
 	public function getApproveMuhtar($id = null) {
+		$member = User::find($id);
 
+		if (empty($member)) {
+			return redirect('/admin/members')
+				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
+		}
+
+		if ($member->level != 4) {
+			return redirect('/admin/members')
+				->with('error', 'Muhtar onay beklemiyor, onay beklemeyen muhtarları approve edemezsin.');
+		}
+
+		$tmp = [
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			'source_id' => Auth::user()->id,
+			'previous_level' => $member->level,
+			'current_level' => 5,
+			'user_id' => $member->id,
+		];
+
+		try {
+			$member->level = 5;
+			$member->save();
+			DB::table('user_updates')->insert($tmp);
+		} catch (Exception $e) {
+			Log::error('AdminController/getApproveMuhtar', (array) $e);
+			return redirect('/admin/members')
+				->with('error', 'Muhtar güncellenirken bir hata oldu.');
+		}
+
+		return redirect('/admin/view-member/' . $member->id)
+			->with('success', 'Muhtar onaylandı.');
 	}
 
 	/**
@@ -88,6 +168,33 @@ class AdminController extends Controller {
 	 * @author gcg
 	 */
 	public function getDeleteMember($id = null) {
+		$member = User::find($id);
+
+		if (empty($member)) {
+			return redirect('/admin/members')
+				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
+		}
+
+		$tmp = [
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			'source_id' => Auth::user()->id,
+			'previous_level' => $member->level,
+			'current_level' => 0,
+			'user_id' => $member->id,
+		];
+
+		try {
+			$member->delete();
+			DB::table('user_updates')->insert($tmp);
+		} catch (Exception $e) {
+			Log::error('AdminController/getDeleteMember', (array) $e);
+			return redirect('/admin/members')
+				->with('error', 'Üye silinirken bir hata oluştu.');
+		}
+
+		return redirect('/admin/members')
+			->with('success', 'Üye silindi.');
 
 	}
 
