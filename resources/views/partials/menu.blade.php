@@ -78,16 +78,6 @@ if(isset($role)):
                 'uri' => '/admin/members',
                 'icon' => 'ion-person-stalker'
             ),
-            array(
-                'name' => trans('issues.muhtars_cap'),
-                'uri' => '/',
-                'icon' => 'ion-person'
-            ),
-            array(
-                'name' => trans('issues.announcements_cap'),
-                'uri' => '/',
-                'icon' => 'ion-speakerphone'
-            ),
         );
 
     endif;
