@@ -1,7 +1,7 @@
 <?php namespace Muhit\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -20,11 +20,22 @@ class RouteServiceProvider extends ServiceProvider {
 	 * @param  \Illuminate\Routing\Router  $router
 	 * @return void
 	 */
-	public function boot(Router $router)
-	{
+	public function boot(Router $router) {
 		parent::boot($router);
 
-		//
+		Route::filter('admin', function () {
+			if (Auth::guest()) {
+				if (Request::ajax()) {
+					return Response::make('Unauthorized', 401);
+				} else {
+					return redirect('/login');
+				}
+			}
+
+			if (Auth::user()->level !== 10) {
+				return redirect('/');
+			}
+		});
 	}
 
 	/**
@@ -33,10 +44,8 @@ class RouteServiceProvider extends ServiceProvider {
 	 * @param  \Illuminate\Routing\Router  $router
 	 * @return void
 	 */
-	public function map(Router $router)
-	{
-		$router->group(['namespace' => $this->namespace], function($router)
-		{
+	public function map(Router $router) {
+		$router->group(['namespace' => $this->namespace], function ($router) {
 			require app_path('Http/routes.php');
 		});
 	}
