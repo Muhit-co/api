@@ -45,7 +45,7 @@ class IssuesController extends Controller {
 				if ($this->isApi) {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
-				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $key);
+				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $key)->withInput();
 			}
 		}
 
@@ -109,7 +109,7 @@ class IssuesController extends Controller {
 			if ($this->isApi) {
 				return response()->api(500, 'Error on saving the issue', $data);
 			}
-			return redirect('/issues/new')->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi, lütfen biraz bekleyip tekrar deneyin.');
+			return redirect('/issues/new')->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi, lütfen biraz bekleyip tekrar deneyin.')->withInput();
 
 		}
 
