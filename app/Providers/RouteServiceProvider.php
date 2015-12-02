@@ -1,5 +1,6 @@
 <?php namespace Muhit\Providers;
 
+use Auth;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,20 @@ class RouteServiceProvider extends ServiceProvider {
 			}
 
 			if (Auth::user()->level !== 10) {
+				return redirect('/');
+			}
+		});
+
+		Route::filter('muhtar', function () {
+			if (Auth::guest()) {
+				if (Request::ajax()) {
+					return Response::make('Unauthorized', 401);
+				} else {
+					return redirect('/login');
+				}
+			}
+
+			if (Auth::user()->level !== 5) {
 				return redirect('/');
 			}
 		});

@@ -1,9 +1,9 @@
 <?php namespace Muhit\Http\Controllers;
 
-use Auth;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
 use Request;
+use Auth;
 use DB;
 
 class AdminController extends Controller {
