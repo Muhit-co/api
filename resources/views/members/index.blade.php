@@ -155,10 +155,10 @@ $levels = array(
                                 </button>
                                 <div class="dropdown dropdown-outline">
                                     <ul>
-                                        @if ($member->level == 3 || $member->level == 4)
+                                        @if ($m->level == 3 || $m->level == 4)
                                             <li><a href="/admin/approve/muhtar" class="c-green"><i class="ion ion-checkmark-circled u-mr5"></i> Approve</a></li>
                                         @endif
-                                        @if ($member->level == 4 || $member->level == 5)
+                                        @if ($m->level == 4 || $m->level == 5)
                                             <li><a href="/admin/reject/muhtar" class="c-red"><i class="ion ion-close-circled u-mr5"></i> Reject</a></li>
                                         @endif
                                         <li><a href="/admin/view-member/{{$m->id}}"><i class="ion ion-eye u-mr5"></i> View</a></li>
