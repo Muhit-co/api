@@ -1,5 +1,6 @@
 <?php namespace Muhit\Http\Controllers;
 
+use Auth;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\Comment;
 use Request;
