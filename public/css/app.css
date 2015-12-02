@@ -5869,6 +5869,10 @@ figure img {
   max-width: 100px !important;
   width: 100px !important;
 }
+.u-width150 {
+  max-width: 150px !important;
+  width: 150px !important;
+}
 .u-width300 {
   max-width: 300px !important;
   width: 300px !important;
@@ -6833,6 +6837,24 @@ dialog hr {
   border-bottom-color: #ccccdd;
   z-index: 1;
 }
+.dropdown .c-red {
+  color: #e74c3c;
+  color: #ed7669;
+}
+.dropdown .c-red:hover,
+.dropdown .c-red:focus {
+  color: #d62c1a;
+  color: #e74c3c;
+}
+.dropdown .c-green {
+  color: #27ae60;
+  color: #36d278;
+}
+.dropdown .c-green:hover,
+.dropdown .c-green:focus {
+  color: #1e8449;
+  color: #27ae60;
+}
 .dropdownIsOpen .dropdown {
   display: block;
 }
@@ -7181,38 +7203,38 @@ header h3 {
 .list ul {
   list-style: none;
 }
-.list a {
+.list > ul > li > a {
   display: block;
   padding: 15px;
   line-height: 1.2em;
   background-color: #ffffff;
 }
-.list a:before,
-.list a:after {
+.list > ul > li > a:before,
+.list > ul > li > a:after {
   content: " ";
   display: table;
 }
-.list a:after {
+.list > ul > li > a:after {
   clear: both;
 }
-.list a:hover,
-.list a:focus {
+.list > ul > li > a:hover,
+.list > ul > li > a:focus {
   background-color: #f9f9f9;
 }
-.list a:hover .badge,
-.list a:focus .badge {
+.list > ul > li > a:hover .badge,
+.list > ul > li > a:focus .badge {
   opacity: 1;
 }
-.list a .badge {
+.list > ul > li > a .badge {
   opacity: 0.75;
 }
-.list a p {
+.list > ul > li > a p {
   max-width: 100%;
   color: #9999aa;
   margin-bottom: 0;
   line-height: 1em;
 }
-.list a p.title {
+.list > ul > li > a p.title {
   color: #44a1e0;
   font-weight: 600;
   white-space: nowrap;
@@ -7220,10 +7242,10 @@ header h3 {
   text-overflow: ellipsis;
 }
 .list.list-small .list-header {
-  padding: 5px 10px;
+  padding: 10px;
 }
-.list.list-small a {
-  padding: 5px 10px;
+.list.list-small > ul > li > a {
+  padding: 10px;
 }
 .list li + li {
   border-top: 1px solid #eeeeee;
@@ -7296,13 +7318,6 @@ nav #userinfo {
 nav .userinfo #userinfo:hover,
 nav .userinfo #userinfo:focus {
   background-color: rgba(0, 0, 0, 0.05);
-}
-nav a#logout {
-  color: #e74c3c;
-}
-nav a#logout:hover,
-nav a#logout:focus {
-  color: #d62c1a;
 }
 nav #nav_quickadd {
   display: none;

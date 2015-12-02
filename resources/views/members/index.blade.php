@@ -58,10 +58,13 @@ $levels = array(
                             @endif
                         </div>
 
-                        <!-- <div class="form-group u-floatleft u-mr20 u-width150">
+                        <!-- 
+                        <div class="form-group u-floatleft u-mr20 u-width150">
                             <input name="location" type="text" placeholder="Location..." value="<?php echo $param_loc ?>" />
                         </div>
+                        -->
 
+                        <!-- 
                         <div class="form-group u-floatleft u-mt5 u-width5p">
                             <select name="level">
                                 @foreach($levels as $l)
@@ -69,7 +72,8 @@ $levels = array(
                                 </option>
                                 @endforeach
                             </select>
-                        </div> -->
+                        </div> 
+                        -->
 
                         <input type="submit" style="position: absolute; left: -9999px"/>
 
@@ -126,35 +130,42 @@ $levels = array(
                         <small class="u-floatleft u-width30p u-nowrap c-medium"><em>name (username)</em></small>
                         <small class="u-floatleft u-width20p u-nowrap c-medium"><em>email</em></small>
                         <small class="u-floatleft u-width10p u-nowrap c-medium"><em>level</em></small>
-                        <small class="u-floatleft u-width15p u-nowrap c-medium"><em>creation date</em></small>
                         <small class="u-floatleft u-width25p u-nowrap c-medium"><em>location</em></small>
                     </div>
                 </div>
                 <ul class="list-content">
 
                     @foreach($members as $m)
-                        <li>
+                        <li class="u-relative">
                             <a href="/admin/view-member/{{$m->id}}">
                                 <div class="badge badge-circle-small u-floatleft u-mt5 u-ml5 u-mr15">
                                     <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$m->picture}}" alt="" />
-                                </div>
-                                <div class="hasDropdown u-floatright">
-                                    <button class="btn btn-sm btn-outline u-ml10">
-                                        ACTIONS
-                                        <i class="ion ion-chevron-down u-ml5"></i>
-                                    </button>
-                                    <div class="dropdown u-mr15">
-                                        this is the dropdown, without lists
-                                    </div>
                                 </div>
                                 <div class="u-nowrap u-pt5">
                                     <span class="u-floatleft u-width30p u-nowrap"><strong>{{$m->first_name}} {{$m->last_name}}</strong> <small class="c-light">({{$m->username}})</small></span>
                                     <small class="u-floatleft u-width20p u-nowrap c-medium">{{$m->email}}</small>
                                     <small class="u-floatleft u-width10p u-nowrap c-medium">{{$m->level}}</small>
-                                    <small class="u-floatleft u-width15p u-nowrap c-medium">{{$m->created_at}}</small>
                                     <small class="u-floatleft u-width25p u-nowrap c-medium">{{$m->location}}</small>
                                 </div>
                             </a>
+                            <div class="hasDropdown u-pinned-topright u-ma10">
+                                <button class="btn btn-sm btn-outline u-ml10">
+                                    ACTIONS
+                                    <i class="ion ion-chevron-down u-ml5"></i>
+                                </button>
+                                <div class="dropdown dropdown-outline">
+                                    <ul>
+                                        @if ($member->level == 3 || $member->level == 4)
+                                            <li><a href="/admin/approve/muhtar" class="c-green"><i class="ion ion-checkmark-circled u-mr5"></i> Approve</a></li>
+                                        @endif
+                                        @if ($member->level == 4 || $member->level == 5)
+                                            <li><a href="/admin/reject/muhtar" class="c-red"><i class="ion ion-close-circled u-mr5"></i> Reject</a></li>
+                                        @endif
+                                        <li><a href="/admin/view-member/{{$m->id}}"><i class="ion ion-eye u-mr5"></i> View</a></li>
+                                        <li><a href="/admin/edit-member/{{$m->id}}"><i class="ion ion-edit u-mr5"></i> Edit</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
                     @endforeach
 
