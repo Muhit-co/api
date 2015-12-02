@@ -1,5 +1,6 @@
 <?php namespace Muhit\Http\Controllers;
 
+use DB;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
 use Request;
