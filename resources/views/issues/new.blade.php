@@ -9,17 +9,17 @@
             <form method="post" action="/issues/add">
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.title') }}</label>
-                    <input type="text" class="form-input" value="" name="title" placeholder="{{ trans('issues.your_idea_title') }}..." />
+                    <input type="text" class="form-input" value="{{ Input::old('title') }}" name="title" placeholder="{{ trans('issues.your_idea_title') }}..." />
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.problem') }}</label>
-                    <textarea class="form-input" value="" name="problem" placeholder="{{ trans('issues.what_is_wrong') }}?" rows="1"></textarea>
+                    <textarea class="form-input" name="problem" placeholder="{{ trans('issues.what_is_wrong') }}?" rows="1">{{ Input::old('problem') }}</textarea>
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.solution') }}</label>
-                    <textarea class="form-input" value="" name="solution"  placeholder="{{ trans('issues.idea_for_improving_descr') }}?" rows="3"></textarea>
+                    <textarea class="form-input" name="solution"  placeholder="{{ trans('issues.idea_for_improving_descr') }}?" rows="3">{{ Input::old('solution') }}</textarea>
                 </div>
 
                 <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
@@ -33,10 +33,11 @@
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.tags') }} <i class="u-opacity50">(max 3)</i></label>
+                    <?php $oldtags = (array)Input::old('tags'); ?>
                     <div class="row row-nopadding">
                         @foreach($tags as $t)
                             <div class="col-md-3 col-sm-4 col-xs-6">
-                                <input type="checkbox" id="tag-{{$t->id}}" name="tags[]" value="{{$t->id}}" class="u-floatleft u-mr20">
+                                <input type="checkbox"<?php echo (in_array($t->id, $oldtags)) ? ' checked' : '' ?> id="tag-{{$t->id}}" name="tags[]" value="{{$t->id}}" class="u-floatleft u-mr20">
                                 <label class="tag u-mb10" for="tag-{{$t->id}}" style="background-color:#{{$t->background}}">{{$t->name}}</label>
                             </div>
                         @endforeach
@@ -61,9 +62,8 @@
 
                     </div>
                 </div>
-
                 <div class="form-group u-mv10">
-                    <input type="checkbox" id="anonymous" name="is_anonymous" value="1" class="u-floatleft u-mr20">
+                    <input type="checkbox"<?php echo (Input::old('is_anonymous') == 1) ? ' checked' : '' ?> id="anonymous" name="is_anonymous" value="1" class="u-floatleft u-mr20">
                     <label for="anonymous">{{ trans('issues.submit_anonymously') }}</label>
                 </div>
 
