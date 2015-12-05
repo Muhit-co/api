@@ -5,7 +5,7 @@
     <form method="post" action="">
 
         <div class="dialog-content">
-            <div class="badge badge-circle badge-circle-large u-floatleft u-mr20 u-ph10 u-pv20 col-sm-hide">
+            <div class="badge badge-circle badge-circle-xlarge u-floatleft u-mr20 u-ph10 u-pv20 col-sm-hide">
                 <i class="ion ion-wrench ion-2x c-light"></i>
             </div>
             <h2 class="u-mr30">

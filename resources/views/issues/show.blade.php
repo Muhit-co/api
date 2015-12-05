@@ -100,7 +100,7 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                             <i class="ion {{$issue_status['icon']}}"></i>
                             <span class="text extended">{{$issue_status['title']}}</span>
                         </div>
-                        <div id="support_counter" class="badge badge-circle-large badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
+                        <div id="support_counter" class="badge badge-circle-xlarge badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
                             <div class="value">{{ $issue_supporters }}</div>
                             <label>DESTEKÇİ</label>
                         </div>

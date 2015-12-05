@@ -6186,6 +6186,11 @@ figure img {
   border-radius: 50%;
 }
 .badge.badge-circle-large {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.badge.badge-circle-xlarge {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -6558,6 +6563,14 @@ figure img {
 }
 .btn.btn-greytored:hover {
   background-color: #e74c3c;
+  color: #ffffff;
+}
+.btn.btn-greytogreen {
+  background-color: #eeeeee;
+  color: #27ae60;
+}
+.btn.btn-greytogreen:hover {
+  background-color: #27ae60;
   color: #ffffff;
 }
 .btn.btn-facebook {
@@ -7346,8 +7359,8 @@ nav #nav_quickadd {
   display: block;
   height: 80px;
   margin-top: -5px;
-  padding: 18px 20px 8px;
-  border-bottom: 2px solid transparent;
+  padding: 16px 20px 10px;
+  border-top: 2px solid transparent;
   font-size: 0.8em;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -7367,6 +7380,7 @@ nav #nav_quickadd {
 }
 .menu li.active a {
   color: #ffffff;
+  border-top-color: #ffffff;
 }
 #navbutton {
   display: none;
@@ -7807,6 +7821,16 @@ nav #nav_quickadd {
 .pagination li a.btn-greytored:hover,
 .pagination li span.btn-greytored:hover {
   background-color: #e74c3c;
+  color: #ffffff;
+}
+.pagination li a.btn-greytogreen,
+.pagination li span.btn-greytogreen {
+  background-color: #eeeeee;
+  color: #27ae60;
+}
+.pagination li a.btn-greytogreen:hover,
+.pagination li span.btn-greytogreen:hover {
+  background-color: #27ae60;
   color: #ffffff;
 }
 .pagination li a.btn-facebook,

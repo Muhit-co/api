@@ -39,7 +39,7 @@
 
                     <div class="row row-nopadding">
                         <div class="col-sm-2 u-aligncenter">
-                            <div class="badge badge-circle-large u-mr20">
+                            <div class="badge badge-circle-xlarge u-mr20">
                                 <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/placeholders/profile.png" alt="" />
                             </div>
                         </div>

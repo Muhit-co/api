@@ -10,6 +10,7 @@ function clearParam($url, $key) {
 }
 
 // array with currently active levels
+// @TODO @gcg: Can this be a database table, with index and corresponding level names?
 $levels = array(
     array(
         'id' => null,
