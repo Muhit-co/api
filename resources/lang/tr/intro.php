@@ -2,7 +2,7 @@
 
 return [
     "title" => "Mahalleni değiştirmek senin elinde.",
-    "subtitle" => "Nasıl çalışıyor?", 
+    "subtitle" => "Nasıl çalışıyor?",
     "how_does_it_work_cap" => "NASIL ÇALIŞIYOR?", 
     "usp1_title" => "Fikir Yarat",
     "usp1_text" => "Mahalleni geliştirmek için kolayca önerilerini paylaşabilirsin. İstersen bunu anonim olarak yapabilirsin.",
@@ -14,5 +14,6 @@ return [
     "usp4_text" => "Muhtarının ve belediyenin iletişim bilgilerine kolayca ulaşabilirsin.",
     "fb_meta_sitename" => "MUHİT",
     "fb_meta_title" => "Muhit - Mahalleni değiştirmek senin elinde",
-    "fb_meta_description" => "Muhit, mahallelilerin ve yerel yönetimlerin yaşadıkları yerleri iyileştirmek için iletişim kurmasını ve çözüm üretmesini sağlayan bir platformdur.",
+    "meta_description" => "Muhit, mahallelilerin ve yerel yönetimlerin yaşadıkları yerleri iyileştirmek için iletişim kurmasını ve çözüm üretmesini sağlayan bir platformdur.",
+    "meta_keywords" => "muhit,mahalle,yerel yonetim,muhtar,belediye,iyilestirmek,fikir,fikirler,harita,kent,sehir",
 ];
