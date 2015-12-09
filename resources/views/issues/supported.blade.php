@@ -5,6 +5,9 @@
 
     <div class="row u-pb20">
         <div class="col-md-10 col-md-offset-1">
+            <div class="u-floatright">
+                @include('partials.add_idea_button', array('hood' => $hood))
+            </div>
             <h2>{{ trans('issues.ideas_i_supported') }}</h2>
         </div>
     </div>
