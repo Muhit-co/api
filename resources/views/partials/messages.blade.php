@@ -11,7 +11,7 @@
         </div>
     </div>
     <script>
-        setTimeout(function() { $('.flash').fadeOut(); }, 6000);
+        setTimeout(function() { $('.flash').animate({ opacity: 0 }, 'normal').slideUp() }, 6000);
     </script>
 @endif
 @if (session('warning'))

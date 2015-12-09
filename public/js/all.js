@@ -12634,7 +12634,7 @@ $(document).ready(function() {
 
   // closes flash message
   $('.flash #flash_close').click(function() {
-    $(this).closest('.flash').fadeOut();
+    $(this).closest('.flash').animate({ opacity: 0 }, 'normal').slideUp();
   });
   // closes message
   $('.message #message_close').click(function(e) {
