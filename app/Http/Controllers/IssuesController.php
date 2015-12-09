@@ -176,7 +176,7 @@ class IssuesController extends Controller {
 
 		}
 
-		return redirect('/issues')->with('success', 'Fikrinizi kaydettik');
+		return redirect('/issues/view/' . $issue->id)->with('success', 'Fikrinizi kaydettik');
 
 	}
 
