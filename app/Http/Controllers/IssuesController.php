@@ -45,7 +45,8 @@ class IssuesController extends Controller {
 				if ($this->isApi) {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
-				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $key)->withInput();
+				$message = '"' . trans('issues.' . $key) . '" gereklidir';
+				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $message )->withInput();
 			}
 		}
 
@@ -176,7 +177,7 @@ class IssuesController extends Controller {
 
 		}
 
-		return redirect('/issues')->with('success', 'Fikrinizi kaydettik');
+		return redirect('/issues/view/' . $issue->id)->with('success', 'Fikrinizi kaydettik');
 
 	}
 
