@@ -87,32 +87,7 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <!-- Sorting tabs for issue list -->
-                <?php
-                $active_tab = 'latest';
-                if (Request::path() == 'map') {
-                    $active_tab = 'map';
-                } else if (isset($_GET['sort'])) {
-                    $active_tab = $_GET['sort'];
-                }
-                ?>
-                <ul class="tabs">
-                    <li>
-                        <a href="?<?php echo buildRelativeUrl('sort', 'latest') ?>" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
-                            EN SON
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?<?php echo buildRelativeUrl('sort', 'popular') ?>" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
-                            POPÜLER
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?<?php echo buildRelativeUrl('sort', 'map') ?>" <?php echo ((isset($active_tab) and $active_tab == 'map') ? 'class="active"' : ''); ?>>
-                            HARİTA
-                        </a>
-                    </li>
-                </ul>
+                @include('partials.issue-list-tabs', array('active_tab' => (isset($_GET['sort'])) ? $_GET['sort'] : 'latest' ))
             </div>
         </div>
 
