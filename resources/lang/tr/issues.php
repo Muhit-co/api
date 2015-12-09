@@ -67,6 +67,7 @@ return [
     "what_is_wrong" => "Neyi değiştirmek istersin", 
     "solution" => "Çözüm", 
     "idea_for_improving_descr" => "Nasıl değiştirmek istersin", 
+    "location" => "Yer",
     "use_my_location" => "Yerimi belirle",
     "tags" => "Etiketler",
     "images" => "Resimler",

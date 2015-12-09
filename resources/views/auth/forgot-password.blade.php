@@ -11,7 +11,7 @@
                 <p class="c-white u-mb20">{{ trans('auth.forgot_password_msg') }}</p>
 
                 <div class="form-group form-fullwidth u-mb20">
-                    <input type="email" required class="form-input" name="email" value="" placeholder="{{ trans('auth.email_address') }}" />
+                    <input type="email" required class="form-input" name="email" value="{{ Input::old('email') }}" placeholder="{{ trans('auth.email_address') }}" />
                 </div>
                 <button type="submit" class="btn btn-primary u-floatright">
                     {{ trans('auth.send_info_cap') }}

@@ -11,26 +11,26 @@
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.your_first_name') }}</label>
-                    <input type="text" class="form-input" value="" name="first_name" placeholder="{{ trans('auth.first_name_placeholder') }}" required />
+                    <input type="text" class="form-input" name="first_name" value="{{ Input::old('first_name') }}" placeholder="{{ trans('auth.first_name_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.your_last_name') }}</label>
-                    <input type="text" class="form-input" value="" name="last_name" placeholder="{{ trans('auth.last_name_placeholder') }}" required />
+                    <input type="text" class="form-input" name="last_name" value="{{ Input::old('last_name') }}"  placeholder="{{ trans('auth.last_name_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.your_email_address') }}</label>
-                    <input type="email" class="form-input" value="" name="email" placeholder="{{ trans('auth.email_address_placeholder') }}" required />
+                    <input type="email" class="form-input" name="email" value="{{ Input::old('email') }}" placeholder="{{ trans('auth.email_address_placeholder') }}" required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mb20">
                     <label>{{ trans('auth.password') }}</label>
-                    <input type="password" class="form-input" value="" name="password" placeholder="{{ trans('auth.password_placeholder') }}" required />
+                    <input type="password" class="form-input" name="password" value="{{ Input::old('password') }}"  placeholder="{{ trans('auth.password_placeholder') }}" required />
                 </div>
 
                 <label>{{ trans('auth.your_neighbourhood') }}</label>
-                @include('partials.field-hood')
+                <div class="c-blue">@include('partials.field-hood')</div>
 
                 <div class="form-group form-fullwidth u-mt30 u-mb20">
                     <input id="termsagree" type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" required />

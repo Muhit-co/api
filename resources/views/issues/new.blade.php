@@ -9,17 +9,17 @@
             <form method="post" action="/issues/add">
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.title') }}</label>
-                    <input type="text" class="form-input" value="{{ Input::old('title') }}" name="title" placeholder="{{ trans('issues.your_idea_title') }}..." />
+                    <input type="text" class="form-input" value="{{ Input::old('title') }}" name="title" placeholder="{{ trans('issues.your_idea_title') }}..." required />
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.problem') }}</label>
-                    <textarea class="form-input" name="problem" placeholder="{{ trans('issues.what_is_wrong') }}?" rows="1">{{ Input::old('problem') }}</textarea>
+                    <textarea class="form-input" name="problem" placeholder="{{ trans('issues.what_is_wrong') }}?" rows="1" required>{{ Input::old('problem') }}</textarea>
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.solution') }}</label>
-                    <textarea class="form-input" name="solution"  placeholder="{{ trans('issues.idea_for_improving_descr') }}?" rows="3">{{ Input::old('solution') }}</textarea>
+                    <textarea class="form-input" name="solution"  placeholder="{{ trans('issues.idea_for_improving_descr') }}?" rows="3" required>{{ Input::old('solution') }}</textarea>
                 </div>
 
                 <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group form-fullwidth u-mv10">
-                    <label>{{ trans('issues.tags') }} <i class="u-opacity50">(max 3)</i></label>
+                    <label>{{ trans('issues.tags') }} <i class="u-opacity50">(min 1, max 3)</i></label>
                     <?php $oldtags = (array)Input::old('tags'); ?>
                     <div class="row row-nopadding">
                         @foreach($tags as $t)

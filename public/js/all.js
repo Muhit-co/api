@@ -12634,7 +12634,7 @@ $(document).ready(function() {
 
   // closes flash message
   $('.flash #flash_close').click(function() {
-    $(this).closest('.flash').fadeOut();
+    $(this).closest('.flash').animate({ opacity: 0 }, 'normal').slideUp();
   });
   // closes message
   $('.message #message_close').click(function(e) {
@@ -12772,14 +12772,15 @@ function checkImageCount() {
 function addIsBusy(obj) {
   if(typeof obj != 'undefined') {
     $validated = true;
-    // obj.closest('form').find('input[required]').each(function(i) {
-    //   if($(this).val().length > 0) {
-    //     $validated = true;
-    //   } else {
-    //     $validated = false;
-    //   }
-    //   console.log(i + ' - ' + $validated);
-    // });
+    // check all required inputs in form
+    obj.closest('form').find('input[required]').each(function() {
+      if($(this).attr('type') == 'checkbox') { 
+        if(!$(this).is(':checked')) { $validated = false }
+      } else if($(this).val().length < 1) { 
+        $validated = false;
+      }
+    });
+    // only apply isBusy class if inputs are validated
     if(obj.hasClass('btn') && $validated == true) {
       obj.addClass('isBusy');
     }
@@ -12843,7 +12844,7 @@ function mapInitialize() {
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
         center: new google.maps.LatLng(41.0686, 29.0285),
-        // minZoom: 8,
+        maxZoom: 18,
         zoom: 11,
         disableDefaultUI: false,
         scrollwheel: false,
@@ -12855,9 +12856,13 @@ function mapInitialize() {
     var map = new google.maps.Map(mapCanvas, mapOptions);
 
 
+    // building map JSON request url
+    $json_for_map_url = updateQueryStringParameter(window.location.href, 'map', 1);
+
+
     // Declare your bounds
     var bounds = new google.maps.LatLngBounds();
-    $.getJSON('/?map=1', {}, function (data) {
+    $.getJSON($json_for_map_url, {}, function (data) {
         $.each(data.features, function (i, marker) {
             // Get coordinates from json object
             var item = marker.geometry.coordinates;
@@ -12882,7 +12887,7 @@ function mapInitialize() {
 
 
     // Load markers to map
-    map.data.loadGeoJson('/?map=1');
+    map.data.loadGeoJson($json_for_map_url);
     map.data.setStyle(function(feature) {
         var status = 'new';
         if (feature.getProperty('status') == 'progress') {
@@ -12933,6 +12938,19 @@ function mapInitializeForIssue(lon, lan) {
         title: "Test"
     });
 }
+
+// from http://stackoverflow.com/questions/5999118/add-or-update-query-string-parameter
+function updateQueryStringParameter(uri, key, value) {
+  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  }
+  else {
+    return uri + separator + key + "=" + value;
+  }
+}
+
 
 $(document).on('click', '#map_redraw', function(event){
     mapInitialize();
