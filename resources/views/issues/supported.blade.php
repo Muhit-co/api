@@ -32,8 +32,11 @@
 <section class="tabsection" id="latest">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-
-            @include('partials.issues', ['issues' => $issues])
+            @if (isset($_GET['sort']) && $_GET['sort'] == 'map')
+                @include('partials.issues-map', ['issues' => $issues])
+            @else
+                @include('partials.issues-list', ['issues' => $issues])
+            @endif
         </div>
     </div>
 </section>
