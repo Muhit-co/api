@@ -2,8 +2,8 @@
 
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
 
-    <form method="post" action="">
-
+    <form method="post" action="/muhtar/comment">
+        <input type="hidden" name="issue_id" value="{{$issue_id}}">
         <div class="dialog-content">
             <h2 class="u-mr30">
                 {{ trans('issues.write_comment') }}
@@ -11,7 +11,7 @@
             <p class="u-mv20">{{ trans('issues.write_comment_descr') }}</p>
 
             <div class="form-group form-fullwidth">
-                <textarea class="form-input form-grey" value="" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
+                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
             </div>
         </div>
 
@@ -23,5 +23,5 @@
         </div>
 
     </form>
-    
+
 </dialog>
