@@ -12772,14 +12772,15 @@ function checkImageCount() {
 function addIsBusy(obj) {
   if(typeof obj != 'undefined') {
     $validated = true;
-    // obj.closest('form').find('input[required]').each(function(i) {
-    //   if($(this).val().length > 0) {
-    //     $validated = true;
-    //   } else {
-    //     $validated = false;
-    //   }
-    //   console.log(i + ' - ' + $validated);
-    // });
+    // check all required inputs in form
+    obj.closest('form').find('input[required]').each(function() {
+      if($(this).attr('type') == 'checkbox') { 
+        if(!$(this).is(':checked')) { $validated = false }
+      } else if($(this).val().length < 1) { 
+        $validated = false;
+      }
+    });
+    // only apply isBusy class if inputs are validated
     if(obj.hasClass('btn') && $validated == true) {
       obj.addClass('isBusy');
     }
