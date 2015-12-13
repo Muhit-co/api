@@ -45,12 +45,20 @@
             </li>
         @endforeach
         @if (count($issues) == 0)
-            <li class="u-aligncenter u-pv20">
-                <span class="c-light">
-                    <i class="ion ion-checkmark-circled ion-2x"></i><br />
-                    <strong>{{ trans('issues.issues_cant_be_found') }}</strong>
-                </span>
-            </li>
+            <div class="u-aligncenter u-pv20">
+
+                <div class="c-medium">
+                    <i class="ion ion-checkmark-circled ion-2x c-light"></i><br />
+                    @if (isset($hood))
+                        {!! trans('issues.no_ideas_found_for_hood', ['hood' => '<strong>'.$hood->name.'</strong>']) !!}
+                    @else
+                        {{ trans('issues.issues_cant_be_found') }}
+                    @endif
+                </div>
+
+                @include('partials.add_idea_button', ['text' => trans('issues.add_first_idea_cap'), 'class' => 'btn btn-quaternary u-mt20'])
+
+            </div>
         @endif
     </ul>
 </div>

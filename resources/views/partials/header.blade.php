@@ -78,42 +78,16 @@
                     <a class="form-appendRight"><i class="ion ion-search ion-15x u-pa10"></i></a>
                 </div> -->
 
-                @if($role =='public')
-                <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-primary u-floatright"><i class="ion ion-plus u-mr5"></i> FİKİR <span class="extended">EKLE</span></a>
-                @elseif($role =='user')
-                    <a href="/issues/new" class="btn btn-primary u-floatright"><i class="ion ion-plus u-mr5"></i> FİKİR <span class="extended">EKLE</span></a>
-                @endif
+                <div class="u-floatright">
+                    @include('partials.add_idea_button', array('hood' => $hood))
+                </div>
+
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <!-- Sorting tabs for issue list -->
-                <?php
-                $active_tab = 'latest';
-                if (Request::path() == 'map') {
-                    $active_tab = 'map';
-                } else if (isset($_GET['sort'])) {
-                    $active_tab = $_GET['sort'];
-                }
-                ?>
-                <ul class="tabs">
-                    <li>
-                        <a href="?<?php echo buildRelativeUrl('sort', 'latest') ?>" <?php echo ((isset($active_tab) and $active_tab == 'latest') ? 'class="active"' : ''); ?> >
-                            EN SON
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?<?php echo buildRelativeUrl('sort', 'popular') ?>" <?php echo ((isset($active_tab) and $active_tab == 'popular') ? 'class="active"' : ''); ?>>
-                            POPÜLER
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?<?php echo buildRelativeUrl('sort', 'map') ?>" <?php echo ((isset($active_tab) and $active_tab == 'map') ? 'class="active"' : ''); ?>>
-                            HARİTA
-                        </a>
-                    </li>
-                </ul>
+                @include('partials.issue-list-tabs', array('active_tab' => (isset($_GET['sort'])) ? $_GET['sort'] : 'latest' ))
             </div>
         </div>
 
