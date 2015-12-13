@@ -30,7 +30,7 @@ return [
     "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor", 
     "issues_cant_be_found" => "Fikir bulunamadı...",
     "no_ideas_found_for_hood" => ":hood için fikirler daha yok...",
-    "add_first_idea_cap" => "İLK FİKRİ EKLE!",
+    "add_first_idea_cap" => "İLK FİKRİNİ EKLE!",
     "no_images_present" => "Resim yüklenmedi",
     "ideas_i_supported" => "Desteklediğim fikirler",
     "ideas_i_added" => "Eklediğim fikirler",
