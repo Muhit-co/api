@@ -5,6 +5,7 @@ use Authorizer;
 use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\TestQueue;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
 use Muhit\Models\IssueReport;
@@ -46,7 +47,7 @@ class IssuesController extends Controller {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
 				$message = '"' . trans('issues.' . $key) . '" gereklidir';
-				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $message )->withInput();
+				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $message)->withInput();
 			}
 		}
 
@@ -827,5 +828,15 @@ class IssuesController extends Controller {
 
 		return redirect('/issues/view/' . $data['issue_id'])
 			->with('success', 'Geri bildiriminiz için teşekkürler.');
+	}
+
+	/**
+	 * foo
+	 *
+	 * @return void
+	 * @author Me
+	 */
+	public function getTestQeueu() {
+		$this->dispatch(new TestQueue());
 	}
 }
