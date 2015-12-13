@@ -37,7 +37,7 @@ class AdminController extends Controller {
 			}
 		}
 
-		return response()->app(200, 'members.index', ['members' => $users->paginate(30), 'filters' => Request::all()]);
+		return response()->app(200, 'admin.members.index', ['members' => $users->paginate(30), 'filters' => Request::all()]);
 
 	}
 
@@ -57,7 +57,7 @@ class AdminController extends Controller {
 
 		$updates = DB::table('user_updates')->where('user_id', $member->id)->get();
 
-		return response()->app(200, 'members.view', ['member' => $member, 'updates' => $updates]);
+		return response()->app(200, 'admin.members.show', ['member' => $member, 'updates' => $updates]);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class AdminController extends Controller {
 				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
 		}
 
-		return response()->app(200, 'members.edit', ['member' => $member]);
+		return response()->app(200, 'admin.members.edit', ['member' => $member]);
 	}
 
 	/**
