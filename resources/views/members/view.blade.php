@@ -5,33 +5,6 @@
 
 <?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); ?>
 
-<?php
-// array with currently active levels
-// @TODO @gcg: Can this be a database table, with index and corresponding level names?
-$levels = array(
-    array(
-        'id' => 0, 
-        'name' => 'User'
-    ),
-    array(
-        'id' => 3, 
-        'name' => 'Muhtar (Rejected)'
-    ),
-    array(
-        'id' => 4, 
-        'name' => 'Muhtar (Pending approval)'
-    ),
-    array(
-        'id' => 5, 
-        'name' => 'Muhtar (Approved)'
-    ),
-    array(
-        'id' => 10, 
-        'name' => 'Admin'
-    ),
-);
-?>
-
 <section>
 
     <div class="row u-mt40">
@@ -46,7 +19,7 @@ $levels = array(
                         @endif
                         @if ($member->level == 3 || $member->level == 4)
                             <a href="/admin/approve/muhtar" class="btn btn-blueempty u-ml10" title="Approve">
-                                <i class="ion ion-checkmark-circled u-mr5"></i>
+                                <i class="ion ion-checkmark-circled"></i>
                             </a>
                         @endif
                         <a href="/admin/edit-member/{{$member->id}}" class="btn btn-outline u-ml10">
@@ -60,7 +33,7 @@ $levels = array(
                             <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/{{$member->picture}}" alt="{{$member->first_name}}">
                         </div>
                         <h2 class="u-mt10 u-nowrap u-lineheight20" style="overflow: visible;">{{ $member->first_name }} {{ $member->last_name }}</h2>
-                        <span class=""><?php foreach ($levels as $l) { if ($l['id'] == intval($member->level)) { echo $l['name']; } } ?></span>
+                        <span class="">{{ getUserLevel(intval($member->level)) }}</span>
                     </div>
                 </div>
                 @if ($member->level == 4)

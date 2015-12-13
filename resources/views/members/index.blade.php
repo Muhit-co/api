@@ -1,44 +1,6 @@
 @extends('layouts.default')
 @section('content')
 
-<?php 
-// Clears $url from given query parameter $key
-function clearParam($url, $key) { 
-    $url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&'); 
-    $url = substr($url, 0, -1); 
-    return $url; 
-}
-
-// array with currently active levels
-// @TODO @gcg: Can this be a database table, with index and corresponding level names?
-$levels = array(
-    array(
-        'id' => null,
-        'name' => 'All'
-    ),
-    array(
-        'id' => 0, 
-        'name' => 'Users'
-    ),
-    array(
-        'id' => 3, 
-        'name' => 'Rejected muhtars'
-    ),
-    array(
-        'id' => 4, 
-        'name' => 'Pending muhtars'
-    ),
-    array(
-        'id' => 5, 
-        'name' => 'Muhtars'
-    ),
-    array(
-        'id' => 10, 
-        'name' => 'Admins'
-    ),
-);
-?>
-
 <header class="u-relative header-show">
     <div class="row">
         <div class="col-xs-12">
@@ -59,23 +21,6 @@ $levels = array(
                             @endif
                         </div>
 
-                        <!-- 
-                        <div class="form-group u-floatleft u-mr20 u-width150">
-                            <input name="location" type="text" placeholder="Location..." value="<?php echo $param_loc ?>" />
-                        </div>
-                        -->
-
-                        <!-- 
-                        <div class="form-group u-floatleft u-mt5 u-width5p">
-                            <select name="level">
-                                @foreach($levels as $l)
-                                <option value="{{ $l['id'] }}">{{ $l['name'] }}</option>
-                                </option>
-                                @endforeach
-                            </select>
-                        </div> 
-                        -->
-
                         <input type="submit" style="position: absolute; left: -9999px"/>
 
                     </form>
@@ -90,20 +35,24 @@ $levels = array(
 
     <div class="row">
         <div class="col-xs-12">
-            @if(count($levels) > 0)
-                <?php 
-                $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
-                ?>
-                <ul class="tabs">
-                    @foreach($levels as $l)
+            <?php 
+            $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
+            $tabs = [0, 3, 4, 5, 10];
+            ?>
+            <ul class="tabs">
+                <li>
+                    <a href="{{ '/' . Request::path() }}" <?php echo ($active_tab === null) ? 'class="active"' : ''; ?> >
+                        ALL
+                    </a>
+                </li>
+                @foreach ($tabs as $t)
                     <li>
-                        <a href="<?php echo '?' . buildRelativeUrl('level', $l['id']) ?>" <?php echo ($active_tab === $l['id']) ? 'class="active"' : ''; ?> >
-                            {{ strtoupper($l['name']) }}
+                        <a href="<?php echo '?' . buildRelativeUrl('level', $t) ?>" <?php echo ($active_tab === $t) ? 'class="active"' : ''; ?> >
+                            {{ strtoupper( getUserLevel($t, true) ) }}
                         </a>
                     </li>
-                    @endforeach
-                </ul>
-            @endif
+                @endforeach
+            </ul>
         </div>
     </div>
 
