@@ -38,7 +38,7 @@
                         </div>
 
                         <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
-                        @if(isset($member['hood']) and isset($member['hood']['district']) and isset($member['hood']['district']['city']))
+                        @if(isset($member['location']))
                             @include('partials.field-hood', array('inputClassList' => 'form-grey', 'defaultValue' => $member['hood']['name'].", ".$member['hood']['district']['name'].", ".$member['hood']['district']['city']['name']))
                         @else
                             @include('partials.field-hood', array('inputClassList' => 'form-grey'))
