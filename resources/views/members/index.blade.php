@@ -121,32 +121,50 @@ $levels = array(
 
             <div class="list list-small">
                 <div class="list-header">
-                    <div class="u-floatleft u-width40">
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="u-floatright" style="width: 107px;">
-                        <small class="c-medium"><em>actions</em></small>
-                    </div>
-                    <div class="u-nowrap">
-                        <small class="u-floatleft u-width30p u-nowrap c-medium"><em>name (username)</em></small>
-                        <small class="u-floatleft u-width20p u-nowrap c-medium"><em>email</em></small>
-                        <small class="u-floatleft u-width10p u-nowrap c-medium"><em>level</em></small>
-                        <small class="u-floatleft u-width25p u-nowrap c-medium"><em>location</em></small>
+                    <div class="row row-nopadding u-pr100">
+                        <div class="col-sm-4">
+                            <small class="u-nowrap u-ml40"><em>name (username)</em></small>
+                        </div>
+                        <div class="col-sm-3 col-sm-hide">
+                            <small class="u-nowrap"><em>email</em></small>
+                        </div>
+                        <div class="col-sm-1 col-sm-hide">
+                            <small class="u-nowrap"><em>level</em></small>
+                        </div>
+                        <div class="col-sm-4 col-sm-hide">
+                            <small class="u-nowrap"><em>location</em></small>
+                        </div>
                     </div>
                 </div>
                 <ul class="list-content">
 
                     @foreach($members as $m)
                         <li class="u-relative">
-                            <a href="/admin/view-member/{{$m->id}}">
-                                <div class="badge badge-circle-small u-floatleft u-mt5 u-ml5 u-mr15">
-                                    <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$m->picture}}" alt="" />
-                                </div>
-                                <div class="u-nowrap u-pt5">
-                                    <span class="u-floatleft u-width30p u-nowrap"><strong>{{$m->first_name}} {{$m->last_name}}</strong> <small class="c-light">({{$m->username}})</small></span>
-                                    <small class="u-floatleft u-width20p u-nowrap c-medium">{{$m->email}}</small>
-                                    <small class="u-floatleft u-width10p u-nowrap c-medium">{{$m->level}}</small>
-                                    <small class="u-floatleft u-width25p u-nowrap c-medium">{{$m->location}}</small>
+                            <a href="/admin/view-member/{{$m->id}}" class="u-pr110">
+                                <div class="row row-nopadding">
+                                    <div class="col-sm-4">
+                                        <div class="badge badge-circle-small u-floatleft u-mt5 u-ml5 u-mr15">
+                                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$m->picture}}" alt="" />
+                                        </div>
+                                        <div class="u-nowrap u-pt5">
+                                            <span class="u-floatleft u-nowrap"><strong>{{$m->first_name}} {{$m->last_name}}</strong> <small class="c-light">({{$m->username}})</small></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-sm-hide">
+                                        <div class="u-nowrap u-pt5 c-medium">
+                                            <small class="u-nowrap">{{$m->email}}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 col-sm-hide">
+                                        <div class="u-nowrap u-pt5 c-medium">
+                                            <small class="u-nowrap">{{$m->level}}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-sm-hide">
+                                        <div class="u-nowrap u-pt5 c-medium">
+                                            <small class="u-nowrap">{{$m->location}}</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </a>
                             <div class="hasDropdown u-pinned-topright u-ma10">
