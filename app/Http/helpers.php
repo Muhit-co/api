@@ -38,3 +38,10 @@ function buildRelativeUrl($param, $value) {
     $query_string[$param] = $value;
     return http_build_query($query_string);
 }
+
+function strTRtoEN($source) {
+    $turkish = array("Ü", "Ş", "Ğ", "Ç", "İ", "Ö", "ü", "ş", "ç", "ı", "ö", "ğ"); // turkish letters
+    $english = array("U", "S", "G", "C", "I", "O", "u", "s", "c", "i", "o", "g"); // corresponding english letters
+    $result = str_replace($turkish, $english, $source); //replace php function
+    return $result;
+}
