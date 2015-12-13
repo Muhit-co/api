@@ -11,35 +11,45 @@
 .list ul {
   list-style: none;
 }
-.list > ul > li > a {
-  .clearfix;
-  display: block;
-  padding: 15px;
-  line-height: 1.2em;
-  background-color: @white;
+.list {
+  & > ul > li > a {
+    .clearfix;
+    display: block;
+    padding: 15px;
+    line-height: 1.2em;
+    background-color: @white;
 
-  &:hover, &:focus {
-    background-color: @greyLightest;
+    &:hover, &:focus {
+      background-color: @greyLightest;
 
+      .badge {
+        opacity: 1;
+      }
+    }
     .badge {
-      opacity: 1;
+      opacity: 0.75;
+    }
+    p {
+      max-width: 100%;
+      color: @grey;
+      margin-bottom: 0;
+      line-height: 1em;
+
+      &.title {
+        color: @muhitBlue;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
-  .badge {
-    opacity: 0.75;
-  }
-  p {
-    max-width: 100%;
-    color: @grey;
-    margin-bottom: 0;
-    line-height: 1em;
-
-    &.title {
-      color: @muhitBlue;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  &.list-small {
+    .list-header {
+      padding: 10px;
+    }
+    & > ul > li > a {
+      padding: 10px;
     }
   }
 }

@@ -43,7 +43,7 @@ class MembersController extends Controller {
             return response()->api(200, 'User profile information', ['user' => $user->toArray()]);
         }
 
-        return response()->app(200, 'members.profile', ['user' => $user->toArray()]);
+        return response()->app(200, 'members.show', ['user' => $user->toArray()]);
     }
 
     /**
@@ -93,7 +93,7 @@ class MembersController extends Controller {
             return response()->api(200, 'User profile information', ['user' => $user->toArray()]);
         }
 
-        return response()->app(200, 'members.profile', ['user' => $user->toArray()]);
+        return response()->app(200, 'members.show', ['user' => $user->toArray()]);
     }
 
     /**

@@ -1,9 +1,10 @@
 <?php namespace Muhit\Http\Controllers;
 
-use DB;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\User;
 use Request;
+use Auth;
+use DB;
 
 class AdminController extends Controller {
 
@@ -20,15 +21,23 @@ class AdminController extends Controller {
 
 		$users = User::orderBy($order, $dir);
 
-		$filterable_fields = ['username', 'level', 'email', 'first_name', 'last_name', 'location'];
+		$filterable_fields = ['level', 'location', 'q'];
 
 		foreach ($filterable_fields as $f) {
 			if (Request::has($f)) {
-				$users->where($f, 'LIKE', '%' . Request::get($f) . '%');
+				if ($f == 'q') {
+					$users->where('username', 'LIKE', '%' . Request::get($f) . '%')
+						->orWhere('first_name', 'LIKE', '%' . Request::get($f) . '%')
+						->orWhere('last_name', 'LIKE', '%' . Request::get($f) . '%')
+						->orWhere('email', 'LIKE', '%' . Request::get($f) . '%');
+				} else {
+					$users->where($f, 'LIKE', '%' . Request::get($f) . '%');
+				}
+
 			}
 		}
 
-		return response()->app(200, 'members.index', ['members' => $users->paginate(30), 'filters' => Request::all()]);
+		return response()->app(200, 'admin.members.index', ['members' => $users->paginate(30), 'filters' => Request::all()]);
 
 	}
 
@@ -48,7 +57,7 @@ class AdminController extends Controller {
 
 		$updates = DB::table('user_updates')->where('user_id', $member->id)->get();
 
-		return response()->app(200, 'members.view', ['member' => $member, 'updates' => $updates]);
+		return response()->app(200, 'admin.members.show', ['member' => $member, 'updates' => $updates]);
 	}
 
 	/**
@@ -65,7 +74,7 @@ class AdminController extends Controller {
 				->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
 		}
 
-		return response()->app(200, 'members.edit', ['member' => $member]);
+		return response()->app(200, 'admin.members.edit', ['member' => $member]);
 	}
 
 	/**

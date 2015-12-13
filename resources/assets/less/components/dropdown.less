@@ -44,6 +44,24 @@
       z-index: 1;
     }
   }
+  .c-red {
+    color: @red;
+    color: lighten(@red, 10%);
+    
+    &:hover, &:focus {
+      color: darken(@red, 10%);
+      color: @red;
+    }
+  }
+  .c-green {
+    color: @deepGreen;
+    color: lighten(@deepGreen, 10%);
+    
+    &:hover, &:focus {
+      color: darken(@deepGreen, 10%);
+      color: @deepGreen;
+    }
+  }
 }
 .dropdownIsOpen .dropdown {
   display: block;
@@ -64,7 +82,7 @@
   }
 }
 .dropdown ul a:hover {
-  color: #245672;
+  color: @muhitBlueDark;
 }
 .dropdown ul a .ion {
   width: 1em;
@@ -73,7 +91,7 @@
   font-weight: 300;
 }
 
-
+// Google autosuggest dropdown
 .pac-container {
   position: relative;
   margin-top: 15px;
