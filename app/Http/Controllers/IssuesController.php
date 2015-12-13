@@ -510,7 +510,7 @@ class IssuesController extends Controller {
 
 		view()->share('pageTitle', 'Fikir Listesi - ');
 		session(['last_page' => Request::path()]);
-		return response()->app(200, 'issues.created', ['issues' => $issues, 'order' => $order, 'hood' => $hood]);
+		return response()->app(200, 'issues.supported', ['issues' => $issues, 'order' => $order, 'hood' => $hood]);
 	}
 
 	/**
