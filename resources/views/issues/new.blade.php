@@ -23,7 +23,7 @@
                 </div>
 
                 <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
-                @include('partials.field-hood')
+                @include('partials.field-hood', array('defaultValue' => (isset($_GET['location'])) ? $_GET['location'] : '' ))
 
                 <div class="form-group u-relative u-mv10">
                     <input type="hidden" id="coordinates" value="" name="coordinates">

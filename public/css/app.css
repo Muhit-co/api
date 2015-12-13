@@ -2976,7 +2976,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 input,
 button,
@@ -3017,8 +3017,8 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857143;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
   border-radius: 4px;
   transition: all 0.2s ease-in-out;
   transition: all all 0.2s ease-in-out ease-out;
@@ -7008,38 +7008,38 @@ header h3 {
 .list ul {
   list-style: none;
 }
-.list a {
+.list > ul > li > a {
   display: block;
   padding: 15px;
   line-height: 1.2em;
   background-color: #ffffff;
 }
-.list a:before,
-.list a:after {
+.list > ul > li > a:before,
+.list > ul > li > a:after {
   content: " ";
   display: table;
 }
-.list a:after {
+.list > ul > li > a:after {
   clear: both;
 }
-.list a:hover,
-.list a:focus {
+.list > ul > li > a:hover,
+.list > ul > li > a:focus {
   background-color: #f9f9f9;
 }
-.list a:hover .badge,
-.list a:focus .badge {
+.list > ul > li > a:hover .badge,
+.list > ul > li > a:focus .badge {
   opacity: 1;
 }
-.list a .badge {
+.list > ul > li > a .badge {
   opacity: 0.75;
 }
-.list a p {
+.list > ul > li > a p {
   max-width: 100%;
   color: #9999aa;
   margin-bottom: 0;
   line-height: 1em;
 }
-.list a p.title {
+.list > ul > li > a p.title {
   color: #44a1e0;
   font-weight: 600;
   white-space: nowrap;
