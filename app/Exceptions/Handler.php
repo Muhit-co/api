@@ -2,8 +2,8 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Request;
 use Log;
+use Request;
 
 class Handler extends ExceptionHandler {
 
@@ -14,6 +14,7 @@ class Handler extends ExceptionHandler {
 	 */
 	protected $dontReport = [
 		'Symfony\Component\HttpKernel\Exception\HttpException',
+		'Symfony\Component\HttpKernel\Exception\NotFoundHttpException',
 	];
 
 	/**
@@ -24,8 +25,8 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return void
 	 */
-    public function report(Exception $e) {
-        Log::error($e);
+	public function report(Exception $e) {
+		Log::error($e);
 		return parent::report($e);
 	}
 
@@ -36,11 +37,11 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return \Illuminate\Http\Response
 	 */
-    public function render($request, Exception $e) {
-        if (Request::is('api/*')) {
-            return response()->api(500, 'Error', ['details' => json_encode((array) $e)]);
+	public function render($request, Exception $e) {
+		if (Request::is('api/*')) {
+			return response()->api(500, 'Error', ['details' => json_encode((array) $e)]);
 
-        }
+		}
 		return parent::render($request, $e);
 	}
 
