@@ -1,12 +1,16 @@
 <?php namespace Muhit\Http\Controllers;
 
 use Auth;
+use Carbon\Carbon;
+use DB;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\Comment;
 use Muhit\Models\Issue;
 use Request;
 
 class MuhtarController extends Controller {
+
+	private $avaliable_statuses = ['in-progress', 'solved'];
 
 	/**
 	 * comments to an issue
@@ -40,6 +44,25 @@ class MuhtarController extends Controller {
 			$comment->comment = Request::get('comment');
 			try {
 				$comment->save();
+
+				if (Request::has('issue_status')) {
+					$new_status = Request::get('issue_status');
+
+					if (in_array($new_status, $this->avaliable_statuses)) {
+						$old_status = $issue->status;
+						$issue->status = $new_status;
+						$issue->save();
+						DB::table('issue_updates')
+							->insert([
+								'user_id' => Auth::user()->id,
+								'issue_id' => $issue->id,
+								'old_status' => $old_status,
+								'new_status' => $new_status,
+								'created_at' => Carbon::now(),
+								'updated_at' => Carbon::now(),
+							]);
+					}
+				}
 
 				#queueu an email for 10 minutes to issues owner.
 			} catch (Exception $e) {
@@ -135,6 +158,7 @@ class MuhtarController extends Controller {
 			$comment->comment = Request::get('comment');
 			try {
 				$comment->save();
+
 			} catch (Exception $e) {
 				Log::error('MuhtarController/postEditComment', (array) $e);
 				return redirect('/issues/view/' . $comment->issue_id)
