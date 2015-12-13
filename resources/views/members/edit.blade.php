@@ -15,13 +15,13 @@
 
                     <form method="post" action="/members/update">
 
-                        <div class="form-group form-fullwidth u-mv10">
+                        <div class="form-group form-fullwidth u-mt10">
                             <label>{{ trans('auth.first_name') . ' + ' . trans('auth.last_name') }}</label>
                             <div class="row" style="margin-left: -15px; margin-right: -15px;">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 u-mb10">
                                     <input type="text" class="form-input form-grey" value="{{ $user['first_name']  }}" name="first_name" placeholder="First name..." />
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 u-mb10">
                                     <input type="text" class="form-input form-grey" value="{{$user['last_name']}}" name="last_name" placeholder="Last name..." />
                                 </div>
                             </div>

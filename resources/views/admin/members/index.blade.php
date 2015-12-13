@@ -37,7 +37,6 @@
         <div class="col-xs-12">
             <?php 
             $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
-            $tabs = [0, 3, 4, 5, 10];
             ?>
             <ul class="tabs">
                 <li>
@@ -45,7 +44,7 @@
                         ALL
                     </a>
                 </li>
-                @foreach ($tabs as $t)
+                @foreach ([0, 3, 4, 5, 10] as $t)
                     <li>
                         <a href="<?php echo '?' . buildRelativeUrl('level', $t) ?>" <?php echo ($active_tab === $t) ? 'class="active"' : ''; ?> >
                             {{ strtoupper( getUserLevel($t, true) ) }}
