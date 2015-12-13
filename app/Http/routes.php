@@ -155,6 +155,5 @@ Route::group(['prefix' => 'api'], function () {
 Route::get('tq', 'IssuesController@getTestQueue');
 Route::post('/queue', function () {
 	Log::error('QueueFired', Request::all());
-	Queue::marshal();
 	return response()->api(200, 'ok', []);
 });
