@@ -18,7 +18,6 @@ elixir(function(mix) {
         "vendors/jquery.smooth-scroll.js",
         "vendors/jquery.slides.js",
         "vendors/fastclick.js",
-        "vendors/slideout.js",
         "app.js",
         "scripts.js",
         "maps.js"
