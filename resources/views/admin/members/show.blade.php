@@ -13,12 +13,12 @@
                 <div class="card-header u-aligncenter">
                     <div class="u-floatright u-pt10">
                         @if ($member->level == 4 || $member->level == 5)
-                            <a href="/admin/reject/muhtar" class="btn btn-blueempty" title="Reject">
+                            <a href="/admin/reject-muhtar/{{$member->id}}" class="btn btn-blueempty" title="Reject">
                                 <i class="ion ion-close-circled"></i>
                             </a>
                         @endif
                         @if ($member->level == 3 || $member->level == 4)
-                            <a href="/admin/approve/muhtar" class="btn btn-blueempty u-ml10" title="Approve">
+                            <a href="/admin/approve-muhtar/{{$member->id}}" class="btn btn-blueempty u-ml10" title="Approve">
                                 <i class="ion ion-checkmark-circled"></i>
                             </a>
                         @endif
