@@ -3,7 +3,7 @@
 
 @include('partials.header', array('type'=>'show'))
 
-<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); ?>
+<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR');?>
 
 <section>
 
@@ -40,11 +40,11 @@
                 <div class="bg-light u-pa15 u-aligncenter">
                     <strong class="u-block u-mb10"><em>This user has requested muhtar access to Muhit. Is their information correct?</em></strong>
                     <div class="u-block">
-                        <a href="/admin/reject/muhtar" class="btn btn-greytored u-ml10">
+                        <a href="/admin/reject-muhtar/{{$member->id}}" class="btn btn-greytored u-ml10">
                             <i class="ion ion-close-circled u-mr5"></i>
                             REJECT
                         </a>
-                        <a href="/admin/approve/muhtar" class="btn btn-greytogreen u-ml10">
+                        <a href="/admin/approve-muhtar/{{$member->id}}" class="btn btn-greytogreen u-ml10">
                             <i class="ion ion-checkmark-circled u-mr5"></i>
                             APPROVE
                         </a>

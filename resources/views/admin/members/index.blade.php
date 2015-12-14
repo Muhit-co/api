@@ -8,12 +8,12 @@
             <div class="u-clearfix">
 
                 <div class="u-floatright">
-                    <?php 
-                    $param_q = (isset($_GET["q"])) ? $_GET["q"] : '';
-                    $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
-                    ?>
+                    <?php
+$param_q = (isset($_GET["q"])) ? $_GET["q"] : '';
+$param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
+?>
                     <form method="get">
-                        
+
                         <div class="form-group u-floatleft u-width150">
                             <input class="form-input" name="q" type="text" placeholder="Search..." value="<?php echo $param_q ?>" />
                             @if (strlen($param_q) > 0)
@@ -35,9 +35,9 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <?php 
-            $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
-            ?>
+            <?php
+$active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
+?>
             <ul class="tabs">
                 <li>
                     <a href="{{ '/' . Request::path() }}" <?php echo ($active_tab === null) ? 'class="active"' : ''; ?> >
@@ -123,10 +123,10 @@
                                 <div class="dropdown dropdown-outline">
                                     <ul>
                                         @if ($m->level == 3 || $m->level == 4)
-                                            <li><a href="/admin/approve/muhtar" class="c-green"><i class="ion ion-checkmark-circled u-mr5"></i> Approve</a></li>
+                                            <li><a href="/admin/approve-muhtar/{{$m->id}}" class="c-green"><i class="ion ion-checkmark-circled u-mr5"></i> Approve</a></li>
                                         @endif
                                         @if ($m->level == 4 || $m->level == 5)
-                                            <li><a href="/admin/reject/muhtar" class="c-red"><i class="ion ion-close-circled u-mr5"></i> Reject</a></li>
+                                            <li><a href="/admin/reject-muhtar/{{$m->id}}" class="c-red"><i class="ion ion-close-circled u-mr5"></i> Reject</a></li>
                                         @endif
                                         <li><a href="/admin/view-member/{{$m->id}}"><i class="ion ion-eye u-mr5"></i> View</a></li>
                                         <li><a href="/admin/edit-member/{{$m->id}}"><i class="ion ion-edit u-mr5"></i> Edit</a></li>
