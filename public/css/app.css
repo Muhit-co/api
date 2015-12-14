@@ -7382,6 +7382,10 @@ nav #nav_quickadd {
   color: #ffffff;
   border-top-color: #ffffff;
 }
+#menu-drawer {
+  display: none;
+}
+/* --- navbutton --- */
 #navbutton {
   display: none;
   height: 80px;
@@ -7409,9 +7413,6 @@ nav #nav_quickadd {
   #userinfo {
     max-width: 180px;
   }
-}
-#menu-drawer {
-  display: none;
 }
 @media screen and (max-width: 768px) {
   nav {
@@ -7449,16 +7450,20 @@ nav #nav_quickadd {
     bottom: 0;
     left: 0;
     z-index: 0;
-    display: none;
+    display: block;
     width: 260px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     background-color: #245672;
     box-shadow: inset -5px 0 0 rgba(51, 51, 68, 0.3);
+    -webkit-transform: translateX(-260px);
+    transform: translateX(-260px);
+    transition: all 0.3s ease-in-out;
+    transition: all all 0.3s ease-in-out ease-out;
   }
   #menu-drawer .menu {
-    transition: all 0.1s ease;
-    transition: all all 0.1s ease ease-out;
+    transition: all 0.3s ease-in-out;
+    transition: all all 0.3s ease-in-out ease-out;
     opacity: 0;
   }
   #menu-drawer li {
@@ -7496,11 +7501,53 @@ nav #nav_quickadd {
     display: inline-block;
     padding: 15px 10px;
   }
-  .slideout-open #menu-drawer {
+  .menu-isOpen #navbutton .ion-navicon {
+    display: none;
+  }
+  .menu-isOpen #navbutton .ion-android-close {
     display: block;
   }
-  .slideout-open #menu-drawer .menu {
+}
+/* --- panel/mask --- */
+#panel {
+  transition: all 0.3s ease-in-out;
+  transition: all all 0.3s ease-in-out ease-out;
+}
+#panel-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  background-color: rgba(68, 161, 224, 0.75);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  transition: all all 0.3s ease-in-out ease-out;
+}
+@media screen and (max-width: 768px) {
+  #panel-mask {
+    display: block;
+  }
+  .menu-isOpen {
+    overflow: hidden;
+  }
+  .menu-isOpen #menu-drawer {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  .menu-isOpen #menu-drawer .menu {
     opacity: 1;
+  }
+  .menu-isOpen #panel {
+    -webkit-transform: translateX(260px);
+    transform: translateX(260px);
+  }
+  .menu-isOpen #panel-mask {
+    opacity: 1;
+    pointer-events: all;
   }
 }
 .pagination {
@@ -8152,28 +8199,6 @@ nav #nav_quickadd {
 main {
   background-color: #eeeeee;
   z-index: 1;
-}
-#panel-mask {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(68, 161, 224, 0.75);
-  z-index: 10;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.1s ease;
-  transition: all all 0.1s ease ease-out;
-}
-.slideout-open,
-.slideout-open body,
-.slideout-open .slideout-panel {
-  overflow: hidden;
-}
-.slideout-open #panel-mask {
-  opacity: 1;
-  pointer-events: all;
 }
 section.login {
   background-color: #44a1e0;
