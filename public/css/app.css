@@ -7246,6 +7246,8 @@ header h3 {
   color: #9999aa;
   margin-bottom: 0;
   line-height: 1em;
+  line-height: 30px;
+  vertical-align: middle;
 }
 .list > ul > li > a p.title {
   color: #44a1e0;
@@ -7264,6 +7266,9 @@ header h3 {
   border-top: 1px solid #eeeeee;
 }
 @media screen and (max-width: 480px) {
+  .list > ul > li > a {
+    padding: 10px;
+  }
   .list .badge.badge-image {
     width: 40px;
     height: 40px;
@@ -7276,8 +7281,8 @@ header h3 {
     font-size: 0.75em;
   }
   .list .tag {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     -webkit-transform: translateY(2px);
     transform: translateY(2px);
@@ -8058,8 +8063,8 @@ nav #nav_quickadd {
   color: #ffffff;
 }
 .tag-collapsed {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   -webkit-transform: translateY(2px);
   transform: translateY(2px);
