@@ -34,6 +34,8 @@
       color: @grey;
       margin-bottom: 0;
       line-height: 1em;
+      line-height: 30px;
+      vertical-align: middle;
 
       &.title {
         color: @muhitBlue;
@@ -58,6 +60,9 @@
 }
 @media screen and (max-width: @screen-xs) {
   .list {
+    & > ul > li > a {
+      padding: 10px;
+    }
     .badge.badge-image {
       width: 40px;
       height: 40px;

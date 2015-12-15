@@ -1,7 +1,7 @@
 @if (session('success'))
-    <div class="row u-pv10">
+    <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="flash flash-success u-mb20">
+            <div class="flash flash-success u-mv10">
                 <a href="javascript:void(0)" id="flash_close">
                     <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
                 </a>
@@ -11,13 +11,13 @@
         </div>
     </div>
     <script>
-        setTimeout(function() { $('.flash').animate({ opacity: 0 }, 'normal').slideUp() }, 6000);
+        setTimeout(function() { $('.flash').animate({ opacity: 0, margin: 0 }, 'normal').slideUp() }, 6000);
     </script>
 @endif
 @if (session('warning'))
-    <div class="row u-pv10">
+    <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="flash flash-warning u-mb20">
+            <div class="flash flash-warning u-mv10">
                 <a href="javascript:void(0)" id="flash_close">
                     <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
                 </a>
@@ -28,9 +28,9 @@
     </div>
 @endif
 @if (session('error'))
-    <div class="row u-pv10">
+    <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="flash flash-error u-mb20">
+            <div class="flash flash-error u-mv10">
                 <a href="javascript:void(0)" id="flash_close">
                     <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
                 </a>

@@ -19,28 +19,30 @@
                             <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
                         @endif
                     </div>
-                    <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10">
+                    <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10 u-ml5">
                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
                         <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
                     </div>
-                    <strong>{{$issue['title']}}</strong>
-                    <p>
-                        @if(isset($issue['tags']) and !empty($issue['tags']))
-                            @foreach($issue['tags'] as $tag)
-                                <span class="tag u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
-                                    {{$tag['name']}}
-                                </span>
+                    <div class="u-ml55">
+                        <strong>{{$issue['title']}}</strong>
+                        <p>
+                            @if(isset($issue['tags']) and !empty($issue['tags']))
+                                @foreach($issue['tags'] as $tag)
+                                    <span class="tag u-floatleft u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
+                                        <span class="col-xs-hide">{{$tag['name']}}</span>
+                                    </span>
 
-                            @endforeach
-                        @endif
-                        <span class="date u-mr10"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span>
-                        @if($issue['is_anonymous'] == 0)
-                        <span class="extended">
-                            |<span class="user u-ml10">
-                                {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
-                        </span>
-                        @endif
-                    </p>
+                                @endforeach
+                            @endif
+                            <span class="date u-floatleft u-mr10"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span>
+                            @if($issue['is_anonymous'] == 0)
+                            <span class="extended">
+                                |<span class="user u-ml10">
+                                    {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
+                            </span>
+                            @endif
+                        </p>
+                    </div>
                 </a>
             </li>
         @endforeach
