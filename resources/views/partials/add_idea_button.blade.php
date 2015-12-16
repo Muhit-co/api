@@ -1,7 +1,7 @@
 <?php
 $btn_text = (isset($text)) ? $text : 'FİKİR <span class="extended">EKLE</span>';
 $btn_class = (isset($class)) ? $class : 'btn btn-primary';
-if($role == 'user' || $role == 'public'):
+if(isset($role)):
     $loc_param = '';
     if(isset($_GET['location'])) {
         $loc_param = '?' . buildRelativeUrl('location', $_GET['location']);
