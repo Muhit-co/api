@@ -28,6 +28,8 @@ return [
     "your_password" => "Şifren",
     "password_again" => "Şifre (tekrar)",
     "password_placeholder" => "En az 8 karakter",
+    "username" => "Kullanıcı adı",
+    "username_placeholder" => "i.e. ahmetmuhittin",
     "agree_with_terms" => ":tagstartKullanım koşulları:tagendnı kabul ediyorum.",
     "sign_up_muhtar_link" => "Muhtar veya Belediye Hesabı Oluştur",
     "request_access_cap" => "GİRİŞ İZNİ İSTE",

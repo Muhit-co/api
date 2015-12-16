@@ -39,6 +39,8 @@
             
             @include('partials.footer')
 
+            <a id="panel-mask"></a>
+
         </main>
         
     </body>
