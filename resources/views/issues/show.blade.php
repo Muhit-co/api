@@ -196,24 +196,40 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                 </div>
 
                 @if(!empty($issue['comments']))
-                    @foreach($issue['comments'] as $comment)
-                        <div class="card-footer clearfix">
-                            <h3 class="c-blue u-mb10">{{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}</h3>
-                            <div class="comment u-ph20">
-                                <h4 class="title">
-                                    <div class="u-floatright">
-                                        <small>{{ strftime('%d %h %Y', strtotime($comment['created_at'])) }}</small>
-                                    </div>
 
-                                </h4>
+                    <div class="card-footer clearfix">
+
+                        <h4>Muhtardan gelen yorumlar</h4>
+
+                        @foreach($issue['comments'] as $comment)
+                            <div class="comment" id="comment-{{ $comment['id'] }}">
+                                <div class="u-floatright c-medium">
+                                    <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
+                                    @if($role =='admin')
+                                        <button class="btn btn-sm btn-tertiary u-ml5">
+                                            <i class="ion ion-edit"></i>
+                                        </button>
+                                    @endif
+                                </div>
                                 <p>
-                                    <em>
-                                        {{ $comment['comment'] }}
-                                    </em>
+                                    <strong>
+                                        Yavus Bey <!-- (Remove this when muhtar name variables work) -->
+                                        {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
+                                    </strong>
+                                    <span class="c-medium">
+                                        (Yeniköy Mahallesi <!-- (Remove this when muhtar hood variables work) -->
+                                        {{ $comment['muhtar']['hood'] }}
+                                        muhtarı)
+                                    </span>
                                 </p>
+                                <p><em>
+                                    {{ $comment['comment'] }}
+                                </em></p>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+
+                    </div>
+
                 @endif
                 {{--
 
