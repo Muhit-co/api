@@ -23,6 +23,7 @@ return [
     "in_progress" => "Gelişmekte",
     "in_progress_cap" => "GELİŞMEKTE",
     "solved" => "Çözüldü",
+    "solved_cap" => "ÇÖZÜLDÜ",
     "solved_ones_cap" => "ÇÖZÜLENLER",
     "contact_info_cap" => "İLETİŞİM BİLGİLERİ",
     "neighbourhood" => "Mahalle",
@@ -50,9 +51,12 @@ return [
     "write_comment" => "Yorum Yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
     "change_status_progress" => "Fikri çözüm aşamasına geçir!",
+    "placeholder_yourmessage" => "Mesajını buradanaya yaz...",
     "change_status_progress_descr" => "Bu fikri çözüm aşamasına geçirmek mi istiyorsunuz? Çözümün uygulanması için ilgili belediye kurumları ya da müdürlükler ile iletişime geçmeniz gerekebilir.",
+    "placeholder_progressmessage" => "Mesajını buradanaya yaz...",
     "change_status_solved" => "Fikri 'Çözüldü' olarak değiştir",
     "change_status_solved_descr" => "Bu fikrin statüsünü 'çözüldü' olarak değiştirmek mi istiyorsunuz? 'Çözüldü' statüsü fikrin mahallede uygulandığını gösterir.",
+    "placeholder_solvedmessage" => "Fikir nasıl çözüldü?",
     "created" => "Oluşturuldu", 
     "issue_status_new" => "Fikir Oluşturuldu",  
     "issue_status_supported" => "Fikrin 10'dan fazla destekçisi var",  
@@ -81,7 +85,6 @@ return [
     "terms_and_conditions" => "Kullanım koşulları",
     "about_muhit" => "Muhit hakkında",
     "contact" => "İletişim",
-    "placeholder_yourmessage" => "Mesajını buraya yaz...",
     "our_manifesto" => "Manifestomuz",
     "my_muhtar_info" => "Muhtarım bilgisi", // @seratolgay
     "your_muhtar_didnt_sign_up_yet" => "Muhtarınız henüz Muhit'e üye değil!", // @seratolgay

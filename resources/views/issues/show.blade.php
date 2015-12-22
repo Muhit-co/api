@@ -3,9 +3,9 @@
 @section('dialogs')
     @if($role =='admin')
         @include('dialogs.write_comment', ['issue_id' => $issue['id']])
-        @include('dialogs.come_drink_tea')
-        @include('dialogs.change_status_progress')
-        @include('dialogs.change_status_solved')
+        @include('dialogs.come_drink_tea', ['issue_id' => $issue['id']])
+        @include('dialogs.change_status_progress', ['issue_id' => $issue['id']])
+        @include('dialogs.change_status_solved', ['issue_id' => $issue['id']])
     @endif
 @stop
 
@@ -71,12 +71,12 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                             <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
                             <div class="dropdown dropdown-outline">
                                 <ul>
+                                    <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
                                     @if($issue['status'] != "solved")
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_come_drink_tea"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li>
+                                    {{-- <li><a href="javascript:void(0)" data-dialog="dialog_come_drink_tea"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li> --}}
                                     <li><a href="javascript:void(0)" data-dialog="dialog_change_status_progress"><i class="ion ion-wrench u-mr5"></i> {{ trans('issues.in_progress') }}...</a></li>
                                     <li><a href="javascript:void(0)" data-dialog="dialog_change_status_solved"><i class="ion ion-checkmark-circled u-mr5"></i> {{ trans('issues.solved') }}...</a></li>
                                     @endif
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
                                 </ul>
                             </div>
                         </div>
