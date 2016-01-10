@@ -37,7 +37,7 @@ class SignupConfirmation extends Job implements SelfHandling, ShouldQueue {
 
 			try {
 				$user->save();
-				Mail::send('emails.sign_up_conf', ['user' => $user], function ($m) use ($email) {
+				Mail::send('emails.sign_up_conf', ['user' => $user], function ($m) use ($user) {
 					$m->to($user->email)
 						->subject('Muhit.co Hesap onay epostası.');
 				});
