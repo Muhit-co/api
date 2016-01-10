@@ -20,8 +20,8 @@ class SignupConfirmation extends Job implements SelfHandling, ShouldQueue {
 	 *
 	 * @return void
 	 */
-	public function __construct($user_id) {
-		$this->user = User::find($user_id);
+	public function __construct(User $user) {
+		$this->user = $user;
 	}
 
 	/**

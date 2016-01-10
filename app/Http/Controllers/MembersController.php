@@ -202,7 +202,7 @@ class MembersController extends Controller {
 		}
 
 		try {
-			$this->dispatch(new SignupConfirmation($user->id));
+			$this->dispatch(new SignupConfirmation($user));
 		} catch (Exception $e) {
 			Log::error('MembersController/getResendConfirmation', (array) $e);
 
