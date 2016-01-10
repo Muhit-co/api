@@ -798,7 +798,7 @@ class IssuesController extends Controller {
 	 * @return redirect
 	 * @author Me
 	 */
-	public function postReport() {
+	public function postReporphp artt() {
 
 		if (!Auth::check()) {
 			return redirect('/login')
