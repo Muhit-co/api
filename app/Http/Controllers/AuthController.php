@@ -155,7 +155,7 @@ class AuthController extends Controller {
 
 		try {
 			$user->save();
-			$this->dispatch(new SignupConfirmation($user));
+			$this->dispatch(new SignupConfirmation($user->id));
 		} catch (Exception $e) {
 			Log::error('AuthController/postRegister', (array) $e);
 			if ($this->isApi) {

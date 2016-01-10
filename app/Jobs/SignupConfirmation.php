@@ -5,23 +5,22 @@ namespace Muhit\Jobs;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use Mail;
 use Muhit\Jobs\Job;
 use Muhit\Models\User;
 
 class SignupConfirmation extends Job implements SelfHandling, ShouldQueue {
-	use InteractsWithQueue, SerializesModels;
+	use InteractsWithQueue;
 
-	protected $user;
+	protected $user_id;
 
 	/**
 	 * Create a new job instance.
 	 *
 	 * @return void
 	 */
-	public function __construct(User $user) {
-		$this->user = $user;
+	public function __construct($user_id) {
+		$this->user_id = $user_id;
 	}
 
 	/**
@@ -31,9 +30,9 @@ class SignupConfirmation extends Job implements SelfHandling, ShouldQueue {
 	 */
 	public function handle() {
 
-		$user = $this->user;
+		$user = User::find($this->user_id);
 
-		if (!empty($user) and $user->is_verified = 0) {
+		if (!empty($user) and $user->is_verified == 0) {
 			$user->verify_token = bin2hex(mcrypt_create_iv(17, MCRYPT_DEV_URANDOM));
 
 			try {
