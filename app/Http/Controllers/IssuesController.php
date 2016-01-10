@@ -836,7 +836,7 @@ class IssuesController extends Controller {
 	 * @return void
 	 * @author Me
 	 */
-	public function getTestQueue() {
+	public function testqueue() {
 		$this->dispatch(new TestQueue());
 	}
 }
