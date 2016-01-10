@@ -13,13 +13,15 @@ use Muhit\Models\User;
 class SignupConfirmation extends Job implements SelfHandling, ShouldQueue {
 	use InteractsWithQueue, SerializesModels;
 
+	protected $user;
+
 	/**
 	 * Create a new job instance.
 	 *
 	 * @return void
 	 */
-	public function __construct() {
-		//
+	public function __construct($user_id) {
+		$this->user = User::find($user_id);
 	}
 
 	/**
@@ -27,9 +29,9 @@ class SignupConfirmation extends Job implements SelfHandling, ShouldQueue {
 	 *
 	 * @return void
 	 */
-	public function handle($user_id) {
+	public function handle() {
 
-		$user = User::find($user_id);
+		$user = $this->user;
 
 		if (!empty($user) and $user->is_verified = 0) {
 			$user->verify_token = bin2hex(mcrypt_create_iv(17, MCRYPT_DEV_URANDOM));
