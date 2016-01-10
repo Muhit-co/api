@@ -31,23 +31,14 @@
 
             @include('partials.nav')
 
-            @if(Auth::check() and Auth::user()->is_verified == 0)
-                <div class="row u-pv10">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="flash flash-warning u-mb20">
-                            <a href="javascript:void(0)" id="flash_close">
-                                <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
-                            </a>
-                            <i class="ion ion-information-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
-                            Hesabınızı onaylamnız gerekiyor. Eğer onay maili ulaşmadıysa <a href="/members/resend-confirmation"> buraya tıklayarak </a> yeniden onay maili alabilirsiniz.
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-
             <section class="flash-container">
+            
                 @include('partials.messages')
+
+                @if(Auth::check() and Auth::user()->is_verified == 0)
+                    @include('partials.message-confirmemail')
+                @endif
+
             </section>
 
             @yield('content')

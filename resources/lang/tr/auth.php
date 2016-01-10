@@ -50,5 +50,6 @@ return [
     "add_to_home_explain" => "Muhit'i ana ekranına eklemek için :icon butonuna bas ve daha sonra'Ana Ekrana Ekle'ye tıkla.", 
     "learn_more_cap" => "DAHA FAZLA BİLGİ",
     "muhtar" => "Muhtarlık", 
-    "municipality" => "Belediye", 
+    "municipality" => "Belediye",
+    "confirm_email_needed" => "Hesabınızı onaylamnız gerekiyor. Eğer onay maili ulaşmadıysa :tagstartBURAYA TIKLAYARAK:tagend yeniden onay maili alabilirsiniz.",
 ];
