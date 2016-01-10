@@ -31,7 +31,7 @@
 
             @include('partials.nav')
 
-            @if(Auth::check())
+            @if(Auth::check() and Auth::user()->is_verified == 0)
                 <div class="row u-pv10">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="flash flash-warning u-mb20">
