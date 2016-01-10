@@ -31,17 +31,6 @@ $(document).ready(function() {
   $('#loader_mask').removeClass('isVisible');
   $('main,nav').removeClass('dialogIsOpen');
 
-  // mobile menu init
-  if($('#menu-drawer').length > 0 && $('#panel').length > 0) {
-    slideout = new Slideout({
-      'panel': document.getElementById('panel'),
-      'menu': document.getElementById('menu-drawer'),
-      'padding': 260,
-      'tolerance': 70
-    });
-    $('#panel').append('<a id="panel-mask"></a>');
-  }
-
   // display 'add to homescreen' message
   if(!$standalone && getCookie('add_home_message') != "false") {
 
@@ -70,23 +59,16 @@ $(document).ready(function() {
   // start listeners
 
   // dropdown toggle
-  $('.hasDropdown > a, .dropdown a').bind('click', (function(e) {
+  $('.hasDropdown > a, .dropdown a, .hasDropdown > button').bind('click', (function(e) {
     $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
     $(this).closest('.hasDropdown').find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
 
-  if(window.slideout) {
-    // mobile menu toggle button
-    $('#navbutton').bind(touchEvent, (function(e) {
-      slideout.toggle();
-      e.preventDefault();
-    }));
-    // mobile menu toggle button
-    $('#panel-mask').bind(touchEvent, (function(e) {
-      slideout.close();
-      e.preventDefault();
-    }));
-  }
+  // mobile menu toggle button
+  $('#navbutton, #panel-mask').bind(touchEvent, (function(e) {
+    $('body').toggleClass('menu-isOpen');
+    e.preventDefault();
+  }));
 
   // dialog open
   $('a[data-dialog]').bind(touchEvent, (function(e) {

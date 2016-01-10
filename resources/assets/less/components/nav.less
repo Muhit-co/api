@@ -1,5 +1,6 @@
 @navHeight: 80px;
 @compactNavHeight: 70px;
+@menuDrawerWidth: 260px;
 
 /* --- nav --- */
 nav {
@@ -50,14 +51,6 @@ nav {
       background-color: rgba(0, 0, 0, 0.05);
     }
   }
-  a#logout {
-    color: @red;
-    
-    &:hover, &:focus {
-      color: darken(@red, 10%);
-    }
-  }
-
   #nav_quickadd {
     display: none;
   }
@@ -95,8 +88,8 @@ nav {
     display: block;
     height: @navHeight;
     margin-top: -5px;
-    padding: 18px 20px 8px;
-    border-bottom: 2px solid transparent;
+    padding: 16px 20px 10px;
+    border-top: 2px solid transparent;
     font-size: 0.8em;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -116,10 +109,15 @@ nav {
   }
   li.active a {
     color: @white;
-    // border-bottom-color: @white;
+    border-top-color: @white;
   }
 }
+#menu-drawer {
+  display: none;
+}
 
+
+/* --- navbutton --- */
 #navbutton {
   display: none;
   height: @navHeight;
@@ -140,7 +138,6 @@ nav {
 }
 
 
-
 @media screen and (max-width: @screen-md) {
   .menu {
     a {
@@ -153,13 +150,6 @@ nav {
     max-width: 180px;
   }
 }
-
-
-#menu-drawer {
-  display: none;
-}
-
-
 @media screen and (max-width: @screen-sm) {
   nav {
     max-width: 100vw;
@@ -179,7 +169,12 @@ nav {
       }
     }
     #nav_logo {
-      padding: 15px 10px;
+      padding: 20px 10px;
+
+      img {
+        max-width: 130px;
+        height: auto !important;
+      }
     }
     #nav_quickadd {
       display: inline-block;
@@ -198,15 +193,17 @@ nav {
     bottom: 0;
     left: 0;
     z-index: 0;
-    display: none;
-    width: 260px;
+    display: block;
+    width: @menuDrawerWidth;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     background-color: @muhitBlueDark;
     .box-shadow(inset -5px 0 0 fade(@black, 30%));
+    .transform(translateX(-@menuDrawerWidth));
+    .transition(all 0.3s ease-in-out);
 
     .menu {
-      .transition(all 0.1s ease);
+      .transition(all 0.3s ease-in-out);
       opacity: 0;
     }
 
@@ -228,7 +225,8 @@ nav {
       max-width: 100%;
       padding: 15px;
       text-align: left;
-      border-left: 3px solid transparent;
+      border-top: 0;
+      border-left: 2px solid transparent;
 
       .ion {
         display: inline-block;
@@ -248,11 +246,56 @@ nav {
     display: inline-block;
     padding: 15px 10px;
   }
-  .slideout-open #menu-drawer {
-    display: block;
+  .menu-isOpen #navbutton {
+    .ion-navicon {
+      display: none;
+    }
+    .ion-android-close {
+      display: block;
+    }
+  }
+}
 
-    .menu {
+
+
+
+/* --- panel/mask --- */
+#panel {
+  .transition(all 0.3s ease-in-out);
+}
+#panel-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  background-color: fade(@muhitBlue, 75%);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  .transition(all 0.3s ease-in-out);
+}
+@media screen and (max-width: @screen-sm) {
+  #panel-mask {
+    display: block;
+  }
+  .menu-isOpen {
+    overflow: hidden;
+    
+    #menu-drawer {
+      .transform(translateX(0));
+
+      .menu {
+        opacity: 1;
+      }
+    }
+    #panel {
+      .transform(translateX(@menuDrawerWidth));
+    }
+    #panel-mask {
       opacity: 1;
+      pointer-events: all;
     }
   }
 }

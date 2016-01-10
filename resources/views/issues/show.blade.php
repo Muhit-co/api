@@ -29,20 +29,13 @@ $issue_status = getIssueStatus($issue['status'], $issue_supporters);
 
                         <!-- Share buttons -->
                         <?php
-// @gcg what is a good location for this function?
-function str_trtoeng($source) {
-	$turkish = array("Ü", "Ş", "Ğ", "Ç", "İ", "Ö", "ü", "ş", "ç", "ı", "ö", "ğ"); // turkish letters
-	$english = array("U", "S", "G", "C", "I", "O", "u", "s", "c", "i", "o", "g"); // corresponding english letters
-	$result = str_replace($turkish, $english, $source); //replace php function
-	return $result;
-}
 
 $twitter_url = "http://twitter.com/share";
 $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
 $twitter_url .= "&url=" . Request::url();
 $twitter_url .= "&hashtags=muhit";
 foreach ($issue['tags'] as $tag):
-	$twitter_url .= "," . str_trtoeng(strtolower($tag['name']));
+	$twitter_url .= "," . strTRtoEN(strtolower($tag['name']));
 endforeach;
 $facebook_url = "http://www.facebook.com/dialog/feed";
 $facebook_url .= "?app_id=" . "1458298001134890";
@@ -100,7 +93,7 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                             <i class="ion {{$issue_status['icon']}}"></i>
                             <span class="text extended">{{$issue_status['title']}}</span>
                         </div>
-                        <div id="support_counter" class="badge badge-circle-large badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
+                        <div id="support_counter" class="badge badge-circle-xlarge badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
                             <div class="value">{{ $issue_supporters }}</div>
                             <label>DESTEKÇİ</label>
                         </div>

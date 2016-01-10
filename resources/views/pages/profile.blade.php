@@ -13,7 +13,7 @@
               {{ trans('auth.edit_cap') }}
             </a>
           </div>
-          <div class="badge badge-circle-large u-floatleft u-mr20 u-mb20">
+          <div class="badge badge-circle-xlarge u-floatleft u-mr20 u-mb20">
             <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/{{Auth::user()->picture}}" alt="{{Auth::user()->first_name}}">
           </div>
           <h2 class="u-mt20">

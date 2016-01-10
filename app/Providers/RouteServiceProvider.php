@@ -1,10 +1,10 @@
 <?php namespace Muhit\Providers;
 
-use Auth;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Request;
+use Auth;
 
 class RouteServiceProvider extends ServiceProvider {
 

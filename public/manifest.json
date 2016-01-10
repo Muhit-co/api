@@ -1,5 +1,10 @@
 {
   "name": "Muhit",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#245672",
+  "theme_color": "#44a1e0",
   "icons": [
     {
       "src": "/images/app-icons/launcher-icon-0-75x.png",
@@ -38,7 +43,4 @@
       "density": "4.0"
     }
   ],
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait"
 }
