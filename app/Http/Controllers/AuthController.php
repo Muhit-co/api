@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Log;
 use Mail;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\SignupConfirmation;
 use Muhit\Models\Hood;
 use Muhit\Models\User;
 use Muhit\Models\UserSocialAccount;
