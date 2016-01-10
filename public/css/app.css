@@ -7437,7 +7437,11 @@ nav #nav_quickadd {
     display: none;
   }
   nav #nav_logo {
-    padding: 15px 10px;
+    padding: 20px 10px;
+  }
+  nav #nav_logo img {
+    max-width: 130px;
+    height: auto !important;
   }
   nav #nav_quickadd {
     display: inline-block;
