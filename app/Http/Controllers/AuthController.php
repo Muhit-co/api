@@ -613,4 +613,40 @@ class AuthController extends Controller {
 		return redirect('/login')
 			->with('success', 'Şifreniz başarılı bir şekilde güncellendi. Yeni şifreniz ile giriş yapabilirsiniz.');
 	}
+
+	/**
+	 * checks the password token and displays a form for resetting a password
+	 *
+	 * @return view
+	 * @author Me
+	 */
+	public function getConfirm($id = null, $code = null) {
+		if (empty($id) or empty($code)) {
+			return redirect('/')
+				->with('error', 'Geçersiz bir linke tıkladın.');
+		}
+
+		$user = User::where('id', $id)
+			->where('verify_token', $code)
+			->first();
+
+		if (empty($user)) {
+			return redirect('/')
+				->with('error', 'Geçersiz bir linke tıkladın. ');
+		}
+
+		if ($user->is_verified == 0) {
+			$user->is_verified = 1;
+			try {
+				$user->save();
+			} catch (Exception $e) {
+				Log::error('AuthController/getConfirm', (array) $e);
+				return redirect('/')
+					->with('error', 'Teknik bir hatadan dolayı hesabını şu anda onaylayamadım.');
+			}
+		}
+
+		return redirect('/')
+			->with('success', 'Hesabın başarılı bir şekilde onaylandı.');
+	}
 }

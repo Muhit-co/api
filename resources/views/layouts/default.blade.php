@@ -8,7 +8,7 @@
 
         @include('dialogs.login')
         @yield('dialogs')
-        
+
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">
@@ -31,16 +31,31 @@
 
             @include('partials.nav')
 
+            @if(Auth::check())
+                <div class="row u-pv10">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="flash flash-warning u-mb20">
+                            <a href="javascript:void(0)" id="flash_close">
+                                <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
+                            </a>
+                            <i class="ion ion-information-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
+                            Hesabınızı onaylamnız gerekiyor. Eğer onay maili ulaşmadıysa <a href="/members/resend-confirmation"> buraya tıklayarak </a> yeniden onay maili alabilirsiniz.
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
             <section class="flash-container">
                 @include('partials.messages')
             </section>
 
             @yield('content')
-            
+
             @include('partials.footer')
 
         </main>
-        
+
     </body>
 
 </html>
