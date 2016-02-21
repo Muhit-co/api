@@ -4,6 +4,7 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\IssueCommented;
 use Muhit\Models\Comment;
 use Muhit\Models\Issue;
 use Request;
