@@ -37,7 +37,7 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue {
 
 		if (!empty($comment->issue->user_id)) {
 			try {
-				$this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->issue_id));
+				$this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->id));
 			} catch (Exception $e) {
 				Log::error('IssueCommented', (array) $e);
 			}
@@ -51,7 +51,7 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue {
 
 		foreach ($supporters as $s) {
 			try {
-				$this->dispatch(new SendCommentedEmail($s->user_id, 'supporter', $comment->issue_id));
+				$this->dispatch(new SendCommentedEmail($s->user_id, 'supporter', $comment->id));
 			} catch (Exception $e) {
 				Log::error('IssueCommented', (array) $e);
 			}
