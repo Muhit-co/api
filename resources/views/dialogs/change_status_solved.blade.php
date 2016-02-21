@@ -2,8 +2,9 @@
 
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
 
-    <form method="post" action="">
+    <form method="post" action="/muhtar/comment">
         <input type="hidden" name="issue_id" value="{{$issue_id}}">
+        <input type="hidden" name="issue_status" value="solved">
 
         <div class="dialog-content">
             <div class="badge badge-circle badge-circle-xlarge u-floatleft u-mr20 u-mb30 u-ph10 u-pv20 col-sm-hide">

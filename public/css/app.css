@@ -6229,7 +6229,7 @@ figure img {
 .badge.badge-support.badge-new {
   background-color: #44a1e0;
 }
-.badge.badge-support.badge-progress {
+.badge.badge-support.badge-in-progress {
   background-color: #c678ea;
 }
 .badge.badge-support.badge-solved {
@@ -6298,7 +6298,7 @@ figure img {
 .label.label-new {
   background-color: #1f7bb9;
 }
-.label.label-progress {
+.label.label-in-progress {
   background-color: #aa36e0;
 }
 .label.label-solved {
