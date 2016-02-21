@@ -214,13 +214,12 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                                 </div>
                                 <p>
                                     <strong>
-                                        Yavus Bey <!-- (Remove this when muhtar name variables work) -->
                                         {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
                                     </strong>
                                     <span class="c-medium">
-                                        (Yeniköy Mahallesi <!-- (Remove this when muhtar hood variables work) -->
-                                        {{ $comment['muhtar']['hood'] }}
-                                        muhtarı)
+                                        @if(!empty($comment['muhtar']['location']))
+                                            ( {{ explode(',', $comment['muhtar']['location'])[0] }} muhtarı)
+                                        @endif
                                     </span>
                                 </p>
                                 <p><em class="comment-message">
