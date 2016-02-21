@@ -7036,6 +7036,9 @@ dialog hr {
 .form-group.hasIconLeft .form-input {
   padding-left: 36px;
 }
+.form-group.hasIconRight .form-input {
+  padding-right: 36px;
+}
 .form-group.form-autosuggest {
   color: #ffffff;
 }
@@ -7077,7 +7080,8 @@ label[for] {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea {
+textarea,
+select {
   display: block;
   height: 40px;
   width: 100%;
@@ -7096,13 +7100,15 @@ textarea {
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
-textarea:hover {
+textarea:hover,
+select:hover {
   background: rgba(255, 255, 255, 0.9);
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(51, 51, 68, 0.1);
   color: #44a1e0;
