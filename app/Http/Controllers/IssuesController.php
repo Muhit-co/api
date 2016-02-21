@@ -5,6 +5,8 @@ use Authorizer;
 use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\IssueRemoved;
+use Muhit\Jobs\SendIssueSupportedEmail;
 use Muhit\Jobs\TestQueue;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
@@ -587,6 +589,7 @@ class IssuesController extends Controller {
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 				]);
+			$this->dispatch(new IssueRemoved($id));
 		} catch (Exception $e) {
 			Log::error('IssuesController/getDelete', (array) $e);
 			if ($this->isApi) {
@@ -660,6 +663,8 @@ class IssuesController extends Controller {
 			DB::table('issues')->where('id', $id)->increment('supporter_count');
 			$su_counter = (int) Redis::incr('supporter_counter:' . $id);
 			Redis::zadd('issue_supporters:' . $id, time(), $user_id);
+
+			$this->dispatch(new SendIssueSupportedEmail($user_id, $id));
 		} catch (Exception $e) {
 			Log::error('IssuesController/getSupport', (array) $e);
 			if ($this->isApi) {
