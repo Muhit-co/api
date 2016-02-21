@@ -12338,10 +12338,15 @@ function closeDialog(obj) {
 // passes comment edit data to dialog
 function dialogCommentEditData(obj) {
   $dest = obj.attr('data-dialog');
+  $comment_id = obj.attr('data-comment-id');
   if (obj.length > 0 && $('#' + $dest).length > 0) {
     $msg = $.trim( obj.closest('.comment').find('.comment-message').html() );
     if ($msg.length > 0) {
       $('#' + $dest).find('textarea[name="comment"]').val($msg);
+      $form = $('#' + $dest).find('form');
+      $deletebtn = $('#' + $dest).find('#comment_delete');
+      $form.attr('action', $form.attr('action') + $comment_id );
+      $deletebtn.attr('href', $deletebtn.attr('href') + $comment_id );
     }
   }
 }

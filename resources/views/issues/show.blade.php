@@ -207,7 +207,7 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                                 <div class="u-floatright c-medium">
                                     <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
                                     @if($role =='admin')
-                                        <a data-dialog="dialog_edit_comment" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));">
+                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));">
                                             <i class="ion ion-edit"></i>
                                         </a>
                                     @endif
