@@ -3,9 +3,10 @@
 @section('dialogs')
     @if($role =='admin')
         @include('dialogs.write_comment', ['issue_id' => $issue['id']])
-        @include('dialogs.come_drink_tea')
-        @include('dialogs.change_status_progress')
-        @include('dialogs.change_status_solved')
+        @include('dialogs.edit_comment', ['issue_id' => $issue['id']])
+        @include('dialogs.come_drink_tea', ['issue_id' => $issue['id']])
+        @include('dialogs.change_status_progress', ['issue_id' => $issue['id']])
+        @include('dialogs.change_status_solved', ['issue_id' => $issue['id']])
     @endif
 @stop
 
@@ -71,12 +72,12 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                             <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
                             <div class="dropdown dropdown-outline">
                                 <ul>
+                                    <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
                                     @if($issue['status'] != "solved")
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_come_drink_tea"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li>
+                                    {{-- <li><a href="javascript:void(0)" data-dialog="dialog_come_drink_tea"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li> --}}
                                     <li><a href="javascript:void(0)" data-dialog="dialog_change_status_progress"><i class="ion ion-wrench u-mr5"></i> {{ trans('issues.in_progress') }}...</a></li>
                                     <li><a href="javascript:void(0)" data-dialog="dialog_change_status_solved"><i class="ion ion-checkmark-circled u-mr5"></i> {{ trans('issues.solved') }}...</a></li>
                                     @endif
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -196,24 +197,39 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                 </div>
 
                 @if(!empty($issue['comments']))
-                    @foreach($issue['comments'] as $comment)
-                        <div class="card-footer clearfix">
-                            <h3 class="c-blue u-mb10">{{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}</h3>
-                            <div class="comment u-ph20">
-                                <h4 class="title">
-                                    <div class="u-floatright">
-                                        <small>{{ strftime('%d %h %Y', strtotime($comment['created_at'])) }}</small>
-                                    </div>
 
-                                </h4>
+                    <div class="card-footer clearfix">
+
+                        <h4>Muhtardan gelen yorumlar</h4>
+
+                        @foreach($issue['comments'] as $comment)
+                            <div class="comment" id="comment-{{ $comment['id'] }}">
+                                <div class="u-floatright c-medium">
+                                    <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
+                                    @if($role =='admin')
+                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));">
+                                            <i class="ion ion-edit"></i>
+                                        </a>
+                                    @endif
+                                </div>
                                 <p>
-                                    <em>
-                                        {{ $comment['comment'] }}
-                                    </em>
+                                    <strong>
+                                        {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
+                                    </strong>
+                                    <span class="c-medium">
+                                        @if(!empty($comment['muhtar']['location']))
+                                            ( {{ explode(',', $comment['muhtar']['location'])[0] }} muhtarı)
+                                        @endif
+                                    </span>
                                 </p>
+                                <p><em class="comment-message">
+                                    {{ $comment['comment'] }}
+                                </em></p>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+
+                    </div>
+
                 @endif
                 {{--
 

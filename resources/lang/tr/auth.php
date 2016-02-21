@@ -46,6 +46,7 @@ return [
     "send_cap" => "GÖNDER",
     "save_cap" => "KAYDET",
     "edit_cap" => "DÜZENLE",
+    "delete_cap" => "SİL",
     "add_to_home" => "Uygulama olarak kullanmak için ana ekrana ekle!",
     "add_to_home_explain" => "Muhit'i ana ekranına eklemek için :icon butonuna bas ve daha sonra'Ana Ekrana Ekle'ye tıkla.", 
     "learn_more_cap" => "DAHA FAZLA BİLGİ",

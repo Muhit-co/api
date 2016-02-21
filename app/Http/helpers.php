@@ -16,7 +16,7 @@ function getIssueStatus($status, $issue_supporters) {
         if($issue_supporters < 5) {
             $issue_status['class'] = $status . '-empty';
         }
-    } elseif($status == 'progress') {
+    } elseif($status == 'in-progress') {
         $issue_status = array(
             'class' => $status,
             'icon' => 'ion-wrench',
