@@ -3,6 +3,7 @@
 @section('dialogs')
     @if($role =='admin')
         @include('dialogs.write_comment', ['issue_id' => $issue['id']])
+        @include('dialogs.edit_comment', ['issue_id' => $issue['id']])
         @include('dialogs.come_drink_tea', ['issue_id' => $issue['id']])
         @include('dialogs.change_status_progress', ['issue_id' => $issue['id']])
         @include('dialogs.change_status_solved', ['issue_id' => $issue['id']])
@@ -206,9 +207,9 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                                 <div class="u-floatright c-medium">
                                     <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
                                     @if($role =='admin')
-                                        <button class="btn btn-sm btn-tertiary u-ml5">
+                                        <a data-dialog="dialog_edit_comment" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));">
                                             <i class="ion ion-edit"></i>
-                                        </button>
+                                        </a>
                                     @endif
                                 </div>
                                 <p>
@@ -222,7 +223,7 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                                         muhtarı)
                                     </span>
                                 </p>
-                                <p><em>
+                                <p><em class="comment-message">
                                     {{ $comment['comment'] }}
                                 </em></p>
                             </div>

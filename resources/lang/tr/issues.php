@@ -50,6 +50,7 @@ return [
     "come_drink_tea_descr" => "Bu fikri oluşturan kişi ile sorunu konuşmak için çay içmek ister misiniz? Buraya yazdığınız mesaj fikri oluşturan kişiye iletilecektir.",
     "write_comment" => "Yorum Yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
+    "edit_comment" => "Yorum düzenle",
     "change_status_progress" => "Fikri çözüm aşamasına geçir!",
     "placeholder_yourmessage" => "Mesajını buradanaya yaz...",
     "change_status_progress_descr" => "Bu fikri çözüm aşamasına geçirmek mi istiyorsunuz? Çözümün uygulanması için ilgili belediye kurumları ya da müdürlükler ile iletişime geçmeniz gerekebilir.",

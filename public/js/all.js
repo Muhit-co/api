@@ -12335,6 +12335,17 @@ function closeDialog(obj) {
   }
 }
 
+// passes comment edit data to dialog
+function dialogCommentEditData(obj) {
+  $dest = obj.attr('data-dialog');
+  if (obj.length > 0 && $('#' + $dest).length > 0) {
+    $msg = $.trim( obj.closest('.comment').find('.comment-message').html() );
+    if ($msg.length > 0) {
+      $('#' + $dest).find('textarea[name="comment"]').val($msg);
+    }
+  }
+}
+
 // gets page cookies
 // from http://www.w3schools.com/js/js_cookies.asp
 function getCookie(name) {
