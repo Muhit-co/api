@@ -56,6 +56,7 @@ Route::post('login', 'AuthController@postLogin');
 Route::post('register', 'AuthController@postRegister');
 Route::get('login/facebook', 'AuthController@getFacebookLogin');
 Route::get('login/facebook/return', 'AuthController@getFacebookLoginReturn');
+Route::get('confirm/{id}/{code}', 'AuthController@getConfirm');
 Route::controller('auth', 'AuthController');
 Route::get('logout', function () {
 	Auth::logout();
