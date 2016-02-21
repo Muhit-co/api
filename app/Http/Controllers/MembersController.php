@@ -3,6 +3,7 @@
 use Auth;
 use Authorizer;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\SignupConfirmation;
 use Muhit\Models\Hood;
 use Muhit\Models\User;
 use Request;
