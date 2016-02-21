@@ -6571,6 +6571,12 @@ figure img {
   background-color: #e74c3c;
   color: #ffffff;
 }
+.btn.btn-greytored.isBusy:before {
+  background-color: rgba(231, 76, 60, 0.75);
+}
+.btn.btn-greytored.isBusy:after {
+  color: #ffffff;
+}
 .btn.btn-greytogreen {
   background-color: #eeeeee;
   color: #27ae60;
@@ -7097,6 +7103,18 @@ textarea:focus {
   color: #44a1e0;
   outline: none;
 }
+input[type="text"].form-input-hasError,
+input[type="email"].form-input-hasError,
+input[type="password"].form-input-hasError,
+textarea.form-input-hasError {
+  box-shadow: 0 0 0 2px #e74c3c;
+}
+input[type="text"].form-input-hasError:focus,
+input[type="email"].form-input-hasError:focus,
+input[type="password"].form-input-hasError:focus,
+textarea.form-input-hasError:focus {
+  box-shadow: 0 0 0 2px #e74c3c;
+}
 input[disabled="disabled"] {
   color: #ccccdd;
 }
@@ -7147,6 +7165,12 @@ input[type="radio"]#location + label:before {
 .form-input.form-grey:focus {
   background: #eeeeee;
   box-shadow: 0 0 0 3px rgba(51, 51, 68, 0.2);
+}
+.form-input.form-grey.form-input-hasError {
+  box-shadow: 0 0 0 2px #e74c3c;
+}
+.form-input.form-grey.form-input-hasError:focus {
+  box-shadow: 0 0 0 2px #e74c3c;
 }
 textarea {
   height: auto;
@@ -7902,6 +7926,14 @@ nav #nav_quickadd {
 .pagination li a.btn-greytored:hover,
 .pagination li span.btn-greytored:hover {
   background-color: #e74c3c;
+  color: #ffffff;
+}
+.pagination li a.btn-greytored.isBusy:before,
+.pagination li span.btn-greytored.isBusy:before {
+  background-color: rgba(231, 76, 60, 0.75);
+}
+.pagination li a.btn-greytored.isBusy:after,
+.pagination li span.btn-greytored.isBusy:after {
   color: #ffffff;
 }
 .pagination li a.btn-greytogreen,

@@ -9,14 +9,14 @@
             </h2>
 
             <div class="form-group form-fullwidth u-mb0">
-                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
+                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}" required></textarea>
             </div>
         </div>
 
         <hr>
 
         <div class="u-alignright">
-            <a id="comment_delete" href="/muhtar/delete-comment/" onclick="return confirm('{{trans('issues.delete_comment_confirmation')}}'); closeDialog();" class="btn btn-greytored u-mr10 u-floatleft">{{ trans('auth.delete_cap') }}</a>
+            <a id="comment_delete" href="/muhtar/delete-comment/" onclick="return confirm('{{trans('issues.delete_comment_confirmation')}}'); closeDialog();" class="btn btn-greytored btn-busyOnClick u-mr10 u-floatleft">{{ trans('auth.delete_cap') }}</a>
             <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
             <button type="submit" class="btn btn-secondary">{{ trans('auth.save_cap') }}</button>
         </div>
