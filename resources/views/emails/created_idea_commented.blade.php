@@ -10,7 +10,7 @@
 
     @include('emails.partials.header')
 
-    {{ trans('email.created_idea_commented_content', array('sender' => $comment->muhtar->first_name))) }}
+    {{ trans('email.created_idea_commented_content', array('sender' => $comment->muhtar->first_name)) }}
 
     <br /><br />
 

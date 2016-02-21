@@ -2,7 +2,7 @@
 
 @section('title')
 
-    {{ trans('email.supported_idea_commented_title', array('sender' => $comment->muhtar->first_name))) }}
+    {{ trans('email.supported_idea_commented_title', array('sender' => $comment->muhtar->first_name)) }}
 
 @stop
 
@@ -10,7 +10,7 @@
 
     @include('emails.partials.header')
 
-    {{ trans('email.supported_idea_commented_content', array('sender' => $comment->muhtar->first_name))) }}
+    {{ trans('email.supported_idea_commented_content', array('sender' => $comment->muhtar->first_name)) }}
 
     <br /><br />
 
