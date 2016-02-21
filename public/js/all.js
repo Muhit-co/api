@@ -12143,19 +12143,24 @@ $(document).ready(function() {
   }));
 
   // login button interaction
-  $('.login, #dialog_report, #dialog_new_announcement, .profile-edit').find('button[type="submit"]').bind(touchEvent, (function(e) {
+  $('button[type="submit"], .btn-busyOnClick').bind(touchEvent, (function(e) {
     addIsBusy($(this));
   }));
 
   // toggles dialog close on Esc key
   $('body').bind('keyup', (function(e) {
-  if(e.keyCode == 27) {
-    $('dialog').removeClass('isVisible');
-    $('#dialog_mask').removeClass('isVisible');
-    $('main,nav').removeClass('dialogIsOpen');
-  }
-  e.preventDefault();
+    if(e.keyCode == 27) {
+      $('dialog').removeClass('isVisible');
+      $('#dialog_mask').removeClass('isVisible');
+      $('main,nav').removeClass('dialogIsOpen');
+    }
+    e.preventDefault();
   }));
+
+  $('textarea[required], input[required]').bind('keyup change', function() {
+    $(this).removeClass('form-input-hasError');
+    console.log('error being corrected');
+  });
 
   // toggles autocomplete dropdown
   $('.form-autosuggest input').bind('focus blur', function() {
@@ -12303,11 +12308,12 @@ function addIsBusy(obj) {
   if(typeof obj != 'undefined') {
     $validated = true;
     // check all required inputs in form
-    obj.closest('form').find('input[required]').each(function() {
+    obj.closest('form').find('input[required], textarea[required]').each(function() {
       if($(this).attr('type') == 'checkbox') { 
         if(!$(this).is(':checked')) { $validated = false }
       } else if($(this).val().length < 1) { 
         $validated = false;
+        $(this).addClass('form-input-hasError');
       }
     });
     // only apply isBusy class if inputs are validated

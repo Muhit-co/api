@@ -16,7 +16,7 @@
             <p class="u-mv20">{{ trans('issues.change_status_progress_descr') }}</p>
 
             <div class="form-group form-fullwidth u-pl100">
-                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_progressmessage') }}"></textarea>
+                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_progressmessage') }}" required></textarea>
             </div>
 
         </div>
