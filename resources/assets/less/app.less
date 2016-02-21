@@ -139,6 +139,16 @@ section.login {
     display: none;
   }
 }
+// small screen padding optimalisation
+@media screen and (max-width: 320px) {
+  &.row:not(.row-nopadding) {
+    @margin: 10px;
+    margin-left: -@margin;
+    margin-right: -@margin;
+    width: calc(100% ~"+" 2*@margin);
+    max-width: 1100px + 2*@margin;
+  }
+}
 
 
 

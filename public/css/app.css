@@ -6287,7 +6287,6 @@ figure img {
   font-size: 1.1em;
   line-height: 20px;
   font-weight: bold;
-  cursor: pointer;
   color: #ffffff;
 }
 .label.label-new-empty {
@@ -6690,6 +6689,12 @@ figure img {
 .card .media .media-map #map-canvas {
   padding-bottom: 270px;
 }
+.card .media .media-map.compact {
+  height: 150px;
+}
+.card .media .media-map.compact #map-canvas {
+  padding-bottom: 120px;
+}
 .card label {
   font-weight: 600;
 }
@@ -6730,6 +6735,12 @@ figure img {
   .card .card-header .btn {
     padding-left: 9px;
     padding-right: 9px;
+  }
+  .card .media .media-map {
+    height: 150px;
+  }
+  .card .media .media-map #map-canvas {
+    padding-bottom: 120px;
   }
 }
 .chartloader {
@@ -7031,6 +7042,9 @@ dialog hr {
 .form-group.hasIconLeft .form-input {
   padding-left: 36px;
 }
+.form-group.hasIconRight .form-input {
+  padding-right: 36px;
+}
 .form-group.form-autosuggest {
   color: #ffffff;
 }
@@ -7072,7 +7086,8 @@ label[for] {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea {
+textarea,
+select {
   display: block;
   height: 40px;
   width: 100%;
@@ -7091,13 +7106,15 @@ textarea {
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
-textarea:hover {
+textarea:hover,
+select:hover {
   background: rgba(255, 255, 255, 0.9);
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(51, 51, 68, 0.1);
   color: #44a1e0;
@@ -7106,13 +7123,15 @@ textarea:focus {
 input[type="text"].form-input-hasError,
 input[type="email"].form-input-hasError,
 input[type="password"].form-input-hasError,
-textarea.form-input-hasError {
+textarea.form-input-hasError,
+select.form-input-hasError {
   box-shadow: 0 0 0 2px #e74c3c;
 }
 input[type="text"].form-input-hasError:focus,
 input[type="email"].form-input-hasError:focus,
 input[type="password"].form-input-hasError:focus,
-textarea.form-input-hasError:focus {
+textarea.form-input-hasError:focus,
+select.form-input-hasError:focus {
   box-shadow: 0 0 0 2px #e74c3c;
 }
 input[disabled="disabled"] {
@@ -8305,6 +8324,14 @@ section.login a:not(.btn):focus {
 @media screen and (max-width: 768px) {
   .row .col-sm-hide {
     display: none;
+  }
+}
+@media screen and (max-width: 320px) {
+  .row:not(.row-nopadding) {
+    margin-left: -10px;
+    margin-right: -10px;
+    width: calc(100% + 20px);
+    max-width: 1120px;
   }
 }
 /* --- map --- */
