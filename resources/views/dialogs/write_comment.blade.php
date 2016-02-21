@@ -11,7 +11,7 @@
             <p class="u-mv20">{{ trans('issues.write_comment_descr') }}</p>
 
             <div class="form-group form-fullwidth">
-                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
+                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}" required></textarea>
             </div>
         </div>
 

@@ -85,6 +85,12 @@ select {
     color: @muhitBlue;
     outline: none;
   }
+  &.form-input-hasError {
+    .box-shadow(0 0 0 2px @red);
+    &:focus {
+      .box-shadow(0 0 0 2px @red);
+    }
+  }
 }
 input[disabled="disabled"] {
   color: @greyLight;
@@ -138,6 +144,12 @@ input[type="radio"] {
   &:focus {
     background: @greyLighter;
     .box-shadow(0 0 0 3px fade(@black, 20%));
+  }
+  &.form-input-hasError {
+    .box-shadow(0 0 0 2px @red);
+    &:focus {
+      .box-shadow(0 0 0 2px @red);
+    }
   }
 }
 textarea {

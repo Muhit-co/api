@@ -211,7 +211,7 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                                 <div class="u-floatright c-medium">
                                     <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
                                     @if($role =='admin')
-                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));">
+                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
                                             <i class="ion ion-edit"></i>
                                         </a>
                                     @endif
