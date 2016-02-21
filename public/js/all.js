@@ -12436,8 +12436,8 @@ function mapInitialize() {
     map.data.loadGeoJson($json_for_map_url);
     map.data.setStyle(function(feature) {
         var status = 'new';
-        if (feature.getProperty('status') == 'progress') {
-            status = 'progress';
+        if (feature.getProperty('status') == 'in-progress') {
+            status = 'in-progress';
         } else if (feature.getProperty('status') == 'solved') {
             status = 'solved';
         }
@@ -12463,13 +12463,14 @@ function mapInitialize() {
     });
 }
 
-function mapInitializeForIssue(lon, lan) {
+function mapInitializeForIssue(lon, lan, status) {
+    var issue_status = (status) ? status : 'new';
     var mapCanvas = document.getElementById('map-canvas');
     var LtLng = new google.maps.LatLng(lon, lan);
     var mapOptions = {
         center: LtLng,
         // minZoom: 8,
-        zoom: 11,
+        zoom: 13,
         disableDefaultUI: false,
         scrollwheel: false,
         mapTypeControl: false,
@@ -12481,7 +12482,8 @@ function mapInitializeForIssue(lon, lan) {
     var marker = new google.maps.Marker({
         position: LtLng,
         map: map,
-        title: "Test"
+        animation: google.maps.Animation.DROP,
+        icon: '/images/map-icons/marker_' + issue_status + '@1x.png',
     });
 }
 

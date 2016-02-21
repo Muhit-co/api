@@ -106,18 +106,22 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
 
 
                     <?php
-// map longitude & latitude, and hide if no information
-$lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
-$lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
-$showmap = ($lon > 0 && $lat > 0) ? true : false;
-?>
+                    // map longitude & latitude, and hide if no information
+                    $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
+                    $lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
+                    $showmap = ($lon > 0 && $lat > 0) ? true : false;
+
+                    $numimages = count($issue['images']);
+                    $imagecol = ($numimages == 0) ? 'col-xs-4 extended' : 'col-sm-8';
+                    $mapcol = ($numimages == 0) ? 'col-sm-8 compact' : 'col-sm-4';
+                    ?>
 
 
                     <div class="row row-nopadding media u-mv20">
-                        <div class="media-images {{ ($showmap) ? 'col-sm-8' : 'col-xs-12' }}">
+                        <div class="media-images {{ $imagecol }}">
 
                             <div id="slides">
-                                <?php $numimages = count($issue['images']);?>
+                                <?php ;?>
 
                                 @if($numimages == 0)
                                     <div class="bg-lightest u-pa30 u-aligncenter">
@@ -147,11 +151,11 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
 
                         </div>
                         @if($showmap)
-                        <div class="media-map col-sm-4">
+                        <div class="media-map {{ $mapcol }}" data-status="">
                             <div id="map-canvas">
                             </div>
                             <script>
-                                mapInitializeForIssue({{$lon}}, {{$lat}});
+                                mapInitializeForIssue({{$lon}}, {{$lat}}, '{{$issue['status']}}');
                             </script>
                         </div>
                         @endif

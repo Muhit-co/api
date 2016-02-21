@@ -6287,7 +6287,6 @@ figure img {
   font-size: 1.1em;
   line-height: 20px;
   font-weight: bold;
-  cursor: pointer;
   color: #ffffff;
 }
 .label.label-new-empty {
@@ -6684,6 +6683,12 @@ figure img {
 .card .media .media-map #map-canvas {
   padding-bottom: 270px;
 }
+.card .media .media-map.compact {
+  height: 150px;
+}
+.card .media .media-map.compact #map-canvas {
+  padding-bottom: 120px;
+}
 .card label {
   font-weight: 600;
 }
@@ -6724,6 +6729,12 @@ figure img {
   .card .card-header .btn {
     padding-left: 9px;
     padding-right: 9px;
+  }
+  .card .media .media-map {
+    height: 150px;
+  }
+  .card .media .media-map #map-canvas {
+    padding-bottom: 120px;
   }
 }
 .chartloader {
