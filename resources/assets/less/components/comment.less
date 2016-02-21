@@ -1,0 +1,19 @@
+.comment {
+  position: relative;
+  display: block;
+  margin: 10px 30px 10px 0;
+  padding: 15px 20px;
+  background-color: @greyLighter;
+  .rounded(10px);
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 100%;
+    display: block;
+    border: 15px solid transparent;
+    border-bottom-color: @greyLighter;
+    border-left-color: @greyLighter;
+  }
+}

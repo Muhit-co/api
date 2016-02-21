@@ -3822,14 +3822,16 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-:selection,
-::-moz-selection {
-  background-color: rgba(36, 86, 114, 0.1);
+:selection {
+  background-color: #245672;
   color: #ffffff;
 }
-:selection,
+::-moz-selection {
+  background-color: #245672;
+  color: #ffffff;
+}
 ::selection {
-  background-color: rgba(36, 86, 114, 0.1);
+  background-color: #245672;
   color: #ffffff;
 }
 h1 {
@@ -5877,6 +5879,13 @@ figure img {
   max-width: 300px !important;
   width: 300px !important;
 }
+.u-width600 {
+  max-width: 600px !important;
+  width: 600px !important;
+}
+.u-fullWidth {
+  width: 100%;
+}
 .u-width0p {
   max-width: 0% !important;
   width: 0% !important;
@@ -6103,9 +6112,6 @@ figure img {
   width: 100%;
   max-width: 100vw;
 }
-.u-fullWidth {
-  width: 100%;
-}
 .u-nowrap {
   max-width: 100%;
   overflow: hidden;
@@ -6223,7 +6229,7 @@ figure img {
 .badge.badge-support.badge-new {
   background-color: #44a1e0;
 }
-.badge.badge-support.badge-progress {
+.badge.badge-support.badge-in-progress {
   background-color: #c678ea;
 }
 .badge.badge-support.badge-solved {
@@ -6292,7 +6298,7 @@ figure img {
 .label.label-new {
   background-color: #1f7bb9;
 }
-.label.label-progress {
+.label.label-in-progress {
   background-color: #aa36e0;
 }
 .label.label-solved {
@@ -6732,6 +6738,24 @@ figure img {
 }
 .chart-number big {
   font-size: 3em;
+}
+.comment {
+  position: relative;
+  display: block;
+  margin: 10px 30px 10px 0;
+  padding: 15px 20px;
+  background-color: #eeeeee;
+  border-radius: 10px;
+}
+.comment:after {
+  content: "";
+  position: absolute;
+  bottom: 15px;
+  left: 100%;
+  display: block;
+  border: 15px solid transparent;
+  border-bottom-color: #eeeeee;
+  border-left-color: #eeeeee;
 }
 /* --- dialog --- */
 dialog {

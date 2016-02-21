@@ -8,7 +8,7 @@ class Comment extends Model {
 	protected $guarded = ['id'];
 
 	public function muhtar() {
-		return $this->belongsTo('Muhit\Models\User');
+		return $this->belongsTo('Muhit\Models\User', 'user_id');
 
 	}
 }
