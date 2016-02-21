@@ -16,7 +16,7 @@
         <hr>
 
         <div class="u-alignright">
-            <a id="comment_delete" href="/muhtar/delete-comment/" onclick="closeDialog();" class="btn btn-greytored u-mr10 u-floatleft">{{ trans('auth.delete_cap') }}</a>
+            <a id="comment_delete" href="/muhtar/delete-comment/" onclick="return confirm('{{trans('issues.delete_comment_confirmation')}}'); closeDialog();" class="btn btn-greytored u-mr10 u-floatleft">{{ trans('auth.delete_cap') }}</a>
             <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
             <button type="submit" class="btn btn-secondary">{{ trans('auth.save_cap') }}</button>
         </div>

@@ -51,7 +51,7 @@ return [
     "write_comment" => "Yorum yaz",
     "write_comment_descr" => "Bu fikir hakkında bir yorumunuz ya da fikrin statüsünde bir gelişme var mı? Yorumunuzu buraya yazın. Bu yorumu üye olmayan kullanıcılar dahil herkes görebilecektir.",
     "edit_comment" => "Yorum düzenle",
-    "delete_comment_confirmation" => "Are you sure you want to delete the comment? This action cannot be undone.",
+    "delete_comment_confirmation" => "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz.",
     "change_status_progress" => "Fikri çözüm aşamasına geçir!",
     "placeholder_yourmessage" => "Mesajını buradanaya yaz...",
     "change_status_progress_descr" => "Bu fikri çözüm aşamasına geçirmek mi istiyorsunuz? Çözümün uygulanması için ilgili belediye kurumları ya da müdürlükler ile iletişime geçmeniz gerekebilir.",
