@@ -8286,6 +8286,14 @@ section.login a:not(.btn):focus {
     display: none;
   }
 }
+@media screen and (max-width: 320px) {
+  .row:not(.row-nopadding) {
+    margin-left: -10px;
+    margin-right: -10px;
+    width: calc(100% + 20px);
+    max-width: 1120px;
+  }
+}
 /* --- map --- */
 #map-canvas {
   position: relative;
