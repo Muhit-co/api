@@ -5,6 +5,7 @@ namespace Muhit\Jobs;
 use DB;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\InteractsWithQueue;
 use Muhit\Jobs\Job;
 use Muhit\Jobs\SendCommentedEmail;
@@ -12,6 +13,7 @@ use Muhit\Models\Comment;
 
 class IssueCommented extends Job implements SelfHandling, ShouldQueue {
 	use InteractsWithQueue;
+	use DispatchesJobs;
 
 	protected $comment_id;
 
@@ -35,7 +37,7 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue {
 
 		if (!empty($comment->issue->user_id)) {
 			try {
-				$this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->issue_id));
+				DispatchesJobs::dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->issue_id));
 			} catch (Exception $e) {
 				Log::error('IssueCommented', (array) $e);
 			}
@@ -49,7 +51,7 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue {
 
 		foreach ($supporters as $s) {
 			try {
-				$this->dispatch(new SendCommentedEmail($s->user_id, 'supporter', $comment->issue_id));
+				DispatchesJobs::dispatch(new SendCommentedEmail($s->user_id, 'supporter', $comment->issue_id));
 			} catch (Exception $e) {
 				Log::error('IssueCommented', (array) $e);
 			}
