@@ -62,9 +62,10 @@ class MuhtarController extends Controller {
 								'updated_at' => Carbon::now(),
 							]);
 					}
+				} else {
+					$this->dispatch(new IssueCommented($comment->id));
 				}
 
-				#queueu an email for 10 minutes to issues owner.
 			} catch (Exception $e) {
 				Log::error('MuhtarController/postComment', (array) $e);
 				return redirect('/issues/view/' . Request::get('issue_id'))
