@@ -49,7 +49,7 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue {
 
 				Mail::send('emails.' . $email, ['user' => $user, 'comment' => $comment], function ($m) use ($user, $email) {
 					$m->to($user->email)
-						->subject(trans('email.' . $email . '_subject'));
+						->subject(trans('email.' . $email . '_title'));
 				});
 			} catch (Exception $e) {
 				Log::error('SendCommentedEmail', (array) $e);
