@@ -77,3 +77,9 @@ function getUserLevel($level, $plural = false) {
     }
     return $result;
 }
+
+// returns link to support form, currently Google Docs
+function getSupportLink() {
+    $url = 'https://docs.google.com/forms/d/1Gwyj1OZ_MkMF7QYBN625ADYWIifMsQdFqACA7uTcof0/viewform';
+    return $url;
+}
