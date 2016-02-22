@@ -18,7 +18,7 @@
                             <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
                         </div>
-                        <input id="hood" type="text" class="form-input u-floatleft" style="width: 250px;" placeholder="Mahalleni seç..." value="{{$hood->name or ''}}" />
+                        <input id="hood" type="text" class="form-input u-floatleft{{ (strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="Mahalleni seç..." value="{{$hood->name or ''}}" />
                         <input id="location_string" name="location" class="u-hidden" value="" />
 
                         @if(isset($redir) and $redir == 'list')

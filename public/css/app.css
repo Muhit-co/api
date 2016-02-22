@@ -7134,7 +7134,14 @@ textarea.form-input-hasError:focus,
 select.form-input-hasError:focus {
   box-shadow: 0 0 0 2px #e74c3c;
 }
-input[disabled="disabled"] {
+input[type="text"].form-smallfont,
+input[type="email"].form-smallfont,
+input[type="password"].form-smallfont,
+textarea.form-smallfont,
+select.form-smallfont {
+  font-size: 0.75em;
+}
+input[disabled] {
   color: #ccccdd;
 }
 input[type="checkbox"] {
