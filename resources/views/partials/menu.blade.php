@@ -53,8 +53,8 @@ if(isset($role)):
                 'icon' => 'ion-speakerphone'
             ),
             array(
-                'name' => trans('issues.contact_info_cap'),
-                'uri' => '/muhtar',
+                'name' => trans('issues.my_profile_cap'),
+                'uri' => '/members/my-profile',
                 'icon' => 'ion-person'
             ),
         );

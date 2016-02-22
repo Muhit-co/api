@@ -20,6 +20,7 @@ return [
     "in_my_mahalle_cap" => "MAHALLEMDE",
     "all_ideas_cap" => "TÜM FİKİRLER",
     "my_profile" => "Profilim",
+    "my_profile_cap" => "PROFİLİM",
     "in_progress" => "Gelişmekte",
     "in_progress_cap" => "GELİŞMEKTE",
     "solved" => "Çözüldü",
