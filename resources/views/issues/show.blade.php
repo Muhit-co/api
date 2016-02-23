@@ -20,9 +20,9 @@
         <div class="col-md-10 col-md-offset-1">
 
             <?php
-$issue_supporters = (int) Redis::get('supporter_counter:' . $issue['id']);
-$issue_status = getIssueStatus($issue['status'], $issue_supporters);
-?>
+            $issue_supporters = (int) Redis::get('supporter_counter:' . $issue['id']);
+            $issue_status = getIssueStatus($issue['status'], $issue_supporters);
+            ?>
 
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
@@ -30,25 +30,23 @@ $issue_status = getIssueStatus($issue['status'], $issue_supporters);
 
                         <!-- Share buttons -->
                         <?php
-
-$twitter_url = "http://twitter.com/share";
-$twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
-$twitter_url .= "&url=" . Request::url();
-$twitter_url .= "&hashtags=muhit";
-foreach ($issue['tags'] as $tag):
-	$twitter_url .= "," . strTRtoEN(strtolower($tag['name']));
-endforeach;
-$facebook_url = "http://www.facebook.com/dialog/feed";
-$facebook_url .= "?app_id=" . "1458298001134890";
-$facebook_url .= "&link=" . Request::url();
-$facebook_url .= "&picture=";
-$facebook_url .= "&name=" . $issue['title'];
-$facebook_url .= "&caption=" . $issue['problem'];
-$facebook_url .= "&description=" . $issue['solution'];
-$facebook_url .= "&message=" . $issue['solution'];
-$facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
-
-?>
+                        $twitter_url = "http://twitter.com/share";
+                        $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
+                        $twitter_url .= "&url=" . Request::url();
+                        $twitter_url .= "&hashtags=muhit";
+                        foreach ($issue['tags'] as $tag):
+                        	$twitter_url .= "," . strTRtoEN(strtolower($tag['name']));
+                        endforeach;
+                        $facebook_url = "http://www.facebook.com/dialog/feed";
+                        $facebook_url .= "?app_id=" . "1458298001134890";
+                        $facebook_url .= "&link=" . Request::url();
+                        $facebook_url .= "&picture=";
+                        $facebook_url .= "&name=" . $issue['title'];
+                        $facebook_url .= "&caption=" . $issue['problem'];
+                        $facebook_url .= "&description=" . $issue['solution'];
+                        $facebook_url .= "&message=" . $issue['solution'];
+                        $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
+                        ?>
                         <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-width40" target="_blank"><i class="ion ion-social-twitter"></i></a>
                         <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
@@ -66,7 +64,7 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                             @else
                                 <a id="action_support" href="/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                             @endif
-                        @elseif($role =='admin')
+                        @elseif($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id)
                         <!-- Action button for Muhtar -->
                         <div class="hasDropdown u-inlineblock u-ml5">
                             <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
