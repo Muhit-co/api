@@ -52,5 +52,5 @@ return [
     "learn_more_cap" => "DAHA FAZLA BİLGİ",
     "muhtar" => "Muhtarlık", 
     "municipality" => "Belediye",
-    "cant_change_mahalle" => "Mahalleni el ile değiştiremezsin. Sorun varsa, :tagstartbize ulaş:tagend.",
+    "cant_change_mahalle" => "Mahalle bilginizi değiştirmek için :tagstartbize ulaşabilirsiniz:tagend.",
 ];
