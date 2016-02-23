@@ -2,10 +2,15 @@
 .list {
   .rounded(5px);
   overflow: hidden;
+
+  &.list-overflowshow {
+    overflow: visible;
+  }
 }
 .list-header {
   padding: 15px;
   background-color: @white;
+  .border-radius(5px, 0, 0, 5px);
   border-bottom: 1px solid @greyLighter;
 }
 .list ul {

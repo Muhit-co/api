@@ -221,6 +221,12 @@
       background-color: @red;
       color: @white;
     }
+    &.isBusy:before {
+      background-color: fade(@red, 75%);
+    }
+    &.isBusy:after {
+      color: @white;
+    }
   }
   &.btn-greytogreen {
     background-color: @greyLighter;

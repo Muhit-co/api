@@ -44,16 +44,21 @@
                             @include('partials.field-hood', array('inputClassList' => 'form-grey'))
                         @endif
 
-                        <div class="form-group form-fullwidth u-mv10">
+                        <div class="form-group form-fullwidth hasIconRight u-mv10">
                             <label>User role</label>
-                            <select>
-                                <option disabled selected>-</option>
-                            @foreach ([0, 3, 4, 5, 10] as $l)
-                                <option value="{{ $l }}" {{ ($member['level'] == $l) ? 'selected' : '' }}>
-                                    {{ getUserLevel($l) . ' (' . $l . ')' }}
-                                </option>
-                            @endforeach
-                            </select>
+                            <div class="u-relative">
+                                <select class="form-input form-grey">
+                                    <option disabled selected>-</option>
+                                @foreach ([0, 3, 4, 5, 10] as $l)
+                                    <option value="{{ $l }}" {{ ($member['level'] == $l) ? 'selected' : '' }}>
+                                        {{ getUserLevel($l) . ' (' . $l . ')' }}
+                                    </option>
+                                @endforeach
+                                </select>
+                                <div class="form-appendRight u-aligncenter u-width40 u-mt5">
+                                    <i class="ion ion-chevron-down"></i>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group form-fullwidth u-mv10">

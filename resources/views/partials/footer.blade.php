@@ -32,7 +32,7 @@
                 {{ trans('issues.contact') }}
             </a>
             <br />
-            <a href="https://docs.google.com/forms/d/1Gwyj1OZ_MkMF7QYBN625ADYWIifMsQdFqACA7uTcof0/viewform" class="u-inlineblock u-pa5" target="_blank">
+            <a href="{{ getSupportLink() }}" class="u-inlineblock u-pa5" target="_blank">
                 <i class="ion ion-bug ion-fw u-aligncenter u-mr5"></i>
                 {{ trans('issues.problems_and_recommendations') }}
                 <i class="ion ion-android-open u-ml5 c-light"></i>

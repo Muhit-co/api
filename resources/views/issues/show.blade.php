@@ -20,9 +20,9 @@
         <div class="col-md-10 col-md-offset-1">
 
             <?php
-$issue_supporters = (int) Redis::get('supporter_counter:' . $issue['id']);
-$issue_status = getIssueStatus($issue['status'], $issue_supporters);
-?>
+            $issue_supporters = (int) Redis::get('supporter_counter:' . $issue['id']);
+            $issue_status = getIssueStatus($issue['status'], $issue_supporters);
+            ?>
 
             <div class="card card-issue">
                 <div class="card-header u-clearfix u-pv15">
@@ -30,25 +30,23 @@ $issue_status = getIssueStatus($issue['status'], $issue_supporters);
 
                         <!-- Share buttons -->
                         <?php
-
-$twitter_url = "http://twitter.com/share";
-$twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
-$twitter_url .= "&url=" . Request::url();
-$twitter_url .= "&hashtags=muhit";
-foreach ($issue['tags'] as $tag):
-	$twitter_url .= "," . strTRtoEN(strtolower($tag['name']));
-endforeach;
-$facebook_url = "http://www.facebook.com/dialog/feed";
-$facebook_url .= "?app_id=" . "1458298001134890";
-$facebook_url .= "&link=" . Request::url();
-$facebook_url .= "&picture=";
-$facebook_url .= "&name=" . $issue['title'];
-$facebook_url .= "&caption=" . $issue['problem'];
-$facebook_url .= "&description=" . $issue['solution'];
-$facebook_url .= "&message=" . $issue['solution'];
-$facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
-
-?>
+                        $twitter_url = "http://twitter.com/share";
+                        $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
+                        $twitter_url .= "&url=" . Request::url();
+                        $twitter_url .= "&hashtags=muhit";
+                        foreach ($issue['tags'] as $tag):
+                        	$twitter_url .= "," . strTRtoEN(strtolower($tag['name']));
+                        endforeach;
+                        $facebook_url = "http://www.facebook.com/dialog/feed";
+                        $facebook_url .= "?app_id=" . "1458298001134890";
+                        $facebook_url .= "&link=" . Request::url();
+                        $facebook_url .= "&picture=";
+                        $facebook_url .= "&name=" . $issue['title'];
+                        $facebook_url .= "&caption=" . $issue['problem'];
+                        $facebook_url .= "&description=" . $issue['solution'];
+                        $facebook_url .= "&message=" . $issue['solution'];
+                        $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
+                        ?>
                         <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-width40" target="_blank"><i class="ion ion-social-twitter"></i></a>
                         <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
@@ -66,7 +64,7 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
                             @else
                                 <a id="action_support" href="/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                             @endif
-                        @elseif($role =='admin')
+                        @elseif($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id)
                         <!-- Action button for Muhtar -->
                         <div class="hasDropdown u-inlineblock u-ml5">
                             <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
@@ -106,18 +104,22 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
 
 
                     <?php
-// map longitude & latitude, and hide if no information
-$lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
-$lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
-$showmap = ($lon > 0 && $lat > 0) ? true : false;
-?>
+                    // map longitude & latitude, and hide if no information
+                    $lon = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[0]) : 0);
+                    $lat = ((!empty($issue['coordinates'])) ? trim(explode(",", $issue['coordinates'])[1]) : 0);
+                    $showmap = ($lon > 0 && $lat > 0) ? true : false;
+
+                    $numimages = count($issue['images']);
+                    $imagecol = ($numimages == 0) ? 'col-xs-4 extended' : 'col-sm-8';
+                    $mapcol = ($numimages == 0) ? 'col-sm-8 compact' : 'col-sm-4';
+                    ?>
 
 
                     <div class="row row-nopadding media u-mv20">
-                        <div class="media-images {{ ($showmap) ? 'col-sm-8' : 'col-xs-12' }}">
+                        <div class="media-images {{ $imagecol }}">
 
                             <div id="slides">
-                                <?php $numimages = count($issue['images']);?>
+                                <?php ;?>
 
                                 @if($numimages == 0)
                                     <div class="bg-lightest u-pa30 u-aligncenter">
@@ -147,11 +149,11 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
 
                         </div>
                         @if($showmap)
-                        <div class="media-map col-sm-4">
+                        <div class="media-map {{ $mapcol }}" data-status="">
                             <div id="map-canvas">
                             </div>
                             <script>
-                                mapInitializeForIssue({{$lon}}, {{$lat}});
+                                mapInitializeForIssue({{$lon}}, {{$lat}}, '{{$issue['status']}}');
                             </script>
                         </div>
                         @endif
@@ -207,7 +209,7 @@ $showmap = ($lon > 0 && $lat > 0) ? true : false;
                                 <div class="u-floatright c-medium">
                                     <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
                                     @if($role =='admin')
-                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));">
+                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
                                             <i class="ion ion-edit"></i>
                                         </a>
                                     @endif
