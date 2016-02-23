@@ -67,7 +67,7 @@ $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
                 </em>
             @endif
 
-            <div class="list list-small">
+            <div class="list list-small list-overflowshow">
                 <div class="list-header">
                     <div class="row row-nopadding u-pr100">
                         <div class="col-sm-4">
@@ -147,10 +147,10 @@ $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
 
                 </ul>
 
-                <div class="u-aligncenter u-mt20">
-                    {!! $members->render() !!}
-                </div>
+            </div>
 
+            <div class="u-aligncenter u-mt20">
+                {!! $members->render() !!}
             </div>
 
         </div>

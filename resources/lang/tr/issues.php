@@ -20,6 +20,7 @@ return [
     "in_my_mahalle_cap" => "MAHALLEMDE",
     "all_ideas_cap" => "TÜM FİKİRLER",
     "my_profile" => "Profilim",
+    "my_profile_cap" => "PROFİLİM",
     "in_progress" => "Gelişmekte",
     "in_progress_cap" => "GELİŞMEKTE",
     "solved" => "Çözüldü",
@@ -92,4 +93,5 @@ return [
     "your_muhtar_didnt_sign_up_yet" => "Muhtarınız henüz Muhit'e üye değil!", // @seratolgay
     "no_announcements" => "Duyuru yok...", // @seratolgay
     "submitted_anonymously" => "Bu fikir anonim olarak eklenmiştir.",
+    "added_ideas" => "Eklediği fikirleri",
 ];

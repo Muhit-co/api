@@ -39,20 +39,24 @@
 
                         <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
                         @if(isset($user['hood']) and isset($user['hood']['district']) and isset($user['hood']['district']['city']))
-
-
-                            @include('partials.field-hood', array('inputClassList' => 'form-grey', 'defaultValue' => $user['hood']['name'].", ".$user['hood']['district']['name'].", ".$user['hood']['district']['city']['name']))
+                            <?php $state = ($role == 'admin') ? true : false; ?>
+                            @include('partials.field-hood', array(
+                                'inputClassList' => 'form-grey', 
+                                'defaultValue' => $user['hood']['name'] . ", " . $user['hood']['district']['name'] . ", " . $user['hood']['district']['city']['name'],
+                                'disabledState' => $state))
                         @else
                             @include('partials.field-hood', array('inputClassList' => 'form-grey'))
                         @endif
 
-
-
-                        <div class="form-group u-relative u-mv10">
-                            <input type="hidden" id="coordinates" value="" name="coordinates">
-                            <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
-                            <label for="current_location">{{ trans('issues.use_my_location') }}</label>
-                        </div>
+                        @if($state !== true)
+                            <div class="form-group u-relative u-mv10">
+                                <input type="hidden" id="coordinates" value="" name="coordinates">
+                                <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
+                                <label for="current_location">{{ trans('issues.use_my_location') }}</label>
+                            </div>
+                        @else
+                            <p class="c-medium"><small><em>{!! trans('auth.cant_change_mahalle', ['tagstart' => '<a href="' . getSupportLink() . '" target="_blank">', 'tagend' => '</a>']) !!}</em></small></p>
+                        @endif
 
                         <hr>
 

@@ -6,7 +6,7 @@
 <section>
     <div class="row u-pv20">
 
-        <div class="col-md-7">
+        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
             <div class="card u-mt0">
                 <div class="card-header">
                     <div class="u-floatright">
@@ -61,36 +61,38 @@
             </div>
         </div>
 
-        <div class="col-md-5">
+        @if (Auth::user()->level < 5)
+        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 u-mt20">
             <div class="list">
                 <div class="list-header u-pa15">
                     <h4>
-                        Eklediği fikirleri
+                        {{ trans('issues.added_ideas')}}
                     </h4>
                 </div>
                 <ul>
-                        @if(isset($user['issues']) and !empty($user['issues']))
-                                @foreach($user['issues'] as $issue)
-                                        <li>
-                                                <a href="/issues/view/{{$issue['id']}}">
-                                                        <div class="badge badge-image u-floatleft u-mr15">
-                                                                <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
-                                                        </div>
-                                                        <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
-                                                                <i class="ion ion-wrench u-mr5"></i>
-                                                                <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
-                                                        </div>
-                                                        <strong>{{$issue['title']}}</strong>
-                                                        <p><span class="date"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span></p>
-                                                </a>
-                                        </li>
+                    @if(isset($user['issues']) and !empty($user['issues']))
+                        @foreach($user['issues'] as $issue)
+                            <li>
+                                <a href="/issues/view/{{$issue['id']}}">
+                                    <div class="badge badge-image u-floatleft u-mr15">
+                                        <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="" />
+                                    </div>
+                                    <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
+                                        <i class="ion ion-wrench u-mr5"></i>
+                                        <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
+                                    </div>
+                                    <strong>{{$issue['title']}}</strong>
+                                    <p><span class="date"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span></p>
+                                </a>
+                            </li>
 
-                                @endforeach
-                        @endif
+                        @endforeach
+                    @endif
 
                 </ul>
             </div>
         </div>
+        @endif
     </div>
 </section>
 

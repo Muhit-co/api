@@ -7134,7 +7134,14 @@ textarea.form-input-hasError:focus,
 select.form-input-hasError:focus {
   box-shadow: 0 0 0 2px #e74c3c;
 }
-input[disabled="disabled"] {
+input[type="text"].form-smallfont,
+input[type="email"].form-smallfont,
+input[type="password"].form-smallfont,
+textarea.form-smallfont,
+select.form-smallfont {
+  font-size: 0.75em;
+}
+input[disabled] {
   color: #ccccdd;
 }
 input[type="checkbox"] {
@@ -7275,9 +7282,25 @@ header h3 {
   border-radius: 5px;
   overflow: hidden;
 }
+.list.list-overflowshow {
+  overflow: visible;
+}
 .list-header {
   padding: 15px;
   background-color: #ffffff;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 5px;
+  background-clip: padding-box;
   border-bottom: 1px solid #eeeeee;
 }
 .list ul {
