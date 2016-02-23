@@ -66,7 +66,7 @@
             <div class="list">
                 <div class="list-header u-pa15">
                     <h4>
-                        Eklediği fikirleri
+                        {{ trans('issues.added_ideas')}}
                     </h4>
                 </div>
                 <ul>
