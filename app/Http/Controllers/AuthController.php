@@ -166,6 +166,10 @@ class AuthController extends Controller {
 
 		}
 
+		if ($user->level === 4) {
+			return redirect('/')->with('success', 'Muhit sistemine erişim için talebiniz ekimibize ulaştı. Muhtar paneline erişiminiz ekibimiz tarafından onaylandıktan sonra mümkün olacaktır.');
+		}
+
 		try {
 			Auth::login($user);
 		} catch (Exception $e) {
@@ -235,6 +239,11 @@ class AuthController extends Controller {
 
 			return response()->api(200, 'Logged in. ', ['user' => $user, 'oauth2' => $token]);
 
+		}
+
+		if (Auth::user()->level === 4) {
+			Auth::logout();
+			return redirect('/')->with('success', 'Muhit sistemine erişim için talebiniz ekimibize ulaştı. Muhtar paneline erişiminiz ekibimiz tarafından onaylandıktan sonra mümkün olacaktır.');
 		}
 
 		return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . Auth::user()->first_name);
