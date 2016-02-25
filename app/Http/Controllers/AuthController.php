@@ -85,12 +85,17 @@ class AuthController extends Controller {
 			$required_fields[] = 'client_secret';
 		}
 
+		$register_url = '/register';
+		if (isset($data['level']) and $data['level'] == 4) {
+			$register_url = '/register-muhtar';
+		}
+
 		foreach ($required_fields as $key) {
 			if (!isset($data[$key]) or empty($data[$key])) {
 				if ($this->isApi) {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
-				return redirect('/register')
+				return redirect($register_url)
 					->with('error', 'Lütfen formu doldurup tekrar deneyin.');
 			}
 		}
@@ -135,7 +140,7 @@ class AuthController extends Controller {
 				return response()->api(400, 'Duplicate entry on email.', $data);
 			}
 
-			return redirect('/register')->with('warning', 'Bu eposta adresi ile daha önceden kayıt olunmuş, şifreni unuttuysan, şifreni hatırlatabilirim? ')->withInput();
+			return redirect($register_url)->with('warning', 'Bu eposta adresi ile daha önceden kayıt olunmuş, şifreni unuttuysan, şifreni hatırlatabilirim? ')->withInput();
 		}
 
 		if (null !== $check_username) {
@@ -162,7 +167,7 @@ class AuthController extends Controller {
 				return response()->api(500, 'Error while creating the user. ', ['details' => (array) $e]);
 			}
 
-			return redirect('/register')->with('error', 'Teknik bir sıkıntı oldu :( ')->withInput();
+			return redirect($register_url)->with('error', 'Teknik bir sıkıntı oldu :( ')->withInput();
 
 		}
 
