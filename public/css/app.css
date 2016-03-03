@@ -6287,7 +6287,6 @@ figure img {
   font-size: 1.1em;
   line-height: 20px;
   font-weight: bold;
-  cursor: pointer;
   color: #ffffff;
 }
 .label.label-new-empty {
@@ -6571,6 +6570,12 @@ figure img {
   background-color: #e74c3c;
   color: #ffffff;
 }
+.btn.btn-greytored.isBusy:before {
+  background-color: rgba(231, 76, 60, 0.75);
+}
+.btn.btn-greytored.isBusy:after {
+  color: #ffffff;
+}
 .btn.btn-greytogreen {
   background-color: #eeeeee;
   color: #27ae60;
@@ -6684,6 +6689,12 @@ figure img {
 .card .media .media-map #map-canvas {
   padding-bottom: 270px;
 }
+.card .media .media-map.compact {
+  height: 150px;
+}
+.card .media .media-map.compact #map-canvas {
+  padding-bottom: 120px;
+}
 .card label {
   font-weight: 600;
 }
@@ -6724,6 +6735,12 @@ figure img {
   .card .card-header .btn {
     padding-left: 9px;
     padding-right: 9px;
+  }
+  .card .media .media-map {
+    height: 150px;
+  }
+  .card .media .media-map #map-canvas {
+    padding-bottom: 120px;
   }
 }
 .chartloader {
@@ -7025,6 +7042,9 @@ dialog hr {
 .form-group.hasIconLeft .form-input {
   padding-left: 36px;
 }
+.form-group.hasIconRight .form-input {
+  padding-right: 36px;
+}
 .form-group.form-autosuggest {
   color: #ffffff;
 }
@@ -7066,7 +7086,8 @@ label[for] {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea {
+textarea,
+select {
   display: block;
   height: 40px;
   width: 100%;
@@ -7085,19 +7106,42 @@ textarea {
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
-textarea:hover {
+textarea:hover,
+select:hover {
   background: rgba(255, 255, 255, 0.9);
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(51, 51, 68, 0.1);
   color: #44a1e0;
   outline: none;
 }
-input[disabled="disabled"] {
+input[type="text"].form-input-hasError,
+input[type="email"].form-input-hasError,
+input[type="password"].form-input-hasError,
+textarea.form-input-hasError,
+select.form-input-hasError {
+  box-shadow: 0 0 0 2px #e74c3c;
+}
+input[type="text"].form-input-hasError:focus,
+input[type="email"].form-input-hasError:focus,
+input[type="password"].form-input-hasError:focus,
+textarea.form-input-hasError:focus,
+select.form-input-hasError:focus {
+  box-shadow: 0 0 0 2px #e74c3c;
+}
+input[type="text"].form-smallfont,
+input[type="email"].form-smallfont,
+input[type="password"].form-smallfont,
+textarea.form-smallfont,
+select.form-smallfont {
+  font-size: 0.75em;
+}
+input[disabled] {
   color: #ccccdd;
 }
 input[type="checkbox"] {
@@ -7147,6 +7191,12 @@ input[type="radio"]#location + label:before {
 .form-input.form-grey:focus {
   background: #eeeeee;
   box-shadow: 0 0 0 3px rgba(51, 51, 68, 0.2);
+}
+.form-input.form-grey.form-input-hasError {
+  box-shadow: 0 0 0 2px #e74c3c;
+}
+.form-input.form-grey.form-input-hasError:focus {
+  box-shadow: 0 0 0 2px #e74c3c;
 }
 textarea {
   height: auto;
@@ -7232,9 +7282,25 @@ header h3 {
   border-radius: 5px;
   overflow: hidden;
 }
+.list.list-overflowshow {
+  overflow: visible;
+}
 .list-header {
   padding: 15px;
   background-color: #ffffff;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 5px;
+  background-clip: padding-box;
   border-bottom: 1px solid #eeeeee;
 }
 .list ul {
@@ -7904,6 +7970,14 @@ nav #nav_quickadd {
   background-color: #e74c3c;
   color: #ffffff;
 }
+.pagination li a.btn-greytored.isBusy:before,
+.pagination li span.btn-greytored.isBusy:before {
+  background-color: rgba(231, 76, 60, 0.75);
+}
+.pagination li a.btn-greytored.isBusy:after,
+.pagination li span.btn-greytored.isBusy:after {
+  color: #ffffff;
+}
 .pagination li a.btn-greytogreen,
 .pagination li span.btn-greytogreen {
   background-color: #eeeeee;
@@ -8273,6 +8347,14 @@ section.login a:not(.btn):focus {
 @media screen and (max-width: 768px) {
   .row .col-sm-hide {
     display: none;
+  }
+}
+@media screen and (max-width: 320px) {
+  .row:not(.row-nopadding) {
+    margin-left: -10px;
+    margin-right: -10px;
+    width: calc(100% + 20px);
+    max-width: 1120px;
   }
 }
 /* --- map --- */
