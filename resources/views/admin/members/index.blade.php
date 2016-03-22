@@ -36,8 +36,8 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
     <div class="row">
         <div class="col-xs-12">
             <?php
-$active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
-?>
+            $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
+            ?>
             <ul class="tabs">
                 <li>
                     <a href="{{ '/' . Request::path() }}" <?php echo ($active_tab === null) ? 'class="active"' : ''; ?> >
@@ -115,22 +115,27 @@ $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null;
                                     </div>
                                 </div>
                             </a>
-                            <div class="hasDropdown u-pinned-topright u-ma10">
-                                <button class="btn btn-sm btn-outline u-ml10">
-                                    ACTIONS
-                                    <i class="ion ion-chevron-down u-ml5"></i>
-                                </button>
-                                <div class="dropdown dropdown-outline">
-                                    <ul>
-                                        @if ($m->level == 3 || $m->level == 4)
-                                            <li><a href="/admin/approve-muhtar/{{$m->id}}" class="c-green"><i class="ion ion-checkmark-circled u-mr5"></i> Approve</a></li>
-                                        @endif
-                                        @if ($m->level == 4 || $m->level == 5)
-                                            <li><a href="/admin/reject-muhtar/{{$m->id}}" class="c-red"><i class="ion ion-close-circled u-mr5"></i> Reject</a></li>
-                                        @endif
-                                        <li><a href="/admin/view-member/{{$m->id}}"><i class="ion ion-eye u-mr5"></i> View</a></li>
-                                        <li><a href="/admin/edit-member/{{$m->id}}"><i class="ion ion-edit u-mr5"></i> Edit</a></li>
-                                    </ul>
+                            <div class="u-pinned-topright u-ma10">
+                                <a href="/admin/view-member/{{$m->id}}" class="btn btn-sm btn-outline u-floatleft">
+                                    VIEW
+                                </a>
+                                <div class="hasDropdown u-floatleft">
+                                    <button class="btn btn-sm btn-outline u-ml10">
+                                        ACTIONS
+                                        <i class="ion ion-chevron-down u-ml5"></i>
+                                    </button>
+                                    <div class="dropdown dropdown-outline">
+                                        <ul>
+                                            @if ($m->level == 3 || $m->level == 4)
+                                                <li><a href="/admin/approve-muhtar/{{$m->id}}" class="c-green"><i class="ion ion-checkmark-circled u-mr5"></i> Approve</a></li>
+                                            @endif
+                                            @if ($m->level == 4 || $m->level == 5)
+                                                <li><a href="/admin/reject-muhtar/{{$m->id}}" class="c-red"><i class="ion ion-close-circled u-mr5"></i> Reject</a></li>
+                                            @endif
+                                            <li><a href="/admin/view-member/{{$m->id}}"><i class="ion ion-eye u-mr5"></i> View</a></li>
+                                            <li><a href="/admin/edit-member/{{$m->id}}"><i class="ion ion-edit u-mr5"></i> Edit</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </li>

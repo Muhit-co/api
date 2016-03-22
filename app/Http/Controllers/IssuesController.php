@@ -5,6 +5,9 @@ use Authorizer;
 use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\IssueRemoved;
+use Muhit\Jobs\SendIssueSupportedEmail;
+use Muhit\Jobs\TestQueue;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
 use Muhit\Models\IssueReport;
@@ -46,7 +49,7 @@ class IssuesController extends Controller {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
 				$message = '"' . trans('issues.' . $key) . '" gereklidir';
-				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $message )->withInput();
+				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $message)->withInput();
 			}
 		}
 
@@ -586,6 +589,7 @@ class IssuesController extends Controller {
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 				]);
+			$this->dispatch(new IssueRemoved($id));
 		} catch (Exception $e) {
 			Log::error('IssuesController/getDelete', (array) $e);
 			if ($this->isApi) {
@@ -659,6 +663,8 @@ class IssuesController extends Controller {
 			DB::table('issues')->where('id', $id)->increment('supporter_count');
 			$su_counter = (int) Redis::incr('supporter_counter:' . $id);
 			Redis::zadd('issue_supporters:' . $id, time(), $user_id);
+
+			$this->dispatch(new SendIssueSupportedEmail($user_id, $id));
 		} catch (Exception $e) {
 			Log::error('IssuesController/getSupport', (array) $e);
 			if ($this->isApi) {
@@ -827,5 +833,15 @@ class IssuesController extends Controller {
 
 		return redirect('/issues/view/' . $data['issue_id'])
 			->with('success', 'Geri bildiriminiz için teşekkürler.');
+	}
+
+	/**
+	 * foo
+	 *
+	 * @return void
+	 * @author Me
+	 */
+	public function testqueue() {
+		$this->dispatch(new TestQueue());
 	}
 }

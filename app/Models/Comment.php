@@ -11,4 +11,9 @@ class Comment extends Model {
 		return $this->belongsTo('Muhit\Models\User', 'user_id');
 
 	}
+
+	public function issue() {
+		return $this->belongsTo('Muhit\Models\Issue', 'issue_id');
+
+	}
 }

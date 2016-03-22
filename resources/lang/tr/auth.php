@@ -52,5 +52,6 @@ return [
     "learn_more_cap" => "DAHA FAZLA BİLGİ",
     "muhtar" => "Muhtarlık", 
     "municipality" => "Belediye",
+    "confirm_email_needed" => "Hesabınızı onaylamnız gerekiyor. Eğer onay maili ulaşmadıysa :tagstartBURAYA TIKLAYARAK:tagend yeniden onay maili alabilirsiniz.",
     "cant_change_mahalle" => "Mahalle bilginizi değiştirmek için :tagstartbize ulaşabilirsiniz:tagend.",
 ];

@@ -8,7 +8,7 @@
 
         @include('dialogs.login')
         @yield('dialogs')
-        
+
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
         <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">
@@ -32,17 +32,23 @@
             @include('partials.nav')
 
             <section class="flash-container">
+            
                 @include('partials.messages')
+
+                @if(Auth::check() and Auth::user()->is_verified == 0)
+                    @include('partials.message-confirmemail')
+                @endif
+
             </section>
 
             @yield('content')
-            
+
             @include('partials.footer')
 
             <a id="panel-mask"></a>
 
         </main>
-        
+
     </body>
 
 </html>

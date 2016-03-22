@@ -4,6 +4,8 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Jobs\IssueCommented;
+use Muhit\Jobs\IssueStatusUpdate;
 use Muhit\Models\Comment;
 use Muhit\Models\Issue;
 use Request;
@@ -61,10 +63,12 @@ class MuhtarController extends Controller {
 								'created_at' => Carbon::now(),
 								'updated_at' => Carbon::now(),
 							]);
+						$this->dispatch(new IssueStatusUpdate($comment->id, $new_status));
 					}
+				} else {
+					$this->dispatch(new IssueCommented($comment->id));
 				}
 
-				#queueu an email for 10 minutes to issues owner.
 			} catch (Exception $e) {
 				Log::error('MuhtarController/postComment', (array) $e);
 				return redirect('/issues/view/' . Request::get('issue_id'))
