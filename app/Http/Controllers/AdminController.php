@@ -201,7 +201,7 @@ class AdminController extends Controller {
 			$data['username'] = Str::slug($data['username']);
 			$check_slug = (int) DB::table('users')
 				->where('username', $data['username'])
-				->where('id', '<>', $user_id)
+				->where('id', '<>', $data['id'])
 				->count();
 			if ($check_slug === 0) {
 				$user->username = $data['username'];
@@ -225,7 +225,7 @@ class AdminController extends Controller {
 				Storage::put('users/' . $name, base64_decode($data['image']));
 				$user->picture = $name;
 			} catch (Exception $e) {
-				Log::error('MembersController/postUpdate/SavingTheImage', (array) $e);
+				Log::error('AdminController/postSaveMember/SavingTheImage', (array) $e);
 			}
 		}
 
