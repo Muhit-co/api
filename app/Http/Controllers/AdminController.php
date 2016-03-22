@@ -3,9 +3,12 @@
 use Auth;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Str;
 use Muhit\Http\Controllers\Controller;
+use Muhit\Models\Hood;
 use Muhit\Models\User;
 use Request;
+use Storage;
 
 class AdminController extends Controller {
 
@@ -169,6 +172,74 @@ class AdminController extends Controller {
 	 * @author gcg
 	 */
 	public function postSaveMember() {
+		$data = Request::all();
+
+		$user = User::find($data['id']);
+
+		if (empty($user)) {
+			return redirect('/admin/members')
+				->with('error', 'Kullanıcı bulanamdı.');
+		}
+
+		if (isset($data['email']) and filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+			$user->email = $data['email'];
+			$user->is_verified = 0;
+		}
+
+		#lets figure out the location.
+		$location_parts = explode(",", $data['location']);
+		$hood = false;
+		if (count($location_parts) === 3) {
+			$hood = Hood::fromLocation($data['location']);
+		}
+
+		if (isset($hood) and isset($hood->id)) {
+			$user->hood_id = $hood->id;
+		}
+
+		if (isset($data['username']) and !empty($data['username'])) {
+			$data['username'] = Str::slug($data['username']);
+			$check_slug = (int) DB::table('users')
+				->where('username', $data['username'])
+				->where('id', '<>', $data['id'])
+				->count();
+			if ($check_slug === 0) {
+				$user->username = $data['username'];
+			}
+		}
+
+		if (isset($data['first_name']) and !empty($data['first_name'])) {
+			$user->first_name = $data['first_name'];
+		}
+		if (isset($data['last_name']) and !empty($data['last_name'])) {
+			$user->last_name = $data['last_name'];
+		}
+		if (isset($data['location']) and !empty($data['location'])) {
+			$user->location = $data['location'];
+
+		}
+
+		if (!empty($data['image']) and is_array($data['image'])) {
+			try {
+				$name = str_replace('.', '', microtime(true));
+				Storage::put('users/' . $name, base64_decode($data['image']));
+				$user->picture = $name;
+			} catch (Exception $e) {
+				Log::error('AdminController/postSaveMember/SavingTheImage', (array) $e);
+			}
+		}
+
+		try {
+			$user->save();
+		} catch (Exception $e) {
+			Log::error('AdminController/postSaveMember', (array) $e);
+
+			return redirect('/admin/edit-member/' . $data['id'])
+				->with('error', 'Profili güncellerken bir hata meydana geldi.');
+		}
+
+		return redirect('/admin/view-member/' . $data['id'])
+			->with('success', 'Profiliniz güncellendi.');
 
 	}
 

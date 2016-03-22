@@ -2,12 +2,12 @@
 
 use Auth;
 use Authorizer;
+use Illuminate\Support\Str;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Jobs\SignupConfirmation;
 use Muhit\Models\Hood;
 use Muhit\Models\User;
 use Request;
-use Str;
 
 class MembersController extends Controller {
 
