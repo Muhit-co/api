@@ -3,12 +3,12 @@
 use Auth;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Str;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Models\Hood;
 use Muhit\Models\User;
 use Request;
 use Storage;
-use Str;
 
 class AdminController extends Controller {
 
