@@ -13,8 +13,8 @@
                 </div>
                 <div class="card-content">
 
-                    <form method="post" action="/members/update">
-
+                    <form method="post" action="/admin/save-member">
+                        <input type="hidden" name="id" value="{{$member['id']}}">
                         <div class="form-group form-fullwidth u-mt10">
                             <label>{{ trans('auth.first_name') . ' + ' . trans('auth.last_name') }}</label>
                             <div class="row" style="margin-left: -15px; margin-right: -15px;">
