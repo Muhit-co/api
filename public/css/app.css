@@ -3774,6 +3774,9 @@ hr {
 .bg-white {
   background-color: #ffffff;
 }
+.bg-blueDark75 {
+  background: rgba(36, 86, 114, 0.75);
+}
 .bg-tag-blue {
   background-color: #629acc !important;
 }
@@ -6118,6 +6121,9 @@ figure img {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.u-nowrap {
+  white-space: nowrap !important;
+}
 .u-noselect {
   pointer-events: none;
 }
@@ -8239,6 +8245,13 @@ nav #nav_quickadd {
 .tooltip.tooltip-alignright:before {
   left: auto;
   right: 10px;
+}
+.tooltip a {
+  color: #ffffff;
+  font-weight: bold;
+}
+.tooltip.tooltip-solid {
+  background-color: #245672;
 }
 .hasTooltip {
   position: relative;

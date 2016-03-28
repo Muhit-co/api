@@ -19,6 +19,7 @@
     </div>
 </section>
 
+@include('partials.signup-message')
 
 @include('partials.web-app-message')
 
