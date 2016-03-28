@@ -47,7 +47,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml10"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Sıraselviler daha yürünebilir bir cadde olsun.
                             </h4>
                         </a>
@@ -61,7 +61,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml10"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Besiktas Yildiz Sokagindaki kaldirimlar duzenlenmeli
                             </h4>
                         </a>
@@ -75,7 +75,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml10"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Daha çok Boğaz hattı vapur seferi olsun.
                             </h4>
                         </a>
@@ -98,7 +98,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml20"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Etiler
                             </h4>
                         </a>
@@ -112,7 +112,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml20"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Kuruçeşme
                             </h4>
                         </a>
@@ -126,7 +126,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml20"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Gayrettepe
                             </h4>
                         </a>
@@ -140,7 +140,7 @@
                                 </span>
                                 <i class="ion ion-chevron-right u-ml20"></i>
                             </div>
-                            <h4 class="title u-nowrap">
+                            <h4 class="title u-truncate">
                                 Bebek
                             </h4>
                         </a>

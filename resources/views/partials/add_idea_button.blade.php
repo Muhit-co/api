@@ -9,8 +9,8 @@ if(isset($role) && $role != 'admin'):
         $loc_param = '?' . buildRelativeUrl('location', $hood->name . ', ' . $hood->district->name . ', ' . $hood->district->city->name);
     }
     $btn_link = ($role == 'user') ? '/issues/new' . $loc_param : 'javascript:openDialog(\'dialog_login\')';
-?>
-<a href="{{ $btn_link }}" class="{{ $btn_class }}"><i class="ion ion-plus u-mr5"></i> {!! $btn_text !!}</a>
+  ?>
+  <a href="{{ $btn_link }}" class="{{ $btn_class }}"><i class="ion ion-plus u-mr5"></i> {!! $btn_text !!}</a>
 <?php 
 endif; 
 ?>

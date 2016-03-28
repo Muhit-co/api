@@ -8,7 +8,7 @@
                 <a href="/issues/new" id="nav_quickadd" class="btn btn-sm btn-primary u-floatright u-mr10 u-mt20"><i class="ion ion-plus"></i></a>
             @else
                 {{-- user is not logged in --}}
-                <div class="u-floatright u-nowrap">
+                <div class="u-floatright u-truncate">
                     <a href="/login" class="btn btn-quaternary u-mt15 u-mr5">
                         <span class="condensed"><i class="ion ion-log-in ion-15x u-floatleft"></i></span>
                         <span class="extended">GİRİŞ YAP</span></a>

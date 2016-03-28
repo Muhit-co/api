@@ -87,7 +87,7 @@ endif;
     foreach($menu_items as $menu_item):
     ?>
     <li{{ (ltrim(Request::path(), '/') == ltrim($menu_item['uri'], '/') ) ? ' class=active' : '' }}>
-        <a href="{{ URL::to( $menu_item['uri']) }}" class="u-nowrap" data-path="{{ Request::path() }}" data-ltrim="{{ ltrim($menu_item['uri'], '/') }}">
+        <a href="{{ URL::to( $menu_item['uri']) }}" class="u-truncate" data-path="{{ Request::path() }}" data-ltrim="{{ ltrim($menu_item['uri'], '/') }}">
             <i class="ion <?php echo $menu_item['icon'] ?> ion-15x"></i>
             <span class="text"><?php echo $menu_item['name'] ?></span>
         </a>

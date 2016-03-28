@@ -6112,7 +6112,7 @@ figure img {
   width: 100%;
   max-width: 100vw;
 }
-.u-nowrap {
+.u-truncate {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;

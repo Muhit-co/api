@@ -9,7 +9,7 @@
         <div class="col-sm-2 col-sm-hide u-aligncenter u-pv25">
             <h2>Muhit</h2>
         </div>
-        <div class="col-sm-5 col-xs-10 u-alignright u-nowrap">
+        <div class="col-sm-5 col-xs-10 u-alignright u-truncate">
             <a href="/login" class="btn btn-quaternary u-mt15 u-mr5">
                 <span class="extended">
                         {{ trans('auth.log_in_cap') }}

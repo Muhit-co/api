@@ -9,12 +9,12 @@
         <div class="col-xs-6 col-sm-hide u-aligncenter u-pv20">
             <img src="/images/logo_blue.png" height="40px" alt="" />
         </div>
-        <div class="col-sm-3 col-xs-6 u-alignright u-nowrap">
+        <div class="col-sm-3 col-xs-6 u-alignright u-truncate">
             @if(Auth::check())
                 @include('partials.userinfo')
             @else
                 {{-- user is not logged in --}}
-                <div class="u-floatright u-nowrap">
+                <div class="u-floatright u-truncate">
                     <a href="/login" class="btn btn-quaternary u-mt20 u-mr5">GİRİŞ<span class="extended"> YAP</span></a>
                     <a href="/register" class="btn btn-primary u-mt20 u-mr15">KAYIT<span class="extended"> OL</span></a>
                 </div>

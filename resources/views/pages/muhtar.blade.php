@@ -11,7 +11,7 @@
             <a href="/user-edit" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
                 <i class="ion ion-edit"></i>
             </a>
-            <p class="c-white u-nowrap"><strong>Erenköy, Kadıköy</strong> <span class="u-ml10">İstanbul</span></p>
+            <p class="c-white u-truncate"><strong>Erenköy, Kadıköy</strong> <span class="u-ml10">İstanbul</span></p>
         </div>
     </div>
 
