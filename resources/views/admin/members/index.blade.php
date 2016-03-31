@@ -9,9 +9,9 @@
 
                 <div class="u-floatright">
                     <?php
-$param_q = (isset($_GET["q"])) ? $_GET["q"] : '';
-$param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
-?>
+                    $param_q = (isset($_GET["q"])) ? $_GET["q"] : '';
+                    $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
+                    ?>
                     <form method="get">
 
                         <div class="form-group u-floatleft u-width150">
@@ -69,8 +69,8 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
 
             <div class="list list-small list-overflowshow">
                 <div class="list-header">
-                    <div class="row row-nopadding u-pr100">
-                        <div class="col-sm-4">
+                    <div class="row row-nopadding">
+                        <div class="col-xs-10 col-sm-4">
                             <small class="u-nowrap u-ml40"><em>name (username)</em></small>
                         </div>
                         <div class="col-sm-3 col-sm-hide">
@@ -79,8 +79,13 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
                         <div class="col-sm-1 col-sm-hide">
                             <small class="u-nowrap"><em>level</em></small>
                         </div>
-                        <div class="col-sm-4 col-sm-hide">
+                        <div class="col-sm-2 col-sm-hide">
                             <small class="u-nowrap"><em>location</em></small>
+                        </div>
+                        <div class="col-xs-2 u-alignright">
+                            <small><em>
+                                {{count($members)}} result<?php if(count($members) > 1) { echo 's'; } ?>
+                            </em></small>
                         </div>
                     </div>
                 </div>
