@@ -2,10 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserSocialAccount extends Model {
-
-	//
-
-	protected $guarded = ['id'];
-
+class UserSocialAccount extends Model
+{
+    protected $guarded = ['id'];
 }

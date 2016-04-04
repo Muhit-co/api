@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class IssueUpdate extends Model {
-
-	//
+class IssueUpdate extends \Eloquent
+{
 
 }

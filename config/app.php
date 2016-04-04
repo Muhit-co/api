@@ -153,7 +153,11 @@ return [
 		'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
 		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Jenssegers\Raven\RavenServiceProvider',
-        'Laravel\Socialite\SocialiteServiceProvider'
+        'Laravel\Socialite\SocialiteServiceProvider',
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+		Jenssegers\Date\DateServiceProvider::class,
+		Clockwork\Support\Laravel\ClockworkServiceProvider::class,
 	],
 
 	/*
