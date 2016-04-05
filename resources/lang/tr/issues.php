@@ -94,4 +94,5 @@ return [
     "no_announcements" => "Duyuru yok...", // @seratolgay
     "submitted_anonymously" => "Bu fikir anonim olarak eklenmiştir.",
     "added_ideas" => "Eklediği fikirleri",
+    "coming_soon" => "Çok yakında...",
 ];
