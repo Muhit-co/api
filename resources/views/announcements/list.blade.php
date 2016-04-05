@@ -16,15 +16,21 @@
         <div class="col-md-6 col-sm-7 col-md-offset-1 u-mb10">
             @if($role =='admin')
                 <h2>{{ trans('issues.my_announcements') }}</h2>
-                <h4 class="u-opacity50">[{{$hood->name}}], [{{$hood->district->name}}]</h4>
+                <h4 class="u-opacity50">{{$hood->name}}, {{$hood->district->name}}</h4>
             @endif
         </div>
         <div class="col-md-4 col-sm-5">
             @if($role =='admin')
-                <a href="javascript:void(0)" data-dialog="dialog_new_announcement" class="btn btn-primary u-floatright u-ml10">
-                    <i class="ion ion-compose u-mr5"></i>
-                    {{ trans('issues.post_new_announcement_cap') }}
-                </a>
+                <div class="u-floatright hasTooltip">
+                    <!-- data-dialog="dialog_new_announcement" -->
+                    <a href="javascript:void(0)" class="btn btn-primary u-floatright u-ml10 btn-disabled">
+                        <i class="ion ion-compose u-mr5"></i>
+                        {{ trans('issues.post_new_announcement_cap') }}
+                    </a>
+                    <div class="tooltip u-inlineblock u-ml10" style="width: auto;">
+                        {{ trans('issues.coming_soon') }}
+                    </div>
+                </div>
             @else
                 <a href="/members/edit-profile" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
                     <i class="ion ion-edit"></i>
