@@ -27,7 +27,7 @@
                         <i class="ion ion-compose u-mr5"></i>
                         {{ trans('issues.post_new_announcement_cap') }}
                     </a>
-                    <div class="tooltip u-inlineblock u-ml10" style="width: auto;">
+                    <div class="tooltip u-inlineblock u-ml15" style="width: auto;">
                         {{ trans('issues.coming_soon') }}
                     </div>
                 </div>
