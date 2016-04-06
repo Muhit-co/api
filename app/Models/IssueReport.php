@@ -2,10 +2,7 @@
 
 namespace Muhit\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class IssueReport extends Model
+class IssueReport extends \Eloquent
 {
-    //
     protected $guarded = ['id'];
 }

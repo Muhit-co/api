@@ -2,11 +2,12 @@
 
 namespace Muhit\Jobs;
 
+use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Log;
 use Mail;
-use Muhit\Jobs\Job;
 use Muhit\Models\Issue;
 use Muhit\Models\User;
 
@@ -19,7 +20,8 @@ class SendIssueSupportedEmail extends Job implements SelfHandling, ShouldQueue {
 	/**
 	 * Create a new job instance.
 	 *
-	 * @return void
+	 * @param $user_id
+	 * @param $issue_id
 	 */
 	public function __construct($user_id, $issue_id) {
 		$this->user_id = $user_id;
@@ -45,7 +47,9 @@ class SendIssueSupportedEmail extends Job implements SelfHandling, ShouldQueue {
 					$m->to($issue->user->email)
 						->subject(trans('email.' . $email . '_title'));
 				});
+
 			} catch (Exception $e) {
+
 				Log::error('SendIssueSupportedEmail', (array) $e);
 			}
 		}

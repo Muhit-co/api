@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use LucaDegasperi\OAuth2Server\Support\Migration;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOauthAccessTokenScopesTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateOauthAccessTokenScopesTable extends Migration
      */
     public function up()
     {
-        $this->schema()->create('oauth_access_token_scopes', function (Blueprint $table) {
+        Schema::create('oauth_access_token_scopes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('access_token_id', 40);
             $table->string('scope_id', 40);
@@ -40,10 +40,10 @@ class CreateOauthAccessTokenScopesTable extends Migration
      */
     public function down()
     {
-        $this->schema()->table('oauth_access_token_scopes', function (Blueprint $table) {
+        Schema::table('oauth_access_token_scopes', function (Blueprint $table) {
             $table->dropForeign('oauth_access_token_scopes_scope_id_foreign');
             $table->dropForeign('oauth_access_token_scopes_access_token_id_foreign');
         });
-        $this->schema()->drop('oauth_access_token_scopes');
+        Schema::drop('oauth_access_token_scopes');
     }
 }
