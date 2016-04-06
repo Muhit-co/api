@@ -3749,6 +3749,9 @@ hr {
 .c-blue {
   color: #44a1e0;
 }
+.c-bluedark {
+  color: #245672;
+}
 .c-inprogress {
   color: #c678ea;
 }
@@ -3773,6 +3776,12 @@ hr {
 }
 .bg-white {
   background-color: #ffffff;
+}
+.bg-city-banner {
+  background-image: url('../images/banner_city.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
 }
 .bg-tag-blue {
   background-color: #629acc !important;
@@ -6395,7 +6404,10 @@ figure img {
 }
 .btn.btn-lg {
   padding: 10px 20px;
-  height: 60px;
+  height: 50px;
+  line-height: 25px;
+  font-size: 1.25em;
+  letter-spacing: 0;
 }
 .btn.btn-sm {
   padding: 5px 10px;
@@ -7260,7 +7272,8 @@ input.form-disabled {
 header {
   min-height: 100px;
   padding-top: calc(20px + 2vw);
-  background: url('../images/banner_city.png') no-repeat;
+  background-image: url('../images/banner_city.png');
+  background-repeat: no-repeat;
   background-position: center bottom;
   background-size: contain;
   background-color: #44a1e0;
@@ -7752,7 +7765,10 @@ nav #nav_quickadd {
 .pagination li a.btn-lg,
 .pagination li span.btn-lg {
   padding: 10px 20px;
-  height: 60px;
+  height: 50px;
+  line-height: 25px;
+  font-size: 1.25em;
+  letter-spacing: 0;
 }
 .pagination li a.btn-sm,
 .pagination li span.btn-sm {
