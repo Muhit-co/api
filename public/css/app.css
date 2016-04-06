@@ -6066,7 +6066,7 @@ figure img {
   display: block;
 }
 .u-inlineblock {
-  display: inline-block;
+  display: inline-block !important;
 }
 .u-floatleft {
   display: inline-block;
@@ -6460,6 +6460,7 @@ figure img {
   background-color: #eeeeee;
   color: #ccccdd;
   cursor: default;
+  cursor: not-allowed;
 }
 .btn[disabled]:hover,
 .btn.btn-disabled:hover {
@@ -7010,7 +7011,7 @@ dialog hr {
 }
 /* --- flashmessage --- */
 .flash {
-  background-color: #307399;
+  background-color: #2d6a8d;
   border-radius: 5px;
   padding: 20px;
   color: #ffffff;
@@ -7828,6 +7829,7 @@ nav #nav_quickadd {
   background-color: #eeeeee;
   color: #ccccdd;
   cursor: default;
+  cursor: not-allowed;
 }
 .pagination li a[disabled]:hover,
 .pagination li span[disabled]:hover,
