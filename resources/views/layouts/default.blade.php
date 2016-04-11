@@ -16,7 +16,9 @@
         @if(Auth::check())
         <div id="menu-drawer">
             <div class="u-pa5 u-opacity50">
-                <a href="<?php echo (Request::is('/')) ? '#top' : '/' ?>"><img src="/images/logo.png" height="36px" alt="" /></a>
+                <a href="<?php echo (Request::is('/')) ? '#top' : '/' ?>">
+                    @include('partials.logo_svg')
+                </a>
             </div>
             @include('partials.menu')
             <ul class="menu u-pinned-bottom">
