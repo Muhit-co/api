@@ -1,52 +1,45 @@
 <?php namespace Muhit\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Muhit\Models\City;
-use Muhit\Models\District;
+use Exception;
+use Log;
 
-class Hood extends Model {
-
-    //
-
+class Hood extends \Eloquent
+{
     protected $guarded = ['id'];
-
-
-    public function district() {
-        return $this->belongsTo('Muhit\Models\District');
-    }
-
-
-    public function city() {
-        return $this->belongsTo('Muhit\Models\City');
-    }
-
 
     /**
      * gets the hood_id from location string. creates table records if not exists
      *
-     * @return hood object
+     * @param $location
+     * @return Hood object
      * @author gcg
      */
     public static function fromLocation($location)
     {
-        $hood = false;
         $location_parts = explode(",", $location);
 
         foreach ($location_parts as $index => $lp) {
+
             $location_parts[$index] = trim($lp);
         }
 
         try {
             $city = City::firstOrCreate(['name' => $location_parts[2]]);
+
         } catch (Exception $e) {
-            Log::error('HoodModel/city', (array) $e);
+
+            Log::error('HoodModel/city', (array)$e);
+
             return false;
         }
 
         try {
             $district = District::firstOrCreate(['name' => $location_parts[1], 'city_id' => $city->id]);
+
         } catch (Exception $e) {
-            Log::error('HoodModel/district', (array) $e);
+
+            Log::error('HoodModel/district', (array)$e);
+
             return false;
         }
 
@@ -54,13 +47,26 @@ class Hood extends Model {
             $hood = Hood::firstOrCreate([
                 'name' => $location_parts[0],
                 'city_id' => $city->id,
-                'district_id' => $district->id]);
-        } catch (Exception $e) {
-            Log::error('HoodModel/hood', (array) $e);
-            return false;
+                'district_id' => $district->id
+            ]);
 
+        } catch (Exception $e) {
+
+            Log::error('HoodModel/hood', (array)$e);
+
+            return false;
         }
 
         return $hood;
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

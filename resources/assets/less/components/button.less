@@ -44,7 +44,10 @@
   // sizes
   &.btn-lg {
     padding: 10px 20px;
-    height: 60px;
+    height: 50px;
+    line-height: 25px;
+    font-size: 1.25em;
+    letter-spacing: 0;
   }
   &.btn-sm {
     padding: 5px 10px;
@@ -98,6 +101,7 @@
     background-color: @greyLighter;
     color: @greyLight;
     cursor: default;
+    cursor: not-allowed;
 
     &:hover {
       background-color: darken(@greyLighter, 2%);
