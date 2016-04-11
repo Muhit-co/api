@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic" />
 
     <link rel="stylesheet" href="/css/app.css" />
-    <script src="/js/all.js"></script>
 
     <link href="/images/favicon.ico" type="image/x-icon" rel="icon" />
     <link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
@@ -27,7 +26,7 @@
     @include('partials.web-app-meta-tags')
     @include('partials.google-analytics')
 
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places">
-    </script>
+    <script async src="/js/all.js"></script>
+    <script type="text/javascript" async src="//maps.googleapis.com/maps/api/js?libraries=places"></script>
 
 </head>
