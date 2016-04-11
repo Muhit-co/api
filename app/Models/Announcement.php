@@ -1,16 +1,12 @@
 <?php namespace Muhit\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Announcement extends Model {
-
-    //
+class Announcement extends \Eloquent
+{
 
     protected $guarded = ['id'];
 
-
-
-    public function user() {
-        return $this->belongsTo('Muhit\Models\User');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

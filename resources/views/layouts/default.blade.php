@@ -11,9 +11,7 @@
 
         <a href="javascript:void(0)" id="dialog_mask" class="mask"></a>
 
-        <a href="javascript:void(0)" id="loader_mask" class="mask u-aligncenter u-relative">
-            <img src="/images/preloader.gif" alt="" class="u-valignmiddle" style="margin-left: -24px; margin-top: -24px;" />
-        </a>
+        @include('partials.loader-mask')
 
         @if(Auth::check())
         <div id="menu-drawer">

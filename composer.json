@@ -1,52 +1,63 @@
 {
-	"name": "Muhit-co/api",
-	"description": "Muhit.co API",
-	"keywords": ["muhit"],
-	"license": "GPLv3",
-	"type": "project",
-	"require": {
-	    "php": ">=5.5.9",
-		"laravel/framework": "5.1.*",
-		"guzzlehttp/guzzle": "~5.0",
-		"predis/predis": "~1.0",
-		"facebook/php-sdk-v4": "4.0.*",
-		"league/flysystem-aws-s3-v3": "~1.0",
-		"jenssegers/raven": "@stable",
-        "lucadegasperi/oauth2-server-laravel": "~5.0@dev",
-        "laravel/socialite": "~2.0",
-		"aws/aws-sdk-php": "~3.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "~4.0",
-		"phpspec/phpspec": "~2.1"
-	},
-	"autoload": {
-		"classmap": [
-			"database",
-			"app/Models"
-		],
-		"psr-4": {
-			"Muhit\\": "app/"
-		},
-		"files": ["app/Http/helpers.php"]
-	},
-	"autoload-dev": {
-		"classmap": [
-			"tests/TestCase.php"
-		]
-	},
-	"scripts": {
-		"post-install-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize",
-			"npm install",
-			"gulp"
-		],
-		"post-update-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize",
-			"npm install",
-			"gulp"
-		]
-	}
+  "name": "Muhit-co/api",
+  "description": "Muhit.co API",
+  "keywords": [
+    "muhit"
+  ],
+  "license": "GPLv3",
+  "type": "project",
+  "require": {
+    "php": ">=5.5.9",
+    "laravel/framework": "5.1.*",
+    "guzzlehttp/guzzle": "~5.0",
+    "predis/predis": "~1.0",
+    "facebook/php-sdk-v4": "4.0.*",
+    "league/flysystem-aws-s3-v3": "~1.0",
+    "jenssegers/raven": "@stable",
+    "lucadegasperi/oauth2-server-laravel": "~5.0@dev",
+    "laravel/socialite": "~2.0",
+    "aws/aws-sdk-php": "~3.0",
+    "doctrine/dbal": "~2.3",
+    "erusev/parsedown": "dev-master",
+    "barryvdh/laravel-ide-helper": "~2.0",
+    "michelf/php-markdown": "1.4.1",
+    "rap2hpoutre/laravel-log-viewer": "^0.4.0",
+    "jenssegers/date": "^3.0",
+    "itsgoingd/clockwork": "~1.11"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "phpspec/phpspec": "~2.1"
+  },
+  "autoload": {
+    "classmap": [
+      "database",
+      "app/Models"
+    ],
+    "psr-4": {
+      "Muhit\\": "app/"
+    },
+    "files": [
+      "app/Http/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/TestCase.php"
+    ]
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "php artisan clear-compiled",
+      "php artisan optimize",
+      "npm install",
+      "gulp"
+    ],
+    "post-update-cmd": [
+      "php artisan clear-compiled",
+      "php artisan optimize",
+      "npm install",
+      "gulp"
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use LucaDegasperi\OAuth2Server\Support\Migration;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOauthGrantsTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateOauthGrantsTable extends Migration
      */
     public function up()
     {
-        $this->schema()->create('oauth_grants', function (Blueprint $table) {
+        Schema::create('oauth_grants', function (Blueprint $table) {
             $table->string('id', 40)->primary();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateOauthGrantsTable extends Migration
      */
     public function down()
     {
-        $this->schema()->drop('oauth_grants');
+        Schema::drop('oauth_grants');
     }
 }

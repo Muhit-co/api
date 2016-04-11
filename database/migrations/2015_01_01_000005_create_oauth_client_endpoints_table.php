@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use LucaDegasperi\OAuth2Server\Support\Migration;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOauthClientEndpointsTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateOauthClientEndpointsTable extends Migration
      */
     public function up()
     {
-        $this->schema()->create('oauth_client_endpoints', function (Blueprint $table) {
+        Schema::create('oauth_client_endpoints', function (Blueprint $table) {
             $table->increments('id');
             $table->string('client_id', 40);
             $table->string('redirect_uri');
@@ -36,10 +36,10 @@ class CreateOauthClientEndpointsTable extends Migration
      */
     public function down()
     {
-        $this->schema()->table('oauth_client_endpoints', function (Blueprint $table) {
+        Schema::table('oauth_client_endpoints', function (Blueprint $table) {
             $table->dropForeign('oauth_client_endpoints_client_id_foreign');
         });
 
-        $this->schema()->drop('oauth_client_endpoints');
+        Schema::drop('oauth_client_endpoints');
     }
 }
