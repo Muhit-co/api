@@ -51,13 +51,13 @@
       "php artisan clear-compiled",
       "php artisan optimize",
       "npm install",
-      "gulp"
+      "gulp --production"
     ],
     "post-update-cmd": [
       "php artisan clear-compiled",
       "php artisan optimize",
       "npm install",
-      "gulp"
+      "gulp --production"
     ]
   }
 }
