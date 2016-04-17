@@ -4,14 +4,14 @@
 <header class="u-relative header-list">
 
     <div class="row u-pb40">
-        <div class="col-md-6 col-sm-7 col-md-offset-1 u-mb10">
+        <div class="col-md-4 col-sm-7 col-md-offset-1 u-mb10">
             <h2>{{ trans('issues.my_muhtar_info') }}</h2>
         </div>
-        <div class="col-md-4 col-sm-5">
-            <a href="/user-edit" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
+        <div class="col-md-6 col-sm-5">
+            <a href="/members/edit-profile" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
                 <i class="ion ion-edit"></i>
             </a>
-            <p class="c-white u-nowrap"><strong>Erenköy, Kadıköy</strong> <span class="u-ml10">İstanbul</span></p>
+            <p class="c-white u-nowrap u-alignright"><strong>{{ Auth::user()->hood['name'] }}</strong> <span class="u-ml10"></span></p>
         </div>
     </div>
 
