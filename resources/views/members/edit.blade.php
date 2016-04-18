@@ -38,15 +38,12 @@
                         </div>
 
                         <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
-                        @if(isset($user['hood']) and isset($user['hood']['district']) and isset($user['hood']['district']['city']))
-                            <?php $state = ($role == 'admin') ? true : false; ?>
-                            @include('partials.field-hood', array(
-                                'inputClassList' => 'form-grey', 
-                                'defaultValue' => $user['hood']['name'] . ", " . $user['hood']['district']['name'] . ", " . $user['hood']['district']['city']['name'],
-                                'disabledState' => $state))
-                        @else
-                            @include('partials.field-hood', array('inputClassList' => 'form-grey'))
-                        @endif
+                        <?php $state = ($role == 'admin') ?>
+                        <?php $value = (isset($user['hood'])) ? $user['hood']['name'] . ", " . $user['hood']['district']['name'] . ", " . $user['hood']['district']['city']['name'] : '' ?>
+                        @include('partials.field-hood', array(
+                            'inputClassList' => 'form-grey', 
+                            'defaultValue' => $value,
+                            'disabledState' => $state))
 
                         @if($state !== true)
                             <div class="form-group u-relative u-mv10">
