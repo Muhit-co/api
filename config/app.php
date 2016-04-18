@@ -79,8 +79,8 @@ return [
 	 */
 
 	'key' => env('APP_KEY', 'SomeRandomString'),
-
 	'cipher' => MCRYPT_RIJNDAEL_128,
+//	'cipher' => env('CYPHER', 'AES-256-CBC'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -140,20 +140,21 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'Muhit\Providers\AppServiceProvider',
-		'Muhit\Providers\BusServiceProvider',
-		'Muhit\Providers\ConfigServiceProvider',
-		'Muhit\Providers\EventServiceProvider',
-		'Muhit\Providers\RouteServiceProvider',
+		Muhit\Providers\AppServiceProvider::class,
+		Muhit\Providers\BusServiceProvider::class,
+		Muhit\Providers\ConfigServiceProvider::class,
+		Muhit\Providers\EventServiceProvider::class,
+		Muhit\Providers\RouteServiceProvider::class,
+		Muhit\Providers\RepositoryServiceProvider::class,
+
 
 		/*
 		 *	3rd party providers
 		 */
-
-		'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
-		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
-        'Jenssegers\Raven\RavenServiceProvider',
-        'Laravel\Socialite\SocialiteServiceProvider',
+		LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+		LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+        Jenssegers\Raven\RavenServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 		Jenssegers\Date\DateServiceProvider::class,
@@ -207,6 +208,7 @@ return [
 		'View' => 'Illuminate\Support\Facades\View',
         'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+		'Date' => Jenssegers\Date\Date::class,
 
 	],
 

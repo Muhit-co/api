@@ -3,6 +3,8 @@
 use Auth;
 use Carbon\Carbon;
 use DB;
+use Exception;
+use Log;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Jobs\IssueCommented;
 use Muhit\Jobs\IssueStatusUpdate;
@@ -11,8 +13,6 @@ use Muhit\Models\Issue;
 use Request;
 
 class MuhtarController extends Controller {
-
-	private $avaliable_statuses = ['in-progress', 'solved'];
 
 	/**
 	 * comments to an issue
@@ -50,7 +50,7 @@ class MuhtarController extends Controller {
 				if (Request::has('issue_status')) {
 					$new_status = Request::get('issue_status');
 
-					if (in_array($new_status, $this->avaliable_statuses)) {
+					if (in_array($new_status, ['in-progress', 'solved'])) {
 						$old_status = $issue->status;
 						$issue->status = $new_status;
 						$issue->save();
@@ -89,6 +89,7 @@ class MuhtarController extends Controller {
 	/**
 	 * deletes a comment
 	 *
+	 * @param null $id
 	 * @return redirect
 	 * @author gcg
 	 */
@@ -106,9 +107,13 @@ class MuhtarController extends Controller {
 		}
 
 		try {
+
 			$comment->delete();
+
 		} catch (Exception $e) {
+
 			Log::error('MuhtarController/getDeleteComment', (array) $e);
+
 			return redirect('/issues/view/' . $comment->issue_id)
 				->with('error', 'Yorum silerken teknik bir hata meydana geldi. ');
 		}
@@ -120,6 +125,7 @@ class MuhtarController extends Controller {
 	/**
 	 * edits a comment
 	 *
+	 * @param null $id
 	 * @return view
 	 * @author gcg
 	 */
@@ -149,33 +155,39 @@ class MuhtarController extends Controller {
 		$comment = Comment::find($id);
 
 		if (empty($comment)) {
+
 			return redirect('/')
 				->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
 		}
 
 		if ($comment->user_id != Auth::user()->id) {
+
 			return redirect('/')
 				->with('error', 'Sadece kendi yazdığınız yorumları düzenleyebilirsiniz.');
 		}
 
 		if (Request::has('comment')) {
+
 			$comment->comment = Request::get('comment');
+
 			try {
+
 				$comment->save();
 
 			} catch (Exception $e) {
 				Log::error('MuhtarController/postEditComment', (array) $e);
+
 				return redirect('/issues/view/' . $comment->issue_id)
 					->with('error', 'Yorumunuzu düzenlerken teknik bir hata meydana geldi.');
 			}
 
 			return redirect('/issues/view/' . $comment->issue_id . '#comment-' . $comment->id)
 				->with('success', 'Yorumunuz başarılı bir şekilde güncellendi');
+
 		} else {
+
 			return redirect('/issues/view/' . $comment->issue_id)
 				->with('error', 'Lütfen yorumunuzu yazıp tekrar deneyin.');
 		}
-
 	}
-
 }
