@@ -11,7 +11,8 @@
             <a href="/members/edit-profile" class="btn btn-sm btn-whiteoutline u-floatright u-ml10">
                 <i class="ion ion-edit"></i>
             </a>
-            <p class="c-white u-nowrap u-alignright"><strong>{{ Auth::user()->hood['name'] }}</strong> <span class="u-ml10"></span></p>
+            <?php $hood = (isset(Auth::user()->hood['name'])) ? Auth::user()->hood['name'] : '–'; ?>
+            <p class="c-white u-nowrap u-alignright"><strong>{{ $hood }}</strong> <span class="u-ml10"></span></p>
         </div>
     </div>
 
