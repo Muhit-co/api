@@ -27,12 +27,12 @@ class AnnouncementController extends Controller
 
             if (Auth::check() && isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
 
-                $hood = $this->hood->getHood(Auth::user()->hood_id);
+                $hood = $this->hood->get(Auth::user()->hood_id);
             }
 
         } else {
 
-            $hood = $this->hood->getHood($hoodId);
+            $hood = $this->hood->get($hoodId);
         }
 
         if (empty($hood)) {
@@ -58,7 +58,7 @@ class AnnouncementController extends Controller
             return response()->api(200, 'Announcements: ', $announcements->toArray());
         }
 
-        return view('announcements.list')->with(compact('announcements', 'hood'));
+        return view('announcements.index')->with(compact('announcements', 'hood'));
     }
 
     public function create(CreateAnnouncement $request)
