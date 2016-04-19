@@ -152,12 +152,3 @@ Route::group(['prefix' => 'api'], function () {
 	});
 
 });
-
-Route::get('/mail-test', function () {
-	Mail::send('emails.empty', [], function ($m) {
-		$m->from('info@muhit.co', 'Muhit.co');
-
-		$m->to('guneycan@gmail.com')->subject('Test Email');
-	});
-	return "OK";
-});
