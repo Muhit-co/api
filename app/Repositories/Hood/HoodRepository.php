@@ -14,8 +14,30 @@ class HoodRepository implements HoodRepositoryInterface
         $this->hood = $hood;
     }
 
-    public function getHood($hoodId)
+    public function get($hoodId)
     {
         return $this->hood->with('district.city')->find($hoodId);
+    }
+
+    public function all($query, $cityId, $districtId)
+    {
+        $hoods = $this->hood->orderBy('name', 'asc');
+
+        if ($query && $query !== 'null') {
+
+            $hoods->where('name', 'LIKE', "%{$query}%");
+        }
+
+        if ($cityId && $cityId !== 'null') {
+
+            $hoods->where('city_id', $cityId);
+        }
+
+        if ($districtId && $districtId !== 'null') {
+
+            $hoods->where('district_id', $districtId);
+        }
+
+        return $hoods->get();
     }
 }

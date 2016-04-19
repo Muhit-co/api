@@ -35,4 +35,42 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
             'user_id' => $request->get('user_id')
         ]);
     }
+
+    public function delete($id)
+    {
+        $announcement = $this->announcement->find($id);
+
+        if (!$announcement) {
+
+            return 'Announcement not found';
+        }
+
+        if ($announcement->user_id != \Auth::getUser()->id) {
+
+            return 'not allowed';
+        }
+
+        $this->announcement->delete();
+    }
+
+    public function edit($id, $title, $content)
+    {
+        $announcement = $this->announcement->find($id);
+
+        if (!$announcement) {
+
+            return 'Announcement not found';
+        }
+
+        if ($announcement->user_id != \Auth::getUser()->id) {
+
+            return 'not allowed';
+        }
+
+        $announcement->title = $title;
+        $announcement->content = $content;
+        $announcement->save();
+
+        return 'Announcement updated';
+    }
 }

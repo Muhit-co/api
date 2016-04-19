@@ -30,5 +30,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'Muhit\Repositories\Hood\HoodRepositoryInterface',
             'Muhit\Repositories\Hood\HoodRepository');
+
+        $this->app->bind(
+            'Muhit\Repositories\Tag\TagRepositoryInterface',
+            'Muhit\Repositories\Tag\TagRepository');
     }
 }

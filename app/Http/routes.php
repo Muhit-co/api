@@ -118,7 +118,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::controller('auth', 'AuthController');
     Route::controller('hoods', 'HoodsController');
 
-    Route::get('tags/{q?}', 'TagsController@getList');
+    Route::get('tags/{q?}', 'TagController@index');
     Route::get('announcements/{hood_id}/{start?}/{take?}', 'AnnouncementsController@getList');
 
     Route::get('issues/view/{id}', 'IssuesController@getView');
