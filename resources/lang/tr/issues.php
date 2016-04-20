@@ -8,6 +8,7 @@ return [
     "my_ideas" => "Fikirlerim",
     "my_ideas_cap" => "FİKİRLERİM",
     "announcements" => "Duyurular",
+    "announcement" => "Duyuru",
     "announcements_cap" => "DUYURULAR",
     "my_announcements" => "Duyurularım",
     "my_announcements_cap" => "DUYURULARIM",
@@ -83,6 +84,8 @@ return [
     "post_new_announcement_cap" => "YENİ DUYURU YAZ", 
     "post_new_announcement" => "Yeni duyuru yaz", 
     "post_new_announcement_descr" => "Mahallenizdeki önemli gelişmeleri buradan duyurabilirsiniz. Muhit'e üye olan mahalleliler duyurularınız hakkında bildirim alacaktır.",
+    "edit_announcement" => "Duyuru düzenle", 
+    "delete_announcement_confirmation" => "Bu duyuru silmeye emin misin?", // @seratolgay
     "twitter_text" => ":issue_title – Muhit",
     "muhit_story" => "Muhit'in Hikayesi",
     "terms_and_conditions" => "Kullanım koşulları",

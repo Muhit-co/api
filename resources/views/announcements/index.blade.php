@@ -21,7 +21,12 @@
         </div>
         <div class="col-md-4 col-sm-5">
             @if($role =='admin')
-                <div class="u-floatright hasTooltip">
+                <a href="javascript:void(0)" data-dialog="dialog_new_announcement" class="btn btn-primary u-floatright u-ml10">
+                    <i class="ion ion-compose u-mr5"></i>
+                    {{ trans('issues.post_new_announcement_cap') }}
+                </a>
+
+                <div class="u-floatright hasTooltip u-hidden">
                     <!-- data-dialog="dialog_new_announcement" -->
                     <a href="javascript:void(0)" class="btn btn-primary u-floatright u-ml10 btn-disabled">
                         <i class="ion ion-compose u-mr5"></i>
@@ -48,13 +53,17 @@
 
             @foreach($announcements as $a)
 
-                <div class="card u-mv20" id="{{$a->id}}"> <!-- id = announement id (for permalink) -->
+                <div class="card u-mv20" id="{{ trans('issues.announcement') }}_{{$a->id}}"> <!-- id = announement id (for permalink) -->
                     <div class="card-header">
 
                         <div class="row row-nopadding">
-                            <div class="col-md-10 col-md-offset-1">
+                            <div class="col-sm-1 col-xs-hide u-aligncenter">
+                                <i class="ion ion-speakerphone c-light u-mr10 u-pt5"></i>
+                            </div>
+                            <div class="col-sm-11">
                                 <div class="u-floatright u-ml10">
                                     <span class="date c-medium">{{strftime('%d %h %Y', strtotime($a->created_at))}}</span>
+                                    <a href="javascript:void(0)" data-dialog="dialog_new_announcement" class="btn btn-sm btn-tertiary u-ml10"><i class="ion ion-edit"></i> {{ trans('auth.edit_cap') }}</a>
                                 </div>
                                 <h3 class="u-nowrap">{{$a->title}}</h3>
                             </div>
@@ -67,7 +76,7 @@
                             <div class="col-md-10 col-md-offset-1">
                                 <p>{{$a->content}}</p>
 
-                                <a href="/muhtar" class="u-inlineblock u-clearfix u-mt10">
+                                <a href="/muhtar" class="u-inlineblock u-clearfix u-mt20">
                                     <div class="badge badge-circle badge-small u-floatleft u-mr10">
                                         <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$a->user->picture}}" alt="" />
                                     </div>

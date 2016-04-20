@@ -6,8 +6,17 @@
         <div class="dialog-content">
             <h2 class="u-mr30">
                 {{ trans('issues.post_new_announcement') }}
+                <!-- Or when editing existing announcement -->
+                <!-- {{ trans('issues.edit_announcement') }} -->
             </h2>
-            <p class="u-mv20">{{ trans('issues.post_new_announcement_descr') }}</p>
+            <p class="u-mv20">
+                <!-- Show only for new announcement, if edit then hide -->
+                {{ trans('issues.post_new_announcement_descr') }}
+            </p>
+
+            <div class="form-group form-fullwidth u-mb20">
+                <input type="text" class="form-input form-grey" value="" rows="4" placeholder="{{ trans('issues.title') }}" />
+            </div>
 
             <div class="form-group form-fullwidth">
                 <textarea class="form-input form-grey" value="" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}"></textarea>
@@ -16,10 +25,16 @@
 
         <hr>
 
-        <div class="u-alignright">
-            <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
-            <button type="submit" class="btn btn-secondary">{{ trans('auth.send_cap') }}</button>
+        <div>
+            <div class="u-floatright">
+                <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
+                <button type="submit" class="btn btn-secondary">{{ trans('auth.send_cap') }}</button>
+            </div>
+
+            <!-- Show only for edit announcement -->
+            <a href="javascript:alert('{{ trans('issues.delete_announcement_confirmation') }}')" class="btn btn-greytored">{{ trans('auth.delete_cap') }}</a>
         </div>
+
 
     </form>
     
