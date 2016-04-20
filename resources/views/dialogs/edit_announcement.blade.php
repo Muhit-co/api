@@ -1,4 +1,4 @@
-<dialog id="dialog_new_announcement">
+<dialog id="dialog_edit_announcement">
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i
                 class="ion ion-ios-close-empty ion-3x"></i></a>
 
@@ -6,10 +6,9 @@
 
         <div class="dialog-content">
             <h2 class="u-mr30">
-            {{ trans('issues.post_new_announcement') }}
+                {{ trans('issues.edit_announcement') }}
             </h2>
             <p class="u-mv20">
-                {{ trans('issues.post_new_announcement_descr') }}
             </p>
 
             <div class="form-group form-fullwidth u-mb20">
@@ -30,6 +29,10 @@
                    class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
                 <button type="submit" class="btn btn-secondary">{{ trans('auth.send_cap') }}</button>
             </div>
+
+            <!-- Show only for edit announcement -->
+            <a href="javascript:alert('{{ trans('issues.delete_announcement_confirmation') }}')"
+               class="btn btn-greytored">{{ trans('auth.delete_cap') }}</a>
         </div>
     </form>
 

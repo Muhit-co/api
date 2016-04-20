@@ -28,11 +28,11 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
     public function create(Request $request)
     {
         $this->announcement->create([
-            'hood_id' => $request->get('hood_id'),
-            'location' => $request->get('location'),
+            'hood_id' => \Auth::user()->hood_id,
+            'location' => '',
             'title' => $request->get('title'),
             'content' => $request->get('content'),
-            'user_id' => $request->get('user_id')
+            'user_id' => \Auth::user()->id
         ]);
     }
 

@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
     
     Route::get('duyurular', 'AnnouncementController@index');
-    Route::get('duyuru/ekle', 'AnnouncementController@create');
+    Route::post('duyuru/ekle', 'AnnouncementController@create');
     Route::get('duyuru/duzenle/{id}', 'AnnouncementController@edit');
     Route::get('duyuru/sil/{id}', 'AnnouncementController@delete');
 });
@@ -119,7 +119,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::controller('hoods', 'HoodsController');
 
     Route::get('tags/{q?}', 'TagController@index');
-    Route::get('announcements/{hood_id}/{start?}/{take?}', 'AnnouncementsController@getList');
+    Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementsController@getList');
 
     Route::get('issues/view/{id}', 'IssuesController@getView');
     Route::get('issues/list/{start?}/{take?}', 'IssuesController@getList');

@@ -1,6 +1,7 @@
 <?php namespace Muhit\Http\Controllers;
 
 use Auth;
+use Illuminate\Http\Request;
 use Muhit\Http\Requests;
 use Muhit\Http\Requests\CreateAnnouncement;
 use Muhit\Repositories\Announcement\AnnouncementRepositoryInterface;
@@ -61,9 +62,11 @@ class AnnouncementController extends Controller
         return view('announcements.index')->with(compact('announcements', 'hood'));
     }
 
-    public function create(CreateAnnouncement $request)
+    public function create(Request $request)
     {
+        $this->announcement->create($request);
 
+        return redirect()->back();
     }
 
     public function edit($id)

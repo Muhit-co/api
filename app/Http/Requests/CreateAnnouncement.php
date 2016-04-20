@@ -11,7 +11,7 @@ class CreateAnnouncement extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,6 @@ class CreateAnnouncement extends Request
     public function rules()
     {
         return [
-            'hood_id' => 'required|min:1',
-            'location' => 'required',
             'title' => 'required|min:5',
             'content' => 'required|min:20',
         ];

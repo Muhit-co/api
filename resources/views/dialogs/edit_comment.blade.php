@@ -9,7 +9,7 @@
             </h2>
 
             <div class="form-group form-fullwidth u-mb0">
-                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_yourmessage') }}" required></textarea>
+                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_your_message') }}" required></textarea>
             </div>
         </div>
 
