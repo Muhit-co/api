@@ -85,7 +85,7 @@ return [
     "post_new_announcement" => "Yeni duyuru yaz", 
     "post_new_announcement_descr" => "Mahallenizdeki önemli gelişmeleri buradan duyurabilirsiniz. Muhit'e üye olan mahalleliler duyurularınız hakkında bildirim alacaktır.",
     "edit_announcement" => "Duyuru düzenle", 
-    "delete_announcement_confirmation" => "Bu duyuru silmeye emin misin?", // @seratolgay
+    "delete_announcement_confirmation" => "Bu duyuruyu silmek istediğinizden emin misiniz?", // @seratolgay
     "twitter_text" => ":issue_title – Muhit",
     "muhit_story" => "Muhit'in Hikayesi",
     "terms_and_conditions" => "Kullanım koşulları",
