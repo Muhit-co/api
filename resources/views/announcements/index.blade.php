@@ -1,7 +1,5 @@
 @extends('layouts.default')
 
-{!!$role!!}
-
 @section('dialogs')
     @if($role =='admin')
         @include('dialogs.new_announcement')
