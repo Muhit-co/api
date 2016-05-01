@@ -62,7 +62,7 @@ class AnnouncementController extends Controller
         return view('announcements.index')->with(compact('announcements', 'hood'));
     }
 
-    public function create(Request $request)
+    public function create(CreateAnnouncement $request)
     {
         $this->announcement->create($request);
 

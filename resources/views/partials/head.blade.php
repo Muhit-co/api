@@ -29,8 +29,4 @@
     <script async src="/js/all.js"></script>
     <script type="text/javascript" async src="//maps.googleapis.com/maps/api/js?libraries=places"></script>
 
-    {!! HTML::script('/bower_components/jquery.validation/dist/jquery.validate.min.js') !!}
-    {!! HTML::script('/bower_components/jquery-form/jquery.form.js') !!}
-    {!! HTML::script('/bower_components/jquery-indicator/indicator.js') !!}
-
 </head>

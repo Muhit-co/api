@@ -210,8 +210,8 @@ return [
         'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
         'Date' => Jenssegers\Date\Date::class,
-        'Form' => 'Illuminate\Html\FormFacade',
-        'HTML' => 'Illuminate\Html\HtmlFacade'
+        'Form' => Illuminate\Html\FormFacade::class,
+        'HTML' => Illuminate\Html\HtmlFacade::class
     ],
 
 ];

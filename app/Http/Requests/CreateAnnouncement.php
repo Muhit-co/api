@@ -23,7 +23,7 @@ class CreateAnnouncement extends Request
     {
         return [
             'title' => 'required|min:5',
-            'content' => 'required|min:20',
+            'content' => 'required|min:15',
         ];
     }
 }
