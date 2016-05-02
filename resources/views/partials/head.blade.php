@@ -17,11 +17,11 @@
     <link href="/images/favicon.ico" type="image/x-icon" rel="icon" />
     <link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 
-    <!-- Facebook post image -->
-    <meta property="og:image" content="{{ asset('/images/fb-share-image.jpg') }}" />
-    <meta property="og:title" content="{{ trans('intro.fb_meta_title') }}" />
-    <meta property="og:site_name" content="{{ trans('intro.fb_meta_sitename') }}" />
-    <meta property="og:description" content="{{ trans('intro.meta_description') }}" />
+    {{-- Share image properties --}}
+    <meta property="og:image" content="{{ $shareImage or asset('/images/fb-share-image.jpg') }}"/>
+    <meta property="og:title" content="{{ $shareTitle or trans('intro.fb_meta_title') }}"/>
+    <meta property="og:site_name" content="{{ trans('intro.fb_meta_sitename') }}"/>
+    <meta property="og:description" content="{{ $shareDescr or trans('intro.meta_description') }}"/>
 
     @include('partials.web-app-meta-tags')
     @include('partials.google-analytics')
