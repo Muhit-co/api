@@ -345,7 +345,7 @@ $(document).bind("scrollstop", function() { scrollActions(); });
 $(function () {
 
   $("#createAnnouncement").validate({
-
+    errorClass:"form-input-hasError",
     rules: {
       title: {
         required: true,
@@ -354,6 +354,16 @@ $(function () {
       content: {
         required: true,
         minlength: 15
+      }
+    },
+    messages: {
+      title: {
+        required: "Lütfen başlık giriniz",
+        minlength: "Biraz daha detaylı anlatınız"
+      },
+      content: {
+        required: "Lütfen duyurunuzu giriniz",
+        minlength: "Biraz daha detaylı anlatınız"
       }
     },
 
