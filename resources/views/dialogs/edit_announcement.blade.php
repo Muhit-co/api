@@ -1,8 +1,12 @@
-<dialog id="dialog_edit_announcement">
+{{-- An edit announcement dialog requires a parameter $announcement --}}
+
+@if(isset($announcement))
+
+<dialog id="dialog_edit_announcement_{{ $announcement->id }}">
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i
                 class="ion ion-ios-close-empty ion-3x"></i></a>
 
-    <form method="post" action="/duyuru/ekle">
+    <form method="post" action="/duyuru/edit/{{ $announcement->id }}">
 
         <div class="dialog-content">
             <h2 class="u-mr30">
@@ -12,13 +16,12 @@
             </p>
 
             <div class="form-group form-fullwidth u-mb20">
-                <input type="text" name="title" class="form-input form-grey" value="" rows="4"
+                <input type="text" name="title" class="form-input form-grey" value="{{ $announcement->title }}" rows="4"
                        placeholder="{{ trans('issues.title') }}"/>
             </div>
 
             <div class="form-group form-fullwidth">
-                <textarea class="form-input form-grey" value="" rows="4" name="content"
-                          placeholder="{{ trans('issues.placeholder_your_message') }}"></textarea>
+                <textarea class="form-input form-grey" rows="4" name="content" placeholder="{{ trans('issues.placeholder_your_message') }}">{{ $announcement->content }}</textarea>
             </div>
         </div>
         <hr>
@@ -37,3 +40,5 @@
     </form>
 
 </dialog>
+
+@endif
