@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('duyurular', 'AnnouncementController@index');
     Route::post('duyuru/ekle', 'AnnouncementController@create');
-    Route::get('duyuru/duzenle/{id}', 'AnnouncementController@edit');
+    Route::post('duyuru/duzenle/{id}', 'AnnouncementController@edit');
     Route::get('duyuru/sil/{id}', 'AnnouncementController@delete');
 });
 

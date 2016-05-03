@@ -64,14 +64,20 @@ class AnnouncementController extends Controller
 
     public function create(CreateAnnouncement $request)
     {
-        $this->announcement->create($request);
+        $message = $this->announcement->create($request);
+        $messageStatus = $this->announcement->getStatus();
+        \Session::flash($messageStatus, $message);
 
         return redirect()->back();
     }
 
-    public function edit($id)
+    public function edit($id, CreateAnnouncement $create)
     {
-        
+        $message = $this->announcement->edit($id, $create->get('title'), $create->get('content'));
+        $messageStatus = $this->announcement->getStatus();
+        \Session::flash($messageStatus, $message);
+
+        return redirect()->back();
     }
 
     public function delete($id)

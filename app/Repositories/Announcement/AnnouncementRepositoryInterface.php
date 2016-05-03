@@ -13,4 +13,7 @@ interface AnnouncementRepositoryInterface
     public function delete($id);
 
     public function edit($id, $title, $content);
+
+    public function getStatus();
+
 }

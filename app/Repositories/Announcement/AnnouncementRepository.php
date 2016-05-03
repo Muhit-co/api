@@ -9,6 +9,7 @@ use Muhit\Models\Announcement;
 class AnnouncementRepository implements AnnouncementRepositoryInterface
 {
     private $announcement;
+    private $status;
 
     public function __construct(Announcement $announcement)
     {
@@ -34,22 +35,23 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
             'content' => $request->get('content'),
             'user_id' => \Auth::user()->id
         ]);
+
+        $this->setStatus();
+
+        return 'Duyuru yaratildi';
     }
 
     public function delete($id)
     {
         $announcement = $this->announcement->find($id);
 
-        if (!$announcement) {
+        if (!$announcement || $announcement->user_id != \Auth::getUser()->id) {
 
+            $this->setStatus('error');
             return 'Announcement not found';
         }
 
-        if ($announcement->user_id != \Auth::getUser()->id) {
-
-            return 'not allowed';
-        }
-
+        $this->setStatus();
         $this->announcement->delete();
     }
 
@@ -57,20 +59,34 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
     {
         $announcement = $this->announcement->find($id);
 
-        if (!$announcement) {
+        if (!$announcement || $announcement->user_id != \Auth::getUser()->id) {
+
+            $this->setStatus('error');
 
             return 'Announcement not found';
-        }
-
-        if ($announcement->user_id != \Auth::getUser()->id) {
-
-            return 'not allowed';
         }
 
         $announcement->title = $title;
         $announcement->content = $content;
         $announcement->save();
 
-        return 'Announcement updated';
+        $this->setStatus();
+
+        return 'Duyuru guncellendi';
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Default is success
+     *
+     * @param string $status
+     */
+    public function setStatus($status = 'success')
+    {
+        $this->status = $status;
     }
 }
