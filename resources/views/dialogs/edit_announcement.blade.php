@@ -36,11 +36,23 @@
                     <button type="submit" class="btn btn-secondary direct-submit">{{ trans('auth.send_cap') }}</button>
                 </div>
 
-                <a href="javascript:alert('{{ trans('issues.delete_announcement_confirmation') }}')"
-                   class="btn btn-greytored">{{ trans('auth.delete_cap') }}</a>
             </div>
         </form>
 
+        <button id="deleteAnnouncement" onclick="deleteAnnouncement({!! $announcement->id !!})" class="btn btn-greytored">{{ trans('auth.delete_cap') }}</button>
+
     </dialog>
+
+    <script>
+        function deleteAnnouncement(id) {
+
+            var r = confirm("<?php echo trans('issues.delete_announcement_confirmation')?>");
+
+            if (r == true) {
+
+                window.location.href = '/duyuru/sil/' + id;
+            }
+        }
+    </script>
 
 @endif

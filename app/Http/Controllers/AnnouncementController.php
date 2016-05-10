@@ -82,7 +82,11 @@ class AnnouncementController extends Controller
 
     public function delete($id)
     {
+        $message = $this->announcement->delete($id);
+        $messageStatus = $this->announcement->getStatus();
+        \Session::flash($messageStatus, $message);
 
+        return redirect()->back();
     }
 
 }

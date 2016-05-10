@@ -48,11 +48,14 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
         if (!$announcement || $announcement->user_id != \Auth::getUser()->id) {
 
             $this->setStatus('error');
-            return 'Announcement not found';
+
+            return 'Duyuru bulunamadi!';
         }
 
         $this->setStatus();
-        $this->announcement->delete();
+        $announcement->delete();
+
+        return 'Duyuru silindi';
     }
 
     public function edit($id, $title, $content)
@@ -63,7 +66,7 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
 
             $this->setStatus('error');
 
-            return 'Announcement not found';
+            return 'Duyuru bulunamadi!';
         }
 
         $announcement->title = $title;
