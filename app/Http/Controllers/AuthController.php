@@ -441,12 +441,6 @@ class AuthController extends Controller {
 
 		$userData = $user->user;
 
-		echo "<pre>";
-		print_r($userData);
-		echo "</pre>";
-
-		exit;
-
 		if (empty($email) or empty($id)) {
 			return redirect('/signup')
 				->with('error', 'Facebook ile girişte bir hata meydana geldi, normal login olmayı deneyebilirsiniz.')->withInput();
@@ -466,6 +460,13 @@ class AuthController extends Controller {
 
 			if (empty($u)) {
 				#lets create the user account
+
+				if (isset($userData['name']) and !isset($userData['first_name'])) {
+					$parts = explode(" ", $userData['name']);
+					$userData['last_name'] = array_pop($parts);
+					$userData['first_name'] = implode(" ", $parts);
+				}
+
 				$u = new User;
 				$u->username = Str::slug($user->getName());
 				$u->email = $user->getEmail();
