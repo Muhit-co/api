@@ -252,7 +252,7 @@ class IssuesController extends Controller {
 		}
 
 		if (Request::ajax()) {
-			return view('partials.issues', ['issues' => $issues->paginate(20), 'hood' => $hood]);
+			return view('partials.issues-list', ['issues' => $issues->paginate(20), 'hood' => $hood]);
 		}
 
 		if ($this->isApi) {

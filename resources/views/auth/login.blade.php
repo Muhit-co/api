@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <form method="post" action="/login">
+            <form method="post" id="loginForm" action="/login">
                 <h2 class="u-mv20">{{ trans('auth.log_in') }}</h2>
 
                 <div class="form-group form-fullwidth u-mb20">
@@ -41,5 +41,45 @@
     </div>
 
 </section>
+
+<script>
+    $(function () {
+
+        $("#loginForm").validate({
+
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password : {
+                    required: true
+                }
+            },
+
+            submitHandler: function (form) {
+
+                var validFormId = $(form).attr("id");
+
+                // ajax target
+                $('#' + validFormId).ajaxSubmit({
+                    beforeSubmit: function () {
+
+//                        indicator.showFS();
+                    },
+                    success: function (responseText) {
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+
+                        console.log(thrownError);
+
+                        indicator.hideFS();
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 @stop
