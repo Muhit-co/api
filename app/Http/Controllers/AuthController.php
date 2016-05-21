@@ -460,6 +460,13 @@ class AuthController extends Controller {
 
 			if (empty($u)) {
 				#lets create the user account
+
+				if (isset($userData['name']) and !isset($userData['first_name'])) {
+					$parts = explode(" ", $userData['name']);
+					$userData['last_name'] = array_pop($parts);
+					$userData['first_name'] = implode(" ", $parts);
+				}
+
 				$u = new User;
 				$u->username = Str::slug($user->getName());
 				$u->email = $user->getEmail();

@@ -10,6 +10,18 @@
     @endif
 @stop
 
+<?php
+// head parameters
+$pageTitle = $shareTitle = $issue['title'] . ' -';
+if(count($issue['images']) > 0) {
+    $baseURL = '//d1vwk06lzcci1w.cloudfront.net/600x300/';
+    $shareImage = $baseURL . $issue['images'][0]['image'];
+}
+if(strlen($issue['problem']) > 0) {
+    $shareDescr = $issue['problem'];
+}
+?>
+
 @include('partials.header', array('type'=>'show'))
 
 <?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR');?>

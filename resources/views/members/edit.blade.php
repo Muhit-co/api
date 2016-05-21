@@ -44,16 +44,13 @@
                                        placeholder="{!! trans('auth.password_placeholder') !!}"/>
                             </div>
 
-                            <label class="u-mt20">{!! trans('issues.neighbourhood') !!}</label>
+                            <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
                             <?php $state = ($role == 'admin') ? true : false; ?>
-                            @if($user->hood && $user->hood->district && $user->hood->district->city)
-                                @include('partials.field-hood', [
-                                    'inputClassList' => 'form-grey',
-                                    'defaultValue' => $user->hood->name . ", " . $user->hood->district->name . ", " . $user->hood->district->city->name,
-                                    'disabledState' => $state])
-                            @else
-                                @include('partials.field-hood', ['inputClassList' => 'form-grey'])
-                            @endif
+                            <?php $value = ($user->hood && $user->hood->district && $user->hood->district->city) ? $user['hood']['name'] . ", " . $user['hood']['district']['name'] . ", " . $user['hood']['district']['city']['name'] : '' ?>
+                            @include('partials.field-hood', array(
+                                'inputClassList' => 'form-grey',
+                                'defaultValue' => $value,
+                                'disabledState' => $state))
 
                             @if($state !== true)
                                 <div class="form-group u-relative u-mv10">

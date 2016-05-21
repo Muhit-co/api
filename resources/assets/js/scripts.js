@@ -59,12 +59,12 @@ $(document).ready(function() {
   // start listeners
 
   // dropdown toggle
-  $('.hasDropdown > a, .hasDropdown > button, .dropdown a').bind('click', (function(e) {
+  $('.hasDropdown > a, .hasDropdown > button').bind('click', (function(e) {
     $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
     $(this).closest('.hasDropdown').find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
   $(window).click(function(e) {
-    if(!e.target.matches('.hasDropdown.dropdownIsOpen > a, .hasDropdown.dropdownIsOpen > button, .dropdownIsOpen .dropdown, .dropdownIsOpen .dropdown *')) {
+    if(!e.target.matches('.hasDropdown *, .hasDropdown > a, .hasDropdown > button, .hasDropdown.dropdownIsOpen > a, .hasDropdown.dropdownIsOpen > button, .dropdownIsOpen .dropdown')) {
       $('.hasDropdown').removeClass('dropdownIsOpen');
       $('.hasDropdown').find('.ion-chevron-up').addClass('ion-chevron-down').removeClass('ion-chevron-up');
     }
