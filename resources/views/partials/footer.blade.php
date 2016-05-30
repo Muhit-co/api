@@ -1,7 +1,9 @@
  <footer>
     <div class="row">
         <div class="col-sm-3 u-clearfix u-mb20">
-            <a href="#top" id="nav_logo" class="u-floatleft"><img src="/images/logo_grey.png" height="30px" alt="" /></a>
+            <a href="#top" id="nav_logo" class="u-floatleft">
+                @include('partials.logo_svg', array('height' => '30px', 'colour' => 'grey'))
+            </a>
             <small class="u-floatleft u-ml20" style="margin-top: 3px;">&copy; {{strftime('%Y')}}</small>
         </div>
         <div class="col-sm-3">

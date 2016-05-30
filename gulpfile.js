@@ -20,7 +20,8 @@ elixir(function(mix) {
         "vendors/fastclick.js",
         "app.js",
         "scripts.js",
-        "maps.js"
+        "maps.js",
+        '../../../public/bower_components/jquery.validation/dist/jquery.validate.min.js',
     ]);
 
 });

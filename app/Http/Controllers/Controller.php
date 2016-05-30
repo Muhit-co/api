@@ -1,42 +1,56 @@
 <?php namespace Muhit\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Request;
 use Auth;
+use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+use Request;
 
-abstract class Controller extends BaseController {
+abstract class Controller extends BaseController
+{
 
     use DispatchesCommands, ValidatesRequests;
 
     public $isApi;
 
-    public function __construct(){
+    public function __construct()
+    {
         if (Request::is('api/*')) {
+
             $this->isApi = true;
-        }
-        else {
+
+        } else {
+
             $this->isApi = false;
-            $role = 'public';
-            if (Auth::check()) {
-                if (Auth::user()->level < 4) {
-                    $role = 'user';
-                }
-                elseif (Auth::user()->level == 4) {
-                    $role = 'unapproved-admin';
-                }
-                elseif (Auth::user()->level >= 5 and Auth::user()->level < 10) {
-                    $role = 'admin';
-                }
-                else {
-                    $role = 'superadmin';
-                }
-            }
+
+            $role = $this->getRole();
+
             view()->share('role', $role);
         }
-
-
     }
 
+    private function getRole()
+    {
+        if (!Auth::check()) {
+
+            return 'public';
+        }
+
+        if (Auth::user()->level < 4) {
+
+            return 'user';
+        }
+
+        if (Auth::user()->level == 4) {
+
+            return 'unapproved-admin';
+        }
+
+        if (Auth::user()->level >= 5 and Auth::user()->level < 10) {
+
+            return 'admin';
+        }
+
+        return 'superadmin';
+    }
 }

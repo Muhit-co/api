@@ -1,7 +1,5 @@
 <?php namespace Muhit\Http\Controllers;
 
-use Illuminate\Support\Str;
-use Muhit\Http\Controllers\Controller;
 use Muhit\Models\City;
 use Muhit\Models\District;
 use Muhit\Models\Hood;

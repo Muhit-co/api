@@ -46,6 +46,11 @@
       }
     }
   }
+  .error:not(input):not(textarea) {
+    padding: 5px;
+    color: @red;
+    font-size: 0.9em;
+  }
 }
 label {
   display: block;
@@ -85,7 +90,7 @@ select {
     color: @muhitBlue;
     outline: none;
   }
-  &.form-input-hasError {
+  &.form-input-hasError, &.error {
     .box-shadow(0 0 0 2px @red);
     &:focus {
       .box-shadow(0 0 0 2px @red);
@@ -156,6 +161,7 @@ input[type="radio"] {
   }
 }
 textarea {
+  max-width: 100%;
   height: auto;
   padding-top: 5px;
   padding-bottom: 5px;

@@ -59,12 +59,12 @@ $(document).ready(function() {
   // start listeners
 
   // dropdown toggle
-  $('.hasDropdown > a, .hasDropdown > button, .dropdown a').bind('click', (function(e) {
+  $('.hasDropdown > a, .hasDropdown > button').bind('click', (function(e) {
     $(this).closest('.hasDropdown').toggleClass('dropdownIsOpen');
     $(this).closest('.hasDropdown').find('.ion-chevron-down, .ion-chevron-up').toggleClass('ion-chevron-down').toggleClass('ion-chevron-up');
   }));
   $(window).click(function(e) {
-    if(!e.target.matches('.hasDropdown.dropdownIsOpen > a, .hasDropdown.dropdownIsOpen > button, .dropdownIsOpen .dropdown, .dropdownIsOpen .dropdown *')) {
+    if(!e.target.matches('.hasDropdown *, .hasDropdown > a, .hasDropdown > button, .hasDropdown.dropdownIsOpen > a, .hasDropdown.dropdownIsOpen > button, .dropdownIsOpen .dropdown')) {
       $('.hasDropdown').removeClass('dropdownIsOpen');
       $('.hasDropdown').find('.ion-chevron-up').addClass('ion-chevron-down').removeClass('ion-chevron-up');
     }
@@ -95,7 +95,7 @@ $(document).ready(function() {
   }));
 
   // login button interaction
-  $('button[type="submit"], .btn-busyOnClick').bind(touchEvent, (function(e) {
+  $('button[type="submit"], .btn-busyOnClick').not('.direct-submit').bind(touchEvent, (function(e) {
     addIsBusy($(this));
   }));
 
@@ -341,3 +341,99 @@ $(window).scroll(function() { scrollActions(); });
 $(window).resize(function() { scrollActions(); });
 $(document).bind("scrollstart", function() { scrollActions(); });
 $(document).bind("scrollstop", function() { scrollActions(); });
+
+$(function () {
+
+  $("#createAnnouncement").validate({
+    errorClass:"form-input-hasError",
+    rules: {
+      title: {
+        required: true,
+        minlength: 5
+      },
+      content: {
+        required: true,
+        minlength: 15
+      }
+    },
+    messages: {
+      title: {
+        required: "Lütfen başlık giriniz",
+        minlength: "Biraz daha detaylı anlatınız"
+      },
+      content: {
+        required: "Lütfen duyurunuzu giriniz",
+        minlength: "Biraz daha detaylı anlatınız"
+      }
+    },
+
+    submitHandler: function (form) {
+
+      var validFormId = $(form).attr("id");
+
+      $('#' + validFormId).ajaxSubmit({
+        beforeSubmit: function () {
+
+        },
+        success: function (responseText) {
+
+          // closeDialog();
+          window.location.href = '/duyurular'
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+
+          console.log(thrownError);
+
+          indicator.hideFS();
+        }
+      });
+    }
+  });
+
+  $("#editAnnouncement1").validate({
+    errorClass:"form-input-hasError",
+    rules: {
+      title: {
+        required: true,
+        minlength: 5
+      },
+      content: {
+        required: true,
+        minlength: 15
+      }
+    },
+    messages: {
+      title: {
+        required: "Lütfen başlık giriniz",
+        minlength: "Biraz daha detaylı anlatınız"
+      },
+      content: {
+        required: "Lütfen duyurunuzu giriniz",
+        minlength: "Biraz daha detaylı anlatınız"
+      }
+    },
+
+    submitHandler: function (form) {
+
+      var validFormId = $(form).attr("id");
+
+      $('#' + validFormId).ajaxSubmit({
+        beforeSubmit: function () {
+
+        },
+        success: function (responseText) {
+
+          // closeDialog();
+          window.location.href = '/duyurular'
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+
+          console.log(thrownError);
+
+          indicator.hideFS();
+        }
+      });
+    }
+  });
+
+});

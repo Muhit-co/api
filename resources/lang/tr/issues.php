@@ -8,7 +8,7 @@ return [
     "my_ideas" => "Fikirlerim",
     "my_ideas_cap" => "FİKİRLERİM",
     "announcements" => "Duyurular",
-    "announcements_cap" => "DUYURULAR",
+    "announcement" => "Duyuru",
     "my_announcements" => "Duyurularım",
     "my_announcements_cap" => "DUYURULARIM",
     "my_muhtar_cap" => "MUHTARIM",
@@ -29,7 +29,6 @@ return [
     "contact_info_cap" => "İLETİŞİM BİLGİLERİ",
     "neighbourhood" => "Mahalle",
     "ideas_for" => "için fikirler",
-    "comments_from_muhtar" => "Muhtardan gelen yorumlar",
     "log_in_needed" => "Giriş yapman ya da üye olman gerekiyor",
     "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor", 
     "issues_cant_be_found" => "Fikir bulunamadı...",
@@ -54,7 +53,7 @@ return [
     "edit_comment" => "Yorum düzenle",
     "delete_comment_confirmation" => "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz.",
     "change_status_progress" => "Fikri çözüm aşamasına geçir!",
-    "placeholder_yourmessage" => "Mesajını buradanaya yaz...",
+    "placeholder_your_message" => "Mesajını buradan yaz...",
     "change_status_progress_descr" => "Bu fikri çözüm aşamasına geçirmek mi istiyorsunuz? Çözümün uygulanması için ilgili belediye kurumları ya da müdürlükler ile iletişime geçmeniz gerekebilir.",
     "placeholder_progressmessage" => "Mesajını buradanaya yaz...",
     "change_status_solved" => "Fikri 'Çözüldü' olarak değiştir",
@@ -83,13 +82,15 @@ return [
     "post_new_announcement_cap" => "YENİ DUYURU YAZ", 
     "post_new_announcement" => "Yeni duyuru yaz", 
     "post_new_announcement_descr" => "Mahallenizdeki önemli gelişmeleri buradan duyurabilirsiniz. Muhit'e üye olan mahalleliler duyurularınız hakkında bildirim alacaktır.",
+    "edit_announcement" => "Duyuru düzenle", 
+    "delete_announcement_confirmation" => "Bu duyuruyu silmek istediğinizden emin misiniz?", // @seratolgay
     "twitter_text" => ":issue_title – Muhit",
     "muhit_story" => "Muhit'in Hikayesi",
     "terms_and_conditions" => "Kullanım koşulları",
     "about_muhit" => "Muhit hakkında",
     "contact" => "İletişim",
     "our_manifesto" => "Manifestomuz",
-    "my_muhtar_info" => "Muhtarım bilgisi", // @seratolgay
+    "my_muhtar_info" => "Muhtarımın bilgileri",
     "your_muhtar_didnt_sign_up_yet" => "Muhtarınız henüz Muhit'e üye değil!", // @seratolgay
     "no_announcements" => "Duyuru yok...", // @seratolgay
     "submitted_anonymously" => "Bu fikir anonim olarak eklenmiştir.",
