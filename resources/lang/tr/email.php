@@ -12,7 +12,15 @@ return [
     "change_password" => "Şifreni değiştir",
     "read_again_tandc" => "Kullanım koşullarını bir daha oku",
     "sign_up_conf_title" => "Muhit kaydını oluşturdun.",
-    "sign_up_conf_content" => "Aramıza hoşgeldin Giriş yapıp, fikirlerini ve sorunlarını hemen paylaşmaya başlayabilirsin.",
+    "sign_up_conf_content" => "Aramıza hoşgeldin! Giriş yapıp, fikirlerini ve sorunlarını hemen paylaşmaya başlayabilirsin.",
+    "muhtar_account_approved_title" => "Your muhtar account in Muhit has been approved", // @seratolgay
+    "muhtar_account_approved_text" => "Welcome to Muhit! Your request for a muhtar account has been approved. You can now log in and start to interact with the ideas in your neighbourhood, or write announcements to the people in your neighbourhood.", // @seratolgay
+    "muhtar_help_guides_text" => "Do you need help with how things work? Have a look at our simple Muhtar :tagstart'Nasıl Yapılır':tagend guides.",
+    "how_to_guides_button" => "See the Nasıl Yapılır guides",
+    "muhtar_account_rejected_title" => "Your muhtar account in Muhit could not be approved", // @seratolgay
+    "muhtar_account_rejected_text" => "You recently reuqested access to Muhit as a muhtar. After reviewing your information, we could not approve your request. Please sign up as a user to start adding and supporting ideas.", // @seratolgay
+    "muhtar_account_rejected_elaboration" => "If you are a muhtar and would still like to request access to Muhit, please contact us directly", // @seratolgay
+    "email_us_button" => "Email us", // @seratolgay
     "forgot_password_title" => "Şifreni değiştirmek için...",
     "forgot_password_content" => "Talep ettiğin üzere şifreni değiştirmek için aşağıdaki linke tıklayarak yeni şifreni oluşturabilirsin.",
     "created_idea_title" => "Yeni bir fikir oluşturdun",

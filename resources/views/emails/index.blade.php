@@ -53,6 +53,12 @@
     <li>
       <a href="/email/invite_cayimi_ic">invitation from muhtar to 'have a tea'</a>
     </li>
+    <li>
+      <a href="/email/muhtar_approved">Your muhtar account has been approved</a>
+    </li>
+    <li>
+      <a href="/email/muhtar_rejected">Your muhtar account could not be approved</a>
+    </li>
   </ol>
 
 @stop
