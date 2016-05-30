@@ -9,9 +9,9 @@
 
                 <div class="u-floatright">
                     <?php
-$param_q = (isset($_GET["q"])) ? $_GET["q"] : '';
-$param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
-?>
+                    $param_q = (isset($_GET["q"])) ? $_GET["q"] : '';
+                    $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
+                    ?>
                     <form method="get">
 
                         <div class="form-group u-floatleft u-width150">
@@ -63,14 +63,14 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
 
             @if (strlen($param_q) > 0)
                 <em class="u-block u-mb10">
-                    <small>There are {{ count($members) }} results matching your criteria</small>
+                    <small>There {{ count($members) != 1 ? 'are' : 'is' }} {{ count($members) }} result{{ count($members) != 1 ? 's' : '' }} matching your criteria</small>
                 </em>
             @endif
 
             <div class="list list-small list-overflowshow">
-                <div class="list-header">
-                    <div class="row row-nopadding u-pr100">
-                        <div class="col-sm-4">
+                <div class="list-header u-pr110 u-relative">
+                    <div class="row row-nopadding">
+                        <div class="col-xs-10 col-sm-4">
                             <small class="u-nowrap u-ml40"><em>name (username)</em></small>
                         </div>
                         <div class="col-sm-3 col-sm-hide">
@@ -79,9 +79,14 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
                         <div class="col-sm-1 col-sm-hide">
                             <small class="u-nowrap"><em>level</em></small>
                         </div>
-                        <div class="col-sm-4 col-sm-hide">
+                        <div class="col-sm-2 col-sm-hide">
                             <small class="u-nowrap"><em>location</em></small>
                         </div>
+                    </div>
+                    <div class="u-pinned-topright u-ma10">
+                        <small class="c-medium">
+                            {{count($members)}} record<?php if(count($members) != 1) { echo 's'; } ?>
+                        </small>
                     </div>
                 </div>
                 <ul class="list-content">
@@ -104,8 +109,8 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
                                         </div>
                                     </div>
                                     <div class="col-sm-1 col-sm-hide">
-                                        <div class="u-nowrap u-pt5 c-medium">
-                                            <small class="u-nowrap">{{$m->level}}</small>
+                                        <div class="u-nowrap u-pt5 c-medium" title="level {{ $m->level }}">
+                                            <small class="u-nowrap">{{ getUserLevel($m->level) }}</small>
                                         </div>
                                     </div>
                                     <div class="col-sm-4 col-sm-hide">
@@ -116,7 +121,7 @@ $param_loc = (isset($_GET["location"])) ? $_GET["location"] : '';
                                 </div>
                             </a>
                             <div class="u-pinned-topright u-ma10">
-                                <a href="/admin/view-member/{{$m->id}}" class="btn btn-sm btn-outline u-floatleft">
+                                <a href="/admin/view-member/{{$m->id}}" class="btn btn-sm btn-outline u-floatleft col-sm-hide">
                                     VIEW
                                 </a>
                                 <div class="hasDropdown u-floatleft">
