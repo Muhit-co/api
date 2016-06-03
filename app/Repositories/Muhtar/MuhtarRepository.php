@@ -19,7 +19,8 @@ class MuhtarRepository implements MuhtarRepositoryInterface
 
         if ($hoodId) {
 
-            $muhtar = $this->user->where('level', 4)->where('hood_id', $hoodId)->first();
+            // updated from 4 to 5
+            $muhtar = $this->user->where('level', 5)->where('hood_id', $hoodId)->first();
 
             return $muhtar;
         }
