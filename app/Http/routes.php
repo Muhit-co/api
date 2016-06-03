@@ -16,9 +16,7 @@ Route::get('/user/{username}', function () {
     return view('pages.profile');
 });
 
-Route::get('/muhtar', function () {
-    return view('pages.muhtar');
-});
+Route::get('/muhtar', 'MuhtarController@index');
 #end of testing routes for dann
 
 # reports routing
