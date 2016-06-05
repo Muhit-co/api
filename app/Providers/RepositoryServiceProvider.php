@@ -34,5 +34,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'Muhit\Repositories\Tag\TagRepositoryInterface',
             'Muhit\Repositories\Tag\TagRepository');
+
+        $this->app->bind(
+            'Muhit\Repositories\Muhtar\MuhtarRepositoryInterface',
+            'Muhit\Repositories\Muhtar\MuhtarRepository');
     }
 }

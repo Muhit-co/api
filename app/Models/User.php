@@ -3,6 +3,7 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Redis;
 
 class User extends \Eloquent implements AuthenticatableContract
@@ -39,6 +40,8 @@ class User extends \Eloquent implements AuthenticatableContract
      */
     protected $hidden = ['password', 'remember_token', 'level'];
 
+    protected $appends = ['full_name'];
+
     public function hood()
     {
         return $this->belongsTo(Hood::class);
@@ -47,6 +50,11 @@ class User extends \Eloquent implements AuthenticatableContract
     public function issues()
     {
         return $this->hasMany(Issue::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return Str::ucfirst($this->first_name) . " " . Str::ucfirst($this->last_name);
     }
 
     public function toArray()

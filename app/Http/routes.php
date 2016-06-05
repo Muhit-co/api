@@ -16,9 +16,6 @@ Route::get('/user/{username}', function () {
     return view('pages.profile');
 });
 
-Route::get('/muhtar', function () {
-    return view('pages.muhtar');
-});
 #end of testing routes for dann
 
 # reports routing
@@ -78,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('duyuru/ekle', 'AnnouncementController@create');
     Route::post('duyuru/duzenle/{id}', 'AnnouncementController@edit');
     Route::get('duyuru/sil/{id}', 'AnnouncementController@delete');
+    Route::get('/muhtar', 'MuhtarController@index');
 });
 
 # Admin routes

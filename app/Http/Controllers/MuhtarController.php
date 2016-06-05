@@ -10,10 +10,27 @@ use Muhit\Jobs\IssueCommented;
 use Muhit\Jobs\IssueStatusUpdate;
 use Muhit\Models\Comment;
 use Muhit\Models\Issue;
+use Muhit\Repositories\Muhtar\MuhtarRepositoryInterface;
 use Request;
 
 class MuhtarController extends Controller {
 
+	private $muhtar;
+
+	public function __construct(MuhtarRepositoryInterface $muhtar)
+	{
+		$this->muhtar = $muhtar;
+	}
+
+	public function index()
+	{
+		parent::__construct();
+
+		$muhtar = $this->muhtar->getMuhtar();
+
+		return view('pages.muhtar', compact('muhtar'));
+	}
+	
 	/**
 	 * comments to an issue
 	 *
