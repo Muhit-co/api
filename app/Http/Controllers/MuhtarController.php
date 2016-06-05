@@ -24,6 +24,8 @@ class MuhtarController extends Controller {
 
 	public function index()
 	{
+		parent::__construct();
+
 		$muhtar = $this->muhtar->getMuhtar();
 
 		return view('pages.muhtar', compact('muhtar'));
