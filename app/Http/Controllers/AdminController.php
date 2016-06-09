@@ -4,58 +4,34 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Log;
 use Muhit\Models\Hood;
 use Muhit\Models\User;
-use Request;
+use Muhit\Repositories\Admin\AdminRepositoryInterface;
 use Storage;
 
 class AdminController extends Controller
 {
+    private $admin;
 
-    /**
-     * list users based on filters and pagination
-     *
-     * @return view
-     * @author gcg
-     */
-    public function getMembers()
+    public function __construct(AdminRepositoryInterface $admin)
     {
-
-        $order = ((Request::has('order')) ? Request::get('order') : 'id');
-        $dir = ((Request::has('dir')) ? Request::get('dir') : 'asc');
-
-        $users = User::orderBy($order, $dir);
-
-        $filterable_fields = ['level', 'location', 'q'];
-
-        foreach ($filterable_fields as $f) {
-            if (Request::has($f)) {
-                if ($f == 'q') {
-                    $users->where('username', 'LIKE', '%' . Request::get($f) . '%')
-                        ->orWhere('first_name', 'LIKE', '%' . Request::get($f) . '%')
-                        ->orWhere('last_name', 'LIKE', '%' . Request::get($f) . '%')
-                        ->orWhere('email', 'LIKE', '%' . Request::get($f) . '%');
-                } else {
-                    $users->where($f, 'LIKE', '%' . Request::get($f) . '%');
-                }
-
-            }
-        }
-
-        return response()->app(200, 'admin.members.index', ['members' => $users->paginate(30), 'filters' => Request::all()]);
+        parent::__construct();
+        $this->admin = $admin;
     }
 
-    /**
-     * displays the information about a muhtar
-     *
-     * @return view
-     * @author gcg
-     */
+    public function getMembers(Request $request)
+    {
+        $members = $this->admin->getMembers($request);
+
+        return response()->app(200, 'admin.members.index', ['members' => $members, 'filters' => $request->all()]);
+    }
+
     public function getViewMember($id = null)
     {
-        $member = User::find($id);
+        $member = $this->admin->getMember($id);
 
         if (!$member) {
 
@@ -63,64 +39,44 @@ class AdminController extends Controller
                 ->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
         }
 
-        $updates = DB::table('user_updates')->where('user_id', $member->id)->get();
+        $updates = $this->admin->getUpdates($id);
 
-        return response()->app(200, 'admin.members.show', ['member' => $member, 'updates' => $updates]);
+        return response()->app(200, 'admin.members.show', compact('member', 'updates'));
     }
 
-    /**
-     * displays a form for editing a member
-     *
-     * @return view
-     * @author gcg
-     */
     public function getEditMember($id = null)
     {
-        $member = User::find($id);
+        $member = $this->admin->getMember($id);
 
-        if (empty($member)) {
+        if (!$member) {
+
             return redirect('/admin/members')
                 ->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
         }
 
-        return response()->app(200, 'admin.members.edit', ['member' => $member]);
+        return response()->app(200, 'admin.members.edit', compact('member'));
     }
 
-    /**
-     * rejects a pending muhtar
-     *
-     * @return redirect
-     * @author gcg
-     */
     public function getRejectMuhtar($id = null)
     {
-        $member = User::find($id);
+        $member = $this->admin->getMember($id);
 
-        if (empty($member)) {
+        if (!$member) {
+
             return redirect('/admin/members')
                 ->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
         }
 
         if ($member->level != 4) {
+
             return redirect('/admin/members')
                 ->with('error', 'Muhtar onay beklemiyor, onay beklemeyen muhtarları reject edemezsin.');
         }
 
-        $tmp = [
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            'source_id' => Auth::user()->id,
-            'previous_level' => $member->level,
-            'current_level' => 3,
-            'user_id' => $member->id,
-        ];
+        $response = $this->admin->rejectMuhtar($member);
 
-        try {
-            $member->level = 3;
-            $member->save();
-            DB::table('user_updates')->insert($tmp);
-        } catch (Exception $e) {
-            Log::error('AdminController/getRejectMuhtar', (array)$e);
+        if (!$response) {
+
             return redirect('/admin/members')
                 ->with('error', 'Muhtar güncellenirken bir hata oldu.');
         }
@@ -129,43 +85,25 @@ class AdminController extends Controller
             ->with('success', 'Muhtar reject edildi.');
     }
 
-    /**
-     * approves a muhtar
-     *
-     * @return redirect
-     * @author gcg
-     */
     public function getApproveMuhtar($id = null)
     {
-        $member = User::find($id);
+        $member = $this->admin->getMember($id);
 
-        if (empty($member)) {
+        if (!$member) {
+
             return redirect('/admin/members')
                 ->with('error', 'Aradığınız kullanıcı bulunamıyor. ');
         }
-        
+
         if ($member->level != 4) {
+
             return redirect('/admin/members')
                 ->with('error', 'Muhtar onay beklemiyor, onay beklemeyen muhtarları approve edemezsin.');
         }
 
-        $tmp = [
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            'source_id' => Auth::user()->id,
-            'previous_level' => $member->level,
-            'current_level' => 5,
-            'user_id' => $member->id,
-        ];
+        $response = $this->admin->approveMuhtar($member);
 
-        try {
-            $member->level = 5;
-            $member->save();
-            DB::table('user_updates')->insert($tmp);
-
-        } catch (Exception $e) {
-
-            Log::error('AdminController/getApproveMuhtar', (array)$e);
+        if (!$response) {
 
             return redirect('/admin/members')
                 ->with('error', 'Muhtar güncellenirken bir hata oldu.');
@@ -178,12 +116,13 @@ class AdminController extends Controller
     /**
      * saves a member information
      *
+     * @param Request $request
      * @return redirect
      * @author gcg
      */
-    public function postSaveMember()
+    public function postSaveMember(Request $request)
     {
-        $data = Request::all();
+        $data = $request->all();
 
         $user = User::find($data['id']);
 
@@ -227,7 +166,9 @@ class AdminController extends Controller
         }
         if (isset($data['location']) and !empty($data['location'])) {
             $user->location = $data['location'];
-
+        }
+        if (isset($data['phone']) and !empty($data['phone'])) {
+            $user->phone = $data['phone'];
         }
 
         if (!empty($data['image']) and is_array($data['image'])) {

@@ -4,207 +4,220 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Exception;
+use Illuminate\Http\Request;
 use Log;
-use Muhit\Http\Controllers\Controller;
 use Muhit\Jobs\IssueCommented;
 use Muhit\Jobs\IssueStatusUpdate;
 use Muhit\Models\Comment;
 use Muhit\Models\Issue;
 use Muhit\Repositories\Muhtar\MuhtarRepositoryInterface;
-use Request;
 
-class MuhtarController extends Controller {
+class MuhtarController extends Controller
+{
 
-	private $muhtar;
+    private $muhtar;
 
-	public function __construct(MuhtarRepositoryInterface $muhtar)
-	{
-		$this->muhtar = $muhtar;
-	}
+    public function __construct(MuhtarRepositoryInterface $muhtar)
+    {
+        parent::__construct();
+        $this->muhtar = $muhtar;
+    }
 
-	public function index()
-	{
-		parent::__construct();
+    public function index()
+    {
+        $muhtar = $this->muhtar->getMuhtar();
 
-		$muhtar = $this->muhtar->getMuhtar();
+        return view('pages.muhtar', compact('muhtar'));
+    }
 
-		return view('pages.muhtar', compact('muhtar'));
-	}
-	
-	/**
-	 * comments to an issue
-	 *
-	 * @return redirect
-	 * @author gcg
-	 */
-	public function postComment() {
-		if (Request::has('issue_id') and Request::has('comment')) {
+    /**
+     * comments to an issue
+     *
+     * @param Request $request
+     * @return redirect
+     * @author gcg
+     */
+    public function postComment(Request $request)
+    {
+        if ($request->has('issue_id') && $request->has('comment')) {
 
-			$issue = Issue::find(Request::get('issue_id'));
+            $issue = Issue::find($request->get('issue_id'));
 
-			if (empty($issue)) {
-				return redirect('/')
-					->with('error', 'Issue deleted. ');
-			}
+            if (!$issue) {
 
-			$can_comment = false;
-			if (!empty($issue->location) and !empty(Auth::user()->location) and $issue->location == Auth::user()->location) {
-				$can_comment = true;
-			}
+                return redirect('/')->with('error', 'Issue deleted. ');
+            }
 
-			if (!$can_comment) {
-				return redirect('/issues/view/' . $issue->id)
-					->with('error', 'Sadece kendi bölgenizdeki fikirlere yorum yapabilirisniz.');
-			}
+            $can_comment = false;
 
-			$comment = new Comment;
-			$comment->issue_id = Request::get('issue_id');
-			$comment->user_id = Auth::user()->id;
-			$comment->comment = Request::get('comment');
-			try {
-				$comment->save();
+            if (!empty($issue->location) and !empty(Auth::user()->location) and $issue->location == Auth::user()->location) {
 
-				if (Request::has('issue_status')) {
-					$new_status = Request::get('issue_status');
+                $can_comment = true;
+            }
 
-					if (in_array($new_status, ['in-progress', 'solved'])) {
-						$old_status = $issue->status;
-						$issue->status = $new_status;
-						$issue->save();
-						DB::table('issue_updates')
-							->insert([
-								'user_id' => Auth::user()->id,
-								'issue_id' => $issue->id,
-								'old_status' => $old_status,
-								'new_status' => $new_status,
-								'created_at' => Carbon::now(),
-								'updated_at' => Carbon::now(),
-							]);
-						$this->dispatch(new IssueStatusUpdate($comment->id, $new_status));
-					}
-				} else {
-					$this->dispatch(new IssueCommented($comment->id));
-				}
+            if (!$can_comment) {
 
-			} catch (Exception $e) {
-				Log::error('MuhtarController/postComment', (array) $e);
-				return redirect('/issues/view/' . Request::get('issue_id'))
-					->with('error', 'Yorumu kaydederken teknik bir hata meydana geldi, teknik ekip bilgilendirildi. ');
-			}
+                return redirect('/issues/view/' . $issue->id)
+                    ->with('error', 'Sadece kendi bölgenizdeki fikirlere yorum yapabilirisniz.');
+            }
 
-			return redirect('/issues/view/' . Request::get('issue_id') . '#comment-' . $comment->id)
-				->with('success', 'Yorum başarılı bir şekilde kaydedildi.');
+            $comment = new Comment;
+            $comment->issue_id = $request->get('issue_id');
+            $comment->user_id = Auth::user()->id;
+            $comment->comment = $request->get('comment');
+            try {
+                $comment->save();
 
-		} else {
-			return redirect('/')
-				->with('error', 'Yorum yazmak için lütfen formu doldurun.');
-		}
+                if ($request->has('issue_status')) {
 
-		return redirect('/');
-	}
+                    $new_status = $request->get('issue_status');
 
-	/**
-	 * deletes a comment
-	 *
-	 * @param null $id
-	 * @return redirect
-	 * @author gcg
-	 */
-	public function getDeleteComment($id = null) {
-		$comment = Comment::find($id);
+                    if (in_array($new_status, ['in-progress', 'solved'])) {
 
-		if (empty($comment)) {
-			return redirect('/')
-				->with('error', 'Silmek istediğiniz yorum sistemde bulunmuyor...');
-		}
+                        $old_status = $issue->status;
+                        $issue->status = $new_status;
+                        $issue->save();
 
-		if ($comment->user_id != Auth::user()->id) {
-			return redirect('/')
-				->with('error', 'Sadece kendi yazdığınız yorumları silebilirsiniz...');
-		}
+                        DB::table('issue_updates')
+                            ->insert([
+                                'user_id' => Auth::user()->id,
+                                'issue_id' => $issue->id,
+                                'old_status' => $old_status,
+                                'new_status' => $new_status,
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
+                            ]);
 
-		try {
+                        $this->dispatch(new IssueStatusUpdate($comment->id, $new_status));
+                    }
 
-			$comment->delete();
+                } else {
 
-		} catch (Exception $e) {
+                    $this->dispatch(new IssueCommented($comment->id));
+                }
 
-			Log::error('MuhtarController/getDeleteComment', (array) $e);
+            } catch (Exception $e) {
+                Log::error('MuhtarController/postComment', (array)$e);
 
-			return redirect('/issues/view/' . $comment->issue_id)
-				->with('error', 'Yorum silerken teknik bir hata meydana geldi. ');
-		}
+                return redirect('/issues/view/' . $request->get('issue_id'))
+                    ->with('error', 'Yorumu kaydederken teknik bir hata meydana geldi, teknik ekip bilgilendirildi. ');
+            }
 
-		return redirect('/issues/view/' . $comment->issue_id)
-			->with('success', 'Yaptığınız yorumu sildiniz.');
-	}
+            return redirect('/issues/view/' . $request->get('issue_id') . '#comment-' . $comment->id)
+                ->with('success', 'Yorum başarılı bir şekilde kaydedildi.');
 
-	/**
-	 * edits a comment
-	 *
-	 * @param null $id
-	 * @return view
-	 * @author gcg
-	 */
-	public function getEditComment($id = null) {
-		$comment = Comment::find($id);
+        } else {
 
-		if (empty($comment)) {
-			return redirect('/')
-				->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
-		}
+            return redirect('/')
+                ->with('error', 'Yorum yazmak için lütfen formu doldurun.');
+        }
+    }
 
-		if ($comment->user_id != Auth::user()->id) {
-			return redirect('/')
-				->with('error', 'Sadece kendi yazdığınız yorumları düzenleyebilirsiniz.');
-		}
+    /**
+     * deletes a comment
+     *
+     * @param null $id
+     * @return redirect
+     * @author gcg
+     */
+    public function getDeleteComment($id = null)
+    {
+        $comment = Comment::find($id);
 
-		return response()->app(200, 'comments.edit', ['comment' => $comment]);
-	}
+        if (empty($comment)) {
+            return redirect('/')
+                ->with('error', 'Silmek istediğiniz yorum sistemde bulunmuyor...');
+        }
 
-	/**
-	 * saves an editted comment
-	 *
-	 * @return view
-	 * @author gcg
-	 */
-	public function postEditComment($id = null) {
-		$comment = Comment::find($id);
+        if ($comment->user_id != Auth::user()->id) {
+            return redirect('/')
+                ->with('error', 'Sadece kendi yazdığınız yorumları silebilirsiniz...');
+        }
 
-		if (empty($comment)) {
+        try {
 
-			return redirect('/')
-				->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
-		}
+            $comment->delete();
 
-		if ($comment->user_id != Auth::user()->id) {
+        } catch (Exception $e) {
 
-			return redirect('/')
-				->with('error', 'Sadece kendi yazdığınız yorumları düzenleyebilirsiniz.');
-		}
+            Log::error('MuhtarController/getDeleteComment', (array)$e);
 
-		if (Request::has('comment')) {
+            return redirect('/issues/view/' . $comment->issue_id)
+                ->with('error', 'Yorum silerken teknik bir hata meydana geldi. ');
+        }
 
-			$comment->comment = Request::get('comment');
+        return redirect('/issues/view/' . $comment->issue_id)
+            ->with('success', 'Yaptığınız yorumu sildiniz.');
+    }
 
-			try {
+    /**
+     * edits a comment
+     *
+     * @param null $id
+     * @return view
+     * @author gcg
+     */
+    public function getEditComment($id = null)
+    {
+        $comment = Comment::find($id);
 
-				$comment->save();
+        if (empty($comment)) {
+            return redirect('/')
+                ->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
+        }
 
-			} catch (Exception $e) {
-				Log::error('MuhtarController/postEditComment', (array) $e);
+        if ($comment->user_id != Auth::user()->id) {
+            return redirect('/')
+                ->with('error', 'Sadece kendi yazdığınız yorumları düzenleyebilirsiniz.');
+        }
 
-				return redirect('/issues/view/' . $comment->issue_id)
-					->with('error', 'Yorumunuzu düzenlerken teknik bir hata meydana geldi.');
-			}
+        return response()->app(200, 'comments.edit', ['comment' => $comment]);
+    }
 
-			return redirect('/issues/view/' . $comment->issue_id . '#comment-' . $comment->id)
-				->with('success', 'Yorumunuz başarılı bir şekilde güncellendi');
+    /**
+     * saves an editted comment
+     *
+     * @return view
+     * @author gcg
+     */
+    public function postEditComment($id = null)
+    {
+        $comment = Comment::find($id);
 
-		} else {
+        if (empty($comment)) {
 
-			return redirect('/issues/view/' . $comment->issue_id)
-				->with('error', 'Lütfen yorumunuzu yazıp tekrar deneyin.');
-		}
-	}
+            return redirect('/')
+                ->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
+        }
+
+        if ($comment->user_id != Auth::user()->id) {
+
+            return redirect('/')
+                ->with('error', 'Sadece kendi yazdığınız yorumları düzenleyebilirsiniz.');
+        }
+
+        if (Request::has('comment')) {
+
+            $comment->comment = Request::get('comment');
+
+            try {
+
+                $comment->save();
+
+            } catch (Exception $e) {
+                Log::error('MuhtarController/postEditComment', (array)$e);
+
+                return redirect('/issues/view/' . $comment->issue_id)
+                    ->with('error', 'Yorumunuzu düzenlerken teknik bir hata meydana geldi.');
+            }
+
+            return redirect('/issues/view/' . $comment->issue_id . '#comment-' . $comment->id)
+                ->with('success', 'Yorumunuz başarılı bir şekilde güncellendi');
+
+        } else {
+
+            return redirect('/issues/view/' . $comment->issue_id)
+                ->with('error', 'Lütfen yorumunuzu yazıp tekrar deneyin.');
+        }
+    }
 }

@@ -38,5 +38,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'Muhit\Repositories\Muhtar\MuhtarRepositoryInterface',
             'Muhit\Repositories\Muhtar\MuhtarRepository');
+
+        // Member - Admin
+        $this->app->bind(
+            'Muhit\Repositories\Admin\AdminRepositoryInterface',
+            'Muhit\Repositories\Admin\AdminRepository');
     }
 }
