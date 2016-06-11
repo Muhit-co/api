@@ -1,11 +1,13 @@
 <?php
 
-namespace Muhit\Http\Controllers;
+namespace Muhit\Http\Controllers\Api;
 
+use Muhit\Http\Controllers\Controller;
+use Muhit\Http\Requests\Api\Login;
 use Muhit\Http\Requests\Api\Register;
 use Muhit\Repositories\User\UserRepositoryInterface;
 
-class ApiController extends Controller
+class UserController extends Controller
 {
     private $userRepository;
 
@@ -17,5 +19,10 @@ class ApiController extends Controller
     public function register(Register $request)
     {
         return $this->userRepository->register($request);
+    }
+
+    public function login(Login $request)
+    {
+        return $this->userRepository->login($request->get('email'), $request->get('password'));
     }
 }

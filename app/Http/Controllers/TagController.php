@@ -4,20 +4,11 @@ use Muhit\Repositories\Tag\TagRepositoryInterface;
 
 class TagController extends Controller
 {
-
-    /**
-     * list tags
-     *
-     * @param TagRepositoryInterface $tagRepository
-     * @param null $q
-     * @return json
-     * @author
-     */
-    public function index(TagRepositoryInterface $tagRepository, $q = null)
+    public function index(TagRepositoryInterface $tagRepository, $query = null)
     {
-        $tags = $tagRepository->all($q);
+        $tags = $tagRepository->all($query);
 
-        return response()->api(200, 'Tags:', $tags);
+        return response()->api(200, 'tags', $tags);
     }
 
 }

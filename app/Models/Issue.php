@@ -11,6 +11,20 @@ class Issue extends \Eloquent
 
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
+    protected $fillable = [
+        'user_id',
+        'title',
+        'status',
+        'city_id',
+        'district_id',
+        'hood_id',
+        'location',
+        'is_anonymous',
+        'coordinates',
+        'supporter_count',
+        'problem',
+        'solution'
+    ];
 
     public function tags()
     {

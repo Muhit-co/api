@@ -104,7 +104,14 @@ Route::get('map', 'IssuesController@getMap');
 Route::group(['prefix' => 'api'], function () {
 
     Route::get('/', function () {
-        return response()->api(200, "Welcome to the Muhit API. ");
+        return response()->json([
+            'register',
+            'login',
+            'tags',
+            'issues/list/{start?}/{take?}',
+            'issues/view/{id}',
+            'issues/create',
+        ]);
     });
 
     Route::get('secure', [
@@ -114,26 +121,22 @@ Route::group(['prefix' => 'api'], function () {
         }
     ]);
 
+    Route::post('register', 'Api\UserController@register');
+    Route::post('login', 'Api\UserController@login');
+    Route::get('tags/{q?}', 'TagController@index');
+    Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
+    Route::get('issues/view/{id}', 'Api\IssueController@issue');
+    Route::get('issues/create', 'Api\IssueController@create');
+
+
     Route::controller('auth', 'AuthController');
     Route::controller('hoods', 'HoodsController');
 
-    Route::get('register', 'ApiController@register');
-
-    Route::get('tags/{q?}', 'TagController@index');
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
 
-    Route::get('issues/view/{id}', 'IssuesController@getView');
-    Route::get('issues/list/{start?}/{take?}', 'IssuesController@getIssues');
-    Route::post('issues/search', 'IssuesController@postSearch');
     Route::get('issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
     Route::get('issues/latest/{start?}/{take?}', 'IssuesController@getLatest');
-    Route::get('issues/by-tag/{tag_id}/{start?}/{take?}', 'IssuesController@getByTag');
-    Route::get('issues/by-hood/{hood_id}/{start?}/{take?}', 'IssuesController@getByHood');
-    Route::get('issues/by-district/{district_id}/{start?}/{take?}', 'IssuesController@getByDistrict');
-    Route::get('issues/by-city/{city_id}/{start?}/{take?}', 'IssuesController@getByCity');
-    Route::get('issues/by-user/{user_id}/{start?}/{take?}', 'IssuesController@getByUser');
-    Route::get('issues/by-status/{status}/{start?}/{take?}', 'IssuesController@getByStatus');
-    Route::get('issues/by-supporter/{user_id}/{start?}/{take?}', 'IssuesController@getBySupporter');
+
 
     Route::get('profile/{user_id}', 'MemberController@getProfile');
     Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');

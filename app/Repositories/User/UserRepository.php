@@ -2,6 +2,9 @@
 
 namespace Muhit\Repositories\User;
 
+use Auth;
+use Authorizer;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Muhit\Models\User;
@@ -21,7 +24,7 @@ class UserRepository implements UserRepositoryInterface
         $last_name = $request->get('last_name');
         $email = $request->get('email');
 
-        if($this->checkEmail($email) > 0){
+        if ($this->checkEmail($email) > 0) {
 
             return response()->api(200, 'Email address exist');
         }
@@ -37,7 +40,12 @@ class UserRepository implements UserRepositoryInterface
 
         $user->picture = "//d1vwk06lzcci1w.cloudfront.net/80x80/" . $user->picture;
 
-        return response()->api(200, 'User', $user);
+        return response()->api(200, 'User', compact('user'));
+    }
+
+    private function checkEmail($email)
+    {
+        return $this->user->where('email', $email)->count();
     }
 
     private function generateUsername($first_name, $last_name)
@@ -63,8 +71,15 @@ class UserRepository implements UserRepositoryInterface
         return $this->user->where('username', $username)->count();
     }
 
-    private function checkEmail($email)
+    public function login($email, $password)
     {
-        return $this->user->where('email', $email)->count();
+        $user = $this->user->where('email', $email)->first();
+
+        if (!$user || !Auth::attempt(['email' => $email, 'password' => $password])) {
+
+            return response()->api(401, 'Wrong user credentials', []);
+        }
+
+        return response()->api(200, 'Logged in. ', compact('user'));
     }
 }

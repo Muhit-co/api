@@ -48,5 +48,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'Muhit\Repositories\User\UserRepositoryInterface',
             'Muhit\Repositories\User\UserRepository');
+
+        // Issue
+        $this->app->bind(
+            'Muhit\Repositories\Issue\IssueRepositoryInterface',
+            'Muhit\Repositories\Issue\IssueRepository');
     }
 }
