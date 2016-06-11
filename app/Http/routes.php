@@ -111,6 +111,9 @@ Route::group(['prefix' => 'api'], function () {
             'issues/list/{start?}/{take?}',
             'issues/view/{id}',
             'issues/create',
+            'hoods/{cityId?}/{districtId?}/{query?}',
+            'cities/{query?}',
+            'districts/{cityId?}/{query?}',
         ]);
     });
 
@@ -127,17 +130,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
     Route::get('issues/view/{id}', 'Api\IssueController@issue');
     Route::get('issues/create', 'Api\IssueController@create');
-
-
-    Route::controller('auth', 'AuthController');
-    Route::controller('hoods', 'HoodsController');
+    Route::get('hoods/{cityId?}/{districtId?}/{query?}', 'Api\LocationController@hoods');
+    Route::get('cities/{query?}', 'Api\LocationController@cities');
+    Route::get('districts/{cityId?}/{query?}', 'Api\LocationController@districts');
 
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
-
     Route::get('issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
     Route::get('issues/latest/{start?}/{take?}', 'IssuesController@getLatest');
-
-
     Route::get('profile/{user_id}', 'MemberController@getProfile');
     Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
 
