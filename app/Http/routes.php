@@ -120,7 +120,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
 
     Route::get('issues/view/{id}', 'IssuesController@getView');
-    Route::get('issues/list/{start?}/{take?}', 'IssuesController@getList');
+    Route::get('issues/list/{start?}/{take?}', 'IssuesController@getIssues');
     Route::post('issues/search', 'IssuesController@postSearch');
     Route::get('issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
     Route::get('issues/latest/{start?}/{take?}', 'IssuesController@getLatest');

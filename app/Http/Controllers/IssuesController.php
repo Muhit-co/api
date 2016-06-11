@@ -256,7 +256,7 @@ class IssuesController extends Controller {
 		}
 
 		if ($this->isApi) {
-			return response()->api(200, 'Issues', $issues->toArray());
+			return response()->api(200, 'Issues', $issues->paginate(20));
 		}
 
 		view()->share('pageTitle', 'Fikir listesi - ');
