@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Muhit\Console\Commands\ApiRequestMakeCommand;
 
 class Kernel extends ConsoleKernel {
 
@@ -11,7 +12,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-		'Muhit\Console\Commands\Inspire',
+		ApiRequestMakeCommand::class
 	];
 
 	/**

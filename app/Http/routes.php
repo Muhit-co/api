@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', 'MemberController@getMyProfile');
     Route::get('support/{id}', 'IssuesController@getSupport');
     Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
-    
+
     Route::get('duyurular', 'AnnouncementController@index');
     Route::post('duyuru/ekle', 'AnnouncementController@create');
     Route::post('duyuru/duzenle/{id}', 'AnnouncementController@edit');
@@ -102,6 +102,7 @@ Route::get('popular', 'IssuesController@getPopular');
 Route::get('map', 'IssuesController@getMap');
 
 Route::group(['prefix' => 'api'], function () {
+
     Route::get('/', function () {
         return response()->api(200, "Welcome to the Muhit API. ");
     });
@@ -115,6 +116,8 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::controller('auth', 'AuthController');
     Route::controller('hoods', 'HoodsController');
+
+    Route::get('register', 'ApiController@register');
 
     Route::get('tags/{q?}', 'TagController@index');
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');

@@ -31,7 +31,14 @@ class User extends \Eloquent implements AuthenticatableContract
      *
      * @var array
      */
-    protected $fillable = ['first_name', 'email', 'password', 'last_name', 'picture', 'username'];
+    protected $fillable = [
+        'first_name',
+        'email',
+        'password',
+        'last_name',
+        'picture',
+        'username',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
