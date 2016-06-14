@@ -7,10 +7,12 @@ use DB;
 use Exception;
 use Illuminate\Http\Request;
 use Log;
+use Muhit\Jobs\IssueRemoved;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
 use Muhit\Models\User;
 use Redis;
+use ResponseService;
 use Storage;
 
 class IssueRepository implements IssueRepositoryInterface
@@ -34,7 +36,7 @@ class IssueRepository implements IssueRepositoryInterface
             ->take($end)
             ->get();
 
-        return response()->api(200, 'Issues', $issues);
+        return ResponseService::createResponse('issues', $issues);
     }
 
     public function get(Request $request, $id)
@@ -43,10 +45,10 @@ class IssueRepository implements IssueRepositoryInterface
 
         if (!$issue) {
 
-            return response()->api(401, 'Issue not found', []);
+            return ResponseService::createErrorMessage('issueNotFound');
         }
 
-        return response()->api(200, 'Issue', $issue);
+        return ResponseService::createResponse('issue', $issue);
     }
 
     public function create(Request $request)
@@ -57,7 +59,7 @@ class IssueRepository implements IssueRepositoryInterface
 
         if ($this->checkDuplicate($user_id, $title, $location) > 0) {
 
-            return response()->api(401, 'Issue already exists', []);
+            return ResponseService::createErrorMessage('issueExists');
         }
 
         try {
@@ -68,6 +70,7 @@ class IssueRepository implements IssueRepositoryInterface
             $hood = false;
 
             if (count($location_parts) === 3) {
+
                 $hood = Hood::fromLocation($location);
             }
 
@@ -75,7 +78,7 @@ class IssueRepository implements IssueRepositoryInterface
 
                 DB::rollBack();
 
-                return response()->api(401, 'Cant get the hood information from the location .', ['data' => $request->all()]);
+                return ResponseService::createErrorMessage('cantGetHoodInfo');
             }
 
             $issue = $this->issue->create([
@@ -107,6 +110,7 @@ class IssueRepository implements IssueRepositoryInterface
                             'created_at' => Date::now(),
                             'updated_at' => Date::now(),
                         ]);
+
                         \Redis::incr('tag_issue_counter:' . $tag);
 
                     } catch (Exception $e) {
@@ -114,7 +118,7 @@ class IssueRepository implements IssueRepositoryInterface
                         Log::error('IssuesController/postAdd/SavingTagRelation', (array)$e);
                         DB::rollBack();
 
-                        return response()->api(401, 'Error on saving the issue', $request->all());
+                        return ResponseService::createErrorMessage('errorOccurredWhileSaving');
                     }
                 }
             }
@@ -165,13 +169,13 @@ class IssueRepository implements IssueRepositoryInterface
 
             $issue = $this->issue->with('user', 'tags', 'images')->find($issue->id);
 
-            return response()->api(200, 'Issue saved', compact('issue'));
+            return ResponseService::createResponse('issue', $issue);
 
         } catch (\Exception $e) {
 
             DB::rollBack();
 
-            return response()->api(401, 'Exception occurred, please try again', []);
+            return ResponseService::createErrorMessage('exceptionOccurred');
         }
     }
 
@@ -182,6 +186,68 @@ class IssueRepository implements IssueRepositoryInterface
             ->where('title', $title)
             ->where('location', $location)
             ->count();
+    }
+
+    public function delete($user_id, $issue_id)
+    {
+        $user = $this->user->find($user_id);
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        $issue = $this->issue->find($issue_id);
+
+        if (!$issue) {
+
+            return ResponseService::createErrorMessage('issueNotFound');
+        }
+
+        $can_delete = false;
+
+        if ($user_id == $issue->user_id) {
+
+            $can_delete = true;
+
+        } else {
+
+            $user_level = $this->user->where('id', $user_id)->pluck('level');
+
+            if ($user_level > 5) {
+
+                $can_delete = true;
+            }
+        }
+
+        if (!$can_delete || $issue->status != 'new' || (int)Redis::get('supporter_counter:' . $issue->id) > 10) {
+
+            return ResponseService::createErrorMessage('authorizationError');
+        }
+
+        try {
+
+            $issue->delete();
+
+            DB::table('issue_updates')
+                ->insert([
+                    'user_id' => $user_id,
+                    'issue_id' => $issue_id,
+                    'old_status' => $issue->status,
+                    'new_status' => 'deleted',
+                    'created_at' => Date::now(),
+                    'updated_at' => Date::now(),
+                ]);
+
+            \Queue::push(new IssueRemoved($issue_id));
+
+        } catch (Exception $e) {
+            Log::error('IssuesController/getDelete', (array)$e);
+
+            return ResponseService::createErrorMessage('exceptionOccurred');
+        }
+
+        return ResponseService::createSuccessMessage('issueDeleted');
     }
 
 }

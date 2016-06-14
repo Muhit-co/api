@@ -111,6 +111,7 @@ Route::group(['prefix' => 'api'], function () {
             'issues/list/{start?}/{take?}',
             'issues/view/{id}',
             'issues/create',
+            'issues/delete/{userId}/{issueId}',
             'hoods/{cityId?}/{districtId?}/{query?}',
             'cities/{query?}',
             'districts/{cityId?}/{query?}',
@@ -130,26 +131,26 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
     Route::get('issues/view/{id}', 'Api\IssueController@issue');
     Route::get('issues/create', 'Api\IssueController@create');
+    Route::post('issues/delete/{userId}/{issueId}', 'Api\IssueController@delete');
     Route::get('hoods/{cityId?}/{districtId?}/{query?}', 'Api\LocationController@hoods');
     Route::get('cities/{query?}', 'Api\LocationController@cities');
     Route::get('districts/{cityId?}/{query?}', 'Api\LocationController@districts');
 
+    // forget password
+    // my created issues
+    // my supported issues
+    // edit profile
+
+    Route::post('issues/support/{id}', 'IssuesController@getSupport');
+    Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');
+    Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
+    Route::get('profile/{user_id}', 'MemberController@getProfile');
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
     Route::get('issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
     Route::get('issues/latest/{start?}/{take?}', 'IssuesController@getLatest');
-    Route::get('profile/{user_id}', 'MemberController@getProfile');
-    Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
+
 
     Route::group(['middleware' => 'oauth'], function () {
-        Route::get('profile', 'MemberController@getMyProfile');
-        Route::post('issues/add', 'IssuesController@postAdd');
-        Route::post('issues/support/{id}', 'IssuesController@getSupport');
-        Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');
-        Route::post('issues/comment/', 'IssuesController@postComment');
-        Route::get('issues/delete/{id}', 'IssuesController@getDelete');
-        Route::controller('members', 'MemberController');
-        Route::get('support/{id}', 'IssuesController@getSupport');
-        Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
 
         Route::get('test', function () {
             return response()->api(200, 'passed', []);

@@ -8,6 +8,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Muhit\Models\User;
+use ResponseService;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -26,7 +27,7 @@ class UserRepository implements UserRepositoryInterface
 
         if ($this->checkEmail($email) > 0) {
 
-            return response()->api(200, 'Email address exist');
+            return ResponseService::createErrorMessage('emailUnavailable');
         }
 
         $user = $this->user->create([
@@ -40,7 +41,7 @@ class UserRepository implements UserRepositoryInterface
 
         $user->picture = "//d1vwk06lzcci1w.cloudfront.net/80x80/" . $user->picture;
 
-        return response()->api(200, 'User', compact('user'));
+        return ResponseService::createResponse('user', $user);
     }
 
     private function checkEmail($email)
@@ -77,9 +78,9 @@ class UserRepository implements UserRepositoryInterface
 
         if (!$user || !Auth::attempt(['email' => $email, 'password' => $password])) {
 
-            return response()->api(401, 'Wrong user credentials', []);
+            return ResponseService::createErrorMessage('invalidLogin');
         }
 
-        return response()->api(200, 'Logged in. ', compact('user'));
+        return ResponseService::createResponse('user', $user);
     }
 }

@@ -31,4 +31,9 @@ class IssueController extends Controller
         return $this->issueRepository->create($request);
     }
 
+    public function delete($user_id, $issue_id)
+    {
+        return $this->issueRepository->delete($user_id, $issue_id);
+    }
+
 }

@@ -6,6 +6,7 @@ namespace Muhit\Repositories\Hood;
 use Muhit\Models\City;
 use Muhit\Models\District;
 use Muhit\Models\Hood;
+use ResponseService;
 
 class HoodRepository implements HoodRepositoryInterface
 {
@@ -57,17 +58,15 @@ class HoodRepository implements HoodRepositoryInterface
         }
 
         $cities = $cities->get();
-        $cities = $cities ? $cities : [];
 
-        return response()->api(200, 'Cities: ', compact('cities'));
+        return ResponseService::createResponse('cities', $cities);
     }
 
     public function hoods($query, $cityId, $districtId)
     {
         $hoods = $this->all($query, $cityId, $districtId);
-        $hoods = $hoods ? $hoods : [];
 
-        return response()->api(200, 'Cities: ', compact('hoods'));
+        return ResponseService::createResponse('hoods', $hoods);
     }
 
     public function districts($city_id = null, $query = null)
@@ -85,8 +84,7 @@ class HoodRepository implements HoodRepositoryInterface
         }
 
         $districts = $districts->get();
-        $districts = $districts ? $districts : [];
 
-        return response()->api(200, 'Districts: ', compact('districts'));
+        return \ResponseService::createResponse('districts', $districts);
     }
 }

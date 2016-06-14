@@ -146,7 +146,7 @@ return [
         Muhit\Providers\EventServiceProvider::class,
         Muhit\Providers\RouteServiceProvider::class,
         Muhit\Providers\RepositoryServiceProvider::class,
-
+        Muhit\Providers\FacadeServiceProvider::class,
 
         /*
          *	3rd party providers
@@ -211,7 +211,8 @@ return [
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
         'Date' => Jenssegers\Date\Date::class,
         'Form' => Illuminate\Html\FormFacade::class,
-        'HTML' => Illuminate\Html\HtmlFacade::class
+        'HTML' => Illuminate\Html\HtmlFacade::class,
+        'ResponseService' => \Muhit\Facades\ResponseService::class,
     ],
 
 ];

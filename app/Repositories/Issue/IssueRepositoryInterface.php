@@ -12,4 +12,6 @@ interface IssueRepositoryInterface
 
     public function create(Request $request);
 
+    public function delete($user_id, $issue_id);
+
 }
