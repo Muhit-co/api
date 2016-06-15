@@ -5,6 +5,7 @@ namespace Muhit\Http\Controllers\Api;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Http\Requests\Api\Login;
 use Muhit\Http\Requests\Api\Register;
+use Muhit\Models\User;
 use Muhit\Repositories\User\UserRepositoryInterface;
 
 class UserController extends Controller
@@ -18,6 +19,10 @@ class UserController extends Controller
 
     public function register(Register $request)
     {
+        \Redis::set('foo','bar');
+
+        die;
+
         return $this->userRepository->register($request);
     }
 

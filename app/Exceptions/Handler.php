@@ -43,11 +43,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (Request::is('api/*')) {
-
-            return response()->api(500, 'Error', ['details' => json_encode((array)$e)]);
-        }
-
         if ($e instanceof NotFoundHttpException) {
 
             response()->make(view('errors.404'), 404);

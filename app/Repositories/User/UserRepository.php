@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Muhit\Models\User;
 use ResponseService;
+use ToolService;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -37,6 +38,7 @@ class UserRepository implements UserRepositoryInterface
             'last_name' => $last_name,
             'picture' => 'placeholders/profile.png',
             'username' => $this->generateUsername($first_name, $last_name),
+            'api_token' => ToolService::generateApiToken()
         ]);
 
         $user->picture = "//d1vwk06lzcci1w.cloudfront.net/80x80/" . $user->picture;
@@ -81,6 +83,18 @@ class UserRepository implements UserRepositoryInterface
             return ResponseService::createErrorMessage('invalidLogin');
         }
 
+        if(!$user->api_token){
+
+            $user->api_token = ToolService::generateApiToken();
+            $user->save();
+        }
+
         return ResponseService::createResponse('user', $user);
+    }
+
+    private function sendApiTokenToRedis($id, $token)
+    {
+        $redis = new \Redis();
+        $redis->set('foo', 'bar');
     }
 }

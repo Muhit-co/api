@@ -4,6 +4,7 @@ namespace Muhit\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Muhit\Services\ResponseService;
+use Muhit\Services\ToolService;
 
 class FacadeServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,13 @@ class FacadeServiceProvider extends ServiceProvider
             'responseservice',
             function () {
                 return new ResponseService();
+            }
+        );
+
+        $this->app->bind(
+            'toolservice',
+            function () {
+                return new ToolService();
             }
         );
     }

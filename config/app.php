@@ -213,6 +213,7 @@ return [
         'Form' => Illuminate\Html\FormFacade::class,
         'HTML' => Illuminate\Html\HtmlFacade::class,
         'ResponseService' => \Muhit\Facades\ResponseService::class,
+        'ToolService' => \Muhit\Facades\ToolService::class,
     ],
 
 ];

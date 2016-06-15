@@ -125,7 +125,7 @@ Route::group(['prefix' => 'api'], function () {
         }
     ]);
 
-    Route::post('register', 'Api\UserController@register');
+    Route::get('register', 'Api\UserController@register');
     Route::post('login', 'Api\UserController@login');
     Route::get('tags/{q?}', 'TagController@index');
     Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
