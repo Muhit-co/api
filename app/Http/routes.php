@@ -115,16 +115,11 @@ Route::group(['prefix' => 'api'], function () {
             'hoods/{cityId?}/{districtId?}/{query?}',
             'cities/{query?}',
             'districts/{cityId?}/{query?}',
+            'profile/{user_id}',
+            'issues/{issue_id}/supporters'
         ]);
     });
-
-    Route::get('secure', [
-        'before' => 'oauth',
-        function () {
-            return response()->api(500, "You have access to the secure calls");
-        }
-    ]);
-
+    
     Route::get('register', 'Api\UserController@register');
     Route::post('login', 'Api\UserController@login');
     Route::get('tags/{q?}', 'TagController@index');
@@ -135,6 +130,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('hoods/{cityId?}/{districtId?}/{query?}', 'Api\LocationController@hoods');
     Route::get('cities/{query?}', 'Api\LocationController@cities');
     Route::get('districts/{cityId?}/{query?}', 'Api\LocationController@districts');
+    Route::get('profile/{user_id}', 'Api\UserController@profile')->where('user_id', '[0-9]+');
+    Route::get('issues/{issue_id}/supporters', 'Api\IssueController@supporters')->where('user_id', '[0-9]+');
 
     // forget password
     // my created issues
@@ -143,18 +140,8 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::post('issues/support/{id}', 'IssuesController@getSupport');
     Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');
-    Route::get('supporters/{issue_id}/{start?}/{take?}', 'IssuesController@getSupporters');
-    Route::get('profile/{user_id}', 'MemberController@getProfile');
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
     Route::get('issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
     Route::get('issues/latest/{start?}/{take?}', 'IssuesController@getLatest');
-
-
-    Route::group(['middleware' => 'oauth'], function () {
-
-        Route::get('test', function () {
-            return response()->api(200, 'passed', []);
-        });
-    });
 
 });

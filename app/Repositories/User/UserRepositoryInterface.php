@@ -9,4 +9,6 @@ interface UserRepositoryInterface
     public function register(Request $request);
 
     public function login($email, $password);
+
+    public function profile($user_id);
 }

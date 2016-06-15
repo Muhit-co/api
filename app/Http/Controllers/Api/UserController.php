@@ -19,15 +19,16 @@ class UserController extends Controller
 
     public function register(Register $request)
     {
-        \Redis::set('foo','bar');
-
-        die;
-
         return $this->userRepository->register($request);
     }
 
     public function login(Login $request)
     {
         return $this->userRepository->login($request->get('email'), $request->get('password'));
+    }
+
+    public function profile($user_id)
+    {
+        return $this->userRepository->profile($user_id);
     }
 }

@@ -41,8 +41,6 @@ class UserRepository implements UserRepositoryInterface
             'api_token' => ToolService::generateApiToken()
         ]);
 
-        $user->picture = "//d1vwk06lzcci1w.cloudfront.net/80x80/" . $user->picture;
-
         return ResponseService::createResponse('user', $user);
     }
 
@@ -83,7 +81,7 @@ class UserRepository implements UserRepositoryInterface
             return ResponseService::createErrorMessage('invalidLogin');
         }
 
-        if(!$user->api_token){
+        if (!$user->api_token) {
 
             $user->api_token = ToolService::generateApiToken();
             $user->save();
@@ -92,9 +90,15 @@ class UserRepository implements UserRepositoryInterface
         return ResponseService::createResponse('user', $user);
     }
 
-    private function sendApiTokenToRedis($id, $token)
+    public function profile($user_id)
     {
-        $redis = new \Redis();
-        $redis->set('foo', 'bar');
+        $user = $this->user->with('issues')->find($user_id);
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        return ResponseService::createResponse('user', $user);
     }
 }

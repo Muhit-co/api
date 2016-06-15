@@ -46,9 +46,14 @@ class User extends \Eloquent implements AuthenticatableContract
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'level'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'password_reset_token',
+        'password_token_expires_at',
+    ];
 
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'profile_photo'];
 
     public function hood()
     {
@@ -63,6 +68,11 @@ class User extends \Eloquent implements AuthenticatableContract
     public function getFullNameAttribute()
     {
         return Str::ucfirst($this->first_name) . " " . Str::ucfirst($this->last_name);
+    }
+
+    public function getProfilePhotoAttribute()
+    {
+        return "//d1vwk06lzcci1w.cloudfront.net/80x80/" . $this->picture;
     }
 
     public function toArray()

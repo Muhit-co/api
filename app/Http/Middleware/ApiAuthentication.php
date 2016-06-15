@@ -4,6 +4,7 @@ namespace Muhit\Http\Middleware;
 
 use Closure;
 use Muhit\Models\User;
+use Redis;
 use ResponseService;
 
 class ApiAuthentication
@@ -26,7 +27,7 @@ class ApiAuthentication
         $api_token = $request->get('api_token');
         $key = "auth:user:{$user_id}";
 
-        if (!Cache::has($key)) {
+        if (!Redis::exists($key)) {
 
             $user = User::find($user_id);
 
@@ -36,7 +37,7 @@ class ApiAuthentication
             }
         }
 
-        if (Cache::get($key) !== $api_token) {
+        if (Redis::get($key) !== $api_token) {
 
             return ResponseService::createErrorMessage('authFailed');
         }

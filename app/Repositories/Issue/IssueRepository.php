@@ -10,6 +10,7 @@ use Log;
 use Muhit\Jobs\IssueRemoved;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
+use Muhit\Models\IssueSupporter;
 use Muhit\Models\User;
 use Redis;
 use ResponseService;
@@ -20,12 +21,14 @@ class IssueRepository implements IssueRepositoryInterface
     protected $issue;
     protected $hood;
     private $user;
+    private $issueSupporter;
 
-    public function __construct(Issue $issue, Hood $hood, User $user)
+    public function __construct(Issue $issue, Hood $hood, User $user, IssueSupporter $issueSupporter)
     {
         $this->issue = $issue;
         $this->hood = $hood;
         $this->user = $user;
+        $this->issueSupporter = $issueSupporter;
     }
 
     public function all(Request $request, $start, $end)
@@ -37,6 +40,25 @@ class IssueRepository implements IssueRepositoryInterface
             ->get();
 
         return ResponseService::createResponse('issues', $issues);
+    }
+
+    public function supporters($issue_id)
+    {
+        $issue = $this->issue->find($issue_id);
+
+        if (!$issue) {
+
+            return ResponseService::createErrorMessage('issueNotFound');
+        }
+
+        $supporters = $this->issueSupporter->where('issue_id', $issue_id)
+            ->join('users', 'users.id', '=', 'issue_supporters.user_id')
+            ->orderBy('issue_supporters.created_at', 'desc')
+            ->get([
+                'users.*'
+            ]);
+
+        return ResponseService::createResponse('supporters', $supporters);
     }
 
     public function get(Request $request, $id)
