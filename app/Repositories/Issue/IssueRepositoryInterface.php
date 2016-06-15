@@ -15,4 +15,8 @@ interface IssueRepositoryInterface
     public function delete($user_id, $issue_id);
 
     public function supporters($issue_id);
+
+    public function supported($user_id);
+
+    public function created($user_id);
 }

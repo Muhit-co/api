@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'authParameterMissing' => 'Authentication required!',
     'requestValidation' => 'There are errors in your request',
     'invalidParameters' => 'Invalid Parameters!',
     'statusUpdated' => 'Status and owner are set for selected device.',

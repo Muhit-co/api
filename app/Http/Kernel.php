@@ -1,6 +1,8 @@
 <?php namespace Muhit\Http;
 
+use Clockwork\Support\Laravel\ClockworkMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Muhit\Http\Middleware\ApiAuthentication;
 
 class Kernel extends HttpKernel {
 
@@ -16,6 +18,7 @@ class Kernel extends HttpKernel {
         'Illuminate\Session\Middleware\StartSession',
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
+        ClockworkMiddleware::class,
     ];
 
     /**
@@ -30,7 +33,8 @@ class Kernel extends HttpKernel {
         'csrf' => 'App\Http\Middleware\VerifyCsrfToken',
         'oauth' => '\LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
         'oauth-owner' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthOwnerMiddleware',
-        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware'
+        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
+        'api.auth' => ApiAuthentication::class
     ];
 
 }

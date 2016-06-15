@@ -51,6 +51,11 @@ class Issue extends \Eloquent
         return $this->hasMany(Comment::class);
     }
 
+    public function supporters()
+    {
+        return $this->hasMany(IssueSupporter::class);
+    }
+
     public function toArray($user_id = null)
     {
         $array = parent::toArray();

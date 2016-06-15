@@ -55,7 +55,13 @@ class IssueRepository implements IssueRepositoryInterface
             ->join('users', 'users.id', '=', 'issue_supporters.user_id')
             ->orderBy('issue_supporters.created_at', 'desc')
             ->get([
-                'users.*'
+                'users.id',
+                'first_name',
+                'email',
+                'password',
+                'last_name',
+                'picture',
+                'username',
             ]);
 
         return ResponseService::createResponse('supporters', $supporters);
@@ -270,6 +276,28 @@ class IssueRepository implements IssueRepositoryInterface
         }
 
         return ResponseService::createSuccessMessage('issueDeleted');
+    }
+
+    public function supported($user_id)
+    {
+        $issues = $this->issue
+            ->with('user', 'tags', 'images')
+            ->whereHas('supporters', function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })
+            ->get();
+
+        return ResponseService::createResponse('issues', $issues);
+    }
+
+    public function created($user_id)
+    {
+        $issues = $this->issue->with('user', 'tags', 'images')
+            ->where('user_id', $user_id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return ResponseService::createResponse('issues', $issues);
     }
 
 }

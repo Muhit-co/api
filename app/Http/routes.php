@@ -109,7 +109,7 @@ Route::group(['prefix' => 'api'], function () {
             'login',
             'tags',
             'issues/list/{start?}/{take?}',
-            'issues/view/{id}',
+            'issues/{id}',
             'issues/create',
             'issues/delete/{userId}/{issueId}',
             'hoods/{cityId?}/{districtId?}/{query?}',
@@ -119,19 +119,29 @@ Route::group(['prefix' => 'api'], function () {
             'issues/{issue_id}/supporters'
         ]);
     });
-    
+
+    Route::group(['middleware' => 'api.auth'], function () {
+
+        Route::get('tags/{q?}', 'TagController@index');
+        Route::get('hoods/{cityId?}/{districtId?}/{query?}', 'Api\LocationController@hoods');
+        Route::get('cities/{query?}', 'Api\LocationController@cities');
+        Route::get('districts/{cityId?}/{query?}', 'Api\LocationController@districts');
+        Route::get('profile/{user_id}', 'Api\UserController@profile')->where('user_id', '[0-9]+');
+
+        Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
+        Route::get('issues/{issue_id}', 'Api\IssueController@issue');
+
+        Route::get('issues/{issue_id}/supporters', 'Api\IssueController@supporters')->where('issue_id', '[0-9]+');
+        Route::post('issues/create', 'Api\IssueController@create');
+        Route::post('issues/delete/{userId}/{issueId}', 'Api\IssueController@delete');
+
+        Route::get('user/{user_id}/supported', 'Api\IssueController@supported');
+        Route::get('user/{user_id}/created', 'Api\IssueController@created');
+
+    });
+
     Route::get('register', 'Api\UserController@register');
     Route::post('login', 'Api\UserController@login');
-    Route::get('tags/{q?}', 'TagController@index');
-    Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
-    Route::get('issues/view/{id}', 'Api\IssueController@issue');
-    Route::get('issues/create', 'Api\IssueController@create');
-    Route::post('issues/delete/{userId}/{issueId}', 'Api\IssueController@delete');
-    Route::get('hoods/{cityId?}/{districtId?}/{query?}', 'Api\LocationController@hoods');
-    Route::get('cities/{query?}', 'Api\LocationController@cities');
-    Route::get('districts/{cityId?}/{query?}', 'Api\LocationController@districts');
-    Route::get('profile/{user_id}', 'Api\UserController@profile')->where('user_id', '[0-9]+');
-    Route::get('issues/{issue_id}/supporters', 'Api\IssueController@supporters')->where('user_id', '[0-9]+');
 
     // forget password
     // my created issues
@@ -141,7 +151,5 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('issues/support/{id}', 'IssuesController@getSupport');
     Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
-    Route::get('issues/popular/{start?}/{take?}', 'IssuesController@getPopular');
-    Route::get('issues/latest/{start?}/{take?}', 'IssuesController@getLatest');
 
 });

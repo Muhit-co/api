@@ -41,4 +41,14 @@ class IssueController extends Controller
         return $this->issueRepository->supporters($issue_id);
     }
 
+    public function supported($user_id)
+    {
+        return $this->issueRepository->supported($user_id);
+    }
+
+    public function created($user_id)
+    {
+        return $this->issueRepository->created($user_id);
+    }
+
 }
