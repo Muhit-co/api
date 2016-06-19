@@ -114,5 +114,9 @@ return [
     'userReported' => 'User reported.',
     'postViewed' => 'Post viewed.',
     'facebookPosted' => 'You successfully posted in Facebook',
-    'facebookPostError' => 'Error occurred, please try later.'
+    'facebookPostError' => 'Error occurred, please try later.',
+    'issueAlreadySupported' => 'Issue already supported.',
+    'supportNotExist' => 'Issue support does not exist.',
+    'issueSupported' => 'Issue successfully supported.',
+    'issueUnsupported' => 'Issue successfully unsupported.',
 ];

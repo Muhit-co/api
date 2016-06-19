@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Log;
 use Muhit\Jobs\IssueRemoved;
+use Muhit\Jobs\SendIssueSupportedEmail;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
 use Muhit\Models\IssueSupporter;
@@ -139,7 +140,7 @@ class IssueRepository implements IssueRepositoryInterface
                             'updated_at' => Date::now(),
                         ]);
 
-                        \Redis::incr('tag_issue_counter:' . $tag);
+                        Redis::incr('tag_issue_counter:' . $tag);
 
                     } catch (Exception $e) {
 
@@ -298,6 +299,109 @@ class IssueRepository implements IssueRepositoryInterface
             ->get();
 
         return ResponseService::createResponse('issues', $issues);
+    }
+
+    public function support($issue_id, $user_id)
+    {
+        $user = $this->user->find($user_id);
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        $issue = $this->issue->find($issue_id);
+
+        if (!$issue) {
+
+            return ResponseService::createErrorMessage('issueNotFound');
+        }
+
+        $doesSupportExists = $this->issueSupporter
+            ->where('user_id', $user_id)
+            ->where('issue_id', $issue_id)
+            ->count();
+
+        if ($doesSupportExists > 0) {
+
+            return ResponseService::createErrorMessage('issueAlreadySupported');
+        }
+
+        try {
+
+            $this->issueSupporter->create([
+                'issue_id' => $issue_id,
+                'user_id' => $user_id
+            ]);
+
+            Redis::incr('user_supported_issue_counter:' . $user_id);
+            DB::table('issues')->where('id', $issue_id)->increment('supporter_count');
+            $su_counter = (int)Redis::incr('supporter_counter:' . $issue_id);
+            Redis::zadd('issue_supporters:' . $issue_id, time(), $user_id);
+
+            \Queue::push(new SendIssueSupportedEmail($user_id, $issue_id));
+
+        } catch (Exception $e) {
+
+            Log::error('IssuesController/getSupport', (array)$e);
+
+            return ResponseService::createErrorMessage('facebookPostError');
+        }
+
+        return ResponseService::createSuccessMessage('issueSupported');
+    }
+
+    public function unsupport($issue_id, $user_id)
+    {
+        $user = $this->user->find($user_id);
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        $issue = $this->issue->find($issue_id);
+
+        if (!$issue) {
+
+            return ResponseService::createErrorMessage('issueNotFound');
+        }
+
+        $doesSupportExists = $this->issueSupporter
+            ->where('user_id', $user_id)
+            ->where('issue_id', $issue_id)
+            ->count();
+
+        if ($doesSupportExists > 0) {
+
+            return ResponseService::createErrorMessage('issueAlreadySupported');
+        }
+
+        $doesSupportExists = $this->issueSupporter
+            ->where('user_id', $user_id)
+            ->where('issue_id', $issue_id)
+            ->first();
+
+        if (!$doesSupportExists) {
+
+            return ResponseService::createErrorMessage('supportNotExist');
+        }
+
+        try {
+
+            $doesSupportExists->delete();
+            Redis::decr('user_supported_issue_counter:' . $user_id);
+            $su_counter = (int) Redis::decr('supporter_counter:' . $issue_id);
+            Redis::zrem('issue_supporters:' . $issue_id, $user_id);
+
+        } catch (Exception $e) {
+
+            Log::error('IssuesController/getUnSupport', (array) $e);
+
+            return ResponseService::createErrorMessage('facebookPostError');
+        }
+
+        return ResponseService::createSuccessMessage('issueUnsupported');
     }
 
 }

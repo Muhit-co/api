@@ -19,4 +19,8 @@ interface IssueRepositoryInterface
     public function supported($user_id);
 
     public function created($user_id);
+
+    public function support($issue_id, $user_id);
+
+    public function unsupport($issue_id, $user_id);
 }

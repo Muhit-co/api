@@ -2,6 +2,7 @@
 
 
 Route::get('/', 'IssuesController@getIssues');
+Route::get('test', 'TestController@index');
 
 #testing routes for dann;
 Route::get('/issue', function () {
@@ -116,7 +117,9 @@ Route::group(['prefix' => 'api'], function () {
             'cities/{query?}',
             'districts/{cityId?}/{query?}',
             'profile/{user_id}',
-            'issues/{issue_id}/supporters'
+            'issues/{issue_id}/supporters',
+            'issues/{issue_id}/support',
+            'issues/{issue_id}/unsupport',
         ]);
     });
 
@@ -137,7 +140,8 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::get('user/{user_id}/supported', 'Api\IssueController@supported');
         Route::get('user/{user_id}/created', 'Api\IssueController@created');
-
+        Route::post('issues/{issue_id}/support', 'Api\IssueController@support');
+        Route::post('issues/{issue_id}/unsupport', 'Api\IssueController@unSupport');
     });
 
     Route::get('register', 'Api\UserController@register');

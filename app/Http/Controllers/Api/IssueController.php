@@ -5,6 +5,7 @@ namespace Muhit\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Http\Requests\Api\CreateIssue;
+use Muhit\Http\Requests\Api\Support;
 use Muhit\Repositories\Issue\IssueRepositoryInterface;
 
 class IssueController extends Controller
@@ -51,4 +52,13 @@ class IssueController extends Controller
         return $this->issueRepository->created($user_id);
     }
 
+    public function support($issue_id, Support $support)
+    {
+        return $this->issueRepository->support($issue_id, $support->get('user_id'));
+    }
+
+    public function unsupport($issue_id, Support $support)
+    {
+        return $this->issueRepository->unsupport($issue_id, $support->get('user_id'));
+    }
 }
