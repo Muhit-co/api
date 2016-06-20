@@ -104,6 +104,9 @@ Route::get('map', 'IssuesController@getMap');
 
 Route::group(['prefix' => 'api'], function () {
 
+    Route::any('register', 'Api\UserController@register');
+    Route::any('login', 'Api\UserController@login');
+
     Route::get('/', function () {
         return response()->json([
             'register',
@@ -144,16 +147,10 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('issues/{issue_id}/unsupport', 'Api\IssueController@unSupport');
     });
 
-    Route::get('register', 'Api\UserController@register');
-    Route::post('login', 'Api\UserController@login');
-
     // forget password
     // my created issues
     // my supported issues
     // edit profile
-
-    Route::post('issues/support/{id}', 'IssuesController@getSupport');
-    Route::post('issues/unsupport/{id}', 'IssuesController@getUnSupport');
     Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
 
 });
