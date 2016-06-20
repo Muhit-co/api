@@ -7,11 +7,6 @@ use Muhit\Http\Requests\ApiRequest;
 class Support extends ApiRequest
 {
 
-    protected $defaults = [
-        'client_id' => 'required',
-        'client_secret' => 'required'
-    ];
-
     /**
      * Determine if the user is authorized to make this request.
      *

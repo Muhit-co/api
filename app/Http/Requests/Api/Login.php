@@ -6,12 +6,6 @@ use Muhit\Http\Requests\ApiRequest;
 
 class Login extends ApiRequest
 {
-
-    protected $defaults = [
-        'client_id' => 'required',
-        'client_secret' => 'required'
-    ];
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -33,8 +27,6 @@ class Login extends ApiRequest
             'password' => 'required',
             'email' => 'required|email',
         ];
-
-        $required += $this->defaults;
 
         return $required;
     }

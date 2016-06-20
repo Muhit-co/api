@@ -9,6 +9,11 @@ use ResponseService;
 abstract class ApiRequest extends FormRequest
 {
 
+    protected $defaults = [
+        'user_id' => 'required|numeric|min:1',
+        'api_token' => 'required|min:1'
+    ];
+
     public function response(array $errors)
     {
         if ($this->ajax() || $this->wantsJson()) {
@@ -18,6 +23,6 @@ abstract class ApiRequest extends FormRequest
             return new JsonResponse($errors, 422);
         }
 
-        return response()->api(200, 'ValidationError', $errors);
+        return ResponseService::createValidationErrors($errors);
     }
 }
