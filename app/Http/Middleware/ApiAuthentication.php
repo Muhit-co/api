@@ -18,7 +18,7 @@ class ApiAuthentication
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->has('user_id') || $request->has('api_token')) {
+        if (!$request->has('user_id') || !$request->has('api_token')) {
 
             return ResponseService::createErrorMessage('authParameterMissing');
         }
@@ -35,6 +35,8 @@ class ApiAuthentication
 
                 return ResponseService::createErrorMessage('authFailed');
             }
+
+            Redis::setex($key, $api_token, 60000);
         }
 
         if (Redis::get($key) !== $api_token) {
