@@ -126,6 +126,8 @@ Route::group(['prefix' => 'api'], function () {
         ]);
     });
 
+    Route::get('error-logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
     Route::group(['middleware' => 'api.auth'], function () {
 
         Route::get('tags/{q?}', 'TagController@index');
