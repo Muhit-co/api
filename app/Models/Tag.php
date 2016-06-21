@@ -7,6 +7,11 @@ class Tag extends \Eloquent
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'name',
+        'background'
+    ];
+
     public function toArray()
     {
         $array = parent::toArray();
