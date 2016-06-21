@@ -8,7 +8,7 @@ class TagController extends Controller
     {
         $tags = $tagRepository->all($query);
 
-        return response()->api(200, 'tags', $tags);
+        return $tags;
     }
 
 }

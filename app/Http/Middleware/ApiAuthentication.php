@@ -12,8 +12,8 @@ class ApiAuthentication
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -36,7 +36,7 @@ class ApiAuthentication
                 return ResponseService::createErrorMessage('authFailed');
             }
 
-            Redis::setex($key, $api_token, 60000);
+            Redis::setex($key, 60000, $api_token);
         }
 
         if (Redis::get($key) !== $api_token) {

@@ -23,6 +23,6 @@ class TagRepository implements TagRepositoryInterface
             $tags->where('name', 'LIKE', "%{$query}%");
         }
 
-        return $tags->get();
+        return \ResponseService::createResponse('tags', $tags->get());
     }
 }

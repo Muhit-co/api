@@ -101,7 +101,7 @@ return [
     'userAlreadyFollowed' => 'You have already followed this user.',
     'userUnfollowed' => 'You unfollowed this user.',
     'voteSaved' => 'Vote saved.',
-    'voteDismissed' => 'Vote dismissed',
+    'authFailed' => 'Authentication failed',
     'facebookBelongsToOtherUser' => 'Facebook account belongs to another user.',
     'twitterBelongsToOtherUser' => 'Twitter account belongs to another user.',
     'passwordDidNotSet' => 'Password did not set yet.',
