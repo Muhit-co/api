@@ -153,6 +153,6 @@ Route::group(['prefix' => 'api'], function () {
     // my created issues
     // my supported issues
     // edit profile
-    Route::get('announcements/{hoodId}/{start?}/{take?}', 'AnnouncementController@getList');
+    Route::get('announcements/{hoodId}/{start?}/{take?}', 'Api\AnnouncementController@index');
 
 });
