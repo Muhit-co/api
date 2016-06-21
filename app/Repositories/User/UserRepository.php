@@ -92,7 +92,16 @@ class UserRepository implements UserRepositoryInterface
 
     public function profile($user_id)
     {
-        $user = $this->user->with('issues')->find($user_id);
+        $user = $this->user->with('issues')
+            ->where('id', $user_id)
+            ->first([
+                'username',
+                'email',
+                'id',
+                'first_name',
+                'last_name',
+                'level'
+            ]);
 
         if (!$user) {
 
