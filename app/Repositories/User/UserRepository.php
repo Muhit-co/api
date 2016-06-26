@@ -100,7 +100,8 @@ class UserRepository implements UserRepositoryInterface
                 'id',
                 'first_name',
                 'last_name',
-                'level'
+                'level',
+                'picture'
             ]);
 
         if (!$user) {
