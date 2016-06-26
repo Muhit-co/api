@@ -11,6 +11,7 @@ return [
     'bookmarkExist' => 'Bookmark exists!',
     'reviewSaved' => 'Review saved.',
     'userNotFound' => 'User not found!',
+    'headManNotFound' => 'Headman not found!',
     'jobNotFound' => 'Job not found!',
     'authorizationError' => 'Authorization Error!',
     'videoNotFound' => 'Video not found!',

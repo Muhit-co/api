@@ -146,6 +146,7 @@ Route::group(['prefix' => 'api'], function () {
     });
 
     Route::get('profile/{user_id}', 'Api\UserController@profile')->where('user_id', '[0-9]+');
+    Route::get('user/{user_id}/headman', 'Api\UserController@headman')->where('user_id', '[0-9]+');
     Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
     Route::get('issues/{issue_id}', 'Api\IssueController@issue')->where('issue_id', '[0-9]+');
 

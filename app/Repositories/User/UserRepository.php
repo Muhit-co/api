@@ -111,4 +111,39 @@ class UserRepository implements UserRepositoryInterface
 
         return ResponseService::createResponse('user', $user);
     }
+
+    public function headman($user_id)
+    {
+        $user = $this->user->where('id', $user_id)->first(['hood_id']);
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        if (!$user->hood_id) {
+
+            return ResponseService::createResponse('headman', []);
+        }
+
+        $headMan = $this->user->where('level', 5)
+            ->where('hood_id', $user->hood_id)
+            ->first([
+                'username',
+                'email',
+                'id',
+                'first_name',
+                'last_name',
+                'level',
+                'picture',
+                'phone'
+            ]);
+
+        if (!$headMan) {
+
+            return ResponseService::createErrorMessage('headManNotFound');
+        }
+
+        return ResponseService::createResponse('headMan', $headMan);
+    }
 }

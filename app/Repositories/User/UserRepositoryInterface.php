@@ -11,4 +11,7 @@ interface UserRepositoryInterface
     public function login($email, $password);
 
     public function profile($user_id);
+
+    public function headman($user_id);
+
 }
