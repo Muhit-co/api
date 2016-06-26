@@ -123,7 +123,7 @@ class UserRepository implements UserRepositoryInterface
 
         if (!$user->hood_id) {
 
-            return ResponseService::createResponse('headman', []);
+            return ResponseService::createErrorMessage('headManNotFound');
         }
 
         $headMan = $this->user->where('level', 5)
