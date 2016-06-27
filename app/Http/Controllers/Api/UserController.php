@@ -35,4 +35,9 @@ class UserController extends Controller
     {
         return $this->userRepository->headman($user_id);
     }
+
+    public function announcements($user_id)
+    {
+        return $this->userRepository->announcements($user_id);
+    }
 }
