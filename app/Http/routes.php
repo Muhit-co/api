@@ -150,10 +150,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
     Route::get('issues/{issue_id}', 'Api\IssueController@issue')->where('issue_id', '[0-9]+');
 
-    // forget password
-    // my created issues
-    // my supported issues
-    // edit profile
-    Route::get('announcements/{hoodId}/{start?}/{take?}', 'Api\AnnouncementController@index');
+    Route::get('user/{user_id}/announcements', 'Api\AnnouncementController@index');
 
 });

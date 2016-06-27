@@ -3,22 +3,19 @@
 namespace Muhit\Http\Controllers\Api;
 
 use Muhit\Http\Controllers\Controller;
-use Muhit\Repositories\Announcement\AnnouncementRepositoryInterface;
+use Muhit\Repositories\User\UserRepositoryInterface;
 
 class AnnouncementController extends Controller
 {
-    protected $announcementRepository;
+    protected $userRepository;
 
-    public function __construct(AnnouncementRepositoryInterface $announcementRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->announcementRepository = $announcementRepository;
+        $this->userRepository = $userRepository;
     }
 
-    public function index($hoodId, $start = 0, $end = 20)
+    public function index($user_id)
     {
-        $announcements =  $this->announcementRepository->getList($hoodId, $start, $end);
-
-        return \ResponseService::createResponse('announcements', $announcements);
+        return $this->userRepository->announcements($user_id);
     }
-
 }

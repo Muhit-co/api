@@ -14,4 +14,6 @@ interface UserRepositoryInterface
 
     public function headman($user_id);
 
+    public function announcements($user_id);
+
 }

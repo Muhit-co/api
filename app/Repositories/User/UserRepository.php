@@ -7,6 +7,7 @@ use Authorizer;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Muhit\Models\Announcement;
 use Muhit\Models\User;
 use ResponseService;
 use ToolService;
@@ -14,10 +15,12 @@ use ToolService;
 class UserRepository implements UserRepositoryInterface
 {
     protected $user;
+    protected $announcement;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Announcement $announcement)
     {
         $this->user = $user;
+        $this->announcement = $announcement;
     }
 
     public function register(Request $request)
@@ -145,5 +148,27 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return ResponseService::createResponse('headMan', $headMan);
+    }
+
+    public function announcements($user_id)
+    {
+        $user = $this->user->where('id', $user_id)->first(['hood_id']);
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        if (!$user->hood_id) {
+
+            return ResponseService::createResponse('announcements', []);
+        }
+
+        $announcements = $this->announcement->with('user')
+            ->where('hood_id', $user->hood_id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return ResponseService::createResponse('announcements', $announcements);
     }
 }
