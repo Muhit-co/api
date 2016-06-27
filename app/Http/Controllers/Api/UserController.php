@@ -5,6 +5,7 @@ namespace Muhit\Http\Controllers\Api;
 use Muhit\Http\Controllers\Controller;
 use Muhit\Http\Requests\Api\Login;
 use Muhit\Http\Requests\Api\Register;
+use Muhit\Http\Requests\Api\UpdateUserInfo;
 use Muhit\Repositories\User\UserRepositoryInterface;
 
 class UserController extends Controller
@@ -34,6 +35,11 @@ class UserController extends Controller
     public function headman($user_id)
     {
         return $this->userRepository->headman($user_id);
+    }
+
+    public function update($user_id, UpdateUserInfo $updateUserInfo)
+    {
+        return $this->userRepository->update($updateUserInfo, $user_id);
     }
 
     public function announcements($user_id)

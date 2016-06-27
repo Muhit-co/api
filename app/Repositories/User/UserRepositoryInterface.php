@@ -16,4 +16,5 @@ interface UserRepositoryInterface
 
     public function announcements($user_id);
 
+    public function update(Request $request, $user_id);
 }

@@ -171,4 +171,55 @@ class UserRepository implements UserRepositoryInterface
 
         return ResponseService::createResponse('announcements', $announcements);
     }
+
+    public function update(Request $request, $user_id)
+    {
+        $user = $this->user->where('id', $user_id)->first();
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+
+        if ($request->get('email') != $user->email) {
+
+            $checkEmail = $this->user->where('email', $request->get('email'))->first();
+
+            if (!$checkEmail) {
+
+                $user->email = $request->get('email');
+
+            } else {
+
+                if ($checkEmail->id != $user_id) {
+
+                    return ResponseService::createErrorMessage('emailUnavailable');
+                }
+            }
+        }
+
+        if ($request->get('username') != $user->username) {
+
+            $checkUsername = $this->user->where('username', $request->get('username'))->first();
+
+            if (!$checkUsername) {
+
+                $user->username = $request->get('username');
+
+            } else {
+
+                if ($checkUsername->id != $user_id) {
+
+                    return ResponseService::createErrorMessage('usernameUnavailable');
+                }
+            }
+        }
+
+        $user->save();
+
+        return ResponseService::createSuccessMessage('userInfoUpdated');
+    }
 }
