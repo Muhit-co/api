@@ -25,10 +25,8 @@ class FacebookLogin extends ApiRequest
     public function rules()
     {
         $required = [
-            'access_token'
+            'access_token' => 'required|min:20'
         ];
-
-        $required += $this->defaults;
 
         return $required;
     }
