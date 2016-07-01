@@ -106,6 +106,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::any('register', 'Api\UserController@register');
     Route::any('login', 'Api\UserController@login');
+    Route::any('facebookLogin', 'Api\UserController@facebookLogin');
 
     Route::get('/', function () {
         return response()->json([

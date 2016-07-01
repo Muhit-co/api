@@ -3,6 +3,7 @@
 namespace Muhit\Http\Controllers\Api;
 
 use Muhit\Http\Controllers\Controller;
+use Muhit\Http\Requests\Api\FacebookLogin;
 use Muhit\Http\Requests\Api\Login;
 use Muhit\Http\Requests\Api\Register;
 use Muhit\Http\Requests\Api\UpdateUserInfo;
@@ -45,5 +46,10 @@ class UserController extends Controller
     public function announcements($user_id)
     {
         return $this->userRepository->announcements($user_id);
+    }
+
+    public function facebookLogin(FacebookLogin $facebookLogin)
+    {
+        return $this->userRepository->facebookLogin($facebookLogin);
     }
 }

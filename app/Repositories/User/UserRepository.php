@@ -4,11 +4,19 @@ namespace Muhit\Repositories\User;
 
 use Auth;
 use Authorizer;
+use Config;
+use DB;
+use Exception;
+use Facebook\FacebookRequest;
+use Facebook\FacebookSession;
+use Facebook\GraphUser;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Log;
 use Muhit\Models\Announcement;
 use Muhit\Models\User;
+use Muhit\Models\UserSocialAccount;
 use ResponseService;
 use ToolService;
 
@@ -16,11 +24,13 @@ class UserRepository implements UserRepositoryInterface
 {
     protected $user;
     protected $announcement;
+    protected $userSocialAccount;
 
-    public function __construct(User $user, Announcement $announcement)
+    public function __construct(User $user, Announcement $announcement, UserSocialAccount $userSocialAccount)
     {
         $this->user = $user;
         $this->announcement = $announcement;
+        $this->userSocialAccount = $userSocialAccount;
     }
 
     public function register(Request $request)
@@ -221,5 +231,93 @@ class UserRepository implements UserRepositoryInterface
         $user->save();
 
         return ResponseService::createSuccessMessage('userInfoUpdated');
+    }
+
+    public function facebookLogin(Request $request)
+    {
+        $facebookClientId = Config::get('services.facebook.client_id');
+        $facebookClientSecret = Config::get('services.facebook.client_secret');
+
+        FacebookSession::setDefaultApplication($facebookClientId, $facebookClientSecret);
+
+        try {
+
+            $session = new FacebookSession($request->get('access_token'));
+
+        } catch (Exception $e) {
+
+            Log::error('AuthController/postLoginWithFacebook', (array)$e);
+
+            return ResponseService::createErrorMessage('facebookInvalidAccessToken');
+        }
+
+        if (!isset($session) || $session) {
+
+            return ResponseService::createErrorMessage('facebookInvalidAccessToken');
+        }
+
+        try {
+
+            $me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
+
+        } catch (Exception $e) {
+
+            Log::error('AuthController/postLoginWithFacebook/requestMe', (array)$e);
+
+            return ResponseService::createErrorMessage('facebookInvalidAccessToken');
+        }
+
+        $user_social_profile = DB::table('user_social_accounts')
+            ->where('source', 'facebook')
+            ->where('source_id', $me->getId())
+            ->first();
+
+        $facebook_email = $me->getProperty('email');
+
+        if (!$facebook_email) {
+
+            return ResponseService::createErrorMessage('facebookEmailVerification');
+        }
+
+        $user = $this->user->where('email', $facebook_email)->first();
+
+        if (!$user_social_profile) {
+
+            if (!$user) {
+
+                try {
+
+                    $this->user->create([
+                        'first_name' => $me->getProperty('first_name'),
+                        'email' => $me->getProperty('email'),
+                        'password' => bcrypt($request->get('password')),
+                        'last_name' => $me->getProperty('last_name'),
+                        'picture' => 'placeholders/profile.png',
+                        'username' => $this->generateUsername($me->getProperty('first_name'), $me->getProperty('last_name')),
+                        'api_token' => ToolService::generateApiToken()
+                    ]);
+
+                } catch (Exception $e) {
+
+                    Log::error('AuthController/postLoginWithFacebook/UserSave', (array)$e);
+
+                    return ResponseService::createErrorMessage('facebookSaveError');
+                }
+
+                $user_id = $user->id;
+
+            } else {
+                $user_id = $user->id;
+            }
+
+            $this->userSocialAccount->create([
+                'user_id' => $user_id,
+                'source' => 'facebook',
+                'source_id' => $me->getId(),
+                'access_token' => $request->get('access_token')
+            ]);
+        }
+
+        return ResponseService::createResponse('user', $user);
     }
 }
