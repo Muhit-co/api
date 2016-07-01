@@ -27,9 +27,9 @@ class CreateIssue extends ApiRequest
         $required = [
             'user_id' => 'required|numeric|min:1',
             'title' => 'required|min:5',
-            'desc' => 'required|min:20',
-            'location' => 'required',
-            'tags' => 'required',
+            'problem' => 'required|min:20',
+            'solution' => 'required|min:20',
+            'location' => 'required|min:5',
             'coordinates' => 'required|min:5',
             'is_anonymous' => 'required'
         ];

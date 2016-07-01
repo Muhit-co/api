@@ -6,6 +6,7 @@ use Date;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Log;
 use Muhit\Jobs\IssueRemoved;
 use Muhit\Jobs\SendIssueSupportedEmail;
@@ -103,7 +104,7 @@ class IssueRepository implements IssueRepositoryInterface
                 $hood = Hood::fromLocation($location);
             }
 
-            if ($hood === false or $hood === null or !isset($hood->id) or !isset($hood->city_id) or !isset($hood->district_id)) {
+            if (!$hood || !isset($hood->id) or !isset($hood->city_id) or !isset($hood->district_id)) {
 
                 DB::rollBack();
 
@@ -116,7 +117,7 @@ class IssueRepository implements IssueRepositoryInterface
                 'status' => 'new',
                 'city_id' => $hood->city_id,
                 'district_id' => $hood->district_id,
-                'hood_id' => $hood->hood_id,
+                'hood_id' => $hood->id,
                 'location' => $location,
                 'is_anonymous' => 0,
                 'coordinates' => $request->has('coordinates') ? $request->get('coordinates') : '',
@@ -127,9 +128,11 @@ class IssueRepository implements IssueRepositoryInterface
 
             $tags = $request->get('tags');
 
-            if (!empty($tags) and is_array($tags)) {
+            if (Str::length($tags) > 1) {
 
-                foreach ($tags as $tag) {
+                $tagList = explode(',', $tags);
+
+                foreach ($tagList as $tag) {
 
                     try {
 
