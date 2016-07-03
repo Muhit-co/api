@@ -149,7 +149,9 @@ class UserRepository implements UserRepositoryInterface
                 'last_name',
                 'level',
                 'picture',
-                'phone'
+                'phone',
+                'location',
+                'coordinates'
             ]);
 
         if (!$headMan) {
