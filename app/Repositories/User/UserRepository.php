@@ -253,11 +253,6 @@ class UserRepository implements UserRepositoryInterface
             return ResponseService::createErrorMessage('facebookInvalidAccessToken');
         }
 
-        if (!isset($session) || $session) {
-
-            return ResponseService::createErrorMessage('facebookInvalidAccessToken');
-        }
-
         try {
 
             $me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
