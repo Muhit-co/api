@@ -157,15 +157,17 @@ class IssueRepository implements IssueRepositoryInterface
 
             $images = $request->get('images');
 
-            #save the images
-            if (!empty($images) and is_array($images)) {
+            if (Str::length($images) > 1) {
 
-                foreach ($images as $image) {
+                $imageList = explode(',', $images);
+
+                foreach ($imageList as $image) {
 
                     try {
 
                         $name = str_replace('.', '', microtime(true));
                         Storage::put('issues/' . $name, base64_decode($image));
+
                         DB::table('issue_images')->insert([
                             'issue_id' => $issue->id,
                             'image' => 'issues/' . $name,
@@ -211,6 +213,11 @@ class IssueRepository implements IssueRepositoryInterface
         }
     }
 
+    public function update($user_id, $issue_id, Request $request)
+    {
+        
+    }
+    
     private function checkDuplicate($user_id, $title, $location)
     {
         return $this->issue

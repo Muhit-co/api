@@ -23,4 +23,6 @@ interface IssueRepositoryInterface
     public function support($issue_id, $user_id);
 
     public function unsupport($issue_id, $user_id);
+
+    public function update($user_id, $issue_id, Request $request);
 }

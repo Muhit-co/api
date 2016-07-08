@@ -138,7 +138,12 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::get('issues/{issue_id}/supporters', 'Api\IssueController@supporters')->where('issue_id', '[0-9]+');
         Route::post('issues/create', 'Api\IssueController@create');
-        Route::post('issues/delete/{userId}/{issueId}', 'Api\IssueController@delete');
+        Route::post('issues/delete/{user_id}/{issue_id}', 'Api\IssueController@delete')
+            ->where('issue_id', '[0-9]+')
+            ->where('user_id', '[0-9]+');
+        Route::post('issues/update/{user_id}/{issue_id}', 'Api\IssueController@update')
+            ->where('issue_id', '[0-9]+')
+            ->where('user_id', '[0-9]+');
 
         Route::get('user/{user_id}/supported', 'Api\IssueController@supported');
         Route::get('user/{user_id}/created', 'Api\IssueController@created');
