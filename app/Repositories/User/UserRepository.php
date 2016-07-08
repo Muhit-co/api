@@ -15,9 +15,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Log;
 use Muhit\Models\Announcement;
+use Muhit\Models\Hood;
 use Muhit\Models\User;
 use Muhit\Models\UserSocialAccount;
 use ResponseService;
+use Storage;
 use ToolService;
 
 class UserRepository implements UserRepositoryInterface
@@ -184,57 +186,6 @@ class UserRepository implements UserRepositoryInterface
         return ResponseService::createResponse('announcements', $announcements);
     }
 
-    public function update(Request $request, $user_id)
-    {
-        $user = $this->user->where('id', $user_id)->first();
-
-        if (!$user) {
-
-            return ResponseService::createErrorMessage('userNotFound');
-        }
-
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-
-        if ($request->get('email') != $user->email) {
-
-            $checkEmail = $this->user->where('email', $request->get('email'))->first();
-
-            if (!$checkEmail) {
-
-                $user->email = $request->get('email');
-
-            } else {
-
-                if ($checkEmail->id != $user_id) {
-
-                    return ResponseService::createErrorMessage('emailUnavailable');
-                }
-            }
-        }
-
-        if ($request->get('username') != $user->username) {
-
-            $checkUsername = $this->user->where('username', $request->get('username'))->first();
-
-            if (!$checkUsername) {
-
-                $user->username = $request->get('username');
-
-            } else {
-
-                if ($checkUsername->id != $user_id) {
-
-                    return ResponseService::createErrorMessage('usernameUnavailable');
-                }
-            }
-        }
-
-        $user->save();
-
-        return ResponseService::createSuccessMessage('userInfoUpdated');
-    }
-
     public function facebookLogin(Request $request)
     {
         $facebookClientId = Config::get('services.facebook.client_id');
@@ -316,5 +267,99 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return ResponseService::createResponse('user', $user);
+    }
+
+    public function update(Request $request, $user_id)
+    {
+        $user = $this->user->where('id', $user_id)->first();
+
+        if (!$user) {
+
+            return ResponseService::createErrorMessage('userNotFound');
+        }
+
+        if ($request->has('email') && filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
+
+            $user->email = $request->get('email');
+            $user->is_verified = 0;
+        }
+
+        $location_parts = explode(",", $request->get('active_hood'));
+        $hood = false;
+
+        if (count($location_parts) === 3) {
+
+            $hood = Hood::fromLocation($request->get('active_hood'));
+        }
+
+        if (isset($hood) && isset($hood->id)) {
+
+            $user->hood_id = $hood->id;
+        }
+
+        if ($request->has('email') && $request->get('email') != $user->email) {
+
+            $checkEmail = $this->user->where('email', $request->get('email'))->first();
+
+            if (!$checkEmail) {
+
+                $user->email = $request->get('email');
+
+            } else {
+
+                if ($checkEmail->id != $user_id) {
+
+                    return ResponseService::createErrorMessage('emailUnavailable');
+                }
+            }
+        }
+
+        if ($request->has('username') && $request->get('username') != $user->username) {
+
+            $checkUsername = $this->user->where('username', $request->get('username'))->first();
+
+            if (!$checkUsername) {
+
+                $user->username = $request->get('username');
+
+            } else {
+
+                if ($checkUsername->id != $user_id) {
+
+                    return ResponseService::createErrorMessage('usernameUnavailable');
+                }
+            }
+        }
+
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->location = $request->get('location');
+
+        if ($request->has('picture') && Str::length($request->get('picture')) > 0) {
+
+            try {
+
+                $name = str_replace('.', '', microtime(true));
+                Storage::put('users/' . $name, base64_decode($request->get('picture')));
+                $user->picture = $name;
+
+            } catch (Exception $e) {
+
+                Log::error('MemberController/postUpdate/SavingTheImage', (array)$e);
+            }
+        }
+
+        try {
+
+            $user->save();
+
+        } catch (Exception $e) {
+
+            Log::error('MemberController/postUpdate', (array)$e);
+
+            return ResponseService::createErrorMessage('exceptionOccurredSavingProfile');
+        }
+
+        return ResponseService::createSuccessMessage('profileUpdated');
     }
 }
