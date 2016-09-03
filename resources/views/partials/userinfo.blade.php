@@ -11,7 +11,7 @@
                 @include('partials.add_idea_button', ['text' => 'Fikir ekle', 'class' => ''])
             </li>
             <li><a href="/members/my-profile"><i class="ion ion-person u-mr5"></i> {{ trans('issues.my_profile') }}</a></li>
-            <li><a href="{{ getSupportLink() }}" target="_blank"><i class="ion ion-bug u-mr5"></i> {{ trans('issues.problems_and_recommendations') }} <i class="ion ion-android-open u-ml5 c-light"></i></a></li>
+            <li><a href="{{ getSupportLink() }}" target="_blank"><i class="ion ion-bug u-mr5"></i> {{ trans('issues.technical_problems') }} <i class="ion ion-android-open u-ml5 c-light"></i></a></li>
             <li><a href="/logout" class="c-red"><i class="ion ion-log-out u-mr5"></i> {{ trans('auth.log_out') }}</a></li>
         </ul>
     </div>

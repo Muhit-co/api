@@ -44,7 +44,7 @@ return [
     "supported" => "Destekledim",
     "supported_cap" => "DESTEKLEDİM",
     "add_idea" => "Fikir ekle",
-    "problems_and_recommendations" => "Sorunlar ve öneriler",
+    "technical_problems" => "Teknik sorunlar",
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
     "come_drink_tea_descr" => "Bu fikri oluşturan kişi ile sorunu konuşmak için çay içmek ister misiniz? Buraya yazdığınız mesaj fikri oluşturan kişiye iletilecektir.",

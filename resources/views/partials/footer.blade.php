@@ -36,7 +36,7 @@
             <br />
             <a href="{{ getSupportLink() }}" class="u-inlineblock u-pa5" target="_blank">
                 <i class="ion ion-bug ion-fw u-aligncenter u-mr5"></i>
-                {{ trans('issues.problems_and_recommendations') }}
+                {{ trans('issues.technical_problems') }}
                 <i class="ion ion-android-open u-ml5 c-light"></i>
             </a>
         </div>
