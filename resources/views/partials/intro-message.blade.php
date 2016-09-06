@@ -10,7 +10,7 @@
                 <div class="col-xs-10 u-aligncenter">
                     <i class="ion ion-muhit-tea-white u-floatleft u-mr10" style="margin-top: 3px;"></i>
                     <div class="col-xs-hide">
-                        <h3 class="u-floatleft u-mr20">Muhit'e hoş geldin!</h3>
+                        <h3 class="u-floatleft u-mr20">{{ trans('intro.welcome_msg') }}</h3>
                     </div>
                     <a href="javascript:void(0)" id="message_expand" class="btn btn-sm btn-empty u-mr50" style="margin-top: -2px;">
                         {{ trans('intro.how_does_it_work_cap') }}

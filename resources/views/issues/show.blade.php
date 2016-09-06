@@ -106,7 +106,7 @@ if(strlen($issue['problem']) > 0) {
                         </div>
                         <div id="support_counter" class="badge badge-circle-xlarge badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
                             <div class="value">{{ $issue_supporters }}</div>
-                            <label>DESTEKÇİ</label>
+                            <label>{{ trans_choice('issues.supporters_cap', $issue_supporters) }}</label>
                         </div>
                     </div>
 

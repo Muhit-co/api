@@ -11,7 +11,7 @@
                 <div class="u-floatright u-nowrap">
                     <a href="/login" class="btn btn-quaternary u-mt15 u-mr5">
                         <span class="condensed"><i class="ion ion-log-in ion-15x u-floatleft"></i></span>
-                        <span class="extended">GİRİŞ YAP</span></a>
+                        <span class="extended">{{ trans('auth.log_in_cap') }}</span></a>
                     <a href="/login/facebook" class="btn btn-facebook u-mr5 u-mt15">
                         <i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i>
                         <span class="extended">

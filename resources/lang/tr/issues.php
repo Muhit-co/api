@@ -29,6 +29,7 @@ return [
     "contact_info_cap" => "İLETİŞİM BİLGİLERİ",
     "neighbourhood" => "Mahalle",
     "ideas_for" => "için fikirler",
+    "choose_hood_header" => "Mahalleni seç...",
     "log_in_needed" => "Giriş yapman ya da üye olman gerekiyor",
     "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor", 
     "issues_cant_be_found" => "Fikir bulunamadı...",
@@ -43,7 +44,12 @@ return [
     "support_cap" => "DESTEKLE",
     "supported" => "Destekledim",
     "supported_cap" => "DESTEKLEDİM",
+    "supporters_cap" => "DESTEKÇİ|DESTEKÇİ",
     "add_idea" => "Fikir ekle",
+    "add_idea_cap" => "FİKİR :tagstartEKLE:tagend",
+    "latest_cap" => "EN SON",
+    "popular_cap" => "POPÜLER",
+    "map_cap" => "HARİTA",
     "technical_problems" => "Teknik sorunlar",
     "take_action_cap" => "HAREKETE GEÇ",
     "come_drink_tea" => "Çayımı iç",
@@ -94,6 +100,6 @@ return [
     "your_muhtar_didnt_sign_up_yet" => "Muhtarınız henüz Muhit'e üye değil!", // @seratolgay
     "no_announcements" => "Duyuru yok...", // @seratolgay
     "submitted_anonymously" => "Bu fikir anonim olarak eklenmiştir.",
-    "added_ideas" => "Eklediği fikirleri",
+    "added_ideas" => "Eklediğim fikirler",
     "coming_soon" => "Çok yakında...",
 ];

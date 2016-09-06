@@ -28,6 +28,7 @@ return [
     "your_password" => "Şifren",
     "password_again" => "Şifre (tekrar)",
     "password_placeholder" => "En az 8 karakter",
+    "choose_hood_form" => "Mahalleni seç...",
     "username" => "Kullanıcı adı",
     "username_placeholder" => "i.e. ahmetmuhittin",
     "agree_with_terms" => ":tagstartKullanım koşulları:tagendnı kabul ediyorum.",

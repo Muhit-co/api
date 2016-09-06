@@ -39,7 +39,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="btn btn-primary u-floatright">KAYIT OL</i></button>
+                <button type="submit" class="btn btn-primary u-floatright">{{ trans('auth.sign_up_cap') }}</i></button>
             </form>
         </div>
     </div>

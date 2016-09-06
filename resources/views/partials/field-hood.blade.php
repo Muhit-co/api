@@ -20,6 +20,6 @@ if(strlen($defaultValue) > 0) {
         <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5"></i>
         <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning" style="margin-right: 7px"></i>
     </div>
-    <input id="hood" type="text" class="form-input u-floatleft {{ $inputClassList }}" placeholder="Mahalleni seç..." value="{{ $defaultValueHood }}" required {{ $disabledState }}/>
+    <input id="hood" type="text" class="form-input u-floatleft {{ $inputClassList }}" placeholder="{{ trans('auth.choose_hood_form') }}" value="{{ $defaultValueHood }}" required {{ $disabledState }}/>
     <input id="location_string" value="{{ $defaultValue }}" name="location" class="u-hidden" />
 </div>
