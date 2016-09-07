@@ -76,4 +76,5 @@ return [
     "pw_reset_error" => "Teknik bir hatadan dolayı şu anda şifre güncelleme işlemini yapamadım.",
     "pw_reset_success" => "Şifreniz başarılı bir şekilde güncellendi. Yeni şifreniz ile giriş yapabilirsiniz.",
     "account_confirm_error" => "Teknik bir hatadan dolayı hesabını şu anda onaylayamadım.",
+    "account_confirm_success" => "Hesabın başarılı bir şekilde onaylandı.",
 ];

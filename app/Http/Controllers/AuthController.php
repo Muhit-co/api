@@ -228,7 +228,7 @@ class AuthController extends Controller {
 				return response()->api(401, 'Wrong user credentials', $data);
 			}
 
-			return redirect('/login')->with('warning', translate('auth.error_password'))->withInput();
+			return redirect('/login')->with('warning', trans('auth.error_password'))->withInput();
 		}
 
 		if ($this->isApi) {
@@ -251,7 +251,7 @@ class AuthController extends Controller {
 			return redirect('/')->with('success', trans('auth.muhtar_access_requested'));
 		}
 
-		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . Auth::user()->first_name);
+		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . Auth::user()->first_name) . '!';
 
 	}
 
@@ -513,7 +513,7 @@ class AuthController extends Controller {
 		}
 
 		Auth::login($u);
-		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . $u->first_name);
+		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . $u->first_name) . '!';
 
 	}
 
