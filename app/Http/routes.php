@@ -17,7 +17,10 @@ Route::get('/user/{username}', function () {
 });
 
 
-Route::get('/lang/{loc}', 'LangController.php@changeLoc');
+Route::get('/lang/{loc}', function ($loc) {
+    Session::put('lang', $loc);
+    return redirect('/')->with('success', 'You are all set with: '.$loc);
+});
 
 #end of testing routes for dann
 
