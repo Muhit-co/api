@@ -16,6 +16,12 @@ Route::get('/user/{username}', function () {
     return view('pages.profile');
 });
 
+
+Route::get('/lang/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return redirect('/');
+});
+
 #end of testing routes for dann
 
 # reports routing
@@ -70,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', 'MemberController@getMyProfile');
     Route::get('support/{id}', 'IssuesController@getSupport');
     Route::get('unsupport/{id}', 'IssuesController@getUnSupport');
-    
+
     Route::get('duyurular', 'AnnouncementController@index');
     Route::post('duyuru/ekle', 'AnnouncementController@create');
     Route::post('duyuru/duzenle/{id}', 'AnnouncementController@edit');
@@ -150,5 +156,4 @@ Route::group(['prefix' => 'api'], function () {
             return response()->api(200, 'passed', []);
         });
     });
-
 });
