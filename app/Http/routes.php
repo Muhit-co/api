@@ -17,10 +17,7 @@ Route::get('/user/{username}', function () {
 });
 
 
-Route::get('/lang/{locale}', function ($locale) {
-    App::setLocale($locale);
-    return redirect('/')->with('success', 'Your locale set to '.$locale);
-});
+Route::get('/lang/{loc}', 'LangController.php@changeLoc');
 
 #end of testing routes for dann
 
