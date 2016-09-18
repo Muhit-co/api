@@ -19,7 +19,7 @@ Route::get('/user/{username}', function () {
 
 Route::get('/lang/{locale}', function ($locale) {
     App::setLocale($locale);
-    return redirect('/');
+    return redirect('/')->with('success', 'Your locale set to '.$locale);
 });
 
 #end of testing routes for dann
