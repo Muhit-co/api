@@ -1,4 +1,4 @@
-<?php namespace App\Http\Middleware;
+<?php namespace Muhit\Http\Middleware;
 
 use Closure;
 use Illuminate\Routing\Redirector;
