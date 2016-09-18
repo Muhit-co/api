@@ -19,7 +19,7 @@ Route::get('/user/{username}', function () {
 
 Route::get('/lang/{loc}', function ($loc) {
     Session::put('lang', $loc);
-    return redirect('/')->with('success', 'You are all set with: '.$loc);
+    return redirect()->back(); // ->with('success', 'Changed language to: '.$loc);
 });
 
 #end of testing routes for dann
