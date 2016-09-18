@@ -1,5 +1,5 @@
 <?php
-$btn_text = (isset($text)) ? $text : 'FİKİR <span class="extended">EKLE</span>';
+$btn_text = (isset($text)) ? $text : trans('issues.add_idea_cap', ['tagstart' => '<span class="extended">', 'tagend' => '</span>']);
 $btn_class = (isset($class)) ? $class : 'btn btn-primary';
 if(isset($role) && $role != 'admin'):
 $loc_param = '';

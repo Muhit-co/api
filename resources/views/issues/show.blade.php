@@ -106,7 +106,7 @@ if(strlen($issue['problem']) > 0) {
                         </div>
                         <div id="support_counter" class="badge badge-circle-xlarge badge-support badge-{{$issue_status['class']}} u-pinned-topright u-pt15" style="margin-top: -15px;">
                             <div class="value">{{ $issue_supporters }}</div>
-                            <label>DESTEKÇİ</label>
+                            <label>{{ trans_choice('issues.supporters_cap', $issue_supporters) }}</label>
                         </div>
                     </div>
 
@@ -253,7 +253,7 @@ if(strlen($issue['problem']) > 0) {
                     <div class="u-floatright">
                         @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
                             @if($issue_supporters < 10)
-                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored u-ml10" onclick="return confirm('Bu fikri silmek istediğinizden emin misiniz?');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored u-ml10" onclick="return confirm('{{ trans('issues.delete_confirm') }}');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
                             @else
                                 <span class="hasTooltip u-ml10">
                                     <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>

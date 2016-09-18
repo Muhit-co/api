@@ -11,6 +11,9 @@
 
                 <h2 class="u-clearfix">
                     <!-- change mahalle -->
+                    @if(App::getLocale() !== 'tr')
+                        <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
+                    @endif
                     <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="is-home">
                         <div class="u-floatleft u-aligncenter" style="width: 40px;">
                             <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
@@ -18,14 +21,16 @@
                             <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
                         </div>
-                        <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="Mahalleni seç..." value="{{$hood->name or ''}}" />
+                        <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="{{ trans('issues.choose_hood_header') }}" value="{{$hood->name or ''}}" />
                         <input id="location_string" name="location" class="u-hidden" value="" />
 
                         @if(isset($redir) and $redir == 'list')
                             <input type="hidden" id="redir" value="list">
                         @endif
                     </div>
-                    <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
+                    @if(App::getLocale() == 'tr')
+                        <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
+                    @endif
                     <br />
                 </h2>
 
@@ -48,10 +53,10 @@
                     </span>
 
                     @if(isset($hood) and isset($hood->district))
-                    <a href="/report" class="btn btn-sm btn-whiteoutline u-ml15 u-has-hidden-content">
+                    <!-- <a href="/report" class="btn btn-sm btn-whiteoutline u-ml15 u-has-hidden-content">
                         <i class="ion ion-clipboard"></i>
                         <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
-                    </a>
+                    </a> -->
                     @endif
 
                 </h3>

@@ -11,7 +11,7 @@
                 <div class="u-floatright u-nowrap">
                     <a href="/login" class="btn btn-quaternary u-mt15 u-mr5">
                         <span class="condensed"><i class="ion ion-log-in ion-15x u-floatleft"></i></span>
-                        <span class="extended">GİRİŞ YAP</span></a>
+                        <span class="extended">{{ trans('auth.log_in_cap') }}</span></a>
                     <a href="/login/facebook" class="btn btn-facebook u-mr5 u-mt15">
                         <i class="ion ion-social-facebook ion-15x u-floatleft u-ph5"></i>
                         <span class="extended">
@@ -29,6 +29,10 @@
                     <i class="ion ion-navicon ion-2x"></i>
                     <i class="ion ion-android-close ion-2x"></i>
                 </a>
+            @else
+                <div class="u-floatright u-mt20 u-mr15 u-lineheight30 col-xs-hide">
+                    @include('partials.lang-switcher')
+                </div>
             @endif
             
             <a href="<?php echo (Request::is('/')) ? '#top' : '/' ?>" id="nav_logo" class="u-floatleft">

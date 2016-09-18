@@ -38,7 +38,7 @@ class IssuesController extends Controller {
 				return response()->api(403, 'Auth required', []);
 			}
 			return redirect('/login')
-				->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+				->with('error', trans('issues.login_try_again'));
 		}
 
 		$required_fields = ['tags', 'title', 'problem', 'location', 'solution'];
@@ -48,8 +48,8 @@ class IssuesController extends Controller {
 				if ($this->isApi) {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
-				$message = '"' . trans('issues.' . $key) . '" gereklidir';
-				return redirect('/issues/new')->with('warning', 'Lütfen tüm formu doldurup tekrar deneyin. ' . $message)->withInput();
+				$message = ' "' . trans('issues.' . $key) . '" ' . trans('issues.is_required') . '.';
+				return redirect('/issues/new')->with('warning', trans('issues.fill_form_try_again') . $message)->withInput();
 			}
 		}
 
@@ -64,7 +64,7 @@ class IssuesController extends Controller {
 				return response()->api(400, 'Duplicate request', []);
 			}
 			return redirect('/issues/view/' . $check_duplicate->id)
-				->with('warning', 'Daha önceden açtığınız bir fikri tekrar açmak istiyorsunuz gibi.');
+				->with('warning', trans('issues.seems_already_existing'));
 		}
 
 		DB::beginTransaction();
@@ -98,7 +98,7 @@ class IssuesController extends Controller {
 				return response()->api(401, 'Cant get the hood information from the location provided.', ['data' => $data]);
 			}
 			return redirect('issues/new')
-				->with('error', 'Lokasyonunuzu girerken bir hata oldu, lütfen tekrar deneyin.');
+				->with('error', trans('issues.error_while_location'));
 		}
 
 		$issue->city_id = $hood->city_id;
@@ -113,7 +113,7 @@ class IssuesController extends Controller {
 			if ($this->isApi) {
 				return response()->api(500, 'Error on saving the issue', $data);
 			}
-			return redirect('/issues/new')->with('error', 'Fikrinizi kaydederken teknik bir hata meydana geldi, lütfen biraz bekleyip tekrar deneyin.')->withInput();
+			return redirect('/issues/new')->with('error', trans('issues.error_saving_wait_try_again'))->withInput();
 
 		}
 
@@ -132,10 +132,10 @@ class IssuesController extends Controller {
 					Log::error('IssuesController/postAdd/SavingTagRelation', (array) $e);
 					DB::rollback();
 					if ($this->isApi) {
-						return response()->api(500, 'Error on saving the issue', $data);
+						return response()->api(500, 'Error while saving the issue', $data);
 
 					}
-					return redirect('issues/new')->with('error', 'Fikrinizi kaydederken teknik bir hata geldi, hata logu teknik ekibe iletildi. Hemen ilgileniyoruz');
+					return redirect('issues/new')->with('error', trans('issues.error_technical_team'));
 				}
 			}
 		}
@@ -180,7 +180,7 @@ class IssuesController extends Controller {
 
 		}
 
-		return redirect('/issues/view/' . $issue->id)->with('success', 'Fikrinizi kaydettik');
+		return redirect('/issues/view/' . $issue->id)->with('success', trans('issues.idea_saved'));
 
 	}
 
@@ -409,7 +409,7 @@ class IssuesController extends Controller {
 
 		if (!Auth::check()) {
 			return redirect('/')
-				->with('error', 'Giriş yapıp tekrar deneyebilirsiniz.');
+				->with('error', trans('issues.login_try_again'));
 		}
 		$user_id = Auth::user()->id;
 
@@ -470,7 +470,7 @@ class IssuesController extends Controller {
 
 		if (empty($issue_ids)) {
 			return redirect('/')
-				->with('error', 'Henüz hiç bir fikri desteklememişsiniz.');
+				->with('error', trans('issues.no_supported_ideas_yet'));
 		}
 
 		$o = 'id';
@@ -534,7 +534,7 @@ class IssuesController extends Controller {
 				return response()->api(403, 'Auth required', []);
 			}
 			return redirect('/login')
-				->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+				->with('error', trans('issues.login_try_again'));
 		}
 
 		$issue = Issue::find($id);
@@ -544,7 +544,7 @@ class IssuesController extends Controller {
 				return response()->api(404, 'Issue not found', []);
 			}
 			return redirect('/issues')
-				->with('error', 'Silmek istediğiniz fikiri bulamadım.');
+				->with('error', trans('issues.delete_couldnt_find'));
 		}
 
 		$can_delete = false;
@@ -566,7 +566,7 @@ class IssuesController extends Controller {
 				return response()->api(403, 'You are not authorized to delete this issue');
 			}
 			return redirect('/issues/view/' . $id)
-				->with('error', 'Fikri silmek için yeterli yetkiniz yok.');
+				->with('error', trans('issues.delete_not_authorised'));
 
 		}
 
@@ -575,7 +575,7 @@ class IssuesController extends Controller {
 				return response()->api(403, 'You are not authorized to delete this issue');
 			}
 			return redirect('/issues/view/' . $id)
-				->with('error', 'Issue silinebilir durumda değil. ');
+				->with('error', trans('issues.delete_nostatus'));
 		}
 
 		try {
@@ -596,14 +596,14 @@ class IssuesController extends Controller {
 				return response()->api(500, 'Tech problem while deleting the issue', []);
 			}
 			return redirect('/issues')
-				->with('error', 'Fikrinizi silmeye çalışırken teknik bir hata meydana geldi.');
+				->with('error', trans('issues.error_while_supporting'));
 		}
 
 		if ($this->isApi) {
 			return response()->api(200, 'Issue deleted.', ['id' => $id]);
 		}
 		return redirect('/issues')
-			->with('success', 'Fikriniz başarılı bir şekilde silindi. ');
+			->with('success', trans('issues.delete_success'));
 	}
 
 	/**
@@ -625,7 +625,7 @@ class IssuesController extends Controller {
 				return response()->api(403, 'Auth required', []);
 			}
 			return redirect('/login')
-				->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+				->with('error', trans('issues.login_try_again'));
 		}
 
 		$issue = Issue::find($id);
@@ -635,7 +635,7 @@ class IssuesController extends Controller {
 				return response()->api(404, 'Issue not found', []);
 			}
 			return redirect('/issues')
-				->with('error', 'Silmek istediğiniz fikiri bulamadım.');
+				->with('error', trans('issues.delete_couldnt_find'));
 		}
 
 		$check = (int) DB::table('issue_supporters')
@@ -648,7 +648,7 @@ class IssuesController extends Controller {
 				return response()->api(200, 'Already supported', []);
 			}
 			return redirect('/issues/view/' . $id)
-				->with('warning', 'Bu fikri zaten destekliyorsunuz.');
+				->with('warning', trans('issues.already_support_idea'));
 		}
 
 		try {
@@ -671,7 +671,7 @@ class IssuesController extends Controller {
 				return response()->api(500, 'Tech problem while supporting the issue', []);
 			}
 			return redirect('/issues/view/' . $id)
-				->with('error', 'Fikri desteklerken teknik bir hata meydana geldi. Lütfen tekrar deneyin.');
+				->with('error', trans('issues.error_while_supporting'));
 		}
 
 		if ($this->isApi) {
@@ -679,7 +679,7 @@ class IssuesController extends Controller {
 		}
 
 		return redirect('/issues/view/' . $id)
-			->with('success', 'Fikir desteklendi.');
+			->with('success', trans('issues.idea_supported'));
 
 	}
 
@@ -701,7 +701,7 @@ class IssuesController extends Controller {
 				return response()->api(403, 'Auth required', []);
 			}
 			return redirect('/login')
-				->with('error', 'Lütfen giriş yapıp tekrar deneyin. ');
+				->with('error', trans('issues.login_try_again'));
 		}
 
 		$issue = Issue::find($id);
@@ -711,7 +711,7 @@ class IssuesController extends Controller {
 				return response()->api(404, 'Issue not found', []);
 			}
 			return redirect('/issues')
-				->with('error', 'Silmek istediğiniz fikiri bulamadım.');
+				->with('error', trans('issues.delete_couldnt_find'));
 		}
 
 		$check = DB::table('issue_supporters')
@@ -724,7 +724,7 @@ class IssuesController extends Controller {
 				return response()->api(200, 'User did not support this issue', []);
 			}
 			return redirect('/issues/view/' . $id)
-				->with('warning', 'Bu fikri desteklemiyorsunuz.');
+				->with('warning', trans('issues.dont_support'));
 		}
 
 		try {
@@ -741,7 +741,7 @@ class IssuesController extends Controller {
 				return response()->api(500, 'Tech problem while unsupporting the issue', []);
 			}
 			return redirect('/issues/view/' . $id)
-				->with('error', 'Fikri desteklerken teknik bir hata meydana geldi. Lütfen tekrar deneyin.');
+				->with('error', trans('issues.error_while_supporting'));
 		}
 
 		if ($this->isApi) {
@@ -749,7 +749,7 @@ class IssuesController extends Controller {
 		}
 
 		return redirect('/issues/view/' . $id)
-			->with('success', 'Bu fikri artık desteklemiyorsunuz');
+			->with('success', trans('issues.dont_support_anymore'));
 
 	}
 
@@ -767,7 +767,7 @@ class IssuesController extends Controller {
 				return response()->api(404, 'Issue not found', []);
 			}
 			return redirect('/issues')
-				->with('error', 'Fikir bulunamadı.');
+				->with('error', trans('issues.idea_not_found'));
 		}
 
 		$supporter_ids = [];
@@ -807,12 +807,12 @@ class IssuesController extends Controller {
 
 		if (!Auth::check()) {
 			return redirect('/login')
-				->with('error', 'Lütfen giriş yapıp tekrar deneyin.');
+				->with('error', trans('issues.login_try_again'));
 		}
 
 		if (!Request::has('issue_id') or !Request::has('feedback')) {
 			return redirect('/')
-				->with('error', 'Lütfen feedback girip tekrar deneyin.');
+				->with('error', trans('issues.login_try_again'));
 		}
 
 		$data = Request::all();
@@ -828,11 +828,11 @@ class IssuesController extends Controller {
 		} catch (Exception $e) {
 			Log::error('IssuesController/postReport', (array) $e);
 			return redirect('/issues/view/' . $data['issue_id'])
-				->with('error', 'Geribildiriminizi kaydederken teknik bir hata meydana geldi. Geliştirici ekibimiz konu hakkında uyarıldı.');
+				->with('error', trans('issues.feedback_error'));
 		}
 
 		return redirect('/issues/view/' . $data['issue_id'])
-			->with('success', 'Geri bildiriminiz için teşekkürler.');
+			->with('success', trans('issues.feedback_thankyou'));
 	}
 
 	/**

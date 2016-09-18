@@ -35,11 +35,11 @@
                 <div class="form-group form-fullwidth u-mt30 u-mb20">
                     <input id="termsagree" type="checkbox" class="form-input u-floatleft u-mr20" value="" name="user.agree" required />
                     <label for="termsagree">
-                        {!! trans('auth.agree_with_terms', ['tagstart' => '<a href="http://hikaye.muhit.co/kullanim-kosullari" target="_blank">', 'tagend' => '</a>']) !!}
+                        {!! trans('auth.agree_with_terms', ['tagstart' => '<a href="' . getStoryLink('kullanim-kosullari') . '" target="_blank">', 'tagend' => '</a>']) !!}
                     </label>
                 </div>
 
-                <button type="submit" class="btn btn-primary u-floatright">KAYIT OL</i></button>
+                <button type="submit" class="btn btn-primary u-floatright">{{ trans('auth.sign_up_cap') }}</i></button>
             </form>
         </div>
     </div>

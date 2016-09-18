@@ -21,6 +21,13 @@ nav {
   &.nav-report {
     background-color: @white;
 
+    a:not(.btn) {
+      color: fade(@muhitBlue, 70%);
+      
+      &:hover, &:focus {
+        color: @muhitBlue;
+      }
+    }
     .userinfo a {
       color: @muhitBlue;
     }

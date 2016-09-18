@@ -96,7 +96,7 @@ class AuthController extends Controller {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
 				return redirect($register_url)
-					->with('error', 'Lütfen formu doldurup tekrar deneyin.');
+					->with('error', trans('auth.fill_form_try_again'));
 			}
 		}
 
@@ -114,7 +114,7 @@ class AuthController extends Controller {
 					return response()->api(401, 'Cant get the hood information from the location provided.', ['data' => $data]);
 				}
 				return redirect('/register-muhtar')
-					->with('error', 'Lokasyonunuzu girerken bir hata oldu, lütfen tekrar deneyin.')->withInput();
+					->with('error', trans('auth.location_problem_try_again'))->withInput();
 			}
 		}
 
@@ -140,7 +140,7 @@ class AuthController extends Controller {
 				return response()->api(400, 'Duplicate entry on email.', $data);
 			}
 
-			return redirect($register_url)->with('warning', 'Bu eposta adresi ile daha önceden kayıt olunmuş, şifreni unuttuysan, şifreni hatırlatabilirim? ')->withInput();
+			return redirect($register_url)->with('warning', trans('auth.email_already_exists'))->withInput();
 		}
 
 		if (null !== $check_username) {
@@ -167,12 +167,12 @@ class AuthController extends Controller {
 				return response()->api(500, 'Error while creating the user. ', ['details' => (array) $e]);
 			}
 
-			return redirect($register_url)->with('error', 'Teknik bir sıkıntı oldu :( ')->withInput();
+			return redirect($register_url)->with('error', trans('auth.technical_problem'))->withInput();
 
 		}
 
 		if ($user->level === 4) {
-			return redirect('/')->with('success', 'Muhit sistemine erişim için talebiniz ekimibize ulaştı. Muhtar paneline erişiminiz ekibimiz tarafından onaylandıktan sonra mümkün olacaktır.');
+			return redirect('/')->with('success', trans('auth.muhtar_access_requested'));
 		}
 
 		try {
@@ -182,7 +182,7 @@ class AuthController extends Controller {
 			if ($this->isApi) {
 				return response()->api(500, 'Login error on tech', []);
 			}
-			return redirect('/login')->with('warning', 'Kayıttan sonra oturum açarken bir hata oluştu.')->withInput();
+			return redirect('/login')->with('warning', trans('auth.login_error_after_signup'))->withInput();
 		}
 
 		if ($this->isApi) {
@@ -228,7 +228,7 @@ class AuthController extends Controller {
 				return response()->api(401, 'Wrong user credentials', $data);
 			}
 
-			return redirect('/login')->with('warning', 'Şifreni unutmuş olabilir misin? ')->withInput();
+			return redirect('/login')->with('warning', trans('auth.error_password'))->withInput();
 		}
 
 		if ($this->isApi) {
@@ -248,10 +248,10 @@ class AuthController extends Controller {
 
 		if (Auth::user()->level === 4) {
 			Auth::logout();
-			return redirect('/')->with('success', 'Muhit sistemine erişim için talebiniz ekimibize ulaştı. Muhtar paneline erişiminiz ekibimiz tarafından onaylandıktan sonra mümkün olacaktır.');
+			return redirect('/')->with('success', trans('auth.muhtar_access_requested'));
 		}
 
-		return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . Auth::user()->first_name);
+		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . Auth::user()->first_name) . '!';
 
 	}
 
@@ -443,7 +443,7 @@ class AuthController extends Controller {
 
 		if (empty($email) or empty($id)) {
 			return redirect('/signup')
-				->with('error', 'Facebook ile girişte bir hata meydana geldi, normal login olmayı deneyebilirsiniz.')->withInput();
+				->with('error', trans('auth.error_facebook'))->withInput();
 		}
 
 		#check if the user already has an account with the facebook
@@ -479,7 +479,7 @@ class AuthController extends Controller {
 				} catch (Exception $e) {
 					Log::error('User save error', (array) $e);
 					return redirect('/signup')
-						->with('error', 'Kaydınızı yaparken teknik bir hata meydana geldi.')->withInput();
+						->with('error', trans('auth.technical_problem_registering'))->withInput();
 				}
 			}
 
@@ -513,7 +513,7 @@ class AuthController extends Controller {
 		}
 
 		Auth::login($u);
-		return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . $u->first_name);
+		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . $u->first_name) . '!';
 
 	}
 
@@ -528,7 +528,7 @@ class AuthController extends Controller {
 		try {
 			Storage::put($name, file_get_contents($url));
 		} catch (Exception $e) {
-			Log::error('Error on saving the user picture', (array) $e);
+			Log::error('Error while saving the user picture', (array) $e);
 			return 'placeholders/profile.png';
 		}
 
@@ -544,14 +544,14 @@ class AuthController extends Controller {
 	public function postForgotPassword() {
 		if (!Request::has('email')) {
 			return redirect('/forgot-password')
-				->with('error', 'Lütfen eposta adresinizi girip tekrar deneyin.')->withInput();
+				->with('error', trans('auth.email_try_again'))->withInput();
 		}
 
 		$user = User::where('email', Request::get('email'))->first();
 
 		if (empty($user)) {
 			return redirect('/forgot-password')
-				->with('error', 'Girdiğiniz eposta adresi ile ilgili bir kayıt bulamadım. ')->withInput();
+				->with('error', trans('auth.email_not_found'))->withInput();
 		}
 
 		#create a random string as remember token.
@@ -562,15 +562,15 @@ class AuthController extends Controller {
 			$user->save();
 			Mail::send('emails.forgot_password', ['string' => $string, 'email' => $user->email], function ($m) use ($user) {
 				$m->to($user->email)
-					->subject('Muhit.co Şifreni unuttuğunu duyduk.');
+					->subject(trans('auth.password_forgotten_email_title'));
 			});
 		} catch (Exception $e) {
 			Log::error('AuthController/postForgotPassword', (array) $e);
 			return redirect('/forgot-password')
-				->with('error', 'Şifrenizi sıfırlamak için şu anda mail gönderemiyoruz :/')->withInput();
+				->with('error', trans('auth.pw_forgot_cannot_send_mail'))->withInput();
 		}
 		return redirect('/')
-			->with('success', 'Şifre sıfırlama epostanı gönderdik. Epostandaki link ile yeni bir şifre oluşturabilirsin.');
+			->with('success', trans('auth.pw_forgot_email_sent'));
 	}
 
 	/**
@@ -582,7 +582,7 @@ class AuthController extends Controller {
 	public function getResetPassword($email = null, $code = null) {
 		if (empty($email) or empty($code)) {
 			return redirect('/')
-				->with('error', 'Geçersiz bir linke tıkladın.');
+				->with('error', trans('auth.invalid_link'));
 		}
 
 		$user = User::where('email', $email)
@@ -592,7 +592,7 @@ class AuthController extends Controller {
 
 		if (empty($user)) {
 			return redirect('/')
-				->with('error', 'Geçersiz bir kod, süresi dolmuş olabilir. Tekrardan şifre hatırlatmaya girip, yeni bir kod isteyebilirsin.');
+				->with('error', trans('auth.pw_forgot_invalid'));
 		}
 
 		return response()->app(200, 'auth.reset-password', ['user' => $user]);
@@ -629,11 +629,11 @@ class AuthController extends Controller {
 		} catch (Exception $e) {
 			Log::error('AuthController/postResetPassword', (array) $e);
 			return redirect('/')
-				->with('error', 'Teknik bir hatadan dolayı şu anda şifre güncelleme işlemini yapamadım.')->withInput();
+				->with('error', trans('auth.pw_reset_error'))->withInput();
 		}
 
 		return redirect('/login')
-			->with('success', 'Şifreniz başarılı bir şekilde güncellendi. Yeni şifreniz ile giriş yapabilirsiniz.');
+			->with('success', trans('auth.pw_reset_success'));
 	}
 
 	/**
@@ -645,7 +645,7 @@ class AuthController extends Controller {
 	public function getConfirm($id = null, $code = null) {
 		if (empty($id) or empty($code)) {
 			return redirect('/')
-				->with('error', 'Geçersiz bir linke tıkladın.');
+				->with('error', trans('auth.invalid_link'));
 		}
 
 		$user = User::where('id', $id)
@@ -654,7 +654,7 @@ class AuthController extends Controller {
 
 		if (empty($user)) {
 			return redirect('/')
-				->with('error', 'Geçersiz bir linke tıkladın. ');
+				->with('error', trans('auth.invalid_link'));
 		}
 
 		if ($user->is_verified == 0) {
@@ -664,11 +664,11 @@ class AuthController extends Controller {
 			} catch (Exception $e) {
 				Log::error('AuthController/getConfirm', (array) $e);
 				return redirect('/')
-					->with('error', 'Teknik bir hatadan dolayı hesabını şu anda onaylayamadım.');
+					->with('error', trans('auth.account_confirm_error'));
 			}
 		}
 
 		return redirect('/')
-			->with('success', 'Hesabın başarılı bir şekilde onaylandı.');
+			->with('success', trans('auth.account_confirm_success'));
 	}
 }

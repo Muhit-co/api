@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "welcome_msg" => "Muhit'e hoş geldin!",
     "title" => "Mahalleni değiştirmek senin elinde.",
     "subtitle" => "Nasıl çalışıyor?",
     "how_does_it_work_cap" => "NASIL ÇALIŞIYOR?", 
