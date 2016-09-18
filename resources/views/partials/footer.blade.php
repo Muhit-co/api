@@ -1,10 +1,14 @@
  <footer>
     <div class="row">
         <div class="col-sm-3 u-clearfix u-mb20">
-            <a href="#top" id="nav_logo" class="u-floatleft">
-                @include('partials.logo_svg', array('height' => '30px', 'colour' => 'grey'))
-            </a>
-            <small class="u-floatleft u-ml20" style="margin-top: 3px;">&copy; {{strftime('%Y')}}</small>
+            <div class="u-clearfix">
+                <a href="#top" id="nav_logo" class="u-floatleft">
+                    @include('partials.logo_svg', array('height' => '30px', 'colour' => 'grey'))
+                </a>
+            </div>
+            <div class="u-clearfix u-pa5">
+                @include('partials.lang-switcher', ['state' => 'expanded'])
+            </div>
         </div>
         <div class="col-sm-3">
             <a href="//hikaye.muhit.co/" class="u-inlineblock u-pa5">

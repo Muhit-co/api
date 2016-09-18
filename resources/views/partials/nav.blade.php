@@ -29,6 +29,10 @@
                     <i class="ion ion-navicon ion-2x"></i>
                     <i class="ion ion-android-close ion-2x"></i>
                 </a>
+            @else
+                <div class="u-floatright u-mt20 u-mr15 u-lineheight30 col-xs-hide">
+                    @include('partials.lang-switcher')
+                </div>
             @endif
             
             <a href="<?php echo (Request::is('/')) ? '#top' : '/' ?>" id="nav_logo" class="u-floatleft">

@@ -3,7 +3,7 @@
 return [
     "log_in" => "Log in",
     "log_in_cap" => "LOG IN",
-    "log_in_short_cap" => "Log in",
+    "log_in_short_cap" => "LOG IN",
     "log_out" => "Log out",
     "log_out_cap" => "LOG OUT",
     "sign_up" => "Sign up",

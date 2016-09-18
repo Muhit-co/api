@@ -11,7 +11,7 @@
 
                 <h2 class="u-clearfix">
                     <!-- change mahalle -->
-                    @if(App::getLocale() == 'en')
+                    @if(App::getLocale() !== 'tr')
                         <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
                     @endif
                     <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="is-home">

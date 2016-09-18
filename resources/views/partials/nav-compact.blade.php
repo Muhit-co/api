@@ -10,6 +10,11 @@
             <h2>Muhit</h2>
         </div>
         <div class="col-sm-5 col-xs-10 u-alignright u-nowrap">
+
+            <div class="u-inlineblock u-lineheight30 u-mt20 u-mr15 col-xs-hide">
+                @include('partials.lang-switcher', ['state' => 'full'])
+            </div>
+
             <a href="/login" class="btn btn-quaternary u-mt15 u-mr5">
                 <span class="extended">
                         {{ trans('auth.log_in_cap') }}
@@ -30,6 +35,7 @@
                     {{ trans('auth.sign_up_cap') }}
                 </span>
             </a>
+
         </div>
     </div>
 </nav>
