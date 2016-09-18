@@ -26,8 +26,13 @@ class Language implements Middleware
      */
     public function handle($request, Closure $next)
     {
+        if($this->request->has('lang')) {
+            $lang = $this->request->get('lang');
+            Session::put('lang', $lang);
+        } else {
+            $lang = Session::get('lang');
+        }
 
-        $lang = Session::get('lang');
         $this->app->setLocale($lang);
         return $next($request);
     }
