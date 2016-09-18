@@ -83,3 +83,9 @@ function getSupportLink() {
     $url = 'https://docs.google.com/forms/d/1Gwyj1OZ_MkMF7QYBN625ADYWIifMsQdFqACA7uTcof0/viewform';
     return $url;
 }
+
+function getStoryLink($page = '') {
+    $base = '//hikaye.muhit.co/';
+    $lang_ext = (App::getLocale() !== 'tr') ? 'en/' : '';
+    return $base . $lang_ext . $page;
+}
