@@ -137,8 +137,6 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Broadcasting\BroadcastServiceProvider',
 
-
-        '\App\Http\Middleware\Locale::class',
         /*
          * Application Service Providers...
          */
