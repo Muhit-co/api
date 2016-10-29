@@ -1,5 +1,8 @@
-function mapInitialize() {
+function getMapStyle() {
+    return [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#eeeeee"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#eeeeee"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#98ca7a"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#c7e3f6"}]}];
+}
 
+function mapInitialize() {
 
     // Initialise map object
     var mapCanvas = document.getElementById('map-canvas');
@@ -15,6 +18,12 @@ function mapInitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
+
+
+    // Adding predefined map styles to map
+    var styledMapType = new google.maps.StyledMapType( getMapStyle(), {name: 'Styled Map'});
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
 
 
     // building map JSON request url
@@ -94,6 +103,12 @@ function mapInitializeForIssue(lon, lan, status) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
+
+    // Adding predefined map styles to map
+    var styledMapType = new google.maps.StyledMapType( getMapStyle(), {name: 'Styled Map'});
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
+
     var marker = new google.maps.Marker({
         position: LtLng,
         map: map,

@@ -26,7 +26,7 @@
     @include('partials.google-analytics')
     @include('partials.facebook-pixel')
 
-    <script async src="/js/all.js"></script>
-    <script type="text/javascript" async src="//maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFdvxExZmn1ktbIslHDnyOGOp6Dek3asU"></script>
+    <script  src="/js/all.js"></script>
 
 </head>
