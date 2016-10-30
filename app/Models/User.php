@@ -38,7 +38,9 @@ class User extends \Eloquent implements AuthenticatableContract
         'last_name',
         'picture',
         'username',
-        'api_token'
+        'api_token',
+        'hood_id',
+        'location'
     ];
 
     /**
