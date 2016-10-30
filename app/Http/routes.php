@@ -108,24 +108,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::any('login', 'Api\UserController@login');
     Route::any('facebookLogin', 'Api\UserController@facebookLogin');
 
-    Route::get('/', function () {
-        return response()->json([
-            'register',
-            'login',
-            'tags',
-            'issues/list/{start?}/{take?}',
-            'issues/{id}',
-            'issues/create',
-            'issues/delete/{userId}/{issueId}',
-            'hoods/{cityId?}/{districtId?}/{query?}',
-            'cities/{query?}',
-            'districts/{cityId?}/{query?}',
-            'profile/{user_id}',
-            'issues/{issue_id}/supporters',
-            'issues/{issue_id}/support',
-            'issues/{issue_id}/unsupport',
-        ]);
-    });
 
     Route::get('error-logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
@@ -136,27 +118,27 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('cities/{query?}', 'Api\LocationController@cities');
         Route::get('districts/{cityId?}/{query?}', 'Api\LocationController@districts');
 
-        Route::get('issues/{issue_id}/supporters', 'Api\IssueController@supporters')->where('issue_id', '[0-9]+');
-        Route::post('issues/create', 'Api\IssueController@create');
-        Route::post('issues/delete/{user_id}/{issue_id}', 'Api\IssueController@delete')
+        Route::get('issue/show/{issue_id}/supporters', 'Api\IssueController@supporters')->where('issue_id', '[0-9]+');
+        Route::post('issue/create', 'Api\IssueController@create');
+        Route::post('issue/delete/{user_id}/{issue_id}', 'Api\IssueController@delete')
             ->where('issue_id', '[0-9]+')
             ->where('user_id', '[0-9]+');
-        Route::post('issues/update/{user_id}/{issue_id}', 'Api\IssueController@update')
+        Route::post('issue/update/{user_id}/{issue_id}', 'Api\IssueController@update')
             ->where('issue_id', '[0-9]+')
             ->where('user_id', '[0-9]+');
 
-        Route::get('user/{user_id}/supported', 'Api\IssueController@supported');
-        Route::get('user/{user_id}/created', 'Api\IssueController@created');
-        Route::post('issues/{issue_id}/support', 'Api\IssueController@support');
-        Route::post('issues/{issue_id}/unsupport', 'Api\IssueController@unSupport');
+        Route::get('user/show/{user_id}/supported', 'Api\IssueController@supported');
+        Route::get('user/show/{user_id}/created', 'Api\IssueController@created');
+        Route::post('issue/show/{issue_id}/support', 'Api\IssueController@support');
+        Route::post('issue/show/{issue_id}/unsupport', 'Api\IssueController@unSupport');
     });
 
     Route::get('profile/{user_id}', 'Api\UserController@profile')->where('user_id', '[0-9]+');
     Route::post('profile/{user_id}/update', 'Api\UserController@update')->where('user_id', '[0-9]+');
-    Route::get('user/{user_id}/headman', 'Api\UserController@headman')->where('user_id', '[0-9]+');
+    Route::get('user/show/{user_id}/headman', 'Api\UserController@headman')->where('user_id', '[0-9]+');
     Route::get('issues/list/{start?}/{take?}', 'Api\IssueController@issues');
-    Route::get('issues/{issue_id}', 'Api\IssueController@issue')->where('issue_id', '[0-9]+');
+    Route::get('issue/show/{issue_id}', 'Api\IssueController@issue')->where('issue_id', '[0-9]+');
 
-    Route::get('user/{user_id}/announcements', 'Api\UserController@announcements')->where('user_id', '[0-9]+');
+    Route::get('user/show/{user_id}/announcements', 'Api\UserController@announcements')->where('user_id', '[0-9]+');
 
 });
