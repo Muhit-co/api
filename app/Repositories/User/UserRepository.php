@@ -115,6 +115,7 @@ class UserRepository implements UserRepositoryInterface
                 'id',
                 'first_name',
                 'last_name',
+                'location',
                 'level',
                 'picture'
             ]);
