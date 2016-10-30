@@ -286,12 +286,12 @@ class UserRepository implements UserRepositoryInterface
             $user->is_verified = 0;
         }
 
-        $location_parts = explode(",", $request->get('active_hood'));
+        $location_parts = explode(",", $request->get('location'));
         $hood = false;
 
         if (count($location_parts) === 3) {
 
-            $hood = Hood::fromLocation($request->get('active_hood'));
+            $hood = Hood::fromLocation($request->get('location'));
         }
 
         if (isset($hood) && isset($hood->id)) {
