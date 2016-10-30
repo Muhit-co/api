@@ -24,12 +24,6 @@ class Support extends ApiRequest
      */
     public function rules()
     {
-        $required = [
-            'issue_id' => 'required|numeric|min:1',
-        ];
-
-        $required += $this->defaults;
-
-        return $required;
+        return $this->defaults;
     }
 }

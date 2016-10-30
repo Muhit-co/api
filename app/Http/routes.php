@@ -129,8 +129,8 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::get('user/show/{user_id}/supported', 'Api\IssueController@supported');
         Route::get('user/show/{user_id}/created', 'Api\IssueController@created');
-        Route::post('issue/show/{issue_id}/support', 'Api\IssueController@support');
-        Route::post('issue/show/{issue_id}/unsupport', 'Api\IssueController@unSupport');
+        Route::post('issue/show/{issue_id}/support', 'Api\IssueController@support')->where('issue_id', '[0-9]+');
+        Route::post('issue/show/{issue_id}/unsupport', 'Api\IssueController@unSupport')->where('issue_id', '[0-9]+');
     });
 
     Route::get('profile/{user_id}', 'Api\UserController@profile')->where('user_id', '[0-9]+');
