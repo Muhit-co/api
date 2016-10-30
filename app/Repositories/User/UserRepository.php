@@ -46,11 +46,21 @@ class UserRepository implements UserRepositoryInterface
             return ResponseService::createErrorMessage('emailUnavailable');
         }
 
+        $location_parts = explode(",", $request->get('location'));
+        $hood = false;
+
+        if (count($location_parts) === 3) {
+
+            $hood = Hood::fromLocation($request->get('location'));
+        }
+
         $user = $this->user->create([
             'first_name' => $first_name,
             'email' => $email,
             'password' => bcrypt($request->get('password')),
             'last_name' => $last_name,
+            'hood_id' => isset($hood) && isset($hood->id) ? $hood->id : null,
+            'location' => $request->get('location'),
             'picture' => 'placeholders/profile.png',
             'username' => $this->generateUsername($first_name, $last_name),
             'api_token' => ToolService::generateApiToken()
