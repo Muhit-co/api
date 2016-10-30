@@ -241,7 +241,8 @@ class UserRepository implements UserRepositoryInterface
                         'password' => bcrypt($request->get('password')),
                         'last_name' => $me->getProperty('last_name'),
                         'picture' => 'placeholders/profile.png',
-                        'username' => $this->generateUsername($me->getProperty('first_name'), $me->getProperty('last_name')),
+                        'username' => $this->generateUsername($me->getProperty('first_name'),
+                            $me->getProperty('last_name')),
                         'api_token' => ToolService::generateApiToken()
                     ]);
 
@@ -301,34 +302,24 @@ class UserRepository implements UserRepositoryInterface
 
             $checkEmail = $this->user->where('email', $request->get('email'))->first();
 
-            if (!$checkEmail) {
+            if ($checkEmail && $checkEmail->id != $user_id) {
 
-                $user->email = $request->get('email');
-
-            } else {
-
-                if ($checkEmail->id != $user_id) {
-
-                    return ResponseService::createErrorMessage('emailUnavailable');
-                }
+                return ResponseService::createErrorMessage('emailUnavailable');
             }
+
+            $user->email = $request->get('email');
         }
 
         if ($request->has('username') && $request->get('username') != $user->username) {
 
             $checkUsername = $this->user->where('username', $request->get('username'))->first();
 
-            if (!$checkUsername) {
+            if ($checkUsername && $checkUsername->id != $user_id) {
 
-                $user->username = $request->get('username');
-
-            } else {
-
-                if ($checkUsername->id != $user_id) {
-
-                    return ResponseService::createErrorMessage('usernameUnavailable');
-                }
+                return ResponseService::createErrorMessage('usernameUnavailable');
             }
+
+            $user->username = $request->get('username');
         }
 
         $user->first_name = $request->get('first_name');
@@ -345,7 +336,7 @@ class UserRepository implements UserRepositoryInterface
 
             } catch (Exception $e) {
 
-                Log::error('MemberController/postUpdate/SavingTheImage', (array)$e);
+                throw new $e;
             }
         }
 
