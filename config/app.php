@@ -159,7 +159,8 @@ return [
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,
-        Illuminate\Html\HtmlServiceProvider::class
+        Illuminate\Html\HtmlServiceProvider::class,
+        Maknz\Slack\Laravel\ServiceProvider::class
     ],
 
     /*
@@ -211,7 +212,8 @@ return [
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
         'Date' => Jenssegers\Date\Date::class,
         'Form' => Illuminate\Html\FormFacade::class,
-        'HTML' => Illuminate\Html\HtmlFacade::class
+        'HTML' => Illuminate\Html\HtmlFacade::class,
+        'Slack' => Maknz\Slack\Laravel\Facade::class
     ],
 
 ];

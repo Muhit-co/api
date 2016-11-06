@@ -27,19 +27,24 @@
                         <strong>{{$issue['title']}}</strong>
                         <p>
                             @if(isset($issue['tags']) and !empty($issue['tags']))
-                                @foreach($issue['tags'] as $tag)
-                                    <span class="tag u-floatleft u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
-                                        <span class="col-xs-hide">{{$tag['name']}}</span>
-                                    </span>
-
+                                @foreach($issue['tags'] as $key => $tag)
+                                    @if($key < 5)
+                                        <span class="tag u-floatleft u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
+                                            <span class="col-xs-hide">{{$tag['name']}}</span>
+                                        </span>
+                                    @endif
+                                    @if($key == 5)
+                                        <span class="tag u-floatleft u-mv5 u-mr5 bg-lightest">
+                                            <span class="col-xs-hide c-light">...</span>
+                                        </span>
+                                    @endif
                                 @endforeach
                             @endif
                             <span class="date u-floatleft u-mr10"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span>
-                            @if($issue['is_anonymous'] == 0)
-                            <span class="extended">
-                                |<span class="user u-ml10">
-                                    {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
-                            </span>
+                            @if(!isset($hood))
+                                <span class="extended">
+                                    |<span title="{{$issue['location']}}" class="u-ml10">{{ explode(', ', $issue['location'])[0] }}</span>
+                                </span>
                             @endif
                         </p>
                     </div>

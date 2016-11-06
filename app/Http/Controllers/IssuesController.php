@@ -15,6 +15,7 @@ use Muhit\Models\User;
 use Redis;
 use Request;
 use Storage;
+use Slack;
 
 class IssuesController extends Controller {
 
@@ -179,6 +180,9 @@ class IssuesController extends Controller {
 			return response()->api(200, 'Issue saved', Issue::with('user', 'tags', 'images')->find($issue->id));
 
 		}
+
+		// Send a message to Slack webhoook
+		Slack::attach( getSlackAttachment($issue) )->send('New idea (' . $issue->id . ') on muhit.co');
 
 		return redirect('/issues/view/' . $issue->id)->with('success', trans('issues.idea_saved'));
 
