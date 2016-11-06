@@ -182,8 +182,7 @@ class IssuesController extends Controller {
 		}
 
 		// Send a message to Slack webhoook
-		// $issue_for_slack = Issue::with('user', 'tags', 'images')->find($issue->id);
-		Slack::to('@daniel')->attach( getSlackAttachment($issue) )->send('New idea (' . $issue->id . ') on muhit.co');
+		Slack::attach( getSlackAttachment($issue) )->send('New idea (' . $issue->id . ') on muhit.co');
 
 		return redirect('/issues/view/' . $issue->id)->with('success', trans('issues.idea_saved'));
 
