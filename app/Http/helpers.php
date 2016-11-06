@@ -78,14 +78,64 @@ function getUserLevel($level, $plural = false) {
     return $result;
 }
 
-// returns link to support form, currently Google Docs
+// Returns link to support form, currently Google Docs
 function getSupportLink() {
     $url = 'https://docs.google.com/forms/d/1Gwyj1OZ_MkMF7QYBN625ADYWIifMsQdFqACA7uTcof0/viewform';
     return $url;
 }
 
+// Returns link to Hikaye website based on current language
 function getStoryLink($page = '') {
     $base = '//hikaye.muhit.co/';
     $lang_ext = (App::getLocale() !== 'tr') ? 'en/' : '';
     return $base . $lang_ext . $page;
+}
+
+// Returns an array with attachment options for Slack message
+function getSlackAttachment($issue) {
+
+    $user_display = ($issue['is_anonymous'] === 1) ? '(Anonymous)' : $issue['user']['first_name'] . ' ' . $issue['user']['last_name'];
+    $tags_display = '';
+    foreach($issue['tags'] as $key => $tag) { 
+        $tags_display .= $tag['name']; 
+        $tags_display .= ($key !== count($issue['tags']) - 1) ? ', ' : '';
+    }
+    $thumb_display = (count($issue['images']) > 0) ? 'http://d1vwk06lzcci1w.cloudfront.net/75x75/' . $issue['images'][0]['image'] : '';
+
+    $attachments = [
+        'fallback'  => 'New idea added: *' . $issue['title'] . '*',
+        'color'     => '#44a1e0',
+        'mrkdwn_in' => ['text', 'fallback', 'fields'],
+        'fields'    => [
+            [
+                'title' => ':bulb: ' . $issue['title'],
+                'value' => '_' . $issue['location'] . '_'
+            ],
+            [
+                'value' => ':confused: *Problem*: ' . $issue['problem']
+            ],
+            [
+                'value' => ':smiley: *Solution*: ' . $issue['solution']
+            ],
+            [
+                'title' => ':bust_in_silhouette: ' . $user_display,
+                'value' => '_Added on: ' . strftime('%d %B %Y', strtotime( $issue['created_at'] )) . '_'
+            ],
+            [
+                'title' => ':pushpin: Tags',
+                'value' => $tags_display,
+                'short' => true
+
+            ],
+            [
+                'title' => ':arrow_right: Go to idea',
+                'value' => 'muhit.co/issues/view/' . $issue['id'],
+                'short' => true
+            ]
+        ],
+        'thumb_url' => $thumb_display,
+        'footer' => 'Muhit.co'
+    ];
+
+    return $attachments;
 }
