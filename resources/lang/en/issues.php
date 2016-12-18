@@ -39,7 +39,7 @@ return [
     "ideas_i_supported" => "Ideas I supported",
     "ideas_i_added" => "Ideas I added",
     "announcements_from_muhtar" => "Announcements from alderman",
-    "comments_from_muhtar" => "Announcements from alderman and municipality",
+    "comments" => "Comments",
     "support" => "Support",
     "support_cap" => "SUPPORT",
     "supported" => "Supported",

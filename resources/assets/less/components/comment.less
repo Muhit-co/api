@@ -1,19 +1,41 @@
 .comment {
   position: relative;
   display: block;
-  margin: 10px 30px 10px 0;
+  margin: 10px 60px 10px 30px;
   padding: 15px 20px;
-  background-color: @greyLighter;
+  background-color: lighten(@greyLighter, 2%);
   .rounded(10px);
 
   &:after {
     content: "";
     position: absolute;
     bottom: 15px;
-    left: 100%;
+    right: 100%;
     display: block;
     border: 15px solid transparent;
-    border-bottom-color: @greyLighter;
-    border-left-color: @greyLighter;
+    border-bottom-color: lighten(@greyLighter, 2%);
+    border-right-color: lighten(@greyLighter, 2%);
+  }
+  &.comment-opposite {
+    margin: 10px 30px 10px 60px;
+    background-color: darken(@greyLighter, 2%);
+
+    &:after {
+      right: auto;
+      left: 100%;
+      border-right-color: transparent;
+      border-left-color: darken(@greyLighter, 2%);
+      border-bottom-color: darken(@greyLighter, 2%);
+    }
+  }
+  @media screen and (max-width: @screen-xs) {
+    margin: 10px 0 10px 10px;
+    &:after {
+      bottom: 10px;
+      border-width: 10px;
+    }
+    &.comment-opposite {
+      margin: 10px 10px 10px 0;
+    }
   }
 }

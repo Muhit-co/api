@@ -210,44 +210,64 @@ if(strlen($issue['problem']) > 0) {
 
                 </div>
 
-                @if(!empty($issue['comments']))
+                <div class="card-footer clearfix">
+                    @if(!empty($issue['comments']))
 
-                    <div class="card-footer clearfix">
-
-                        <h4>Muhtardan gelen yorumlar</h4>
+                        <h4 class="c-medium">{{ trans('issues.comments') }}</h4>
 
                         @foreach($issue['comments'] as $comment)
-                            <div class="comment" id="comment-{{ $comment['id'] }}">
-                                <div class="u-floatright c-medium">
-                                    <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
-                                    @if($role =='admin')
+                            <?php $isOwnIssue = (Auth::check() and Auth::user()->id == $comment['muhtar']['id']) ? true : false; ?>
+                            <div class="comment {!! ($isOwnIssue) ? 'comment-opposite' : '' !!}" id="comment-{{ $comment['id'] }}">
+                                <div class="u-floatright c-medium u-lineheight20">
+                                    <small class="col-xs-hide">{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
+                                    @if(Auth::check() and $role =='admin' and Auth::user()->id == $comment['muhtar']['id'])
                                         <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
                                             <i class="ion ion-edit"></i>
                                         </a>
                                     @endif
                                 </div>
-                                <p>
-                                    <strong>
+                                <p class="u-lineheight20">
+                                    <strong {!! ($isOwnIssue) ? 'class="c-blue"' : '' !!}">
                                         {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
                                     </strong>
-                                    <span class="c-medium">
-                                        @if(!empty($comment['muhtar']['location']))
+                                    <span class="{!! ($isOwnIssue) ? 'c-darkblue' : 'c-medium' !!}">
+                                        @if($comment['muhtar']['level'] >= 5 and $comment['muhtar']['level'] < 10 and !empty($comment['muhtar']['location']))
                                             ( {{ explode(',', $comment['muhtar']['location'])[0] }} muhtarı)
                                         @endif
                                     </span>
                                 </p>
-                                <p><em class="comment-message">
+                                <small class="col-xs-show c-light">{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
+                                <p class="u-mt5"><em class="comment-message">
                                     {{ $comment['comment'] }}
                                 </em></p>
                             </div>
                         @endforeach
 
+                    @endif
+
+                    <div class="comment comment-opposite u-mt30">
+                        @if(Auth::check())
+                            <form class="u-mv5" method="post" action="/comments/comment">
+                                <input type="hidden" name="issue_id" value="{{ $issue['id'] }}">
+                                <div class="form-group form-fullwidth">
+                                    <textarea class="form-input" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_your_message') }}" required></textarea>
+                                </div>
+
+                                <div class="u-alignright">
+                                    <button type="submit" class="btn btn-secondary">{{ trans('auth.send_cap') }}</button>
+                                </div>
+
+                            </form>
+                        @else
+                            <div class="u-mt5 u-aligncenter c-light">
+                                <div class="form-group form-fullwidth u-mb0" onclick="openDialog('dialog_login');">
+                                    <textarea class="form-input" value="" name="comment" rows="3" disabled="disabled" placeholder="{{ trans('issues.placeholder_your_message') }}" style="cursor: text;"></textarea>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
-                @endif
-                {{--
-
-                --}}
+                </div>
 
                 <div class="card-footer u-clearfix">
                     <div class="u-floatright">
