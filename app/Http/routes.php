@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('duyuru/duzenle/{id}', 'AnnouncementController@edit');
     Route::get('duyuru/sil/{id}', 'AnnouncementController@delete');
     Route::get('/muhtar', 'MuhtarController@index');
+    Route::controller('comments', 'CommentsController');
 });
 
 # Admin routes
