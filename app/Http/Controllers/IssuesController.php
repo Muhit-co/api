@@ -251,7 +251,7 @@ class IssuesController extends Controller {
 		$issues->orderBy($o1, $o2);
 
 		if (Request::has('map') and (int) Request::get('map') === 1) {
-			$data = $issues->paginate(100);
+			$data = $issues->paginate(500);
 			return $this->displayMapData($data);
 		}
 
