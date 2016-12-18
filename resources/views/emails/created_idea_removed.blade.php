@@ -8,7 +8,7 @@
 
 @section('content')
 
-    @include('emails.partials.header')
+    @include('emails.partials.header', array('username' => $user->first_name ))
 
     {!! trans('email.created_idea_removed_content', array('idea_title' => $issue->title, 'email' => '<a href="mailto:destek@muhit.co" target="_blank">destek@muhit.co</a>')) !!}
 
