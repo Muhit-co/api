@@ -11,9 +11,7 @@
 
                 <h2 class="u-clearfix">
                     <!-- change mahalle -->
-                    @if(App::getLocale() !== 'tr')
-                        <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
-                    @endif
+                    <div class="{{ (App::getLocale() == 'en') ? 'u-floatleft' : 'u-inlineblock' }} u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
                     <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="is-home">
                         <div class="u-floatleft u-aligncenter" style="width: 40px;">
                             <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
@@ -28,9 +26,6 @@
                             <input type="hidden" id="redir" value="list">
                         @endif
                     </div>
-                    @if(App::getLocale() == 'tr')
-                        <div class="u-floatleft u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
-                    @endif
                     <br />
                 </h2>
 
