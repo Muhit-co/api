@@ -70,5 +70,5 @@
     </ul>
 </div>
 <div class="u-aligncenter u-mb40">
-    {!! $issues->render() !!}
+    {!! $issues->appends(['sort' => 'latest'])->render() !!}
 </div>
