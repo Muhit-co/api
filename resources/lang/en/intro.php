@@ -1,6 +1,14 @@
 <?php
 
 return [
+    "account_created" => "Your account has been created!",
+    "welcome_browse_header" => "What is being suggested around you?",
+    "welcome_browse_text" => "Start exploring, support and comment on the ideas in your environment, via the list or the map.",
+    "welcome_browse_action" => "Browse ideas",
+    "welcome_create_header" => "Got something to say?",
+    "welcome_create_text" => "Add your own idea about how to improve your neighbourhood, and launch it to the community.",
+    "welcome_create_action" => "Write new idea",
+    
     "welcome_msg" => "Welcome to Muhit!",
     "title" => "It's in your hands to change your neighborhood.",
     "subtitle" => "How does it work?",
