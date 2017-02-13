@@ -12,6 +12,10 @@ Route::get('/components', function () {
     return view('pages.components');
 });
 
+Route::get('/hosgeldin', function () {
+    return view('pages.welcome');
+});
+
 Route::get('/user/{username}', function () {
     return view('pages.profile');
 });
