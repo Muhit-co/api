@@ -19,10 +19,16 @@
                             <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
                         @endif
                     </div>
-                    <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10 u-ml5">
+                    <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10 u-ml10">
                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
-                        <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
+                        <strong>{{$issue_supporters}}</strong>
                     </div>
+                    @if(count($issue['comments']) > 0)
+                        <div class="badge badge-comments hasTooltip u-floatright u-mt10 u-pv5 u-ph10 u-ml10">
+                            <i class="ion ion-ios-chatbubble-outline u-mr5"></i>
+                            <strong>{{count($issue['comments'])}}</strong>
+                        </div>
+                    @endif
                     <div class="u-ml55">
                         <strong>{{$issue['title']}}</strong>
                         <p>

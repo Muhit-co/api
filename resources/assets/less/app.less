@@ -129,13 +129,19 @@ section.login {
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 }
+.col-xs-show {
+  display: none;
+}
 @media screen and (max-width: @screen-xs) {
-  .row .col-xs-hide {
+  .col-xs-hide, .row .col-xs-hide {
     display: none;
+  }
+  .col-xs-show {
+    display: inherit;
   }
 }
 @media screen and (max-width: @screen-sm) {
-  .row .col-sm-hide {
+  .col-sm-hide, .row .col-sm-hide {
     display: none;
   }
 }

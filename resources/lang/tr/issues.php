@@ -39,7 +39,7 @@ return [
     "ideas_i_supported" => "Desteklediğim fikirler",
     "ideas_i_added" => "Eklediğim fikirler",
     "announcements_from_muhtar" => "Muhtardan gelen duyurular",
-    "comments_from_muhtar" => "Muhtardan ve belediyeden gelen yorumlar",
+    "comments" => "Yorumlar",
     "support" => "Destekle",
     "support_cap" => "DESTEKLE",
     "supported" => "Destekledim",

@@ -211,7 +211,7 @@ class IssuesController extends Controller {
 	 * @author Me
 	 */
 	public function getIssues($hood_id = null) {
-		$issues = Issue::with('user', 'tags', 'images');
+		$issues = Issue::with('user', 'tags', 'images', 'comments.muhtar');
 
 		$hood = null;
 

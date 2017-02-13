@@ -3,7 +3,7 @@
 
 <div class="row" style="padding-top: 10vh;">
   <div class="col-xs-12 u-aligncenter">
-    <img src="images/broken-link.svg" alt="" class="u-mb50" style="width: 80px; height: 80px;" />
+    <img src="/images/broken-link.svg" alt="" class="u-mb50" style="width: 80px; height: 80px;" />
     <h2>{{ trans('error.something_went_wrong') }}</h2>
     <p class="u-inlineblock u-mt20 u-mb20 c-white">{{ trans('error.dont_worry_explanation') }}:</p>
     <div class="">
