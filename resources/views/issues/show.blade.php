@@ -236,7 +236,6 @@ if(strlen($issue['problem']) > 0) {
                                         @endif
                                     </span>
                                 </p>
-                                <small class="col-xs-show c-light">{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
                                 <p class="u-mt5"><em class="comment-message">
                                     {{ $comment['comment'] }}
                                 </em></p>
