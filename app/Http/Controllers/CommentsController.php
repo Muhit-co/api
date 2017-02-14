@@ -54,7 +54,7 @@ class CommentsController extends Controller
 
             // Send a message to Slack webhoook
             $comment->issue_title = $issue->title;
-            $comment->user_name = Auth::user()->first_name . Auth::user()->last_name;
+            $comment->user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             Slack::attach( getSlackCommentAttachment($comment) )->withIcon(':speech_balloon:')->send('New comment (' . $comment->id . ') on muhit.co');
 
             return redirect('/issues/view/' . $request->get('issue_id') . '#comment-' . $comment->id)
