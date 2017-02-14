@@ -1,14 +1,16 @@
 <?php
 
 return [
-    "account_created" => "Your account has been created!",
-    "welcome_browse_header" => "What is being suggested around you?",
-    "welcome_browse_text" => "Start exploring, support and comment on the ideas in your environment, via the list or the map.",
-    "welcome_browse_action" => "Browse ideas",
-    "welcome_create_header" => "Got something to say?",
-    "welcome_create_text" => "Add your own idea about how to improve your neighbourhood, and launch it to the community.",
-    "welcome_create_action" => "Write new idea",
-    
+    // Welcome page
+    "account_created" => "Hesabınız oluşturuldu!",
+    "welcome_browse_header" => "1. Etrafınızda neler önerilmiş?",
+    "welcome_browse_text" => "Liste veya haritadaki fikirleri keşfedin, destekleyin, başka çözüm önerileri için yorum yapın.",
+    "welcome_browse_action" => "FİKİRLERİ GÖRÜNTÜLE",
+    "welcome_create_header" => "2. Söyleyecekleriniz var mı?",
+    "welcome_create_text" => "Muhitinizi iyileştirmek için önerilerinizi yeni bir fikir olarak ekleyin, paylaşın ve sesinizi duyurun.",
+    "welcome_create_action" => "YENİ BİR FİKİR EKLE",
+
+    // Intro box on homepage
     "welcome_msg" => "Muhit'e hoş geldin!",
     "title" => "Mahalleni değiştirmek senin elinde.",
     "subtitle" => "Nasıl çalışıyor?",
