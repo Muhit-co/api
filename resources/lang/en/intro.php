@@ -9,6 +9,8 @@ return [
     "welcome_create_header" => "Got something to say?",
     "welcome_create_text" => "Add your own idea about how to improve your neighbourhood, and launch it to the community.",
     "welcome_create_action" => "WRITE NEW IDEA",
+    "will_redirect" => "Will automatically redirect in :countdown seconds",
+    "stop_redirect" => "Stop",
 
     // Intro box on homepage
     "welcome_msg" => "Welcome to Muhit!",

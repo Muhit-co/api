@@ -9,6 +9,8 @@ return [
     "welcome_create_header" => "2. Söyleyecekleriniz var mı?",
     "welcome_create_text" => "Muhitinizi iyileştirmek için önerilerinizi yeni bir fikir olarak ekleyin, paylaşın ve sesinizi duyurun.",
     "welcome_create_action" => "YENİ BİR FİKİR EKLE",
+    "will_redirect" => ":countdown saniye içinde otomatik olarak yönlendirme yapılır",
+    "stop_redirect" => "Durdur",
 
     // Intro box on homepage
     "welcome_msg" => "Muhit'e hoş geldin!",

@@ -198,7 +198,8 @@ class AuthController extends Controller {
 			return response()->api(200, 'Registered and logged in. ', ['user' => $user, 'oauth2' => $token]);
 		}
 
-		return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . $user->first_name);
+		// return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . $user->first_name)
+		return redirect('/hosgeldin');
 
 	}
 
@@ -513,7 +514,9 @@ class AuthController extends Controller {
 		}
 
 		Auth::login($u);
-		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . $u->first_name) . '!';
+		
+		// return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . $u->first_name) . '!'
+		return redirect('/hosgeldin');
 
 	}
 

@@ -12,10 +12,6 @@ Route::get('/components', function () {
     return view('pages.components');
 });
 
-Route::get('/hosgeldin', function () {
-    return view('pages.welcome');
-});
-
 Route::get('/user/{username}', function () {
     return view('pages.profile');
 });
@@ -58,6 +54,9 @@ Route::controller('auth', 'AuthController');
 Route::get('logout', function () {
     Auth::logout();
     return redirect('/');
+});
+Route::get('/hosgeldin', function () {
+    return view('auth.welcome');
 });
 
 Route::get('/register-muhtar', function () {

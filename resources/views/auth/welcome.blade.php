@@ -24,7 +24,11 @@
         <br>
 
         <small id="redir_msg">
-          (Will automatically redirect in <span id="redir_sec">0</span> seconds) <b><a class="c-bluedark u-opacity75 u-ml5" href="javascript:void(0)" onclick="clearTimeout(redirect); $('#redir_msg').hide();">Stop</a></b>
+          ({!! trans('intro.will_redirect', ['countdown' => '<span id="redir_sec">0</span>']) !!})
+          <b>
+            <a class="c-bluedark u-opacity75 u-ml5" href="javascript:void(0)" onclick="clearTimeout(redirect); $('#redir_msg').hide();">{{ trans('intro.stop_redirect') }}
+            </a>
+          </b>
         </small>
 
       </div>
