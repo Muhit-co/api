@@ -20,8 +20,7 @@ use Request;
 use Socialize;
 use Storage;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
 
 	public $redirPath;
 
@@ -31,8 +30,7 @@ class AuthController extends Controller
 	 * @return void
 	 * @author Me
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		$last_page = session('last_page');
 		if (empty($last_page) or $last_page == '/') {
 			$this->redirPath = '/';
@@ -47,8 +45,7 @@ class AuthController extends Controller
 	 * @return view
 	 * @author gcg
 	 */
-	public function getLogin()
-	{
+	public function getLogin() {
 
 		if ($this->isApi) {
 			return response()->api(404, 'Method not found', []);
@@ -63,8 +60,7 @@ class AuthController extends Controller
 	 * @return view
 	 * @author gcg
 	 */
-	public function getRegister()
-	{
+	public function getRegister() {
 
 		if ($this->isApi) {
 			return response()->api(404, 'Method not found', []);
@@ -79,8 +75,7 @@ class AuthController extends Controller
 	 * @return json
 	 * @author
 	 **/
-	public function postRegister()
-	{
+	public function postRegister() {
 		$data = Request::all();
 
 		$required_fields = ['email', 'first_name', 'last_name', 'password'];
@@ -211,8 +206,7 @@ class AuthController extends Controller
 	 * @return json
 	 * @author
 	 **/
-	public function postLogin()
-	{
+	public function postLogin() {
 		$data = Request::all();
 
 		if ($this->isApi) {
@@ -261,8 +255,7 @@ class AuthController extends Controller
 	 * @return json
 	 * @author
 	 **/
-	public function postLoginWithFacebook()
-	{
+	public function postLoginWithFacebook() {
 		$data = Request::all();
 		$required_fields = ['access_token', 'client_id', 'client_secret'];
 
@@ -388,8 +381,7 @@ class AuthController extends Controller
 	 * @return json
 	 * @author
 	 **/
-	public function postSendPassword()
-	{
+	public function postSendPassword() {
 	}
 
 	/**
@@ -398,8 +390,7 @@ class AuthController extends Controller
 	 * @return json
 	 * @author gcg
 	 */
-	public function postRefreshToken()
-	{
+	public function postRefreshToken() {
 		$data = Request::all();
 		$required_fields = ['refresh_token', 'client_id', 'client_secret'];
 
@@ -425,8 +416,7 @@ class AuthController extends Controller
 	 * @return redirect
 	 * @author Me
 	 */
-	public function getFacebookLogin()
-	{
+	public function getFacebookLogin() {
 		return Socialize::with('facebook')->redirect();
 	}
 
@@ -436,8 +426,7 @@ class AuthController extends Controller
 	 * @return redirect
 	 * @author Me
 	 */
-	public function getFacebookLoginReturn()
-	{
+	public function getFacebookLoginReturn() {
 		$user = Socialize::with('facebook')->user();
 
 		$op = 'login';
@@ -554,8 +543,7 @@ class AuthController extends Controller
 	 * @return void
 	 * @author Me
 	 */
-	public function postForgotPassword()
-	{
+	public function postForgotPassword() {
 		if (!Request::has('email')) {
 			return redirect('/forgot-password')
 				->with('error', trans('auth.email_try_again'))->withInput();
@@ -619,8 +607,7 @@ class AuthController extends Controller
 	 * @return redirect
 	 * @author Me
 	 */
-	public function postResetPassword()
-	{
+	public function postResetPassword() {
 		if (!Request::has('email') or !Request::has('code') or !Request::has('password')) {
 			return redirect('/')
 				->with('error', 'Geçersiz istek.')->withInput();
