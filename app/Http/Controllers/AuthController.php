@@ -108,6 +108,7 @@ class AuthController extends Controller {
 		}
 
 		if ($hood === false or $hood === null or !isset($hood->id) or !isset($hood->city_id) or !isset($hood->district_id)) {
+
 			if (isset($data['level']) and $data['level'] == 4) {
 				if ($this->isApi) {
 					return response()->api(401, 'Cant get the hood information from the location provided.', ['data' => $data]);
@@ -167,6 +168,7 @@ class AuthController extends Controller {
 			}
 
 			return redirect($register_url)->with('error', trans('auth.technical_problem'))->withInput();
+
 		}
 
 		if ($user->level === 4) {
@@ -198,6 +200,7 @@ class AuthController extends Controller {
 
 		// return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . $user->first_name)
 		return redirect('/hosgeldin');
+
 	}
 
 	/**
@@ -216,10 +219,12 @@ class AuthController extends Controller {
 				if (!isset($data[$key]) or empty($data[$key])) {
 					return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 				}
+
 			}
 		}
 
 		if (!Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+
 			if ($this->isApi) {
 				return response()->api(401, 'Wrong user credentials', $data);
 			}
@@ -239,6 +244,7 @@ class AuthController extends Controller {
 			}
 
 			return response()->api(200, 'Logged in. ', ['user' => $user, 'oauth2' => $token]);
+
 		}
 
 		if (Auth::user()->level === 4) {
@@ -247,6 +253,7 @@ class AuthController extends Controller {
 		}
 
 		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . Auth::user()->first_name) . '!';
+
 	}
 
 	/**
@@ -263,6 +270,7 @@ class AuthController extends Controller {
 			if (!isset($data[$key]) or empty($data[$key])) {
 				return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 			}
+			
 		}
 
 		FacebookSession::setDefaultApplication(Config::get('services.facebook.client_id'), Config::get('services.facebook.client_secret'));
@@ -277,9 +285,7 @@ class AuthController extends Controller {
 		if (isset($session) and $session) {
 			try {
 				$me = (new FacebookRequest(
-					$session,
-					'GET',
-					'/me'
+					$session, 'GET', '/me'
 				))->execute()->getGraphObject(GraphUser::className());
 			} catch (Exception $e) {
 				Log::error('AuthController/postLoginWithFacebook/requestMe', (array) $e);
@@ -291,9 +297,7 @@ class AuthController extends Controller {
 
 		try {
 			$p = (new FacebookRequest(
-				$session,
-				'GET',
-				'/me/picture?redirect=false&type=large'
+				$session, 'GET', '/me/picture?redirect=false&type=large'
 			))->execute()->getGraphObject(GraphUser::className());
 			$picture = (string) $p->getProperty('url');
 		} catch (Exception $e) {
@@ -324,7 +328,7 @@ class AuthController extends Controller {
 
 				$email = $me->getProperty('email');
 				/*
-									register the required fields.
+				register the required fields.
 				*/
 				$user = new User;
 				$user->username = ((null !== $me->getProperty('username')) ? $this->checkUserNameUnique($me->getProperty('username')) : $this->checkUserNameUnique(Str::slug($me->getProperty('name'))));
@@ -340,6 +344,7 @@ class AuthController extends Controller {
 					return response()->api(500, 'Cant save the user for the moment', $data);
 				}
 				$user_id = $user->id;
+
 			} else {
 				$user_id = $user->id;
 				$email = $user->email;
@@ -373,6 +378,7 @@ class AuthController extends Controller {
 		}
 
 		return response()->api(200, 'Logged in.', ['user' => $user, 'oauth2' => $token]);
+
 	}
 
 	/**
@@ -382,6 +388,7 @@ class AuthController extends Controller {
 	 * @author
 	 **/
 	public function postSendPassword() {
+
 	}
 
 	/**
@@ -490,6 +497,7 @@ class AuthController extends Controller {
 			} catch (Exception $e) {
 				Log::error('AuthController/saveUserSocialAccount', (array) $e);
 			}
+
 		} else {
 			$u = User::find($user_social_account->user_id);
 
@@ -524,8 +532,7 @@ class AuthController extends Controller {
 	 * @return string
 	 * @author Me
 	 */
-	public function picture($url = null)
-	{
+	public function picture($url = null) {
 		$name = 'users/' . microtime(true);
 		try {
 			Storage::put($name, file_get_contents($url));
@@ -581,8 +588,7 @@ class AuthController extends Controller {
 	 * @return view
 	 * @author Me
 	 */
-	public function getResetPassword($email = null, $code = null)
-	{
+	public function getResetPassword($email = null, $code = null) {
 		if (empty($email) or empty($code)) {
 			return redirect('/')
 				->with('error', trans('auth.invalid_link'));
@@ -645,8 +651,7 @@ class AuthController extends Controller {
 	 * @return view
 	 * @author Me
 	 */
-	public function getConfirm($id = null, $code = null)
-	{
+	public function getConfirm($id = null, $code = null) {
 		if (empty($id) or empty($code)) {
 			return redirect('/')
 				->with('error', trans('auth.invalid_link'));
