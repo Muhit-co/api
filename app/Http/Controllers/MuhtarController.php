@@ -11,6 +11,7 @@ use Muhit\Jobs\IssueStatusUpdate;
 use Muhit\Models\Comment;
 use Muhit\Models\Issue;
 use Muhit\Repositories\Muhtar\MuhtarRepositoryInterface;
+use Slack;
 
 class MuhtarController extends Controller
 {
@@ -102,6 +103,11 @@ class MuhtarController extends Controller
                 return redirect('/issues/view/' . $request->get('issue_id'))
                     ->with('error', 'Yorumu kaydederken teknik bir hata meydana geldi, teknik ekip bilgilendirildi. ');
             }
+
+            // Send a message to Slack webhoook
+            $comment->issue_title = $issue->title;
+            $comment->user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            Slack::attach( getSlackCommentAttachment($comment) )->withIcon(':speech_balloon:')->send('New comment (' . $comment->id . ') on muhit.co');
 
             return redirect('/issues/view/' . $request->get('issue_id') . '#comment-' . $comment->id)
                 ->with('success', 'Yorum başarılı bir şekilde kaydedildi.');

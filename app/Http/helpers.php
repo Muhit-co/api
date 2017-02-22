@@ -92,7 +92,7 @@ function getStoryLink($page = '') {
 }
 
 // Returns an array with attachment options for Slack message
-function getSlackAttachment($issue) {
+function getSlackIssueAttachment($issue) {
 
     $user_display = ($issue['is_anonymous'] === 1) ? '(Anonymous)' : $issue['user']['first_name'] . ' ' . $issue['user']['last_name'];
     $tags_display = '';
@@ -135,6 +135,31 @@ function getSlackAttachment($issue) {
         ],
         'thumb_url' => $thumb_display,
         'footer' => 'Muhit.co'
+    ];
+
+    return $attachments;
+}
+
+// Returns an array with attachment options for Slack message
+function getSlackCommentAttachment($comment) {
+
+    $attachments = [
+        'fallback'  => 'New comment added: *' . $comment->id . '*',
+        'color'     => '#245672',
+        'mrkdwn_in' => ['text', 'fallback', 'fields'],
+        'fields'    => [
+            [
+                'title' => $comment->comment,
+                'value' => ':bust_in_silhouette: ' . $comment->user_name
+            ],
+            [
+                'title' => 'In response to issue "' . $comment->issue_title . '"',
+                'value' => ':arrow_right: muhit.co/issues/view/' . $comment->issue_id . '#comment-' . $comment->id,
+            ],
+        ],
+        'footer' => 'Muhit.co',
+        'footer_icon' => '//muhit.co/images/favicon.png',
+
     ];
 
     return $attachments;
