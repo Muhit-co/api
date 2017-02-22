@@ -55,6 +55,9 @@ Route::get('logout', function () {
     Auth::logout();
     return redirect('/');
 });
+Route::get('/hosgeldin', function () {
+    return view('auth.welcome');
+});
 
 Route::get('/register-muhtar', function () {
 

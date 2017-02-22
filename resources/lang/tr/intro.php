@@ -1,6 +1,18 @@
 <?php
 
 return [
+    // Welcome page
+    "account_created" => "Hesabınız oluşturuldu!",
+    "welcome_browse_header" => "1. Etrafınızda neler önerilmiş?",
+    "welcome_browse_text" => "Liste veya haritadaki fikirleri keşfedin, destekleyin, başka çözüm önerileri için yorum yapın.",
+    "welcome_browse_action" => "FİKİRLERİ GÖRÜNTÜLE",
+    "welcome_create_header" => "2. Söyleyecekleriniz var mı?",
+    "welcome_create_text" => "Muhitinizi iyileştirmek için önerilerinizi yeni bir fikir olarak ekleyin, paylaşın ve sesinizi duyurun.",
+    "welcome_create_action" => "YENİ BİR FİKİR EKLE",
+    "will_redirect" => ":countdown saniye içinde otomatik olarak yönlendirme yapılır",
+    "stop_redirect" => "Durdur",
+
+    // Intro box on homepage
     "welcome_msg" => "Muhit'e hoş geldin!",
     "title" => "Mahalleni değiştirmek senin elinde.",
     "subtitle" => "Nasıl çalışıyor?",

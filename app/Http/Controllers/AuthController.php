@@ -198,7 +198,8 @@ class AuthController extends Controller {
 			return response()->api(200, 'Registered and logged in. ', ['user' => $user, 'oauth2' => $token]);
 		}
 
-		return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . $user->first_name);
+		// return redirect()->intended($this->redirPath)->with('success', 'Hoşgeldin, ' . $user->first_name)
+		return redirect('/hosgeldin');
 
 	}
 
@@ -269,7 +270,7 @@ class AuthController extends Controller {
 			if (!isset($data[$key]) or empty($data[$key])) {
 				return response()->api(400, 'Missing fields, ' . $key . ' is required', $data);
 			}
-
+			
 		}
 
 		FacebookSession::setDefaultApplication(Config::get('services.facebook.client_id'), Config::get('services.facebook.client_secret'));
@@ -327,7 +328,7 @@ class AuthController extends Controller {
 
 				$email = $me->getProperty('email');
 				/*
-					                register the required fields.
+				register the required fields.
 				*/
 				$user = new User;
 				$user->username = ((null !== $me->getProperty('username')) ? $this->checkUserNameUnique($me->getProperty('username')) : $this->checkUserNameUnique(Str::slug($me->getProperty('name'))));
@@ -343,6 +344,7 @@ class AuthController extends Controller {
 					return response()->api(500, 'Cant save the user for the moment', $data);
 				}
 				$user_id = $user->id;
+
 			} else {
 				$user_id = $user->id;
 				$email = $user->email;
@@ -361,7 +363,6 @@ class AuthController extends Controller {
 			} catch (Exception $e) {
 				Log::error('AuthController/postLoginWithFacebook/SavingUserSocialAccount', (array) $e);
 			}
-
 		} else {
 			$user_id = $user->id;
 			$email = $user->email;
@@ -435,6 +436,8 @@ class AuthController extends Controller {
 	public function getFacebookLoginReturn() {
 		$user = Socialize::with('facebook')->user();
 
+		$op = 'login';
+
 		#check if we get the user with all the data that we need to login
 		$email = $user->getEmail();
 		$id = $user->getId();
@@ -460,6 +463,7 @@ class AuthController extends Controller {
 
 			if (empty($u)) {
 				#lets create the user account
+				$op = 'register';
 
 				if (isset($userData['name']) and !isset($userData['first_name'])) {
 					$parts = explode(" ", $userData['name']);
@@ -513,8 +517,13 @@ class AuthController extends Controller {
 		}
 
 		Auth::login($u);
-		return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . $u->first_name) . '!';
 
+		if ($op == 'login') {
+			return redirect()
+				->intended($this->redirPath)
+				->with('success', trans('auth.welcome') . ', ' . $u->first_name . '!');
+		}
+		return redirect('/hosgeldin');
 	}
 
 	/**
