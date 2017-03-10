@@ -252,9 +252,10 @@ if(strlen($issue['problem']) > 0) {
 
             {{-- Comments start --}}
             <div class="clearfix u-mb50">
-                @if(!empty($issue['comments']))
 
-                    <h4 class="c-medium">{{ trans('issues.comments') }}</h4>
+                <h4 class="c-medium">{{ trans('issues.comments') }}</h4>
+
+                @if(!empty($issue['comments']))
 
                     @foreach($issue['comments'] as $comment)
                         <?php $isOwnIssue = (Auth::check() and Auth::user()->id == $comment['muhtar']['id']) ? true : false; ?>
@@ -285,7 +286,7 @@ if(strlen($issue['problem']) > 0) {
 
                 @endif
 
-                <div class="comment comment-opposite u-mt30">
+                <div class="comment comment-opposite {!! (!empty($issue['comments'])) ? 'u-mt30' : '' !!}">
                     @if(Auth::check())
                         <form class="u-mv5" method="post" action="/comments/comment">
                             <input type="hidden" name="issue_id" value="{{ $issue['id'] }}">
