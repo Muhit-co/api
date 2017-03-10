@@ -31,6 +31,7 @@ return [
     "choose_hood_form" => "Choose your neighbourhood...",
     "username" => "Username",
     "username_placeholder" => "i.e. ahmetmuhittin",
+    "profile_picture" => "Profile picture",
     "agree_with_terms" => "I accept the :tagstartTerms & Conditions:tagend",
     "sign_up_muhtar_link" => "Create an alderman or municipality account",
     "request_access_cap" => "REQUEST ACCESS",

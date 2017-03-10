@@ -30,7 +30,7 @@
                     <a href="javascript:window.history.back()" class="u-floatleft u-mr15 u-mt15"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     <div class="u-inlineblock u-alignleft">
                         <div class="badge badge-circle-large u-floatleft u-mr20">
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/{{$member->picture}}" alt="{{$member->first_name}}">
+                            <img src="{{ getImageURL($member->picture, '80x80') }}" alt="{{$member->first_name}}">
                         </div>
                         <h2 class="u-mt10 u-nowrap u-lineheight20" style="overflow: visible;">{{ $member->first_name }} {{ $member->last_name }}</h2>
                         <span class="">{{ getUserLevel(intval($member->level)) }}</span>

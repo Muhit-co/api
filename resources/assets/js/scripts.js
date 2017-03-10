@@ -169,6 +169,9 @@ $(document).ready(function() {
 
   // set maximum number of allowed image uploads
   $maxImages = 3;
+  if($('#image_input').attr('data-maximages') && $('#image_input').attr('data-maximages').length > 0) {
+    $maxImages = parseInt( $('#image_input').attr('data-maximages') );
+  }
 
   // add listener for input field change
   $('#image_input').change(function() {

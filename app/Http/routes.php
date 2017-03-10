@@ -12,11 +12,6 @@ Route::get('/components', function () {
     return view('pages.components');
 });
 
-Route::get('/user/{username}', function () {
-    return view('pages.profile');
-});
-
-
 Route::get('/lang/{loc}', function ($loc) {
     Session::put('lang', $loc);
     return redirect()->back(); // ->with('success', 'Changed language to: '.$loc);
