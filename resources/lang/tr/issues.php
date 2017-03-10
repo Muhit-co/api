@@ -31,7 +31,7 @@ return [
     "ideas_for" => "için fikirler",
     "choose_hood_header" => "Mahalleni seç...",
     "log_in_needed" => "Giriş yapman ya da üye olman gerekiyor",
-    "log_in_needed_explanation" => "Fikir oluşturmak ya da desteklemek için bir Muhit hesabı oluşturman gerekiyor", 
+    "log_in_needed_explanation" => "Fikir oluşturmak, desteklemek ya da yorum yapmak için bir Muhit hesabı oluşturman gerekiyor", 
     "issues_cant_be_found" => "Fikir bulunamadı...",
     "no_ideas_found_for_hood" => ":hood için fikirler daha yok...",
     "add_first_idea_cap" => "İLK FİKRİNİ EKLE!",

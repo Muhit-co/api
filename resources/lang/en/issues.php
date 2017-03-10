@@ -31,7 +31,7 @@ return [
     "ideas_for" => "ideas for",
     "choose_hood_header" => "neighbourhood...",
     "log_in_needed" => "Sign up or log in",
-    "log_in_needed_explanation" => "To add an idea or support an existing one, create a Muhit account",
+    "log_in_needed_explanation" => "To add an idea, support or comment on existing ones, create a Muhit account first.",
     "issues_cant_be_found" => "No ideas found...",
     "no_ideas_found_for_hood" => "There are no ideas for :hood...",
     "add_first_idea_cap" => "ADD THE FIRST IDEA!",
