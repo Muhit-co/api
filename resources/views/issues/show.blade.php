@@ -286,7 +286,7 @@ if(strlen($issue['problem']) > 0) {
 
                 @endif
 
-                <div class="comment comment-opposite {!! (!empty($issue['comments'])) ? 'u-mt20' : '' !!}">
+                <div class="comment comment-opposite {!! (!empty($issue['comments'])) ? 'u-mt30' : '' !!}">
                     @if(Auth::check())
                         <form class="u-mv5" method="post" action="/comments/comment">
                             <input type="hidden" name="issue_id" value="{{ $issue['id'] }}">
