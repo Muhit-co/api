@@ -78,8 +78,7 @@
 
                                     <a href="/muhtar" class="u-inlineblock u-clearfix u-mt20">
                                         <div class="badge badge-circle badge-small u-floatleft u-mr10">
-                                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{!!$announcement->user->picture!!}"
-                                                 alt=""/>
+                                            <img src="{{ getImageURL($announcement->user->picture, '50x50') }}" alt=""/>
                                         </div>
                                         <strong class="username u-floatleft u-mt5 u-mr20">
                                             {!!$announcement->user->first_name!!} {!!$announcement->user->last_name!!}

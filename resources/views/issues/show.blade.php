@@ -14,8 +14,7 @@
 // head parameters
 $pageTitle = $shareTitle = $issue['title'] . ' -';
 if(count($issue['images']) > 0) {
-    $baseURL = '//d1vwk06lzcci1w.cloudfront.net/600x300/';
-    $shareImage = $baseURL . $issue['images'][0]['image'];
+    $shareImage = getImageURL($issue['images'][0]['image'], '600x300');
 }
 if(strlen($issue['problem']) > 0) {
     $shareDescr = $issue['problem'];
@@ -141,7 +140,7 @@ if(strlen($issue['problem']) > 0) {
                                 @elseif($numimages >= 1)
                                     @foreach($issue['images'] as $image)
                                         <div style="height: 100%;">
-                                            <div class="media-image" style="background-image: url('//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}')" title="{{$issue['title']}}"></div>
+                                            <div class="media-image" style="background-image: url('{{ getImageURL($image['image'], '600x300') }}')" title="{{$issue['title']}}"></div>
                                         </div>
                                     @endforeach
                                 @endif
@@ -198,7 +197,7 @@ if(strlen($issue['problem']) > 0) {
                     <div class="u-clearfix u-mt20">
                         @if($issue['is_anonymous'] == 0)
                             <div class="badge badge-circle badge-user u-floatleft u-mr10">
-                                <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
+                                <img src="{{ getImageURL($issue['user']['picture'], '40x40') }}" alt="{{$issue['user']['first_name']}}" />
                             </div>
                             <div class="c-light u-pt5">
                                 {{$issue['user']['first_name']}} {{$issue['user']['last_name']}}

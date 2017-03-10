@@ -14,8 +14,8 @@
                             </a>
                         </div>
                         <div class="badge badge-circle-xlarge u-floatleft u-mr20 u-mb20">
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/80x80/{!! Auth::user()->picture !!}"
-                                 alt="{!! Auth::user()->first_name !!}">
+                            <img src="{{ getImageURL(Auth::user()->picture, '80x80') }}"
+                                 alt="{{ Auth::user()->first_name }}">
                         </div>
                         <h2 class="u-mt20">
                             {!! Auth::user()->first_name . ' ' . Auth::user()->last_name !!}
@@ -78,8 +78,8 @@
                                     <li>
                                         <a href="/issues/view/{!! $issue->id !!}">
                                             <div class="badge badge-image u-floatleft u-mr15">
-                                                <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg"
-                                                     alt=""/>
+                                                <img src="{{ getImageURL('placeholders/issue.jpg', '50x50') }}"
+                                                     alt="" />
                                             </div>
                                             <div class="badge badge-status u-floatright u-mt10 u-ph10 u-pv5">
                                                 <i class="ion ion-wrench u-mr5"></i>

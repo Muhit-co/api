@@ -14,9 +14,9 @@
                 <a href="/issues/view/{{$issue['id']}}">
                     <div class="badge badge-image u-floatleft u-mr15">
                         @if(isset($issue['images']) and !empty($issue['images']))
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
+                            <img src="{{ getImageURL($issue['images'][0]['image'], '50x50') }}" alt="{{$issue['title']}}" />
                         @else
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
+                            <img src="{{ getImageURL('placeholders/issue.jpg', '50x50') }}" alt="{{$issue['title']}}" />
                         @endif
                     </div>
                     <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10 u-ml10">

@@ -91,6 +91,13 @@ function getStoryLink($page = '') {
     return $base . $lang_ext . $page;
 }
 
+// Returns link of cloudfront hosted image
+function getImageURL($url, $size = '80x80') {
+    $baseURL = '//d1vwk06lzcci1w.cloudfront.net/';
+    $fullURL = $baseURL . $size . '/' . $url;
+    return $fullURL;
+}
+
 // Returns an array with attachment options for Slack message
 function getSlackIssueAttachment($issue) {
 
@@ -100,7 +107,7 @@ function getSlackIssueAttachment($issue) {
         $tags_display .= $tag['name']; 
         $tags_display .= ($key !== count($issue['tags']) - 1) ? ', ' : '';
     }
-    $thumb_display = (count($issue['images']) > 0) ? 'http://d1vwk06lzcci1w.cloudfront.net/75x75/' . $issue['images'][0]['image'] : '';
+    $thumb_display = (count($issue['images']) > 0) ? getImageURL($issue['images'][0]['image'], '75x75') : '';
 
     $attachments = [
         'fallback'  => 'New idea added: *' . $issue['title'] . '*',
