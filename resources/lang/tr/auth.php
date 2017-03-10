@@ -31,6 +31,7 @@ return [
     "choose_hood_form" => "Mahalleni seç...",
     "username" => "Kullanıcı adı",
     "username_placeholder" => "i.e. ahmetmuhittin",
+    "profile_picture" => "Profil resmi",
     "agree_with_terms" => ":tagstartKullanım koşulları:tagendnı kabul ediyorum.",
     "sign_up_muhtar_link" => "Muhtar veya Belediye Hesabı Oluştur",
     "request_access_cap" => "GİRİŞ İZNİ İSTE",

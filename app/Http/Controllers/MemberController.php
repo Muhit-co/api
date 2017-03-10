@@ -182,12 +182,12 @@ class MemberController extends Controller
             $user->location = $data['location'];
         }
 
-        if (!empty($data['image']) and is_array($data['image'])) {
+        if (!empty($data['images']) and is_array($data['images'])) {
 
             try {
                 $name = str_replace('.', '', microtime(true));
-                Storage::put('users/' . $name, base64_decode($data['image']));
-                $user->picture = $name;
+                Storage::put('users/' . $name, base64_decode($data['images'][0]));
+                $user->picture = 'users/' . $name;
 
             } catch (Exception $e) {
 
