@@ -3,8 +3,19 @@
 .env
 .vagrant
 .elasticbeanstalk
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .idea
+
+# Compiled Asset Files
+
+public/js/all.js
+
+public/css/app.css
+
+public/css/app.css.map
+
+public/js/all.js.map

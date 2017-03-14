@@ -3,7 +3,7 @@
 @if(App::getLocale() == 'en')
     <a href="/lang/tr">
         @if($state == 'expanded')
-            <i class="ion ion-shuffle u-mr5"></i> İngilizce'ye çevir
+            <i class="ion ion-shuffle u-mr5"></i> Türkçe'ye çevir
         @else
             TR
         @endif

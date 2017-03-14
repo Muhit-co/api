@@ -15,6 +15,7 @@ use Muhit\Models\User;
 use Redis;
 use Request;
 use Storage;
+use Slack;
 
 class IssuesController extends Controller {
 
@@ -180,6 +181,9 @@ class IssuesController extends Controller {
 
 		}
 
+		// Send a message to Slack webhoook
+		Slack::attach( getSlackIssueAttachment($issue) )->send('New idea (' . $issue->id . ') on muhit.co');
+
 		return redirect('/issues/view/' . $issue->id)->with('success', trans('issues.idea_saved'));
 
 	}
@@ -207,7 +211,7 @@ class IssuesController extends Controller {
 	 * @author Me
 	 */
 	public function getIssues($hood_id = null) {
-		$issues = Issue::with('user', 'tags', 'images');
+		$issues = Issue::with('user', 'tags', 'images', 'comments.muhtar');
 
 		$hood = null;
 
@@ -247,7 +251,7 @@ class IssuesController extends Controller {
 		$issues->orderBy($o1, $o2);
 
 		if (Request::has('map') and (int) Request::get('map') === 1) {
-			$data = $issues->paginate(100);
+			$data = $issues->paginate(500);
 			return $this->displayMapData($data);
 		}
 

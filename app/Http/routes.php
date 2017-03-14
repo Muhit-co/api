@@ -12,11 +12,6 @@ Route::get('/components', function () {
     return view('pages.components');
 });
 
-Route::get('/user/{username}', function () {
-    return view('pages.profile');
-});
-
-
 Route::get('/lang/{loc}', function ($loc) {
     Session::put('lang', $loc);
     return redirect()->back(); // ->with('success', 'Changed language to: '.$loc);
@@ -55,6 +50,9 @@ Route::get('logout', function () {
     Auth::logout();
     return redirect('/');
 });
+Route::get('/hosgeldin', function () {
+    return view('auth.welcome');
+});
 
 Route::get('/register-muhtar', function () {
 
@@ -82,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('duyuru/duzenle/{id}', 'AnnouncementController@edit');
     Route::get('duyuru/sil/{id}', 'AnnouncementController@delete');
     Route::get('/muhtar', 'MuhtarController@index');
+    Route::controller('comments', 'CommentsController');
 });
 
 # Admin routes

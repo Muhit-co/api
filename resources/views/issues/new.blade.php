@@ -56,7 +56,6 @@
                         <!-- Add image button -->
                         <div class="badge badge-image u-relative">
                             <i class="ion ion-plus ion-2x u-pt5"></i>
-                            <!-- <i class="ion u-pt30 u-noselect"><strong>Sec...</strong></i> -->
                             <input type="file" id="image_input" class="u-pinned-cover" style="z-index: 2" accept="image/jpg, image/png, image/jpeg" multiple="multiple" />
                         </div>
 

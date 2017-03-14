@@ -5,8 +5,8 @@
                 <a href="javascript:void(0)" id="flash_close">
                     <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
                 </a>
-                <i class="ion ion-information-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
-                {{ session('success')  }}
+                <i class="ion ion-checkmark-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
+                {{ session('success') }}
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
                 <a href="javascript:void(0)" id="flash_close">
                     <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
                 </a>
-                <i class="ion ion-information-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
+                <i class="ion ion-alert-circled ion-15x u-floatleft u-mr10 u-mb10"></i>
                 {{ session('error')  }}
             </div>
         </div>

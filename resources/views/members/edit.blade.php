@@ -66,6 +66,14 @@
                                 </p>
                             @endif
 
+                            <div class="form-group form-fullwidth u-mv10 u-clearfix">
+                                <label>{!! trans('profile_picture') !!}</label>
+
+                                <div id="issue_images" class="u-floatleft"></div>
+
+                                <input type="file" class="badge form-input form-grey u-pa10" id="image_input" accept="image/jpg, image/png, image/jpeg" data-maximages="1" style="border-radius: 5px;" />
+                            </div>
+
                             <hr>
 
                             <div class="u-alignright">

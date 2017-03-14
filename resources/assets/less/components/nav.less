@@ -45,6 +45,11 @@ nav {
     img {
       display: block;
     }
+    @media screen and (max-width: 480px) {
+      svg {
+        max-height: 32px;
+      }
+    }
   }
   #userinfo {
     margin-top: -5px;
@@ -166,7 +171,7 @@ nav {
 
     .userinfo #userinfo {
       margin-top: 0;
-      padding: 15px;
+      padding: 15px 10px;
 
       .badge {
         margin-left: 0 !important;

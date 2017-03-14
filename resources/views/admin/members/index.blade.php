@@ -97,7 +97,7 @@
                                 <div class="row row-nopadding">
                                     <div class="col-sm-4">
                                         <div class="badge badge-circle-small u-floatleft u-mt5 u-ml5 u-mr15">
-                                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$m->picture}}" alt="" />
+                                            <img src="{{ getImageURL($m->picture, '50x50') }}" alt="" class="u-block" />
                                         </div>
                                         <div class="u-nowrap u-pt5">
                                             <span class="u-floatleft u-nowrap"><strong>{{$m->first_name}} {{$m->last_name}}</strong> <small class="c-light">({{$m->username}})</small></span>

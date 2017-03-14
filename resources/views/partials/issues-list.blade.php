@@ -14,32 +14,43 @@
                 <a href="/issues/view/{{$issue['id']}}">
                     <div class="badge badge-image u-floatleft u-mr15">
                         @if(isset($issue['images']) and !empty($issue['images']))
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/{{$issue['images'][0]['image']}}" alt="{{$issue['title']}}" />
+                            <img src="{{ getImageURL($issue['images'][0]['image'], '50x50') }}" alt="{{$issue['title']}}" />
                         @else
-                            <img src="//d1vwk06lzcci1w.cloudfront.net/50x50/placeholders/issue.jpg" alt="{{$issue['title']}}" />
+                            <img src="{{ getImageURL('placeholders/issue.jpg', '50x50') }}" alt="{{$issue['title']}}" />
                         @endif
                     </div>
-                    <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10 u-ml5">
+                    <div class="badge badge-support badge-{{$issue_status['class']}} u-floatright u-mt10 u-pv5 u-ph10 u-ml10">
                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
-                        <strong>{{(int) Redis::get('supporter_counter:'.$issue['id'])}}</strong>
+                        <strong>{{$issue_supporters}}</strong>
                     </div>
+                    @if(count($issue['comments']) > 0)
+                        <div class="badge badge-comments hasTooltip u-floatright u-mt10 u-pv5 u-ph10 u-ml10">
+                            <i class="ion ion-ios-chatbubble-outline u-mr5"></i>
+                            <strong>{{count($issue['comments'])}}</strong>
+                        </div>
+                    @endif
                     <div class="u-ml55">
                         <strong>{{$issue['title']}}</strong>
                         <p>
                             @if(isset($issue['tags']) and !empty($issue['tags']))
-                                @foreach($issue['tags'] as $tag)
-                                    <span class="tag u-floatleft u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
-                                        <span class="col-xs-hide">{{$tag['name']}}</span>
-                                    </span>
-
+                                @foreach($issue['tags'] as $key => $tag)
+                                    @if($key < 5)
+                                        <span class="tag u-floatleft u-mv5 u-mr5" style="background-color: #{{$tag['background']}};">
+                                            <span class="col-xs-hide">{{$tag['name']}}</span>
+                                        </span>
+                                    @endif
+                                    @if($key == 5)
+                                        <span class="tag u-floatleft u-mv5 u-mr5 bg-lightest">
+                                            <span class="col-xs-hide c-light">...</span>
+                                        </span>
+                                    @endif
                                 @endforeach
                             @endif
                             <span class="date u-floatleft u-mr10"><?php echo strftime('%d %h %Y', strtotime($issue['created_at'])) ?></span>
-                            @if($issue['is_anonymous'] == 0)
-                            <span class="extended">
-                                |<span class="user u-ml10">
-                                    {{$issue['user']['first_name']}} {{$issue['user']['last_name']}} </span>
-                            </span>
+                            @if(!isset($hood))
+                                <span class="extended">
+                                    |<span title="{{$issue['location']}}" class="u-ml10">{{ explode(', ', $issue['location'])[0] }}</span>
+                                </span>
                             @endif
                         </p>
                     </div>
@@ -65,5 +76,5 @@
     </ul>
 </div>
 <div class="u-aligncenter u-mb40">
-    {!! $issues->render() !!}
+    {!! $issues->appends(['sort' =>  Input::get('sort')])->render() !!}
 </div>

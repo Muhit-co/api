@@ -14,8 +14,7 @@
 // head parameters
 $pageTitle = $shareTitle = $issue['title'] . ' -';
 if(count($issue['images']) > 0) {
-    $baseURL = '//d1vwk06lzcci1w.cloudfront.net/600x300/';
-    $shareImage = $baseURL . $issue['images'][0]['image'];
+    $shareImage = getImageURL($issue['images'][0]['image'], '600x300');
 }
 if(strlen($issue['problem']) > 0) {
     $shareDescr = $issue['problem'];
@@ -36,12 +35,14 @@ if(strlen($issue['problem']) > 0) {
             $issue_status = getIssueStatus($issue['status'], $issue_supporters);
             ?>
 
+            {{-- Card start --}}
             <div class="card card-issue">
-                <div class="card-header u-clearfix u-pv15">
+                <div class="card-header u-clearfix">
                     <div class="u-floatright u-clearfix">
 
                         <!-- Share buttons -->
                         <?php
+                        // Build Twitter URL
                         $twitter_url = "http://twitter.com/share";
                         $twitter_url .= "?text=" . trans('issues.twitter_text', array('issue_title' => substr($issue['title'], 0, 120)));
                         $twitter_url .= "&url=" . Request::url();
@@ -49,6 +50,8 @@ if(strlen($issue['problem']) > 0) {
                         foreach ($issue['tags'] as $tag):
                         	$twitter_url .= "," . strTRtoEN(strtolower($tag['name']));
                         endforeach;
+
+                        // Build Facebook URL
                         $facebook_url = "http://www.facebook.com/dialog/feed";
                         $facebook_url .= "?app_id=" . "1458298001134890";
                         $facebook_url .= "&link=" . Request::url();
@@ -58,9 +61,14 @@ if(strlen($issue['problem']) > 0) {
                         $facebook_url .= "&description=" . $issue['solution'];
                         $facebook_url .= "&message=" . $issue['solution'];
                         $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
+
+                        // Build Whatsapp text
+                        $whatsapp_text = '%22' . $issue['title'] . '%22%0A' . urlencode(Request::url());
                         ?>
-                        <a href="<?php echo $twitter_url ?>" class="btn btn-secondary btn-twitter u-width40" target="_blank"><i class="ion ion-social-twitter"></i></a>
-                        <a href="<?php echo $facebook_url ?>" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
+
+                        <a href="whatsapp://send?text=<?php echo $whatsapp_text; ?>" id="whatsapp_share_button" class="btn btn-secondary btn-whatsapp u-hidden"><i class="ion ion-social-whatsapp"></i></a>
+                        <a href="<?php echo $twitter_url; ?>" id="twitter_share_button" class="btn btn-secondary btn-twitter" target="_blank"><i class="ion ion-social-twitter"></i></a>
+                        <a href="<?php echo $facebook_url; ?>" id="facebook_share_button" class="btn btn-secondary btn-facebook" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
                         <!-- (Un)Support button -->
                         @if($role =='public' && $issue['status'] != "solved")
@@ -94,7 +102,7 @@ if(strlen($issue['problem']) > 0) {
                         @endif
 
                     </div>
-                    <a href="javascript:window.history.back()" class="u-floatleft u-mr15"><i class="ion ion-android-arrow-back ion-2x"></i></a>
+                    <a href="javascript:window.history.back()" class="u-floatleft u-pr10"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     <span class="title u-inlineblock u-mt5">{{$issue['location']}}</span>
                 </div>
                 <div class="card-content">
@@ -141,7 +149,7 @@ if(strlen($issue['problem']) > 0) {
                                 @elseif($numimages >= 1)
                                     @foreach($issue['images'] as $image)
                                         <div style="height: 100%;">
-                                            <div class="media-image" style="background-image: url('//d1vwk06lzcci1w.cloudfront.net/600x300/{{$image['image']}}')" title="{{$issue['title']}}"></div>
+                                            <div class="media-image" style="background-image: url('{{ getImageURL($image['image'], '600x300') }}')" title="{{$issue['title']}}"></div>
                                         </div>
                                     @endforeach
                                 @endif
@@ -198,7 +206,7 @@ if(strlen($issue['problem']) > 0) {
                     <div class="u-clearfix u-mt20">
                         @if($issue['is_anonymous'] == 0)
                             <div class="badge badge-circle badge-user u-floatleft u-mr10">
-                                <img src="//d1vwk06lzcci1w.cloudfront.net/40x40/{{$issue['user']['picture']}}" alt="{{$issue['user']['first_name']}}" />
+                                <img src="{{ getImageURL($issue['user']['picture'], '40x40') }}" alt="{{$issue['user']['first_name']}}" />
                             </div>
                             <div class="c-light u-pt5">
                                 {{$issue['user']['first_name']}} {{$issue['user']['last_name']}}
@@ -209,45 +217,6 @@ if(strlen($issue['problem']) > 0) {
                     </div>
 
                 </div>
-
-                @if(!empty($issue['comments']))
-
-                    <div class="card-footer clearfix">
-
-                        <h4>Muhtardan gelen yorumlar</h4>
-
-                        @foreach($issue['comments'] as $comment)
-                            <div class="comment" id="comment-{{ $comment['id'] }}">
-                                <div class="u-floatright c-medium">
-                                    <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
-                                    @if($role =='admin')
-                                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
-                                            <i class="ion ion-edit"></i>
-                                        </a>
-                                    @endif
-                                </div>
-                                <p>
-                                    <strong>
-                                        {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
-                                    </strong>
-                                    <span class="c-medium">
-                                        @if(!empty($comment['muhtar']['location']))
-                                            ( {{ explode(',', $comment['muhtar']['location'])[0] }} muhtarı)
-                                        @endif
-                                    </span>
-                                </p>
-                                <p><em class="comment-message">
-                                    {{ $comment['comment'] }}
-                                </em></p>
-                            </div>
-                        @endforeach
-
-                    </div>
-
-                @endif
-                {{--
-
-                --}}
 
                 <div class="card-footer u-clearfix">
                     <div class="u-floatright">
@@ -287,6 +256,72 @@ if(strlen($issue['problem']) > 0) {
                 </div>
 
             </div>
+            {{-- Card end --}}
+
+            {{-- Comments start --}}
+            <div class="clearfix u-mb50">
+
+                <h4 class="c-medium">{{ trans('issues.comments') }}</h4>
+
+                @if(!empty($issue['comments']))
+
+                    @foreach($issue['comments'] as $comment)
+                        <?php $isOwnIssue = (Auth::check() and Auth::user()->id == $comment['muhtar']['id']) ? true : false; ?>
+                        <div class="comment {!! ($isOwnIssue) ? 'comment-opposite' : '' !!}" id="comment-{{ $comment['id'] }}">
+                            <div class="u-floatright c-medium u-lineheight20">
+                                <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
+                                @if(Auth::check() and $role =='admin' and Auth::user()->id == $comment['muhtar']['id'])
+                                    <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
+                                        <i class="ion ion-edit"></i>
+                                    </a>
+                                @endif
+                            </div>
+                            <p class="u-lineheight20">
+                                <strong {!! ($isOwnIssue) ? 'class="c-blue"' : '' !!}">
+                                    {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
+                                </strong>
+                                <span class="{!! ($isOwnIssue) ? 'c-darkblue' : 'c-medium' !!}">
+                                    @if($comment['muhtar']['level'] >= 5 and $comment['muhtar']['level'] < 10 and !empty($comment['muhtar']['location']))
+                                        ( {{ explode(',', $comment['muhtar']['location'])[0] }} muhtarı)
+                                    @endif
+                                </span>
+                            </p>
+                            <p class="u-mt5"><em class="comment-message">
+                                {{ $comment['comment'] }}
+                            </em></p>
+                        </div>
+                    @endforeach
+
+                @endif
+
+                <div class="comment comment-opposite {!! (!empty($issue['comments'])) ? 'u-mt30' : '' !!}">
+                    @if(Auth::check())
+                        <form class="u-mv5" method="post" action="/comments/comment">
+                            <input type="hidden" name="issue_id" value="{{ $issue['id'] }}">
+                            <div class="form-group form-fullwidth">
+                                <textarea class="form-input form-grey" value="" name="comment" rows="4" placeholder="{{ trans('issues.placeholder_your_message') }}" required></textarea>
+                            </div>
+
+                            <div class="u-alignright">
+                                <button type="submit" class="btn btn-secondary">{{ trans('auth.send_cap') }}</button>
+                            </div>
+
+                        </form>
+                    @else
+                        <div class="u-mt5 u-aligncenter c-light">
+                            <div class="form-group form-fullwidth u-mb0" onclick="openDialog('dialog_login');">
+                                <textarea class="form-input" value="" name="comment" rows="3" disabled="disabled" placeholder="{{ trans('issues.placeholder_your_message') }}" style="cursor: text;"></textarea>
+                            </div>
+
+                            <div class="u-alignright">
+                                <div class="btn btn-secondary btn-disabled u-opacity50" disabled onclick="openDialog('dialog_login');">{{ trans('auth.send_cap') }}</div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+            </div>
+            {{-- Comments end --}}
 
         </div>
 
