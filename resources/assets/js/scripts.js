@@ -49,6 +49,19 @@ $(document).ready(function() {
     $('#intro_message').removeClass('u-hidden');
   }
 
+  // issue show page, linkify twitter & facebook words in flash message
+  if($('.flash-success').length && $('#twitter_share_button').length) {
+    url = $('#twitter_share_button').attr('href');
+    $('.flash.flash-success').html(function(_, html) {
+       return html.replace(/(Twitter)/g, '<a href="' + url + '" target="_blank" class="btn btn-twitter btn-sm" style="margin-top: -2px; color: white; line-height: 20px;">$1</a>');
+    });
+  }
+  if($('.flash-success').length && $('#facebook_share_button').length) {
+    url = $('#facebook_share_button').attr('href');
+    $('.flash.flash-success').html(function(_, html) {
+       return html.replace(/(Facebook)/g, '<a href="' + url + '" target="_blank" class="btn btn-facebook btn-sm" style="margin-top: -2px; color: white; line-height: 20px;">$1</a>');
+    });
+  }
 
 
 
@@ -142,7 +155,7 @@ $(document).ready(function() {
   });
 
   // share buttons on show page
-  $('.card .btn-twitter[href*=share]').click(function(e) {
+  $('.btn-twitter[href*="share"], .btn-facebook[href*="dialog/feed"]').click(function(e) {
     e.preventDefault();
     $url = $(this).attr('href');
     window.open($url, '_blank', 'width=600, height=300, menubar=no, top=300, left=450');
