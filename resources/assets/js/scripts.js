@@ -64,6 +64,9 @@ $(document).ready(function() {
   }
 
   // issue show page, show whatsapp share button only if mobile
+  if($ios || $android) {
+    $('#whatsapp_share_button').removeClass('u-hidden');
+  }
 
 
 

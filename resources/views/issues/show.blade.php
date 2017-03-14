@@ -37,7 +37,7 @@ if(strlen($issue['problem']) > 0) {
 
             {{-- Card start --}}
             <div class="card card-issue">
-                <div class="card-header u-clearfix u-pv15">
+                <div class="card-header u-clearfix">
                     <div class="u-floatright u-clearfix">
 
                         <!-- Share buttons -->
@@ -66,9 +66,9 @@ if(strlen($issue['problem']) > 0) {
                         $whatsapp_text = '%22' . $issue['title'] . '%22%0A' . urlencode(Request::url());
                         ?>
 
-                        <a href="whatsapp://send?text=<?php echo $whatsapp_text; ?>" class="btn btn-secondary btn-whatsapp u-width40 u-ph5 u-aligncenter"><i class="ion ion-social-whatsapp"></i></a>
-                        <a href="<?php echo $twitter_url; ?>" id="twitter_share_button" class="btn btn-secondary btn-twitter u-width40 u-ml5" target="_blank"><i class="ion ion-social-twitter"></i></a>
-                        <a href="<?php echo $facebook_url; ?>" id="facebook_share_button" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
+                        <a href="whatsapp://send?text=<?php echo $whatsapp_text; ?>" id="whatsapp_share_button" class="btn btn-secondary btn-whatsapp u-hidden"><i class="ion ion-social-whatsapp"></i></a>
+                        <a href="<?php echo $twitter_url; ?>" id="twitter_share_button" class="btn btn-secondary btn-twitter" target="_blank"><i class="ion ion-social-twitter"></i></a>
+                        <a href="<?php echo $facebook_url; ?>" id="facebook_share_button" class="btn btn-secondary btn-facebook" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
                         <!-- (Un)Support button -->
                         @if($role =='public' && $issue['status'] != "solved")
@@ -102,7 +102,7 @@ if(strlen($issue['problem']) > 0) {
                         @endif
 
                     </div>
-                    <a href="javascript:window.history.back()" class="u-floatleft u-mr15"><i class="ion ion-android-arrow-back ion-2x"></i></a>
+                    <a href="javascript:window.history.back()" class="u-floatleft u-pr10"><i class="ion ion-android-arrow-back ion-2x"></i></a>
                     <span class="title u-inlineblock u-mt5">{{$issue['location']}}</span>
                 </div>
                 <div class="card-content">
