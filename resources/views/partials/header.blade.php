@@ -19,7 +19,15 @@
                             <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
                         </div>
-                        <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="{{ trans('issues.choose_hood_header') }}" value="{{$hood->name or ''}}" />
+                        <?php
+                        $loc_value = '';
+                        if(isset($hood->name)) {
+                            $loc_value = $hood->name;
+                        } else if(isset($_GET['district'])) {
+                            $loc_value = $_GET['district'];
+                        }
+                        ?>
+                        <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="{{ trans('issues.choose_hood_header') }}" value="{{ $loc_value }}" />
                         <input id="location_string" name="location" class="u-hidden" value="" />
 
                         @if(isset($redir) and $redir == 'list')
@@ -59,17 +67,24 @@
             </div>
             <div class="col-md-4 col-sm-6 u-clearfix">
 
+                <div class="hasDropdown u-inlineblock u-mt5">
+                    <a href="javascript:void(0)" onclick="$('#district_dropdown').toggleClass('isOpen');" class="btn btn-sm <?php if(isset($district)) { echo 'btn-white'; } else { echo 'btn-whiteoutline'; } ?>">
+                        {{ trans('issues.districts_cap') }}
+                        <i class="ion ion-chevron-down u-ml5"></i>
+                    </a>
+                </div>
+
                 <!-- use current location -->
-                <div class="u-floatleft u-mr20">
+                {{-- <div class="u-floatleft u-mr20">
                     <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
                     <label for="current_location" class="btn btn-whiteoutline"><i class="ion ion-android-locate ion-15x"></i></label>
-                </div>
+                </div> --}}
 
                 @if(Auth::check() and isset(Auth::user()->hood_id) and Auth::user()->hood_id > 0)
                     <!-- use profile home location -->
-                    <div class="u-floatleft u-mr10">
+                    {{-- <div class="u-floatleft u-mr10">
                         <a href="/fikirler/{{Auth::user()->hood_id}}"   class="btn btn-whiteoutline"><i class="ion ion-home ion-15x"></i></a>
-                    </div>
+                    </div> --}}
                 @endif
 
                 <!-- search issues -->
@@ -87,6 +102,9 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+
+                @include('partials.district-dropdown', ['all_districts' => $all_districts, 'district' => $district])
+
                 @include('partials.issue-list-tabs', array('active_tab' => (isset($_GET['sort'])) ? $_GET['sort'] : 'latest' ))
             </div>
         </div>

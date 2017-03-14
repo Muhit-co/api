@@ -44,6 +44,17 @@
       z-index: 1;
     }
   }
+  &.dropdown-inline {
+    position: relative;
+  }
+  &.dropdown-onleft:before {
+    left: 12px;
+    right: auto;
+  }
+  &.dropdown-oncenter:before {
+    right: 50%;
+    margin-right: -12px;
+  }
   .c-red {
     color: @red;
     color: lighten(@red, 10%);
@@ -63,7 +74,8 @@
     }
   }
 }
-.dropdownIsOpen .dropdown {
+.dropdownIsOpen .dropdown, 
+.dropdown.isOpen {
   display: block;
 }
 .dropdown ul {
