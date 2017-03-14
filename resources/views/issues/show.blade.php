@@ -61,7 +61,12 @@ if(strlen($issue['problem']) > 0) {
                         $facebook_url .= "&description=" . $issue['solution'];
                         $facebook_url .= "&message=" . $issue['solution'];
                         $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
+
+                        // Build Whatsapp text
+                        $whatsapp_text = '%22' . $issue['title'] . '%22%0A' . urlencode(Request::url());
                         ?>
+
+                        <a href="whatsapp://send?text=<?php echo $whatsapp_text; ?>" class="btn btn-secondary btn-whatsapp u-width40 u-ph5 u-aligncenter"><i class="ion ion-social-whatsapp"></i></a>
                         <a href="<?php echo $twitter_url; ?>" id="twitter_share_button" class="btn btn-secondary btn-twitter u-width40 u-ml5" target="_blank"><i class="ion ion-social-twitter"></i></a>
                         <a href="<?php echo $facebook_url; ?>" id="facebook_share_button" class="btn btn-secondary btn-facebook u-width40 u-ml5" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 

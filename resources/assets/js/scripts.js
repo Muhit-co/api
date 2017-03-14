@@ -15,7 +15,7 @@ $(document).ready(function() {
   // setting loader mask on non-same page links
   $('a').click(function() {
     $href = $(this).attr('href');
-    if ($href && !$href.match("^#") && !$href.match("^javascript") && $(this).attr('target') != '_blank') {
+    if ($href && !$href.match("^#") && !$href.match("^javascript") && !$href.match("^whatsapp") && $(this).attr('target') != '_blank') {
       $('#loader_mask').addClass('isVisible');
       $('main,nav').addClass('dialogIsOpen');
 
@@ -63,8 +63,7 @@ $(document).ready(function() {
     });
   }
 
-
-
+  // issue show page, show whatsapp share button only if mobile
 
 
 
