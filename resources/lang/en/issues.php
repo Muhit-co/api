@@ -109,7 +109,7 @@ return [
     "error_while_location" => "An error occurred while entering your location. Please try again.",
     "error_saving_wait_try_again" => "An error occurred while saving your idea; please wait for a few minutes and try again.",
     "error_technical_team" => "A technical problem occurred while saving your idea; the technical team has been informed and will look into it.",
-    "idea_saved" => "You idea has been saved!",
+    "idea_saved" => "You idea has been saved! Share your idea on Twitter or Facebook to gain supporters.",
     "login_try_again" => "Please log in and try again.",
     "already_support_idea" => "You already support this idea.",
     "delete_couldnt_find" => "Could not find the idea you want to delete.",

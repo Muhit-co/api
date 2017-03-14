@@ -109,7 +109,7 @@ return [
     "error_while_location" => "Lokasyonunuzu girerken bir hata oldu, lütfen tekrar deneyin.",
     "error_saving_wait_try_again" => "Fikrinizi kaydederken teknik bir hata meydana geldi, lütfen biraz bekleyip tekrar deneyin.",
     "error_technical_team" => "Fikrinizi kaydederken teknik bir hata geldi, hata logu teknik ekibe iletildi. Hemen ilgileniyoruz",
-    "idea_saved" => "Fikrinizi kaydettik!",
+    "idea_saved" => "Fikrinizi kaydettik! Fikrinizin daha çok desteklenmesini sağlamak için Twitter veya Facebook'ta paylaşın.",
     "login_try_again" => "Lütfen giriş yapıp tekrar deneyin.",
     "already_support_idea" => "Bu fikri zaten destekliyorsunuz.",
     "delete_couldnt_find" => "Silmek istediğiniz fikiri bulamadım.",
