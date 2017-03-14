@@ -8,6 +8,7 @@ use Muhit\Http\Controllers\Controller;
 use Muhit\Jobs\IssueRemoved;
 use Muhit\Jobs\SendIssueSupportedEmail;
 use Muhit\Jobs\TestQueue;
+use Muhit\Models\District;
 use Muhit\Models\Hood;
 use Muhit\Models\Issue;
 use Muhit\Models\IssueReport;
@@ -213,7 +214,12 @@ class IssuesController extends Controller {
 	public function getIssues($hood_id = null) {
 		$issues = Issue::with('user', 'tags', 'images', 'comments.muhtar');
 
+		// Gets all available districts. @TODO: separate into own (async) request
+		$all_districts = District::with('city','issues')->get();
+		// $all_districts = array();
+
 		$hood = null;
+		$district = null;
 
 		if ($hood_id != 'all') {
 			if (!empty($hood_id)) {
@@ -227,6 +233,11 @@ class IssuesController extends Controller {
 					if (isset($hood) and isset($hood->id)) {
 						$issues->where('hood_id', $hood->id);
 					}
+				} else if (Request::has('district')) {
+					$district = District::fromName(Request::get('district'));
+					if(isset($district) && isset($district->id)) {
+						$issues->where('district_id', $district->id);
+					}
 				} else {
 					if (Auth::check()) {
 						if (isset(Auth::user()->hood_id) and !empty(Auth::user()->hood_id)) {
@@ -237,6 +248,7 @@ class IssuesController extends Controller {
 				}
 			}
 		}
+
 
 		$o1 = 'id';
 		$o2 = 'desc';
@@ -265,7 +277,7 @@ class IssuesController extends Controller {
 
 		view()->share('pageTitle', 'Fikir listesi - ');
 		session(['last_page' => Request::path()]);
-		return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'hood' => $hood]);
+		return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'hood' => $hood , 'district' => $district, 'all_districts' => $all_districts]);
 
 	}
 
