@@ -30,7 +30,7 @@
                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
                         <strong>{{$issue_supporters}}</strong>
                     </div>
-                    @if(count($issue['comments']) > 0)
+                    @if(isset($issue['comments']) and count($issue['comments']) > 0)
                         <div class="badge badge-comments hasTooltip u-floatright u-mt10 u-pv5 u-ph10 u-ml10">
                             <i class="ion ion-ios-chatbubble-outline u-mr5"></i>
                             <strong>{{count($issue['comments'])}}</strong>
