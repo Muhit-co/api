@@ -230,7 +230,7 @@ $(document).ready(function(){
                 input, 
                 {
                     types: ['geocode'],
-                    componentRestrictions: {country: 'tr'}, 
+                    componentRestrictions: { country: 'tr' }, 
                 }
                 );
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -241,10 +241,7 @@ $(document).ready(function(){
             }
 
             if (place.address_components) {
-
                 hood = district = city = $first_valid_type = $sublocality = null;
-                $first_match_types = [
-                ];
                 $.each(place.address_components, function(i,j) {
                     if (j.types[0]) {
 
@@ -295,15 +292,8 @@ $(document).ready(function(){
                     //do we need to do something? 
                     if ($("#redir").size() > 0 && $("#redir").val() == 'list') {
 
-                        if (hood !== null) {
-                            var loca = hood + ", " + district + ", " + city;
-                            window.location = '/fikirler?location='+loca;
-                            // alert('redirect to: ' + '/fikirler?location='+loca);
-                        } else {
-                            var loca = district + ", " + city;
-                            window.location = '/fikirler?district='+loca;
-                            // alert('redirect to: ' + '/fikirler?district='+district);
-                        }
+                        query = (hood !== null) ? '?location=' + hood + ", " + district + ", " + city : '?district=' + district + ", " + city;
+                        // window.location = '/fikirler' + query;
                     }
 
 
