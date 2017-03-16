@@ -293,7 +293,7 @@ $(document).ready(function(){
                     if ($("#redir").size() > 0 && $("#redir").val() == 'list') {
 
                         query = (hood !== null) ? '?location=' + hood + ", " + district + ", " + city : '?district=' + district + ", " + city;
-                        // window.location = '/fikirler' + query;
+                        window.location = '/fikirler' + query;
                     }
 
 
