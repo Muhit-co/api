@@ -234,9 +234,12 @@ class IssuesController extends Controller {
 						$issues->where('hood_id', $hood->id);
 					}
 				} else if (Request::has('district')) {
-					$district = District::fromName(Request::get('district'));
-					if(isset($district) && isset($district->id)) {
-						$issues->where('district_id', $district->id);
+					$district_q = District::fromName(Request::get('district'));
+					if(isset($district_q) && isset($district_q->id)) {
+						$issues->where('district_id', $district_q->id);
+					}
+					if($issues->count() > 0) {
+						$district = $district_q;
 					}
 				} else {
 					if (Auth::check()) {

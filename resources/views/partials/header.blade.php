@@ -12,21 +12,24 @@
                 <h2 class="u-clearfix">
                     <!-- change mahalle -->
                     <div class="{{ (App::getLocale() == 'en') ? 'u-floatleft' : 'u-inlineblock' }} u-mt5"><span class="extended">{{ trans('issues.ideas_for') }}</span></div>
-                    <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="is-home">
-                        <div class="u-floatleft u-aligncenter" style="width: 40px;">
-                            <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
-                            <i class="form-state form-state-static ion ion-location ion-15x u-hidden"></i>
-                            <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5 u-hidden"></i>
-                            <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning u-hidden" style="margin-right: 7px"></i>
-                        </div>
                         <?php
                         $loc_value = '';
+                        $form_state = 'is-home';
                         if(isset($hood->name)) {
                             $loc_value = $hood->name;
-                        } else if(isset($_GET['district'])) {
-                            $loc_value = $_GET['district'];
+                            $form_state = 'is-static';
+                        } else if(isset($district)) {
+                            $loc_value = $district;
+                            $form_state = 'is-static';
                         }
                         ?>
+                    <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="{{ $form_state }}">
+                        <div class="u-floatleft u-aligncenter" style="width: 40px;">
+                            <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
+                            <i class="form-state form-state-static ion ion-ios-location u-mt5"></i>
+                            <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5"></i>
+                            <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning" style="margin-right: 7px"></i>
+                        </div>
                         <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="{{ trans('issues.choose_hood_header') }}" value="{{ $loc_value }}" />
                         <input id="location_string" name="location" class="u-hidden" value="" />
 
