@@ -28,7 +28,7 @@
                             <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
                             <i class="form-state form-state-static ion ion-ios-location u-mt5"></i>
                             <i class="form-state form-state-current ion ion-android-locate u-mt5"></i>
-                            <i class="form-state form-state-district ion ion-android-compass u-mt5"></i>
+                            <i class="form-state form-state-district ion ion-android-compass u-mt10"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning" style="margin-right: 7px"></i>
                         </div>
                         <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="{{ trans('issues.choose_hood_header') }}" value="{{ $loc_value }}" />
@@ -70,7 +70,7 @@
             <div class="col-md-4 col-sm-6 u-clearfix">
 
                 <div class="hasDropdown u-inlineblock u-mt5">
-                    <a href="javascript:void(0)" onclick="$('#district_dropdown').toggleClass('isOpen');" class="btn btn-sm <?php if(isset($district)) { echo 'btn-white'; } else { echo 'btn-whiteoutline'; } ?>">
+                    <a href="javascript:void(0)" id="district_dropdown_btn" onclick="$('#district_dropdown').toggleClass('isOpen');" class="btn btn-sm <?php if(isset($district)) { echo 'btn-white'; } else { echo 'btn-whiteoutline'; } ?>">
                         {{ trans('issues.districts_cap') }}
                         <i class="ion ion-chevron-down u-ml5"></i>
                     </a>

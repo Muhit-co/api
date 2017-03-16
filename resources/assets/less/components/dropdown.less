@@ -15,11 +15,13 @@
   text-align: left;
   white-space: nowrap;
 
-  &:before {
+  &:before,
+  .dropdown-triangle {
     content: "";
     position: absolute;
     bottom: 100%;
-    right: 12px;
+    left: 50%;
+    margin-left: -12px;
     display: block;
     border: 8px solid transparent;
     border-bottom-color: @white;
@@ -51,9 +53,8 @@
     left: 12px;
     right: auto;
   }
-  &.dropdown-oncenter:before {
-    right: 50%;
-    margin-right: -12px;
+  &.dropdown-notriangle:before {
+    display: none;
   }
   .c-red {
     color: @red;
@@ -112,7 +113,7 @@
   border: none;
   .rounded(5px);
   .box-shadow(0 0 10px fade(@black, 10%));
-  z-index: 2;
+  z-index: 6;
   text-align: left;
   white-space: nowrap;
   overflow: visible;

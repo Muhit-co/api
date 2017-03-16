@@ -38,7 +38,7 @@ function buildRelativeUrl($param, $value, $remove = '') {
     parse_str($_SERVER['QUERY_STRING'], $query_string);
     $query_string[$param] = $value;
     if(strlen($remove) > 0) {
-        $query_string[$remove] = '';
+        unset($query_string[$remove]);
     }
     return http_build_query($query_string);
 }

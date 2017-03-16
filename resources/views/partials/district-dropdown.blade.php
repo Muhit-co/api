@@ -1,4 +1,6 @@
-<div id="district_dropdown" class="dropdown dropdown-inline dropdown-oncenter u-pv15 u-ph20 u-mb10 u-mt10">
+<div id="district_dropdown" class="dropdown dropdown-inline dropdown-notriangle u-pv15 u-ph20 u-mb10 u-mt10">
+
+    <span class="dropdown-triangle"></span>
 
     <a href="javascript:$('#district_dropdown').toggleClass('isOpen');">
         <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
