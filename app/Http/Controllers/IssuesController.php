@@ -234,12 +234,9 @@ class IssuesController extends Controller {
 						$issues->where('hood_id', $hood->id);
 					}
 				} else if (Request::has('district')) {
-					$district_q = District::fromName(Request::get('district'));
-					if(isset($district_q) && isset($district_q->id)) {
-						$issues->where('district_id', $district_q->id);
-					}
-					if($issues->count() > 0) {
-						$district = $district_q;
+					$district = District::fromName(Request::get('district'));
+					if(isset($district) && isset($district->id)) {
+						$issues->where('district_id', $district->id);
 					}
 				} else {
 					if (Auth::check()) {
@@ -280,7 +277,7 @@ class IssuesController extends Controller {
 
 		view()->share('pageTitle', 'Fikir listesi - ');
 		session(['last_page' => Request::path()]);
-		return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'hood' => $hood , 'district' => $district, 'all_districts' => $all_districts]);
+		return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'issues_count' => $issues->count(), 'hood' => $hood , 'district' => $district, 'all_districts' => $all_districts]);
 
 	}
 
