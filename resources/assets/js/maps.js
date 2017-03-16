@@ -240,68 +240,80 @@ $(document).ready(function(){
                 return;
             }
 
-            var address = '';
             if (place.address_components) {
-                address = [
-                    (place.address_components[0] && place.address_components[0].short_name || ''),
-                    (place.address_components[1] && place.address_components[1].short_name || ''),
-                    (place.address_components[2] && place.address_components[2].short_name || '')
 
-                ].join(' ');
-                for (var i = 0, l = place.address_components.length; i < l; i ++) {
-                    var a = place.address_components[i];
-                    if (a.types[0]) {
-                        if (a.types[0] === "administrative_area_level_1") {
-                            city = a.long_name;    
+                hood = district = city = $first_valid_type = $sublocality = null;
+                $first_match_types = [
+                ];
+                $.each(place.address_components, function(i,j) {
+                    if (j.types[0]) {
+
+                        // set city, district & hood values
+                        if (j.types[0] === "administrative_area_level_1") {
+                            city = j.long_name;
                         }
-                        if (a.types[0] === "administrative_area_level_2") {
-                            district = a.long_name;    
+                        if (j.types[0] === "administrative_area_level_2") {
+                            district = j.long_name;
+                            if($first_valid_type == null || $sublocality == j.long_name) { $first_valid_type = i; }
                         }
-                        if (a.types[0] === "administrative_area_level_4") {
-                            hood = a.long_name;    
+                        if (j.types[0] === "sublocality_level_1") {
+                            district = j.long_name;
+                            if($first_valid_type == null) { $first_valid_type = i; $sublocality = j.long_name; }
                         }
+                        if ($first_valid_type == null && j.types[0] === "administrative_area_level_4") {
+                            hood = j.long_name;
+                            if($first_valid_type == null) { $first_valid_type = i; }
+                        }
+
                     }
-                }
+                });
 
-                // evaluating if correct mahalle or not
-                if($("#hood").length > 0 && hood.length > 0) {
+                if($first_valid_type !== null) {
+
                     // hiding form message
                     $("#location_form_message").hide().find('.message').html('');
+
                     // assigning found location data to input fields
-                    $("#hood").val(hood);
-                    if($("#district").length > 0 && district.length > 0) {
-                        if(!city) { city = '' }
-                        $("#district").show().find('.text').html(district+", "+city);
+                    $input_val = (hood !== null) ? hood : district;
+                    $("#hood").val($input_val);
+                    $("#district, #city").html('');
+                    if($("#district").length > 0 && district.length > 0 && hood !== null) {
+                        $("#district").show().html(district + ', ');
+                    }
+                    if($("#city").length > 0 && city.length > 0) {
+                        $("#city").show().html(city);
                     }
 
-                    $("#hood").val(hood);
-                    $("#district").html(district+", "+city);
                     // backend data
                     var lat = place.geometry.location.lat();
                     var lon = place.geometry.location.lng();
                     $("#coordinates").val(lat + ", " + lon);
                     $("#location_string").val(hood+", "+district+", "+city);
-                    $("#location_string").closest('.form-group').attr('data-form-state','is-current');
+
+                    $("#hood").closest('.form-group').attr('data-form-state','is-busy');
 
                     //do we need to do something? 
-                    if ($("#redir").size() > 0) {
-                        var redir = $("#redir").val();
-                        var loca = hood+", "+district+", "+city
+                    if ($("#redir").size() > 0 && $("#redir").val() == 'list') {
 
-                            if (redir == 'list') {
-                                window.location = '/fikirler?location='+loca;
-                                
-                            }
+                        if (hood !== null) {
+                            var loca = hood + ", " + district + ", " + city;
+                            window.location = '/fikirler?location='+loca;
+                            // alert('redirect to: ' + '/fikirler?location='+loca);
+                        } else {
+                            var loca = district + ", " + city;
+                            window.location = '/fikirler?district='+loca;
+                            // alert('redirect to: ' + '/fikirler?district='+district);
+                        }
                     }
+
 
                 } else {
                     $("#hood").val('');
-                    $("#district").hide();
-                    $("#location_form_message").show().find('.message').html('Aradığın kriterleri mahalle ismi olmalıdır.');
+                    $("#district, #city").html('');
+                    $("#location_form_message").show().find('.message').html('Aradığın kriterleri mahalle/ilçe ismi olmalıdır.');
                 }
+
             }
-            $("#location_string").closest('.form-group').attr('data-form-state','is-static');
-            $("#current_location").attr('checked', false);
         });
     }
 });

@@ -6,7 +6,7 @@
             @include('partials.intro-message')
         @endif
 
-        <div class="row">
+        <div class="row u-pv10">
             <div class="col-md-6 col-md-offset-1 col-sm-6">
 
                 <h2 class="u-clearfix">
@@ -19,11 +19,11 @@
                             $loc_value = $hood->name;
                             $form_state = 'is-static';
                         } else if(isset($district)) {
-                            $loc_value = $district;
+                            $loc_value = $district->name;
                             $form_state = 'is-static';
                         }
                         ?>
-                    <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5" data-form-state="{{ $form_state }}">
+                    <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5 u-mb0" data-form-state="{{ $form_state }}">
                         <div class="u-floatleft u-aligncenter" style="width: 40px;">
                             <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
                             <i class="form-state form-state-static ion ion-ios-location u-mt5"></i>
@@ -40,32 +40,28 @@
                     <br />
                 </h2>
 
-                <div id="location_form_message" class="form-message u-ml45 u-mb20 u-hidden">
-                    <a href="javascript:void(0)" id="message_close" class="u-floatright u-ph10 u-pv5">
+                <div id="location_form_message" class="form-message u-ml45 u-mb20" style="display: none;">
+                    <a href="javascript:void(0)" id="message_close" class="u-floatright u-ph10">
                         <i class="ion ion-android-close ion-15x"></i>
                     </a>
                     <span class="message"></span>
                 </div>
 
-                <h3 id="district" class="u-floatleft u-ml50 u-mb20">
+                <h4 class="u-ml60 u-opacity75" style="min-height: 26px;">
 
-                    <span class="text">
-                        @if(isset($hood) and isset($hood->district))
+                    <span id="district">
+                        @if(isset($hood))
                             {{$hood->district->name}},
                         @endif
-                        @if(isset($hood) and isset($hood->district) and isset($hood->district->city))
+                    </span><span id="city">
+                        @if(isset($hood->district))
                             {{$hood->district->city->name}}
+                        @elseif(isset($district))
+                            {{$district->city->name}}
                         @endif
                     </span>
 
-                    @if(isset($hood) and isset($hood->district))
-                    <!-- <a href="/report" class="btn btn-sm btn-whiteoutline u-ml15 u-has-hidden-content">
-                        <i class="ion ion-clipboard"></i>
-                        <span class="u-show-on-hover u-ml5">İlçe raporu <i class="ion ion-arrow-right-b u-ml5"></i></span>
-                    </a> -->
-                    @endif
-
-                </h3>
+                </h4>
 
             </div>
             <div class="col-md-4 col-sm-6 u-clearfix">

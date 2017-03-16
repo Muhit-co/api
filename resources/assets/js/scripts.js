@@ -151,6 +151,11 @@ $(document).ready(function() {
     }
 
   });
+  // closes form message
+  $('.form-message #message_close').click(function(e) {
+    $messageObj = $(this).closest('.form-message');
+    $messageObj.fadeOut();
+  });
   // expand message
   $('.message #message_expand').bind('click', function(e) {
     $(this).closest('.message').find('.message-expanded').toggleClass('u-hidden');
