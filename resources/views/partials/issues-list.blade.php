@@ -3,7 +3,7 @@
         <a href="fikirler/all" class="u-floatright">
             {{ trans('issues.show_all_ideas') }}
         </a>
-        {!! trans('issues.n_ideas_found_in', ['district' => $district->name, 'number' => $issues->count()] ) !!}
+        {!! trans('issues.n_ideas_found_in', ['district' => $district->name, 'number' => $issues_count] ) !!}
     </small></em>
 @endif
 
