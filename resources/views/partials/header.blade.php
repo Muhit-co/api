@@ -20,14 +20,15 @@
                             $form_state = 'is-static';
                         } else if(isset($district)) {
                             $loc_value = $district->name;
-                            $form_state = 'is-static';
+                            $form_state = 'is-district';
                         }
                         ?>
                     <div class="form-group form-autosuggest u-floatleft u-clearfix u-mh5 u-mb0" data-form-state="{{ $form_state }}">
                         <div class="u-floatleft u-aligncenter" style="width: 40px;">
                             <i class="form-state form-state-home ion ion-home ion-1x u-mt5"></i>
                             <i class="form-state form-state-static ion ion-ios-location u-mt5"></i>
-                            <i class="form-state form-state-current ion ion-android-locate ion-1x u-mt5"></i>
+                            <i class="form-state form-state-current ion ion-android-locate u-mt5"></i>
+                            <i class="form-state form-state-district ion ion-android-compass u-mt5"></i>
                             <i class="form-state form-state-busy ion ion-load-a ion-1x u-ml10 u-mt5 ion-spinning" style="margin-right: 7px"></i>
                         </div>
                         <input id="hood" type="text" class="form-input u-floatleft{{ (isset($hood->name) && strlen($hood->name) > 20) ? ' form-smallfont' : '' }}" style="width: 250px;" placeholder="{{ trans('issues.choose_hood_header') }}" value="{{ $loc_value }}" />
@@ -51,7 +52,9 @@
 
                     <span id="district">
                         @if(isset($hood))
-                            {{$hood->district->name}},
+                            <a href="/fikirler?{{ buildRelativeUrl('district', $hood->district->name . ', ' . $hood->district->city->name, 'location' ) }}" class="c-white" style="text-decoration: underline;">
+                                {{$hood->district->name}}
+                            </a>,
                         @endif
                     </span><span id="city">
                         @if(isset($hood->district))
