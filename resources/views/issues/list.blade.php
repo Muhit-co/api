@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-@include('partials.header', ['redir' => 'list', 'hood' => $hood])
+@include('partials.header', ['redir' => 'list', 'hood' => $hood, 'district' => $district, 'all_districts' => $all_districts])
 
 <?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); ?>
 

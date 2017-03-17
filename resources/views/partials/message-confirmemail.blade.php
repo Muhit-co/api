@@ -1,6 +1,6 @@
-<div class="row u-pv10">
+<div class="row">
     <div class="col-md-10 col-md-offset-1">
-        <div class="flash u-mb20">
+        <div class="flash u-mt10 u-mb30">
             <a href="javascript:void(0)" id="flash_close">
                 <i class="ion ion-android-close ion-15x u-floatright u-ml10 u-mb10"></i>
             </a>

@@ -73,11 +73,17 @@ hr {
 .extended {
   display: inline;
 }
+.u-sm-show {
+  display: none;
+}
 @media screen and (max-width: @screen-sm) {
   .extended {
     display: none;
   }
   .condensed {
     display: inline;
+  }
+  .u-sm-show {
+    display: block;
   }
 }

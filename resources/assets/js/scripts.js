@@ -124,6 +124,9 @@ $(document).ready(function() {
     e.preventDefault();
   }));
 
+  // initial fire of scrollactions
+  scrollActions();
+
   $('textarea[required], input[required]').bind('keyup change', function() {
     $(this).removeClass('form-input-hasError');
     console.log('error being corrected');
@@ -150,6 +153,11 @@ $(document).ready(function() {
       // setMessageCookie( $messageID );
     }
 
+  });
+  // closes form message
+  $('.form-message #message_close').click(function(e) {
+    $messageObj = $(this).closest('.form-message');
+    $messageObj.fadeOut();
   });
   // expand message
   $('.message #message_expand').bind('click', function(e) {
@@ -352,6 +360,12 @@ function scrollActions() {
   if (window.slideout && $(window).outerWidth() > 768) {
     slideout.close();
   }
+
+  // align dropdown triangle on district dropdown
+  $btn_left = $('#district_dropdown_btn').offset().left;
+  $btn_width = $('#district_dropdown_btn').outerWidth();
+  $dropdown_width = $('#district_dropdown').offset().left;
+  $('#district_dropdown .dropdown-triangle').css('left', ($btn_left - $dropdown_width + $btn_width/2));
 }
 
 

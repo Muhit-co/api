@@ -1,6 +1,13 @@
-<div class="list list-expanded list_block u-mt20 u-mb20">
-    <!-- <div class="list-header">
-    </div> -->
+@if(isset($district))
+    <em class="u-block u-pa5 u-mt10 u-truncate"><small>
+        <a href="fikirler/all" class="u-floatright">
+            {{ trans('issues.show_all_ideas') }}
+        </a>
+        {!! trans('issues.n_ideas_found_in', ['district' => $district->name, 'number' => $issues_count] ) !!}
+    </small></em>
+@endif
+
+<div class="list list-expanded list_block u-mt10 u-mb20">
     <ul class="list-content">
         @foreach($issues as $issue)
 
@@ -23,7 +30,7 @@
                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
                         <strong>{{$issue_supporters}}</strong>
                     </div>
-                    @if(count($issue['comments']) > 0)
+                    @if(isset($issue['comments']) and count($issue['comments']) > 0)
                         <div class="badge badge-comments hasTooltip u-floatright u-mt10 u-pv5 u-ph10 u-ml10">
                             <i class="ion ion-ios-chatbubble-outline u-mr5"></i>
                             <strong>{{count($issue['comments'])}}</strong>

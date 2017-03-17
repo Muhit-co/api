@@ -1,13 +1,16 @@
 /* --- header --- */
 header {
   min-height: 100px;
-  padding-top: calc(20px ~"+" 2vw);
+  // padding-top: calc(20px ~"+" 2vw);
   .bg-city-banner;
   background-color: @muhitBlue;
   color: @white;
 
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-weight: normal;
+  }
+  @media screen and (min-width: @screen-sm) {
+   padding-top: calc(20px ~"+" 2vw);
   }
 }
 .role-admin header {
