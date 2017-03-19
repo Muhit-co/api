@@ -362,10 +362,12 @@ function scrollActions() {
   }
 
   // align dropdown triangle on district dropdown
-  $btn_left = $('#district_dropdown_btn').offset().left;
-  $btn_width = $('#district_dropdown_btn').outerWidth();
-  $dropdown_width = $('#district_dropdown').offset().left;
-  $('#district_dropdown .dropdown-triangle').css('left', ($btn_left - $dropdown_width + $btn_width/2));
+  if($('#district_dropdown_btn').length && $('#district_dropdown').length) {
+    $btn_left = $('#district_dropdown_btn').offset().left;
+    $btn_width = $('#district_dropdown_btn').outerWidth();
+    $dropdown_width = $('#district_dropdown').offset().left;
+    $('#district_dropdown .dropdown-triangle').css('left', ($btn_left - $dropdown_width + $btn_width/2));
+  }
 }
 
 
