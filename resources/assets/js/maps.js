@@ -234,9 +234,11 @@ $(document).ready(function(){
                 }
                 );
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            $allow_districts = (input.getAttribute('data-allow-districts') != 'true') ? false : true;
+            $loc_in_msg = ($allow_districts) ? 'mahalle/ilçe' : 'mahalle';
             var place = autocomplete.getPlace();
             if (!place.geometry) {
-                window.alert("Aradığın kriterleri mahalle ismi olmalıdır");
+                window.alert('Aradığın kriterleri ' + $loc_in_msg + ' ismi olmalıdır');
                 return;
             }
 
@@ -245,18 +247,24 @@ $(document).ready(function(){
                 $.each(place.address_components, function(i,j) {
                     if (j.types[0]) {
 
-                        // set city, district & hood values
+                        // set city value
                         if (j.types[0] === "administrative_area_level_1") {
                             city = j.long_name;
                         }
+                        // set district value
                         if (j.types[0] === "administrative_area_level_2") {
                             district = j.long_name;
-                            if($first_valid_type == null || $sublocality == j.long_name) { $first_valid_type = i; }
+                            if($allow_districts === true) {
+                                if($first_valid_type == null || $sublocality == j.long_name) { $first_valid_type = i; }
+                            }
                         }
                         if (j.types[0] === "sublocality_level_1") {
                             district = j.long_name;
-                            if($first_valid_type == null) { $first_valid_type = i; $sublocality = j.long_name; }
+                            if($allow_districts === true) {
+                                if($first_valid_type == null) { $first_valid_type = i; $sublocality = j.long_name; }
+                            }
                         }
+                        // set hood value
                         if ($first_valid_type == null && j.types[0] === "administrative_area_level_4") {
                             hood = j.long_name;
                             if($first_valid_type == null) { $first_valid_type = i; }
@@ -294,13 +302,16 @@ $(document).ready(function(){
 
                         query = (hood !== null) ? '?location=' + hood + ", " + district + ", " + city : '?district=' + district + ", " + city;
                         window.location = '/fikirler' + query;
+                    } else {
+                        $("#hood").closest('.form-group').attr('data-form-state','is-static');
                     }
 
 
                 } else {
                     $("#hood").val('');
                     $("#district, #city").html('');
-                    $("#location_form_message").show().find('.message').html('Aradığın kriterleri mahalle/ilçe ismi olmalıdır.');
+                    $("#hood").closest('.form-group').attr('data-form-state','is-empty');
+                    $("#location_form_message").show().find('.message').html('Aradığın kriterleri ' + $loc_in_msg + ' ismi olmalıdır.');
                 }
 
             }

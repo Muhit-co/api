@@ -52,9 +52,7 @@
 
                     <span id="district">
                         @if(isset($hood))
-                            <a href="/fikirler?{{ buildRelativeUrl('district', $hood->district->name . ', ' . $hood->district->city->name, 'location' ) }}" class="c-white" style="text-decoration: underline;">
-                                {{$hood->district->name}}
-                            </a>,
+                            <a href="/fikirler?{{ buildRelativeUrl('district', $hood->district->name . ', ' . $hood->district->city->name, 'location' ) }}" class="c-white" style="text-decoration: underline;">{{$hood->district->name}}</a>,
                         @endif
                     </span><span id="city">
                         @if(isset($hood->district))
