@@ -8,7 +8,7 @@
 
 @section('content')
 
-    @include('emails.partials.header', array('username' => $user->first_name ))
+    @include('emails.partials.header', array('username' => $issue_user->first_name ))
 
     {{ trans('email.created_idea_supported_content') }}
 
