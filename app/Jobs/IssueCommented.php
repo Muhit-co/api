@@ -57,7 +57,7 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue
 
         foreach ($supporters as $s) {
             try {
-                $this->dispatch(new SendCommentedEmail($s->user_id, 'supporter', $comment->id));
+                $this->dispatch(new SendCommentedEmail($s->user_id, 'supporter', $comment->id, $comment->muhtar->id));
             } catch (Exception $e) {
                 Log::error('IssueCommented', (array)$e);
             }
