@@ -71,9 +71,16 @@ if(strlen($issue['problem']) > 0) {
                         <a href="<?php echo $facebook_url; ?>" id="facebook_share_button" class="btn btn-secondary btn-facebook" target="_blank"><i class="ion ion-social-facebook ion-15x"></i></a>
 
                         <!-- (Un)Support button -->
+                        <?php
+                        // var_dump(Auth::user()->id);
+                        // var_dump($issue['user_id']);
+                        $supportable_roles = ['user', 'superadmin'];
+                        $supportable = (in_array($role, $supportable_roles) && Auth::user()->id !== $issue['user_id']) ? true : false;
+                        $actionable = ($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id) ? true : false;
+                        ?>
                         @if($role =='public' && $issue['status'] != "solved")
-                        <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
-                        @elseif($role =='user' || $role =='superadmin')
+                            <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
+                        @elseif($supportable == true && $issue['status'] != "solved")
                             @if($issue['is_supported'] == 1)
                                 <a href="/unsupport/{{$issue['id']}}" class="btn btn-tertiary u-ml5 u-has-hidden-content">
                                     <i class="ion ion-fw ion-thumbsup u-hide-on-hover"></i>
@@ -84,21 +91,21 @@ if(strlen($issue['problem']) > 0) {
                             @else
                                 <a id="action_support" href="/support/{{$issue['id']}}" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
                             @endif
-                        @elseif($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id)
-                        <!-- Action button for Muhtar -->
-                        <div class="hasDropdown u-inlineblock u-ml5">
-                            <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
-                            <div class="dropdown dropdown-outline">
-                                <ul>
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
-                                    @if($issue['status'] != "solved")
-                                    {{-- <li><a href="javascript:void(0)" data-dialog="dialog_come_drink_tea"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li> --}}
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_change_status_progress"><i class="ion ion-wrench u-mr5"></i> {{ trans('issues.in_progress') }}...</a></li>
-                                    <li><a href="javascript:void(0)" data-dialog="dialog_change_status_solved"><i class="ion ion-checkmark-circled u-mr5"></i> {{ trans('issues.solved') }}...</a></li>
-                                    @endif
-                                </ul>
+                        @elseif($actionable == true)
+                            <!-- Action button for Muhtar -->
+                            <div class="hasDropdown u-inlineblock u-ml5">
+                                <a href="javascript:void(0)" class="btn btn-secondary">{{ trans('issues.take_action_cap') }} <i class="ion ion-chevron-down u-ml5"></i></a>
+                                <div class="dropdown dropdown-outline">
+                                    <ul>
+                                        <li><a href="javascript:void(0)" data-dialog="dialog_write_comment"><i class="ion ion-chatboxes u-mr5"></i> {{ trans('issues.write_comment') }}...</a></li>
+                                        @if($issue['status'] != "solved")
+                                        {{-- <li><a href="javascript:void(0)" data-dialog="dialog_come_drink_tea"><i class="ion ion-muhit-tea u-mr5"></i> {{ trans('issues.come_drink_tea') }}...</a></li> --}}
+                                        <li><a href="javascript:void(0)" data-dialog="dialog_change_status_progress"><i class="ion ion-wrench u-mr5"></i> {{ trans('issues.in_progress') }}...</a></li>
+                                        <li><a href="javascript:void(0)" data-dialog="dialog_change_status_solved"><i class="ion ion-checkmark-circled u-mr5"></i> {{ trans('issues.solved') }}...</a></li>
+                                        @endif
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
                         @endif
 
                     </div>
