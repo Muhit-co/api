@@ -43,7 +43,7 @@ class SendIssueSupportedEmail extends Job implements SelfHandling, ShouldQueue {
 			try {
 				$email = 'created_idea_supported';
 
-				Mail::send('emails.' . $email, ['user' => $user, 'issue' => $issue], function ($m) use ($user, $email, $issue) {
+				Mail::send('emails.' . $email, ['user' => $issue->user, 'issue' => $issue], function ($m) use ($user, $email, $issue) {
 					$m->to($issue->user->email)
 						->subject(trans('email.' . $email . '_title'));
 				});

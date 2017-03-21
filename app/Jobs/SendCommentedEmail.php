@@ -18,6 +18,7 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
     protected $user_id;
     protected $target;
     protected $comment_id;
+    protected $comment_user_id;
 
     /**
      * Create a new job instance.
@@ -26,11 +27,12 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
      * @param $target
      * @param $comment_id
      */
-    public function __construct($user_id, $target, $comment_id)
+    public function __construct($user_id, $target, $comment_id, $comment_user_id)
     {
         $this->user_id = $user_id;
         $this->target = $target;
         $this->comment_id = $comment_id;
+        $this->comment_user_id = $comment_user_id;
     }
 
     /**
@@ -43,6 +45,7 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
 
         $user = User::find($this->user_id);
         $comment = Comment::with('issue', 'muhtar')->find($this->comment_id);
+        $comment_user = User::find($this->comment_user_id);
 
         if (!empty($user) and $user->is_verified == 1) {
 
@@ -57,10 +60,10 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
                     $email = 'supported_idea_commented';
                 }
 
-                Mail::send('emails.' . $email, ['user' => $user, 'comment' => $comment],
+                Mail::send('emails.' . $email, ['receiving_user' => $user, 'comment' => $comment, 'comment_user' => $comment_user],
                     function ($m) use ($user, $email) {
                         $m->to($user->email)
-                            ->subject(trans('email.' . $email . '_title'));
+                            ->subject(trans('email.' . $email . '_title', array('sender' => $comment_user->first_name)));
                     });
 
             } catch (Exception $e) {

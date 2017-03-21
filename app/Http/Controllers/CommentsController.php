@@ -52,6 +52,8 @@ class CommentsController extends Controller
                     ->with('error', 'Yorumu kaydederken teknik bir hata meydana geldi, teknik ekip bilgilendirildi. ');
             }
 
+            $this->dispatch(new IssueCommented($comment->id));
+
             // Send a message to Slack webhoook
             $comment->issue_title = $issue->title;
             $comment->user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;

@@ -41,7 +41,7 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue
             
             try {
                 
-                $this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->id));
+                $this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->id, $comment->muhtar->id));
             
             } catch (Exception $e) {
                 
