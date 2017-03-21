@@ -8,9 +8,9 @@
 
 @section('content')
 
-    @include('emails.partials.header', array('username' => $user->first_name ))
+    @include('emails.partials.header', array('username' => "RECEIVING USER FIRST NAME" ))
 
-    {{ trans('email.created_idea_supported_content') }}
+    TEST! CREATED IDEA HAS BEEN SUPPORTED
 
     <br /><br />
 

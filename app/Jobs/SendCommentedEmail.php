@@ -60,10 +60,10 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
                     $email = 'supported_idea_commented';
                 }
 
-                Mail::send('emails.' . $email, ['user' => $user, 'comment' => $comment, 'comment_user' => $comment_user],
+                Mail::send('emails.' . $email, ['receiving_user' => $user, 'comment' => $comment, 'comment_user' => $comment_user],
                     function ($m) use ($user, $email) {
                         $m->to($user->email)
-                            ->subject(trans('email.' . $email . '_title'));
+                            ->subject(trans('email.' . $email . '_title', array('sender' => $comment_user->first_name)));
                     });
 
             } catch (Exception $e) {
