@@ -25,11 +25,13 @@
                 <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
                 @include('partials.field-hood', array('defaultValue' => (isset($_GET['location'])) ? $_GET['location'] : '' ))
 
-                <div class="form-group u-relative u-mv10">
-                    <input type="hidden" id="coordinates" value="" name="coordinates">
+                <input type="hidden" id="coordinates" value="" name="coordinates">
+
+                {{-- Use location; temporary disabled waiting for SSL --}}
+                {{-- <div class="form-group u-relative u-mv10">
                     <input type="checkbox" id="current_location" value="" class="u-floatleft u-mr20" >
                     <label for="current_location">{{ trans('issues.use_my_location') }}</label>
-                </div>
+                </div> --}}
 
                 <div class="form-group form-fullwidth u-mv10">
                     <label>{{ trans('issues.tags') }} <i class="u-opacity50">(min 1, max 3)</i></label>
