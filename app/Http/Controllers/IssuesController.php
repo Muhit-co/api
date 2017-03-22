@@ -605,7 +605,9 @@ class IssuesController extends Controller {
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 				]);
-			$this->dispatch(new IssueRemoved($id));
+			if($user_id !== $issue->user_id) {
+				$this->dispatch(new IssueRemoved($id));
+			}
 		} catch (Exception $e) {
 			Log::error('IssuesController/getDelete', (array) $e);
 			if ($this->isApi) {

@@ -51,14 +51,7 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
 
             try {
 
-                if ($this->target === 'owner') {
-
-                    $email = 'created_idea_commented';
-
-                } else {
-
-                    $email = 'supported_idea_commented';
-                }
+                $email = ($this->target === 'owner') ? 'created_idea_commented' : 'supported_idea_commented';
 
                 Mail::send('emails.' . $email, ['receiving_user' => $user, 'comment' => $comment, 'comment_user' => $comment_user],
                     function ($m) use ($user, $email) {
