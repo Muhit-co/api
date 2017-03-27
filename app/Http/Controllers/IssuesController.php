@@ -65,8 +65,11 @@ class IssuesController extends Controller {
 			if ($this->isApi) {
 				return response()->api(400, 'Duplicate request', []);
 			}
-			return redirect('/issues/view/' . $check_duplicate->id)
-				->with('warning', trans('issues.seems_already_existing'));
+			if (!empty($check_duplicate)) {
+				return redirect('/issues/new')->with('warning', trans('issues.seems_already_existing') . $message)->withInput();
+			} else {
+				return redirect('/issues/view/' . $check_duplicate->id)->with('warning', trans('issues.seems_already_existing'));
+			}
 		}
 
 		DB::beginTransaction();
@@ -605,7 +608,9 @@ class IssuesController extends Controller {
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 				]);
-			$this->dispatch(new IssueRemoved($id));
+			if($user_id !== $issue->user_id) {
+				$this->dispatch(new IssueRemoved($id));
+			}
 		} catch (Exception $e) {
 			Log::error('IssuesController/getDelete', (array) $e);
 			if ($this->isApi) {
