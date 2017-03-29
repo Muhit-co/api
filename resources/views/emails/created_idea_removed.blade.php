@@ -1,3 +1,9 @@
+<?php
+// Fallbacks if parameters not defined
+$name = isset($user->first_name) ? $user->first_name : '[name]';
+$issue_title = isset($issue->title) ? $issue->title : '[issue_title]';
+?>
+
 @extends('emails.layouts.default')
 
 @section('title')
@@ -8,9 +14,9 @@
 
 @section('content')
 
-    @include('emails.partials.header', array('username' => $user->first_name ))
+    @include('emails.partials.header', array('username' => $name ))
 
-    {!! trans('email.created_idea_removed_content', array('idea_title' => $issue->title, 'email' => '<a href="mailto:destek@muhit.co" target="_blank">destek@muhit.co</a>')) !!}
+    {!! trans('email.created_idea_removed_content', array('idea_title' => $issue_title, 'email' => '<a href="mailto:destek@muhit.co" target="_blank">destek@muhit.co</a>')) !!}
 
     <br /><br />
 

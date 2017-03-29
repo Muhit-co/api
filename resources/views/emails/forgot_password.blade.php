@@ -1,3 +1,10 @@
+<?php
+// Fallbacks if parameters not defined
+$name = isset($user->first_name) ? $user->first_name : '[name]';
+$email = isset($email) ? $email : '[email]';
+$string = isset($string) ? $string : '[string]';
+?>
+
 @extends('emails.layouts.default')
 
 @section('title')
@@ -8,7 +15,7 @@
 
 @section('content')
 
-    @include('emails.partials.header')
+    @include('emails.partials.header', array('username' => $name ))
 
     {{ trans('email.forgot_password_content') }}
 
