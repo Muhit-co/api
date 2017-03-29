@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "automated_message_from_muhit" => "This is an automatic message send by :tagstartMuhit:tagend.",
+    "automated_message_from_muhit" => "This is an automatic message sent by :tagstartMuhit:tagend.",
     "welcome" => "Hi, :username",
     "greetings" => "Sincerely",
     "muhit_team" => "The Muhit Team",
