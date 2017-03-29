@@ -38,11 +38,11 @@ return [
     "delete_account_cap" => "DELETE ACCOUNT",
     "forgot_password" => "Forgot password",
     "forgot_password_cap" => "FORGOT PASSWORD",
-    "forgot_password_msg" => "If you forgot your password, you can receive a link to create a new password by typing in your email address below.",
+    "forgot_password_msg" => "Type your account email address so that we can send you a link to update your password.",
     "reset_password" => "Reset Password",
     "reset_password_cap" => "RESET PASSWORD",
     "reset_password_msg" => "Create a new password for :email",
-    "send_info_cap" => "SEND",
+    "send_my_info_cap" => "SEND MY INFO",
     // these will be moved to a separate file called UI
     "cancel_cap" => "CANCEL",
     "send_cap" => "SEND",

@@ -14,7 +14,7 @@
                     <input type="email" required class="form-input" name="email" value="{{ Input::old('email') }}" placeholder="{{ trans('auth.email_address') }}" />
                 </div>
                 <button type="submit" class="btn btn-primary u-floatright">
-                    {{ trans('auth.send_info_cap') }}
+                    {{ trans('auth.send_my_info_cap') }}
                     <i class="ion ion-paper-airplane ion-15x u-ml5"></i>
                 </button>
             </form>
