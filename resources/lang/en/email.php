@@ -11,7 +11,7 @@ return [
     "go_to_muhtar_info" => "Go to your alderman's contact information",
     "change_password" => "Change your password",
     "read_again_tandc" => "Read Terms and Conditions again",
-    "sign_up_conf_title" => "You have created your Muhit account.",
+    "sign_up_conf_title" => "You have created your Muhit account!",
     "sign_up_conf_content" => "Welcome to Muhit! You can now login and start submitting and sharing ideas.",
     "forgot_password_title" => "To change your password...",
     "forgot_password_content" => "You can change your password by clicking on the link below.",
