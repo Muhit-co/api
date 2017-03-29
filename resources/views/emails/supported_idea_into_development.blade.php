@@ -21,9 +21,10 @@ $issue_id = isset($comment->issue_id) ? $comment->issue_id : '[issue_id]';
 
     <br /><br />
 
-    <a href="http://muhit.co/issues/view/{{ $issue_id }}" style="display: inline-block; padding: 10px 20px; line-height: 20px; background-color: #44a1e0; color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; text-decoration: none;">
-        {{ trans('email.go_to_idea') }}
-    </a>
+    @include('emails.partials.button', array(
+      'url' => 'http://muhit.co/issues/view/' . $issue_id,
+      'text' => trans('email.go_to_idea')
+    ))
 
     @include('emails.partials.footer')
 

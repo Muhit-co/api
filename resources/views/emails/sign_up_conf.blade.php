@@ -18,9 +18,10 @@ $token = isset($user->verify_token) ? $user->verify_token : 'token';
 
     <br /><br />
 
-    <a href="http://muhit.co/confirm/{{ $user_id }}/{{ $token }}" style="display: inline-block; padding: 10px 20px; line-height: 20px; background-color: #44a1e0; color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; text-decoration: none;">
-        {{ trans('email.go_to_homepage') }}
-    </a>
+    @include('emails.partials.button', array(
+      'url' => 'http://muhit.co/confirm/' . $user_id . '/' . $token,
+      'text' => trans('email.go_to_homepage')
+    ))
 
     @include('emails.partials.footer')
 
