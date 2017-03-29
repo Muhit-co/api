@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "automated_message_from_muhit" => "Bu :tagstartMuhit:tagend tarafından gönderilen bir otomatik mesajdır",
+    "automated_message_from_muhit" => "Bu :tagstartMuhit:tagend tarafından gönderilen otomatik bir mesajdır",
     "welcome" => "Merhaba :username",
     "greetings" => "Sayın", 
     "muhit_team" => "Muhit ekibi",
@@ -11,7 +11,7 @@ return [
     "go_to_muhtar_info" => "Muhtarin iletişim bilgisine git",
     "change_password" => "Şifreni değiştir",
     "read_again_tandc" => "Kullanım koşullarını bir daha oku",
-    "sign_up_conf_title" => "Muhit kaydını oluşturdun.",
+    "sign_up_conf_title" => "Muhit kaydını oluşturdun!",
     "sign_up_conf_content" => "Aramıza hoşgeldin Giriş yapıp, fikirlerini ve sorunlarını hemen paylaşmaya başlayabilirsin.",
     "forgot_password_title" => "Şifreni değiştirmek için...",
     "forgot_password_content" => "Talep ettiğin üzere şifreni değiştirmek için aşağıdaki linke tıklayarak yeni şifreni oluşturabilirsin.",

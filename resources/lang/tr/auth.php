@@ -38,11 +38,11 @@ return [
     "delete_account_cap" => "ÜYELİĞİMİ SİL",
     "forgot_password" => "Şifremi unuttum",
     "forgot_password_cap" => "ŞİFREMİ UNUTTUM",
-    "forgot_password_msg" => "Eğer şifreni unuttuysan aşağıya e-posta adresini yazarak gönderdiğimiz link ile yeni bir şifre oluşturabilirsin.",
+    "forgot_password_msg" => "Şifrenizi yenilemeniz için gereken bilgileri kayıtlı e-posta adresinize gönderebiliriz.",
     "reset_password" => "Yeni şifre oluştur",
     "reset_password_cap" => "YENİ ŞİFRE OLUŞTUR",
     "reset_password_msg" => ":email adresi için yeni şifreyi gir",
-    "send_info_cap" => "BİLGİLERİ GÖNDER",
+    "send_my_info_cap" => "BİLGİLERİMİ GÖNDE",
     // these will be moved to a separate file called UI
     "cancel_cap" => "VAZGEÇ",
     "send_cap" => "GÖNDER",
