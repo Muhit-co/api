@@ -1,6 +1,6 @@
 {
   "name": "Muhit",
-  "start_url": "/",
+  "start_url": "/?homescreen=1",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#245672",
@@ -42,5 +42,5 @@
       "type": "image/png",
       "density": "4.0"
     }
-  ],
+  ]
 }
