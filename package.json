@@ -6,5 +6,9 @@
     "gulp-util": "^3.0.8",
     "laravel-elixir": "^6.0.0-15",
     "sigmund": "^1.0.1"
+  },
+  "engines": {
+    "npm": ">=2.1",
+    "node": ">=4.0"
   }
 }
