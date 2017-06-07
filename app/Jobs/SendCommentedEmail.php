@@ -10,6 +10,7 @@ use Log;
 use Mail;
 use Muhit\Models\Comment;
 use Muhit\Models\User;
+use Carbon\Carbon;
 
 class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
 {
@@ -47,23 +48,27 @@ class SendCommentedEmail extends Job implements SelfHandling, ShouldQueue
         $comment = Comment::with('issue', 'muhtar')->find($this->comment_id);
         $comment_user = User::find($this->comment_user_id);
 
+        Log::error(Carbon::now().' SendCommentedEmail new email!', [
+            'user' => $user,
+            'comment' => $comment,
+            'comment_user' => $comment_user
+        ]);
+
         if (!empty($user) and $user->is_verified == 1) {
-
             try {
-
                 $email = ($this->target === 'owner') ? 'created_idea_commented' : 'supported_idea_commented';
 
-                Mail::send('emails.' . $email, ['receiving_user' => $user, 'comment' => $comment, 'comment_user' => $comment_user],
+                Mail::send(
+                    'emails.' . $email,
+                    ['receiving_user' => $user, 'comment' => $comment, 'comment_user' => $comment_user],
                     function ($m) use ($user, $email) {
                         $m->to($user->email)
                             ->subject(trans('email.' . $email . '_title', array('sender' => $comment_user->first_name)));
-                    });
-
+                    }
+                );
             } catch (Exception $e) {
-
                 Log::error('SendCommentedEmail', (array)$e);
             }
         }
-
     }
 }
