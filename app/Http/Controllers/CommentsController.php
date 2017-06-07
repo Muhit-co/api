@@ -52,7 +52,7 @@ class CommentsController extends Controller
                     ->with('error', 'Yorumu kaydederken teknik bir hata meydana geldi, teknik ekip bilgilendirildi. ');
             }
 
-            // $this->dispatch(new IssueCommented($comment->id));
+            $this->dispatch(new IssueCommented($comment->id));
 
             // Send a message to Slack webhoook
             $comment->issue_title = $issue->title;

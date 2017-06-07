@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\InteractsWithQueue;
 use Log;
 use Muhit\Models\Comment;
+use Carbon\Carbon;
 
 class IssueCommented extends Job implements SelfHandling, ShouldQueue
 {
@@ -37,14 +38,12 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue
 
         $comment = Comment::with('muhtar', 'issue')->find($this->comment_id);
 
+        Log::error(Carbon::now().' IssueCommented new job', (array) $e);
+
         if (!empty($comment->issue->user_id)) {
-            
             try {
-                
                 $this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->id, $comment->muhtar->id));
-            
             } catch (Exception $e) {
-                
                 Log::error('IssueCommented', (array)$e);
             }
         }
@@ -62,6 +61,5 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue
                 Log::error('IssueCommented', (array)$e);
             }
         }
-
     }
 }
