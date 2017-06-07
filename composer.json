@@ -13,7 +13,6 @@
     "predis/predis": "~1.0",
     "facebook/php-sdk-v4": "4.0.*",
     "league/flysystem-aws-s3-v3": "~1.0",
-    "jenssegers/raven": "@stable",
     "lucadegasperi/oauth2-server-laravel": "~5.0@dev",
     "laravel/socialite": "~2.0",
     "aws/aws-sdk-php": "~3.0",
@@ -25,7 +24,8 @@
     "jenssegers/date": "^3.0",
     "itsgoingd/clockwork": "~1.11",
     "illuminate/html": "5.*",
-    "maknz/slack-laravel": "^1.0"
+    "maknz/slack-laravel": "^1.0",
+    "sentry/sentry-laravel": "^0.7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
@@ -53,13 +53,13 @@
       "php artisan clear-compiled",
       "php artisan optimize",
       "npm install",
-      "gulp --production"
+      "./node_modules/.bin/gulp --production"
     ],
     "post-update-cmd": [
       "php artisan clear-compiled",
       "php artisan optimize",
       "npm install",
-      "gulp --production"
+      "./node_modules/.bin/gulp --production"
     ]
   }
 }

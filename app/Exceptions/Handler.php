@@ -30,7 +30,9 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         Log::error($e);
-
+        if (app()->bound('sentry') && $this->shouldReport($exception)) {
+                app('sentry')->captureException($exception);
+        }
         return parent::report($e);
     }
 
@@ -44,16 +46,13 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if (Request::is('api/*')) {
-
             return response()->api(500, 'Error', ['details' => json_encode((array)$e)]);
         }
 
         if ($e instanceof NotFoundHttpException) {
-
             response()->make(view('errors.404'), 404);
         }
 
         return parent::render($request, $e);
     }
-
 }

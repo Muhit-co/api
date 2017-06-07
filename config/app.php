@@ -153,14 +153,14 @@ return [
          */
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
-        Jenssegers\Raven\RavenServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        Maknz\Slack\Laravel\ServiceProvider::class
+        Maknz\Slack\Laravel\ServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class
     ],
 
     /*
@@ -213,7 +213,8 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'Form' => Illuminate\Html\FormFacade::class,
         'HTML' => Illuminate\Html\HtmlFacade::class,
-        'Slack' => Maknz\Slack\Laravel\Facade::class
+        'Slack' => Maknz\Slack\Laravel\Facade::class,
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];
