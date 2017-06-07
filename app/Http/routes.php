@@ -33,6 +33,11 @@ Route::get('/email/{page}', function ($page) {
     return view('emails.' . $page);
 });
 
+# 'manual' route for Kadıköy idea list
+Route::get('/kadikoy', function () {
+    return redirect('/?district=Kadıköy%2C+İstanbul&sort=map');
+});
+
 #issues
 Route::get('fikirler/{hood_id?}', 'IssuesController@getIssues');
 Route::post('fikirler/{hood_id?}', 'IssuesController@getIssues');
