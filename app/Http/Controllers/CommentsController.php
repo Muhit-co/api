@@ -33,9 +33,6 @@ class CommentsController extends Controller
             if (!$issue) {
                 return redirect('/')->with('error', 'Issue deleted. ');
             }
-
-
-
             $comment = new Comment;
             $comment->issue_id = $request->get('issue_id');
             $comment->user_id = Auth::user()->id;
