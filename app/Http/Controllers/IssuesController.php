@@ -360,20 +360,19 @@ class IssuesController extends Controller {
 	 **/
 	public function getView($id = null) {
 		$user_id = null;
+		$user_district_id = null;
 
 		if ($this->isApi) {
 			$user_id = Authorizer::getResourceOwnerId();
 		} else {
 			if (Auth::check()) {
 				$user_id = Auth::user()->id;
-
+				$user_district_id = Hood::with('district')->find(Auth::user()->hood_id)->district_id;
 			}
 		}
 
 		$issue = Issue::with('user', 'tags', 'images', 'updates', 'comments.muhtar')
 			->find($id);
-
-		$user_district_id = Hood::with('district')->find(Auth::user()->hood_id)->district_id;
 
 		if (null === $issue) {
 			if ($this->isApi) {
