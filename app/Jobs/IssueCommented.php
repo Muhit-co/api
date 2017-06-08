@@ -39,8 +39,6 @@ class IssueCommented extends Job implements SelfHandling, ShouldQueue
 
         $comment = Comment::with('muhtar', 'issue')->find($this->comment_id);
 
-        Log::error(Carbon::now().' IssueCommented new job', (array) $comment);
-
         if (!empty($comment->issue->user_id)) {
             try {
                 $this->dispatch(new SendCommentedEmail($comment->issue->user_id, 'owner', $comment->id, $comment->muhtar->id));
