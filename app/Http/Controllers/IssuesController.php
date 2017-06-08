@@ -360,13 +360,14 @@ class IssuesController extends Controller {
 	 **/
 	public function getView($id = null) {
 		$user_id = null;
+		$user_district_id = null;
 
 		if ($this->isApi) {
 			$user_id = Authorizer::getResourceOwnerId();
 		} else {
 			if (Auth::check()) {
 				$user_id = Auth::user()->id;
-
+				$user_district_id = Hood::with('district')->find(Auth::user()->hood_id)->district_id;
 			}
 		}
 
@@ -384,7 +385,7 @@ class IssuesController extends Controller {
 			return response()->api(200, 'Issue details: ', ['issue' => $issue->toArray()]);
 		}
 		session(['last_page' => Request::path()]);
-		return response()->app(200, 'issues.show', ['issue' => $issue->toArray($user_id)]);
+		return response()->app(200, 'issues.show', ['issue' => $issue->toArray($user_id), 'user_district_id' => $user_district_id]);
 	}
 
 	/**

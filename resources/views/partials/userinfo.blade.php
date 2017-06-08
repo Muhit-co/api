@@ -1,7 +1,7 @@
 <div class="userinfo hasDropdown u-floatright">
     <a href="javascript:void(0)" id="userinfo" class="u-inlineblock u-nowrap">
         <span class="badge badge-circle badge-user u-floatright u-ml10">
-            <img src="{{ getImageURL(Auth::user()->picture, '40x40') }}" alt="{{Auth::user()->first_name}}">
+            <img src="{{ getImageURL(Auth::user()->picture, '80x80') }}" alt="{{Auth::user()->first_name}}">
         </span>
       <span class="text">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
     </a>

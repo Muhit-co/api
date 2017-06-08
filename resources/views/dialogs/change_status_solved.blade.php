@@ -2,7 +2,8 @@
 
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
 
-    <form method="post" action="/muhtar/comment">
+    <?php $url = (Auth::check() and $role != "admin") ? '/comments/comment' :"/muhtar/comment"; ?>
+    <form method="post" action="{{$url}}">
         <input type="hidden" name="issue_id" value="{{$issue_id}}">
         <input type="hidden" name="issue_status" value="solved">
 

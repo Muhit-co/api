@@ -68,7 +68,7 @@ function getUserLevel($level, $plural = false) {
         'Rejected muhtar', // 3
         'Pending muhtar', // 4
         'Muhtar', // 5
-        '', // 6
+        'Municipality Admin', // 6
         '', // 7
         '', // 8
         '', // 9

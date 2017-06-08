@@ -186,7 +186,7 @@ class MuhtarController extends Controller
      * @return view
      * @author gcg
      */
-    public function postEditComment($id = null)
+    public function postEditComment($id = null, Request $request)
     {
         $comment = Comment::find($id);
 
@@ -202,9 +202,9 @@ class MuhtarController extends Controller
                 ->with('error', 'Sadece kendi yazdığınız yorumları düzenleyebilirsiniz.');
         }
 
-        if (Request::has('comment')) {
+        if ($request->has('comment')) {
 
-            $comment->comment = Request::get('comment');
+            $comment->comment = $request->get('comment');
 
             try {
 

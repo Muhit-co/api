@@ -129,7 +129,6 @@ $(document).ready(function() {
 
   $('textarea[required], input[required]').bind('keyup change', function() {
     $(this).removeClass('form-input-hasError');
-    console.log('error being corrected');
   });
 
   // toggles autocomplete dropdown
@@ -329,8 +328,10 @@ function dialogCommentEditData(obj) {
       $('#' + $dest).find('textarea[name="comment"]').val($msg);
       $form = $('#' + $dest).find('form');
       $deletebtn = $('#' + $dest).find('#comment_delete');
-      $form.attr('action', $form.attr('action') + $comment_id );
+      $baseaction = $form.attr('action').replace(/\d+$/,'');
+      $form.attr('action', $baseaction + $comment_id );
       $deletebtn.attr('href', $deletebtn.attr('href') + $comment_id );
+      $form.first('input, textarea').focus();
     }
   }
 }

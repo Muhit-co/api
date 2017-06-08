@@ -75,6 +75,7 @@ return [
     "issue_status_supported" => "There are more than 10 supporters for this idea",
     "issue_status_in-progress" => "Idea was marked as 'in progress'",
     "issue_status_solved" => "Idea was solved",
+    "issue_status_deleted" => "Idea deleted",
     "problems_or_suggestions" => "Share your problems or suggestions",
     "experience_problems_report_well_get_back_to_you" => "Are you experiencing technical problems or do you have a suggestion? Write to us, and we will get back to you soon.",
     "title" => "Title",

@@ -40,7 +40,33 @@ class CommentsController extends Controller
             try {
                 $comment->save();
 
-                $this->dispatch(new IssueCommented($comment->id));
+                if ($request->has('issue_status') && Auth::user()->level > 4) {
+
+                    $new_status = $request->get('issue_status');
+
+                    if (in_array($new_status, ['in-progress', 'solved'])) {
+
+                        $old_status = $issue->status;
+                        $issue->status = $new_status;
+                        $issue->save();
+
+                        DB::table('issue_updates')
+                            ->insert([
+                                'user_id' => Auth::user()->id,
+                                'issue_id' => $issue->id,
+                                'old_status' => $old_status,
+                                'new_status' => $new_status,
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
+                            ]);
+
+                        $this->dispatch(new IssueStatusUpdate($comment->id, $new_status));
+                    }
+
+                } else {
+
+                    $this->dispatch(new IssueCommented($comment->id));
+                }
 
                 // Send a message to Slack webhoook
                 $comment->issue_title = $issue->title;

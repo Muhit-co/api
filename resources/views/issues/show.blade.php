@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 @section('dialogs')
-    @if($role =='admin')
+    @if($role =='admin' || $role == 'municipality-admin')
         @include('dialogs.write_comment', ['issue_id' => $issue['id']])
         @include('dialogs.edit_comment', ['issue_id' => $issue['id']])
         @include('dialogs.come_drink_tea', ['issue_id' => $issue['id']])
@@ -73,10 +73,12 @@ if(strlen($issue['problem']) > 0) {
                         <!-- (Un)Support button -->
                         <?php
                         // var_dump(Auth::user()->id);
-                        // var_dump($issue['user_id']);
                         $supportable_roles = ['user', 'superadmin'];
                         $supportable = (in_array($role, $supportable_roles) && Auth::user()->id !== $issue['user_id']) ? true : false;
                         $actionable = ($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id) ? true : false;
+                        if ($role == 'municipality-admin' && $user_district_id == $issue['district_id']) {
+                            $actionable = true;
+                        }
                         ?>
                         @if($role =='public' && $issue['status'] != "solved")
                             <a href="javascript:void(0)" data-dialog="dialog_login" class="btn btn-secondary u-ml5"><i class="ion ion-thumbsup"></i> {{ trans('issues.support_cap') }}</a>
@@ -277,7 +279,7 @@ if(strlen($issue['problem']) > 0) {
                         <div class="comment {!! ($isOwnIssue) ? 'comment-opposite' : '' !!}" id="comment-{{ $comment['id'] }}">
                             <div class="u-floatright c-medium u-lineheight20">
                                 <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
-                                @if(Auth::check() and $role =='admin' and Auth::user()->id == $comment['muhtar']['id'])
+                                @if(Auth::check() and $actionable == true and Auth::user()->id == $comment['muhtar']['id'])
                                     <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
                                         <i class="ion ion-edit"></i>
                                     </a>
@@ -288,7 +290,7 @@ if(strlen($issue['problem']) > 0) {
                                     {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
                                 </strong>
                                 <span class="{!! ($isOwnIssue) ? 'c-darkblue' : 'c-medium' !!}">
-                                    @if($comment['muhtar']['level'] >= 5 and $comment['muhtar']['level'] < 10 and !empty($comment['muhtar']['location']))
+                                    @if($comment['muhtar']['level'] == 5 and !empty($comment['muhtar']['location']))
                                         ( {{ explode(',', $comment['muhtar']['location'])[0] }} muhtarı)
                                     @endif
                                 </span>
