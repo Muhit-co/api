@@ -33,7 +33,7 @@ if(isset($role)):
             ),
         );
 
-    // defining menu items for muhtar & belediye users
+    // defining menu items for muhtar user
     elseif ($role == 'admin'):
 
         $menu_items = array(
@@ -51,6 +51,28 @@ if(isset($role)):
                 'name' => trans('issues.my_announcements_cap'),
                 'uri' => '/duyurular',
                 'icon' => 'ion-speakerphone'
+            ),
+            array(
+                'name' => trans('issues.my_profile_cap'),
+                'uri' => '/members/my-profile',
+                'icon' => 'ion-person'
+            ),
+        );
+
+    // defining menu items for belediye admin user
+    elseif ($role == 'municipality-admin'):
+
+        $district = (isset(Auth::user()->location)) ? trim(explode(',', Auth::user()->location, 2)[1]) : '';
+        $menu_items = array(
+            array(
+                'name' => trans('issues.in_my_municipality_cap'),
+                'uri' => '/fikirler?district=' . $district,
+                'icon' => 'ion-android-map'
+            ),
+            array(
+                'name' => trans('issues.all_ideas_cap'),
+                'uri' => '/fikirler/all',
+                'icon' => 'ion-lightbulb'
             ),
             array(
                 'name' => trans('issues.my_profile_cap'),
@@ -82,10 +104,7 @@ endif;
 
 
 <ul class="menu">
-    <?php
-    // output menu content
-    foreach($menu_items as $menu_item):
-    ?>
+    <?php foreach($menu_items as $menu_item): // output menu content ?>
     <li{{ (ltrim(Request::path(), '/') == ltrim($menu_item['uri'], '/') ) ? ' class=active' : '' }}>
         <a href="{{ URL::to( $menu_item['uri']) }}" class="u-nowrap" data-path="{{ Request::path() }}" data-ltrim="{{ ltrim($menu_item['uri'], '/') }}">
             <i class="ion <?php echo $menu_item['icon'] ?> ion-15x"></i>

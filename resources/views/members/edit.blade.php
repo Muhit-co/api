@@ -45,7 +45,7 @@
                             </div>
 
                             <label class="u-mt20">{{ trans('issues.neighbourhood') }}</label>
-                            <?php $state = ($role == 'admin') ? true : false; ?>
+                            <?php $state = ($role == 'admin' || $role == 'municipality-admin') ? true : false; ?>
                             <?php $value = ($user->hood && $user->hood->district && $user->hood->district->city) ? $user['hood']['name'] . ", " . $user['hood']['district']['name'] . ", " . $user['hood']['district']['city']['name'] : '' ?>
                             @include('partials.field-hood', array(
                                 'inputClassList' => 'form-grey',
@@ -67,7 +67,7 @@
                             @endif
 
                             <div class="form-group form-fullwidth u-mv10 u-clearfix">
-                                <label>{!! trans('profile_picture') !!}</label>
+                                <label>{!! trans('auth.profile_picture') !!}</label>
 
                                 <div id="issue_images" class="u-floatleft"></div>
 

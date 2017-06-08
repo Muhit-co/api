@@ -46,7 +46,17 @@ abstract class Controller extends BaseController
             return 'unapproved-admin';
         }
 
-        if (Auth::user()->level >= 5 and Auth::user()->level < 10) {
+        if (Auth::user()->level == 5) {
+
+            return 'admin';
+        }
+
+        if (Auth::user()->level == 6) {
+
+            return 'municipality-admin';
+        }
+
+        if (Auth::user()->level >= 7 and Auth::user()->level < 10) {
 
             return 'admin';
         }

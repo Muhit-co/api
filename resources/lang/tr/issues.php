@@ -18,6 +18,7 @@ return [
     "muhtars_cap" => "MUHTARLAR",
     "announcements_cap" => "DUYURULAR",
     "in_my_mahalle_cap" => "MAHALLEMDE",
+    "in_my_municipality_cap" => "İLÇEMDE",
     "all_ideas_cap" => "TÜM FİKİRLER",
     "my_profile" => "Profilim",
     "my_profile_cap" => "PROFİLİM",

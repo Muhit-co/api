@@ -373,6 +373,8 @@ class IssuesController extends Controller {
 		$issue = Issue::with('user', 'tags', 'images', 'updates', 'comments.muhtar')
 			->find($id);
 
+		$user_district_id = Hood::with('district')->find(Auth::user()->hood_id)->district_id;
+
 		if (null === $issue) {
 			if ($this->isApi) {
 				return response()->api(404, 'Issue not found', ['id' => $id]);
@@ -384,7 +386,7 @@ class IssuesController extends Controller {
 			return response()->api(200, 'Issue details: ', ['issue' => $issue->toArray()]);
 		}
 		session(['last_page' => Request::path()]);
-		return response()->app(200, 'issues.show', ['issue' => $issue->toArray($user_id)]);
+		return response()->app(200, 'issues.show', ['issue' => $issue->toArray($user_id), 'user_district_id' => $user_district_id]);
 	}
 
 	/**
