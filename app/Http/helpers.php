@@ -174,3 +174,12 @@ function getSlackCommentAttachment($comment) {
 
     return $attachments;
 }
+
+
+// Finds and replaces links in text string
+// NB. make sure to escape return string since it contains html
+function linkifyText($text) {
+    $url = '~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~';
+    $text = preg_replace($url, '<a href="http$2://$4" target="_blank" title="$0">$0<i class="ion ion-android-open c-light u-ml5" style="margin-right: 2px; font-size: 0.875rem;"></i></a>', $text);
+    return $text;  
+}
