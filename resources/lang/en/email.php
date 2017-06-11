@@ -9,6 +9,7 @@ return [
     "go_to_homepage" => "Go to home page",
     "go_to_announcement" => "Go to announcement",
     "go_to_muhtar_info" => "Go to your alderman's contact information",
+    "view_comment" => "View comment",
     "change_password" => "Change your password",
     "read_again_tandc" => "Read Terms and Conditions again",
     "sign_up_conf_title" => "You have created your Muhit account!",

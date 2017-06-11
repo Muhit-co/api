@@ -9,6 +9,7 @@ return [
     "go_to_homepage" => "Anasayfaya git",
     "go_to_announcement" => "Duyuruna git",
     "go_to_muhtar_info" => "Muhtarin iletişim bilgisine git",
+    "view_comment" => "Yorumu gör",
     "change_password" => "Şifreni değiştir",
     "read_again_tandc" => "Kullanım koşullarını bir daha oku",
     "sign_up_conf_title" => "Muhit kaydını oluşturdun!",

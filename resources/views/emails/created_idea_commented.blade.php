@@ -24,7 +24,7 @@ $comment_id = isset($comment->id) ? $comment->id : '[comment_id]';
 
     @include('emails.partials.button', array(
       'url' => 'http://muhit.co/issues/view/' . $issue_id . '#comment-' . $comment_id,
-      'text' => trans('email.go_to_idea')
+      'text' => trans('email.view_comment')
     ))
 
     @include('emails.partials.footer')
