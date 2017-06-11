@@ -3,7 +3,7 @@
 return [
     "automated_message_from_muhit" => "This is an automatic message sent by :tagstartMuhit:tagend.",
     "welcome" => "Hi, :username",
-    "greetings" => "Sincerely",
+    "greetings" => "Cheers",
     "muhit_team" => "The Muhit Team",
     "go_to_idea" => "Go to your idea",
     "go_to_homepage" => "Go to home page",

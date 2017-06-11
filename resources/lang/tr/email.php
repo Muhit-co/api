@@ -3,7 +3,7 @@
 return [
     "automated_message_from_muhit" => "Bu :tagstartMuhit:tagend tarafından gönderilen otomatik bir mesajdır",
     "welcome" => "Merhaba :username",
-    "greetings" => "Sayın", 
+    "greetings" => "Sevgiler", 
     "muhit_team" => "Muhit ekibi",
     "go_to_idea" => "Fikrine git",
     "go_to_homepage" => "Anasayfaya git",
