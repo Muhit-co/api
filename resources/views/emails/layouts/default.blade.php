@@ -14,7 +14,7 @@
         <td>
           <div style="padding: 20px 20px; background-color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;">
             <div style="font-family: Arial, sans-serif; color: #ccccdd; font-size: 13px; text-align: center;">
-              <small>{!! trans('email.automated_message_from_muhit', array('tagstart' => '<a href="http://www.muhit.co" target="_blank" style="color: #ccccdd;">', 'tagend' => '</a>' )) !!}</small>
+              <small>{!! trans('email.automated_message_from_muhit', array('tagstart' => '<a href="http://www.muhit.co/?utm_source=transactional&utm_medium=email&utm_campaign=grey_text_top" target="_blank" style="color: #ccccdd;">', 'tagend' => '</a>' )) !!}</small>
             </div>
             <h3 style="font-family: Arial, sans-serif; color: #44a1e0;">
                 @yield('title')
