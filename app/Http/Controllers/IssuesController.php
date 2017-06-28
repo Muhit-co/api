@@ -367,7 +367,7 @@ class IssuesController extends Controller {
 		} else {
 			if (Auth::check()) {
 				$user_id = Auth::user()->id;
-				$user_district_id = Hood::with('district')->find(Auth::user()->hood_id)->district_id;
+				$user_district_id = (isset(Auth::user()->hood_id)) ? Hood::with('district')->find(Auth::user()->hood_id)->district_id : null;
 			}
 		}
 
