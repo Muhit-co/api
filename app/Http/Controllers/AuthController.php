@@ -253,7 +253,8 @@ class AuthController extends Controller
             return redirect('/')->with('success', trans('auth.muhtar_access_requested'));
         }
 
-        return redirect()->intended($this->redirPath)->with('success', trans('auth.welcome') . ', ' . Auth::user()->first_name) . '!';
+        return redirect()->intended($this->redirPath)
+            ->with('success', trans('auth.welcome') . ', ' . Auth::user()->first_name);
     }
 
     /**
