@@ -367,7 +367,12 @@ class IssuesController extends Controller {
 		} else {
 			if (Auth::check()) {
 				$user_id = Auth::user()->id;
-				$user_district_id = (isset(Auth::user()->hood_id)) ? Hood::with('district')->find(Auth::user()->hood_id)->district_id : null;
+
+				if(Auth::user()->level == 6 && isset(Auth::user()->hood_id)) {
+					$user_district_id = DB::table('hoods')
+					->where('id', Auth::user()->hood_id)
+					->value('district_id');
+				}
 			}
 		}
 

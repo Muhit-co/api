@@ -125,6 +125,7 @@ class AuthController extends Controller
         $user = new User;
 
         $user->level = ((isset($data['level']) and $data['level'] == 4) ? 4 : 0);
+        $user->admin_type = (isset($data['admin_type'])) ? $data['admin_type'] : null;
 
         if (!isset($data['username'])) {
             $data['username'] = '';

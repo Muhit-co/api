@@ -29,18 +29,13 @@ class AdminRepository implements AdminRepositoryInterface
         $filterable_fields = ['level', 'location', 'q'];
 
         foreach ($filterable_fields as $field) {
-
             if ($request->has($field)) {
-
                 if ($field == 'q') {
-
                     $users->where('username', 'LIKE', '%' . $request->get($field) . '%')
                         ->orWhere('first_name', 'LIKE', '%' . $request->get($field) . '%')
                         ->orWhere('last_name', 'LIKE', '%' . $request->get($field) . '%')
                         ->orWhere('email', 'LIKE', '%' . $request->get($field) . '%');
-
                 } else {
-
                     $users->where($field, 'LIKE', '%' . $request->get($field) . '%');
                 }
             }
@@ -62,7 +57,6 @@ class AdminRepository implements AdminRepositoryInterface
     public function rejectMuhtar($member)
     {
         try {
-
             $data = [
                 'created_at' => Date::now(),
                 'updated_at' => Date::now(),
@@ -75,9 +69,7 @@ class AdminRepository implements AdminRepositoryInterface
             $member->level = 3;
             $member->save();
             DB::table('user_updates')->insert($data);
-
         } catch (Exception $e) {
-
             Log::error('AdminController/getRejectMuhtar', (array)$e);
 
             return false;
@@ -89,22 +81,21 @@ class AdminRepository implements AdminRepositoryInterface
     public function approveMuhtar($member)
     {
         try {
+            $current_level = isset($member->admin_type) and $member->admin_type == 'municipality' ? 6 : 5;
 
             $data = [
                 'created_at' => Date::now(),
                 'updated_at' => Date::now(),
                 'source_id' => Auth::user()->id,
                 'previous_level' => $member->level,
-                'current_level' => 5,
+                'current_level' => $current_level,
                 'user_id' => $member->id,
             ];
 
             $member->level = 3;
             $member->save();
             DB::table('user_updates')->insert($data);
-
         } catch (Exception $e) {
-
             Log::error('AdminController/getApproveMuhtar', (array)$e);
 
             return false;
@@ -112,5 +103,4 @@ class AdminRepository implements AdminRepositoryInterface
 
         return true;
     }
-
 }
