@@ -85,7 +85,9 @@
                     </div>
                     <div class="u-pinned-topright u-ma10">
                         <small class="c-medium">
-                            {{count($members)}} record<?php if(count($members) != 1) { echo 's'; } ?>
+                            {{count($members)}} record<?php if (count($members) != 1) {
+                                echo 's';
+} ?>
                         </small>
                     </div>
                 </div>
@@ -116,6 +118,11 @@
                                     <div class="col-sm-4 col-sm-hide">
                                         <div class="u-nowrap u-pt5 c-medium">
                                             <small class="u-nowrap">{{$m->location}}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-sm-hide">
+                                        <div class="u-nowrap u-pt5 c-medium">
+                                            <small class="u-nowrap">{{$m->admin_type}}</small>
                                         </div>
                                     </div>
                                 </div>
