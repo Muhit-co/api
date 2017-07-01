@@ -18,7 +18,6 @@ class Kernel extends HttpKernel
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
         'Muhit\Http\Middleware\Language',
-        'Muhit\Http\Middleware\HttpsProtocol',
 
     ];
 
