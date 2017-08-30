@@ -89,7 +89,7 @@ function getSupportLink() {
 
 // Returns link to Hikaye website based on current language
 function getStoryLink($page = '') {
-    $base = '//hikaye.muhit.co/';
+    $base = 'http://hikaye.muhit.co/';
     $lang_ext = (App::getLocale() == 'en') ? 'en/' : '';
     return $base . $lang_ext . $page;
 }
