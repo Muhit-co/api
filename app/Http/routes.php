@@ -20,10 +20,10 @@ Route::get('/lang/{loc}', function ($loc) {
 #end of testing routes for dann
 
 # reports routing
-Route::get('report', 'IssuesController@getList');
-Route::get('/report', function () {
+Route::get('report', 'ReportController@getReport');
+/*Route::get('/report', function () {
     return view('reports.show');
-});
+});*/
 
 # email routing
 Route::get('/emails', function () {
