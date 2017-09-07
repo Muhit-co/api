@@ -38,48 +38,31 @@
                     <h4>En popüler fikerler</h4>
                 </div>
                 <ul class="list-content">
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
-                                <span class="c-blue">
-                                    <i class="ion ion-thumbsup u-mr5"></i>
-                                    <strong>217</strong>
-                                </span>
-                                <i class="ion ion-chevron-right u-ml10"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Sıraselviler daha yürünebilir bir cadde olsun.
-                            </h4>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
-                                <span class="c-inprogress">
-                                    <i class="ion ion-wrench u-mr5"></i>
-                                    <strong>89</strong>
-                                </span>
-                                <i class="ion ion-chevron-right u-ml10"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Besiktas Yildiz Sokagindaki kaldirimlar duzenlenmeli
-                            </h4>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
-                                <span class="c-solved">
-                                    <i class="ion ion-thumbsup u-mr5"></i>
-                                    <strong>48</strong>
-                                </span>
-                                <i class="ion ion-chevron-right u-ml10"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Daha çok Boğaz hattı vapur seferi olsun.
-                            </h4>
-                        </a>
-                    </li>
+
+                    @foreach($popularIssues as $issue)
+
+                        <?php
+                        $issue = $issue->toArray();
+                        $issue_status = getIssueStatus($issue['status'], $issue['supporter_count']);
+                        ?>
+
+                        <li>
+                            <a href="/issues/view/{{$issue['id']}}">
+                                <div class="u-floatright u-pl10">
+                                    <span class="c-{{$issue_status['class']}}">
+                                        <i class="ion {{$issue_status['icon']}} u-mr5"></i>
+                                        <strong>{{$issue['supporter_count']}}</strong>
+                                    </span>
+                                    <i class="ion ion-chevron-right u-ml10"></i>
+                                </div>
+                                <h4 class="title u-nowrap">
+                                    {{$issue['title']}}
+                                </h4>
+                            </a>
+                        </li>
+
+                    @endforeach
+
                 </ul>
             </div>
         </div>
