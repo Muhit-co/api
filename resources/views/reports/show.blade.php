@@ -9,7 +9,7 @@
                     <div class="col-sm-6 u-pv20">
                         <h1>
                             <i class="ion ion-clipboard u-mr15 c-light"></i>
-                            <big>Beşiktaş</big>
+                            <big>{{$district->name}}</big>
                         </h1>
                         <div class="c-light u-mt20 u-ml50">
                             Kullanıcılar: 48<br />
@@ -69,65 +69,28 @@
         <div class="col-md-5 col-md-pull-5 col-sm-6 col-sm-pull-6">
             <div class="list u-mv20">
                 <div class="list-header">
-                    <h4>Mahalleleri <span class="u-ml10 c-light">7</span></h4>
+                    <h4>Mahalleleri <span class="u-ml10 c-light">{{sizeof($hoods)}}</span></h4>
                 </div>
                 <ul class="list-content">
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
+
+                    @foreach($hoods as $hood)
+                        <li>
+                            <a href="/">
+                                <div class="u-floatright u-pl10">
                                 <span class="c-light">
                                     <i class="ion ion-lightbulb u-mr5"></i>
-                                    45
+                                    {{$hood['issueCount']}}
                                 </span>
-                                <i class="ion ion-chevron-right u-ml20"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Etiler
-                            </h4>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
-                                <span class="c-light">
-                                    <i class="ion ion-lightbulb u-mr5"></i>
-                                    28
-                                </span>
-                                <i class="ion ion-chevron-right u-ml20"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Kuruçeşme
-                            </h4>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
-                                <span class="c-light">
-                                    <i class="ion ion-lightbulb u-mr5"></i>
-                                    19
-                                </span>
-                                <i class="ion ion-chevron-right u-ml20"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Gayrettepe
-                            </h4>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <div class="u-floatright u-pl10">
-                                <span class="c-light">
-                                    <i class="ion ion-lightbulb u-mr5"></i>
-                                    15
-                                </span>
-                                <i class="ion ion-chevron-right u-ml20"></i>
-                            </div>
-                            <h4 class="title u-nowrap">
-                                Bebek
-                            </h4>
-                        </a>
-                    </li>
+                                    <i class="ion ion-chevron-right u-ml20"></i>
+                                </div>
+                                <h4 class="title u-nowrap">
+                                    {{$hood['name']}}
+                                </h4>
+                            </a>
+                        </li>
+                    @endforeach
+
+
                 </ul>
             </div>
         </div>
