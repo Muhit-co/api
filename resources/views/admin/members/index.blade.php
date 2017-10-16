@@ -38,13 +38,13 @@
             <?php $active_tab = (isset($_GET['level'])) ? intval($_GET['level']) : null; ?>
             <ul class="tabs">
                 <li>
-                    <a href="{{ '/' . Request::path() }}" {{ $active_tab === null ? 'class="active"' : '' }} >
+                    <a href="{{ '/' . Request::path() }}" {{ $active_tab === null ? ' class=active' : '' }} >
                         ALL
                     </a>
                 </li>
-                @foreach ([0, 3, 4, 5, 10] as $t)
+                @foreach ([0, 3, 4, 5, 6, 10] as $t)
                     <li>
-                        <a href="{{ '?' . buildRelativeUrl('level', $t) }}" {{ $active_tab === $t ? 'class="active"' : '' }}>
+                        <a href="{{ '?' . buildRelativeUrl('level', $t) }}" {{ $active_tab === $t ? ' class=active' : '' }}>
                             {{ strtoupper( getUserLevel($t, true) ) }}
                         </a>
                     </li>
@@ -110,7 +110,7 @@
                                         <div class="u-nowrap u-pt5 c-medium" title="level {{ $m->level }}">
                                             <small class="u-nowrap">
                                                 {{ getUserLevel($m->level) }}
-                                                {{ isset($m->admin_type) ? '(' . $m->admin_type . ')' : ''}}
+                                                {{ isset($m->admin_type) && $m->level < 5 ? '(' . $m->admin_type . ')' : ''}}
                                             </small>
                                         </div>
                                     </div>
