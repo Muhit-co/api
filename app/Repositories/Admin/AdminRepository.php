@@ -81,7 +81,7 @@ class AdminRepository implements AdminRepositoryInterface
     public function approveMuhtar($member)
     {
         try {
-            $current_level = isset($member->admin_type) and $member->admin_type == 'municipality' ? 6 : 5;
+            $current_level = (isset($member->admin_type) && $member->admin_type == 'municipality') ? 6 : 5;
 
             $data = [
                 'created_at' => Date::now(),
@@ -92,7 +92,7 @@ class AdminRepository implements AdminRepositoryInterface
                 'user_id' => $member->id,
             ];
 
-            $member->level = 3;
+            $member->level = $current_level;
             $member->save();
             DB::table('user_updates')->insert($data);
         } catch (Exception $e) {
