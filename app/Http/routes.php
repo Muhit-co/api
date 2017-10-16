@@ -21,7 +21,6 @@ Route::get('/lang/{loc}', function ($loc) {
 
 # reports routing
 Route::get('/report/district/{districtId}', 'ReportController@getReportDistrictById');
-Route::get('/report/hood/{hoodId}', 'ReportController@getHoodById');
 
 /*Route::get('/report', function () {
     return view('reports.show');
