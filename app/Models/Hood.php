@@ -6,6 +6,7 @@ use Log;
 class Hood extends \Eloquent
 {
     protected $guarded = ['id'];
+    protected $issuesCount = ['issueCount'];
 
     /**
      * gets the hood_id from location string. creates table records if not exists
@@ -69,4 +70,5 @@ class Hood extends \Eloquent
     {
         return $this->belongsTo(City::class);
     }
+
 }
