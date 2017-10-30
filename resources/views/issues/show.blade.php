@@ -23,7 +23,7 @@ if(strlen($issue['problem']) > 0) {
 
 @include('partials.header', array('type'=>'show'))
 
-<?php setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR');?>
+<?php if (App::getLocale() == 'tr') { setlocale(LC_TIME, 'tr_TR.utf8', 'tr_TR.UTF-8', 'tr_TR'); } ?>
 
 <section>
     <div class="row">

@@ -8,6 +8,15 @@
             </div>
             <div class="u-clearfix u-pa5">
                 @include('partials.lang-switcher', ['state' => 'expanded'])
+
+
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                      new google.translate.TranslateElement({pageLanguage: 'tr', multilanguagePage: true}, 'google_translate_element');
+                    }
+                </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
             </div>
         </div>
         <div class="col-sm-3">

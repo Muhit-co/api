@@ -2,6 +2,7 @@
 
 return [
     "all_cap" => "ALL",
+    "all" => "All",
     "my_supported_ones_cap" => "SUPPORTED",
     "ideas" => "Ideas",
     "ideas_cap" => "IDEAS",
@@ -32,6 +33,7 @@ return [
     "districts_cap" => "MUNICIPALITIES",
     "districts" => "Municipalities",
     "n_ideas_found_in" => "<b>:number</b> ideas found in <b>:district</b>",
+    "n_ideas_cap" => "<b>:number</b> IDEAS",
     "show_all_ideas" => "Show all ideas",
     "ideas_for" => "ideas for",
     "choose_hood_header" => "neighbourhood...",

@@ -2,6 +2,7 @@
 
 return [
     "all_cap" => "TÜMÜ",
+    "all" => "Tümü",
     "my_supported_ones_cap" => "DESTEKLEDİKLERİM",
     "ideas" => "Fikirler",
     "ideas_cap" => "FİKİRLER",
@@ -33,6 +34,7 @@ return [
     "districts" => "İlçeler",
     "districts_cap" => "İLÇELER",
     "n_ideas_found_in" => "<b>:district</b> ilçesinde <b>:number</b> fikir bulundu",
+    "n_ideas_cap" => "<b>:number</b> FİKİR",
     "show_all_ideas" => "Tüm fikirleri göster",
     "ideas_for" => "için fikirler",
     "choose_hood_header" => "Mahalleni seç...",
