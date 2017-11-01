@@ -1,23 +1,21 @@
 <div class="navplaceholder"></div>
 <nav class="nav-report">
     <div class="row row-nopadding">
-        <div class="col-xs-5 col-sm-6">
+        <div class="col-xs-12">
 
-            <div class="extended"><a href="/" target="_self" class="btn btn-blueempty u-mt15 u-ml15"><i class="ion ion-chevron-left"></i></a></div>
+            <div class="extended u-floatleft"><a href="/" target="_self" class="btn btn-blueempty u-mt15 u-ml15"><i class="ion ion-chevron-left"></i></a></div>
 
-            <a href="/" class="u-inlineblock u-pv15 u-pl10">
+            <a href="/" class="u-floatleft u-pv15 u-pl10">
                 @include('partials.logo_svg', array('height' => '36px', 'colour' => 'blue'))
             </a>
-
-        </div>
-        <div class="col-xs-7 col-sm-6 u-alignright u-nowrap">
+            
             @if(Auth::check())
                 @include('partials.userinfo')
             @else
                 {{-- user is not logged in --}}
                 <div class="u-floatright u-nowrap">
 
-                    <div class="u-inlineblock u-pv20 u-ph10 u-lineheight30 col-xs-hide c-blue">
+                    <div class="lang-switcher u-inlineblock u-pv20 u-ph10 u-lineheight30 col-xs-hide c-blue">
                         @include('partials.lang-switcher', ['state' => 'full'])
                     </div>
 

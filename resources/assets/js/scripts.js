@@ -63,7 +63,7 @@ $(document).ready(function() {
     });
   }
 
-  // issue show page, show whatsapp share button only if mobile
+  // issue show & report show page, show whatsapp share button only if mobile
   if($ios || $android) {
     $('#whatsapp_share_button').removeClass('u-hidden');
   }
@@ -164,7 +164,7 @@ $(document).ready(function() {
   });
 
   // share buttons on show page
-  $('.btn-twitter[href*="share"], .btn-facebook[href*="dialog/feed"]').click(function(e) {
+  $('.btn-twitter[href*="share"], .btn-facebook[href*="dialog/feed"], #twitter_share_button, #facebook_share_button').click(function(e) {
     e.preventDefault();
     $url = $(this).attr('href');
     window.open($url, '_blank', 'width=600, height=300, menubar=no, top=300, left=450');

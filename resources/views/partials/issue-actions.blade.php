@@ -1,3 +1,5 @@
+{{-- Idea show Actions --}}
+
 <!-- Share buttons -->
 <?php
 // Build Twitter URL

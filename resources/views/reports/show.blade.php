@@ -2,10 +2,9 @@
 @section('content')
 
 
-
-
 <?php 
 // NB. TEMPORARY! Data should come from controller
+// Format: array of tags used in ideas in municipality/neighbourhood, sorted by issue count
 $tags = [
     [
         'name' => 'Trafik',
@@ -78,37 +77,9 @@ $tags = [
                                 <i class="ion ion-chevron-down"></i>
                             </div>
                         </div>
-                        <a href="javascript:alert('get downloadable pdf');" class="btn btn-blueempty u-ph10 u-nowrap" style="min-width: 3.5rem;">
-                            <i class="ion ion-document ion-15x"></i>
-                            <i class="ion ion-ios-arrow-thin-down ion-15x"></i>
-                        </a>
-                        <div class="hasDropdown u-inlineblock u-ml5">
-                            <a href="javascript:void()" class="btn btn-blueempty">
-                                <i class="ion ion-android-share-alt ion-15x"></i>
-                            </a>
-                            <div class="dropdown dropdown-outline dropdown-onright">
-                                <ul>
-                                    <li>
-                                        <a href="whatsapp://send?text=TEXT" class="">
-                                            <i class="ion ion-social-whatsapp"></i>
-                                            WhatsApp
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:alert('twitter share URL...')" class="" target="_blank">
-                                            <i class="ion ion-social-twitter"></i>
-                                            Twitter
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:alert('facebook share URL...')" class="" target="_blank">
-                                            <i class="ion ion-social-facebook ion-15x"></i>
-                                            Facebook
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
+                        @include('partials.report-actions', array('district' => $district))
+
                     </div>
                 </div>
             </div>
@@ -125,6 +96,7 @@ $tags = [
                                 <h4 class="chart-number h--light u-aligncenter c-light u-mb5">
                                     {!! trans('issues.n_ideas_cap', ['number' => sizeof($popularIssues)]) !!}
                                 </h4>
+                                {{-- // @aniluyg TODO: Click on section to filter idea list & map --}}
                                 <div id="chart_ideas">
                                     <div class="chartloader">
                                         <img src="/images/preloader.gif" alt="" class="u-valignmiddle u-ml50" />
@@ -135,6 +107,7 @@ $tags = [
                                 <h4 class="chart-number h--light u-aligncenter c-light u-mb5">
                                     {{ trans('reports.categories_cap') }}
                                 </h4>
+                                {{-- // @aniluyg TODO: Click on section to filter idea list & map --}}
                                 <div id="chart_categories">
                                     <div class="chartloader">
                                         <img src="/images/preloader.gif" alt="" class="u-valignmiddle u-ml50" />
@@ -182,6 +155,7 @@ $tags = [
                 <div class="list-header">
 
                     <div class="form-group u-floatright hasIconRight u-relative" style="width: 105px; min-width: 0; margin-top: -7px;">
+                        {{-- // @aniluyg TODO: On select, filter idea list & map --}}
                         <select class="form-input form-small form-outline u-mt5 u-pr20">
                             <option selected>{{ trans('issues.all') }}</option>
                             <option>{{ trans('issues.in_progress') }}</option>
@@ -270,7 +244,7 @@ $tags = [
 
                     @foreach($hoods as $hood)
                         <li>
-                            <a href="javascript:alert('Go to idea show page')">
+                            <a href="/report/hood/{{ $hood['id'] }}">
                                 <div class="u-floatright u-pl10">
                                 <span class="c-light">
                                     <i class="ion ion-lightbulb u-mr5"></i>
