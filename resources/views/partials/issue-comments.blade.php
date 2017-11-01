@@ -1,3 +1,5 @@
+<?php $actionable = ($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id) ? true : false; ?>
+
 {{-- Comments start --}}
 <div class="clearfix u-mb50">
 

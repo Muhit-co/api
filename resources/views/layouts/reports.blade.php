@@ -6,11 +6,11 @@
 
     <body>
 
-        @include('partials.nav-report')
-
         @include('partials.loader-mask')
 
         <main>
+
+            @include('partials.nav-report')
         
             <section>
                 @include('partials.messages')
