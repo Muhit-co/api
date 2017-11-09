@@ -38,7 +38,25 @@ class ReportController extends Controller
             return response()->app(404, 'errors.notfound', ['msg' => 'İlçe bulunamadı.']);
 
         }
-}
 
+
+    }
+    public function getReportDistrictIssues($district_id = null){
+        $district = District::find($district_id);
+        $issue_status = request()->input('issueStatus');
+        if(isset($district) && isset($issue_status)) {
+
+            $popularIssues = Issue::where('district_id', $district_id);
+
+            if($issue_status != 'all'){
+                $popularIssues = $popularIssues->where('status', $issue_status);
+            }
+
+            $popularIssues = $popularIssues->orderBy('supporter_count', 'desc')
+                ->paginate(10);
+
+            return response()->app(200, 'partials.report-issues', ['popularIssues' => $popularIssues]);
+        }
+    }
 
 }
