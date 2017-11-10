@@ -271,14 +271,25 @@ $tags = [
         }
 
         var chart = new google.visualization.PieChart(document.getElementById(target));
+
+        // Adding click handler
+        google.visualization.events.addListener(chart, 'select', function() {
+            selectedItem = chart.getSelection()[0];
+            if(selectedItem) {
+                selectedStatus = source_data[selectedItem.row + 1][2];
+                filterReportIdeasBy( selectedStatus );
+            }
+        });
+
         chart.draw(data, options);
     }
 
+    // @aniluyg TODO: Populate totals breakdown with real data
     idea_chart_data = [
-        ['Fikir durumu', 'Meblağ'],
-        ['Olusturuldu',     121],
-        ['Gelişmekte',       48],
-        ['Çözüldü',          15]
+        ['Fikir durumu', 'Meblağ', 'status'],
+        ['Olusturuldu',     121, 'new'],
+        ['Gelişmekte',       48, 'in-progress'],
+        ['Çözüldü',          15, 'solved']
     ];
     idea_chart_options = {
         colors: ['#44a1e0', '#c678ea', '#27ae60'],
