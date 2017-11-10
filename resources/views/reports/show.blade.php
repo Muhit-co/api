@@ -158,9 +158,9 @@ $tags = [
                         {{-- // @aniluyg TODO: On select, filter idea list & map --}}
                         <select id="issueTypeOption" class="form-input form-small form-outline u-mt5 u-pr20">
                             <option value="all" selected>{{ trans('issues.all') }}</option>
+                            <option value="new">{{ trans('issues.created') }}</option>
                             <option value="in-progress">{{ trans('issues.in_progress') }}</option>
                             <option value="solved">{{ trans('issues.solved') }}</option>
-                            <option value="new">{{ trans('issues.created') }}</option>
                         </select>
                         <div class="form-appendRight u-aligncenter u-width30 u-pr10 c-light" style="margin-top: 7px;">
                             <i class="ion ion-chevron-down"></i>
@@ -172,9 +172,9 @@ $tags = [
                 </div>
 
                 <ul class="list-content" id="issueListContainer">
-
-                @include('partials.report-issues', ['popularIssues' => $popularIssues])
+                    @include('partials.report-issues', ['popularIssues' => $popularIssues])
                 </ul>
+
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -303,18 +303,30 @@ $tags = [
         drawChart('chart_categories', category_chart_data, category_chart_options);
     });
 
-    $districtId = '{{$district->id}}';
+    $districtId = '{{ $district->id }}';
 
-    $( "#issueTypeOption" ).change(function() {
+    $("#issueTypeOption").change(function() {
+        filterReportIdeasBy( $(this).val() );
+    });
+    function filterReportIdeasBy(value) {
+        
+        $container = $("#issueListContainer");
+        $container.addClass('isLoading');
+
         $.ajax({
-            url: '/report/district/'+$districtId+'/issues',
+            url: '/report/district/' + $districtId + '/issues',
             method: 'post',
-            data: 'issueStatus='+$( this ).val(),
+            data: 'issueStatus=' + value,
             success: function(r){
-                $("#issueListContainer").html(r);
+                $container.html(r);
+                $container.removeClass('isLoading');
+                $('#issueTypeOption').val(value);
+            },
+            error: function() {
+                $container.removeClass('isLoading');
             }
         });
-    });
+    }
 </script>
 
 @stop

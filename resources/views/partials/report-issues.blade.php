@@ -1,4 +1,3 @@
-
     @foreach($popularIssues as $issue)
 
         <?php
@@ -21,6 +20,7 @@
 
     @endforeach
 
+    {{-- Only show if more than 2 ideas --}}
     @if(count($popularIssues) > 2)
         <li>
             <a href="javascript:alert('Go to filtered idea list page')">
@@ -34,3 +34,15 @@
         </li>
     @endif
 
+    {{-- Empty state --}}
+    @if(count($popularIssues) == 0)
+        <div class="bg-white u-aligncenter u-pv15 c-medium u-lineheight20">
+            {{ trans('issues.issues_cant_be_found') }}<br>
+            <small><a href="javascript:filterReportIdeasBy('all');" id="#issueTypeSelectAll">{{ trans('issues.show_all_ideas') }}</a></small>
+        </div>
+    @endif
+
+    {{-- List loader --}}
+    <div class="list__loader">
+        <img src="/images/preloader.gif" alt="" class="u-valignmiddle" />
+    </div>
