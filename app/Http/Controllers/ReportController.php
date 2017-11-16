@@ -28,6 +28,7 @@ class ReportController extends Controller
             $ideaChartData = $this->getIdeaChartData($district_id);
 
             return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData]);
+          
         }
         else  {
             return response()->app(404, 'errors.notfound', ['msg' => 'İlçe bulunamadı.']);
@@ -60,6 +61,7 @@ class ReportController extends Controller
         return $hoodsOfDistrict->join('issues', 'hoods.id', '=', 'issues.hood_id')
             ->selectRaw('hoods.*, count(issues.hood_id) as issueCount')
             ->groupBy('issues.hood_id')
+            ->orderBy('issueCount','desc')
             ->get();
     }
 
