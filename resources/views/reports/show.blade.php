@@ -156,10 +156,11 @@ $tags = [
 
                     <div class="form-group u-floatright hasIconRight u-relative" style="width: 105px; min-width: 0; margin-top: -7px;">
                         {{-- // @aniluyg TODO: On select, filter idea list & map --}}
-                        <select class="form-input form-small form-outline u-mt5 u-pr20">
-                            <option selected>{{ trans('issues.all') }}</option>
-                            <option>{{ trans('issues.in_progress') }}</option>
-                            <option>{{ trans('issues.solved') }}</option>
+                        <select id="issueTypeOption" class="form-input form-small form-outline u-mt5 u-pr20">
+                            <option value="all" selected>{{ trans('issues.all') }}</option>
+                            <option value="new">{{ trans('issues.created') }}</option>
+                            <option value="in-progress">{{ trans('issues.in_progress') }}</option>
+                            <option value="solved">{{ trans('issues.solved') }}</option>
                         </select>
                         <div class="form-appendRight u-aligncenter u-width30 u-pr10 c-light" style="margin-top: 7px;">
                             <i class="ion ion-chevron-down"></i>
@@ -169,44 +170,11 @@ $tags = [
                     <h4>{{ trans('issues.ideas') }}</h4>
 
                 </div>
-                <ul class="list-content">
 
-                    @foreach($popularIssues as $issue)
-
-                        <?php
-                        $issue = $issue->toArray();
-                        $issue_status = getIssueStatus($issue['status'], $issue['supporter_count']);
-                        ?>
-
-                        <li>
-                            <a href="/issues/view/{{$issue['id']}}">
-                                <div class="u-floatright u-pl10">
-                                    <span class="c-{{$issue_status['class']}}">
-                                        <i class="ion {{$issue_status['icon']}} u-mr5"></i>
-                                        <strong>{{$issue['supporter_count']}}</strong>
-                                    </span>
-                                    <i class="ion ion-chevron-right u-ml10"></i>
-                                </div>
-                                <span class="title">{{$issue['title']}}</span>
-                            </a>
-                        </li>
-
-                    @endforeach
-
-                    @if(count($popularIssues) > 2)
-                        <li>
-                            <a href="javascript:alert('Go to filtered idea list page')">
-                                <div class="u-floatright u-pl10 c-light">
-                                    <i class="ion ion-chevron-right u-ml20"></i>
-                                </div>
-                                <h4 class="title c-light u-nowrap">
-                                    {{ trans('issues.show_all_ideas') }}
-                                </h4>
-                            </a>
-                        </li>
-                    @endif
-
+                <ul class="list-content" id="issueListContainer">
+                    @include('partials.report-issues', ['popularIssues' => $popularIssues])
                 </ul>
+
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -303,17 +271,22 @@ $tags = [
         }
 
         var chart = new google.visualization.PieChart(document.getElementById(target));
+
+        // Adding click handler
+        google.visualization.events.addListener(chart, 'select', function() {
+            selectedItem = chart.getSelection()[0];
+            if(selectedItem) {
+                selectedStatus = source_data[selectedItem.row + 1][2];
+                filterReportIdeasBy( selectedStatus );
+            }
+        });
+
         chart.draw(data, options);
     }
 
-    idea_chart_data = [
-        ['Fikir durumu', 'Meblağ'],
-        ['Olusturuldu',     121],
-        ['Gelişmekte',       48],
-        ['Çözüldü',          15]
-    ];
+
     idea_chart_options = {
-        colors: ['#44a1e0', '#c678ea', '#27ae60'],
+        colors: ['#c678ea', '#44a1e0', '#27ae60'],
     };
 
     category_chart_data = [
@@ -330,10 +303,36 @@ $tags = [
         ],
     };
 
+    var ideaChartData = <?php echo json_encode($ideaChartData) ?>;
     google.setOnLoadCallback(function() {
-        drawChart('chart_ideas', idea_chart_data, idea_chart_options);
+        drawChart('chart_ideas', ideaChartData, idea_chart_options);
         drawChart('chart_categories', category_chart_data, category_chart_options);
     });
+
+    $districtId = '{{ $district->id }}';
+
+    $("#issueTypeOption").change(function() {
+        filterReportIdeasBy( $(this).val() );
+    });
+    function filterReportIdeasBy(value) {
+        
+        $container = $("#issueListContainer");
+        $container.addClass('isLoading');
+
+        $.ajax({
+            url: '/report/district/' + $districtId + '/issues',
+            method: 'post',
+            data: 'issueStatus=' + value,
+            success: function(r){
+                $container.html(r);
+                $container.removeClass('isLoading');
+                $('#issueTypeOption').val(value);
+            },
+            error: function() {
+                $container.removeClass('isLoading');
+            }
+        });
+    }
 </script>
 
 @stop
