@@ -30,6 +30,7 @@ class ReportController extends Controller
             $hoodsWithIssueCount = $hoodsOfDistrict->join('issues', 'hoods.id', '=', 'issues.hood_id')
             ->selectRaw('hoods.*, count(issues.hood_id) as issueCount')
             ->groupBy('issues.hood_id')
+            ->orderBy('issueCount','desc')
             ->get();
 
             return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsWithIssueCount, 'district' => $district]);
