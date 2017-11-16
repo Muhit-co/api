@@ -284,15 +284,9 @@ $tags = [
         chart.draw(data, options);
     }
 
-    // @aniluyg TODO: Populate totals breakdown with real data
-    idea_chart_data = [
-        ['Fikir durumu', 'Meblağ', 'status'],
-        ['Olusturuldu',     121, 'new'],
-        ['Gelişmekte',       48, 'in-progress'],
-        ['Çözüldü',          15, 'solved']
-    ];
+
     idea_chart_options = {
-        colors: ['#44a1e0', '#c678ea', '#27ae60'],
+        colors: ['#c678ea', '#44a1e0', '#27ae60'],
     };
 
     category_chart_data = [
@@ -309,8 +303,9 @@ $tags = [
         ],
     };
 
+    var ideaChartData = <?php echo json_encode($ideaChartData) ?>;
     google.setOnLoadCallback(function() {
-        drawChart('chart_ideas', idea_chart_data, idea_chart_options);
+        drawChart('chart_ideas', ideaChartData, idea_chart_options);
         drawChart('chart_categories', category_chart_data, category_chart_options);
     });
 
