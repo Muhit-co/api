@@ -12,6 +12,7 @@
 use Muhit\Models\District;
 use Muhit\Models\Issue;
 use Muhit\Models\Hood;
+use Muhit\Models\Tag;
 
 class ReportController extends Controller
 {
@@ -26,8 +27,9 @@ class ReportController extends Controller
             $popularIssues = Issue::where('district_id', $district_id)->orderBy('supporter_count', 'desc')->paginate(10);
             $hoodsOfDistrictWithIssueCount = $this->getHoodsOfDistrictWithIssueCount($district_id);
             $ideaChartData = $this->getIdeaChartData($district_id);
+            $tagsOfDistrictWithIssueCount = $this->getTagsOfDistrictWithIssueCount($district_id);
 
-            return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData]);
+            return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData, 'tags' => $tagsOfDistrictWithIssueCount]);
           
         }
         else  {
@@ -76,5 +78,15 @@ class ReportController extends Controller
         }
 
         return $ideaChartData;
+    }
+
+    private function getTagsOfDistrictWithIssueCount($district_id){
+        return Issue::where('district_id', $district_id)
+            ->join('issue_tag', 'issues.id', '=', 'issue_tag.issue_id')
+            ->join('tags', 'issue_tag.tag_id', '=', 'tags.id')
+            ->selectRaw('tags.name, tags.background, count(issue_tag.tag_id) as issueCount')
+            ->groupBy('issue_tag.tag_id')
+            ->orderBy('issueCount','desc')
+            ->get();
     }
 }

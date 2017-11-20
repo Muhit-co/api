@@ -1,44 +1,6 @@
 @extends('layouts.reports')
 @section('content')
 
-
-<?php 
-// NB. TEMPORARY! Data should come from controller
-// Format: array of tags used in ideas in municipality/neighbourhood, sorted by issue count
-$tags = [
-    [
-        'name' => 'Trafik',
-        'background' => 'ea6e4b',
-        'issue_count' => 118
-    ],
-    [
-        'name' => 'Toplu Taşıma',
-        'background' => '8865a8',
-        'issue_count' => 72
-    ],
-    [
-        'name' => 'Ağaçlandırma',
-        'background' => 'a6cb80',
-        'issue_count' => 71
-    ],
-    [
-        'name' => 'Aydınlatma',
-        'background' => 'efdc34',
-        'issue_count' => 48
-    ],
-    [
-        'name' => 'Geri dönüşüm',
-        'background' => 'b6d782',
-        'issue_count' => 32
-    ],
-    [
-        'name' => 'Eğitim',
-        'background' => '6b8fc9',
-        'issue_count' => 30
-    ],
-];
-?>
-
 <section class="u-pv20">
     <div class="row">
         <div class="col-xs-12">
@@ -96,7 +58,7 @@ $tags = [
                                 <h4 class="chart-number h--light u-aligncenter c-light u-mb5">
                                     {!! trans('issues.n_ideas_cap', ['number' => sizeof($popularIssues)]) !!}
                                 </h4>
-                                {{-- // @aniluyg TODO: Click on section to filter idea list & map --}}
+                                {{-- // @aniluyg TODO: Click on section to filter map --}}
                                 <div id="chart_ideas">
                                     <div class="chartloader">
                                         <img src="/images/preloader.gif" alt="" class="u-valignmiddle u-ml50" />
@@ -107,7 +69,7 @@ $tags = [
                                 <h4 class="chart-number h--light u-aligncenter c-light u-mb5">
                                     {{ trans('reports.categories_cap') }}
                                 </h4>
-                                {{-- // @aniluyg TODO: Click on section to filter idea list & map --}}
+                                {{-- // @aniluyg TODO: Click on section to filter map --}}
                                 <div id="chart_categories">
                                     <div class="chartloader">
                                         <img src="/images/preloader.gif" alt="" class="u-valignmiddle u-ml50" />
@@ -155,7 +117,7 @@ $tags = [
                 <div class="list-header">
 
                     <div class="form-group u-floatright hasIconRight u-relative" style="width: 105px; min-width: 0; margin-top: -7px;">
-                        {{-- // @aniluyg TODO: On select, filter idea list & map --}}
+                        {{-- // @aniluyg TODO: On select, filter map --}}
                         <select id="issueTypeOption" class="form-input form-small form-outline u-mt5 u-pr20">
                             <option value="all" selected>{{ trans('issues.all') }}</option>
                             <option value="new">{{ trans('issues.created') }}</option>
@@ -190,7 +152,7 @@ $tags = [
                                 <div class="u-floatright u-pl10">
                                     <span class="c-light">
                                         <i class="ion ion-lightbulb u-mr5"></i>
-                                        {{ $tag['issue_count'] }}
+                                        {{ $tag['issueCount'] }}
                                     </span>
                                 </div>
                                 <span class="tag u-floatleft u-mr5" style="background-color: #{{ $tag['background'] }};">
@@ -292,7 +254,7 @@ $tags = [
     category_chart_data = [
         ['Kategori', 'Meblağ'],
         @foreach($tags as $tag)
-            ['{!! $tag['name'] !!}',{{ $tag['issue_count'] }}],
+            ['{!! $tag['name'] !!}',{{ $tag['issueCount'] }}],
         @endforeach
     ];
     category_chart_options = {
