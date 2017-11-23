@@ -27,7 +27,7 @@ class ReportController extends Controller
             $popularIssues = Issue::where('district_id', $district_id)->orderBy('supporter_count', 'desc')->paginate(10);
             $hoodsOfDistrictWithIssueCount = $this->getHoodsOfDistrictWithIssueCount($district_id);
             $ideaChartData = $this->getIdeaChartData($district_id);
-            $tagsOfDistrictWithIssueCount = $this->getTagsOfDistrictWithIssueCount($district_id);
+            $tagsOfDistrictWithIssueCount = $this->getTagsOfDistrictWithIssueCount($district_id, null);
 
             return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData, 'tags' => $tagsOfDistrictWithIssueCount]);
           
@@ -56,7 +56,15 @@ class ReportController extends Controller
         }
     }
 
+    public function getReportDistrictTags($district_id = null){
+        $district = District::find($district_id);
+        $tag_id = request()->input('tagId');
+        if(isset($district) ) {
+            $filteredTags = $this->getTagsOfDistrictWithIssueCount($district_id, $tag_id);
 
+            return response()->app(200, 'partials.report-tags', ['tags' => $filteredTags]);
+        }
+    }
 
     private function getHoodsOfDistrictWithIssueCount($district_id){
         $hoodsOfDistrict = Hood::where('hoods.district_id', $district_id);
@@ -80,13 +88,19 @@ class ReportController extends Controller
         return $ideaChartData;
     }
 
-    private function getTagsOfDistrictWithIssueCount($district_id){
-        return Issue::where('district_id', $district_id)
+    private function getTagsOfDistrictWithIssueCount($district_id, $tag_id){
+        $query = Issue::where('district_id', $district_id)
             ->join('issue_tag', 'issues.id', '=', 'issue_tag.issue_id')
             ->join('tags', 'issue_tag.tag_id', '=', 'tags.id')
-            ->selectRaw('tags.name, tags.background, count(issue_tag.tag_id) as issueCount')
-            ->groupBy('issue_tag.tag_id')
+            ->selectRaw('tags.id, tags.name, tags.background, count(issue_tag.tag_id) as issueCount');
+
+        if(isset($tag_id)){
+            $query->where('tags.id', $tag_id);
+        }
+
+        return $query->groupBy('issue_tag.tag_id')
             ->orderBy('issueCount','desc')
             ->get();
+
     }
 }

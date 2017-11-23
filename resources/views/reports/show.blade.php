@@ -144,24 +144,8 @@
                 <div class="list-header">
                     <h4>{{ trans('reports.categories') }}</h4>
                 </div>
-                <ul class="list-content">
-
-                    @foreach($tags as $tag)
-                        <li>
-                            <a href="?tag={{ urlencode($tag['name']) }}">
-                                <div class="u-floatright u-pl10">
-                                    <span class="c-light">
-                                        <i class="ion ion-lightbulb u-mr5"></i>
-                                        {{ $tag['issueCount'] }}
-                                    </span>
-                                </div>
-                                <span class="tag u-floatleft u-mr5" style="background-color: #{{ $tag['background'] }};">
-                                    {!! $tag['name'] !!}
-                                </span>
-                            </a>
-                        </li>
-                    @endforeach
-
+                <ul class="list-content" id="tagListContainer">
+                    @include('partials.report-tags', ['tags' => $tags])
                 </ul>
             </div>
         </div>
@@ -237,10 +221,24 @@
         // Adding click handler
         google.visualization.events.addListener(chart, 'select', function() {
             selectedItem = chart.getSelection()[0];
-            if(selectedItem) {
-                selectedStatus = source_data[selectedItem.row + 1][2];
-                filterReportIdeasBy( selectedStatus );
-            }
+
+                var chartTarget = target;
+                if(chartTarget == 'chart_ideas'){
+                    if(selectedItem) {
+                        selectedStatus = source_data[selectedItem.row + 1][2];
+                    } else {
+                        selectedStatus = 'all';
+                    }
+                    filterReportIdeasBy( selectedStatus );
+                } else if(chartTarget == 'chart_categories'){
+                    if(selectedItem) {
+                        selectedTagId = source_data[selectedItem.row + 1][2];
+                    } else {
+                        selectedTagId = null; //all
+                    }
+                    filterReportTagsBy( selectedTagId );
+                }
+
         });
 
         chart.draw(data, options);
@@ -252,9 +250,9 @@
     };
 
     category_chart_data = [
-        ['Kategori', 'Meblağ'],
+        ['Kategori', 'Meblağ', 'Id'],
         @foreach($tags as $tag)
-            ['{!! $tag['name'] !!}',{{ $tag['issueCount'] }}],
+            ['{!! $tag['name'] !!}',{{ $tag['issueCount'] }}, {{ $tag['id'] }} ],
         @endforeach
     ];
     category_chart_options = {
@@ -283,7 +281,7 @@
 
         $.ajax({
             url: '/report/district/' + $districtId + '/issues',
-            method: 'post',
+            method: 'get',
             data: 'issueStatus=' + value,
             success: function(r){
                 $container.html(r);
@@ -295,6 +293,28 @@
             }
         });
     }
+
+    function filterReportTagsBy(value) {
+        $data ='';
+        if(value){
+            $data = 'tagId=' + value;
+        }
+        $container = $("#tagListContainer");
+        $container.addClass('isLoading');
+        $.ajax({
+            url: '/report/district/' + $districtId + '/tags',
+            method: 'get',
+            data: $data,
+            success: function(r){
+                $container.html(r);
+                $container.removeClass('isLoading');
+            },
+            error: function(e) {
+                $container.removeClass('isLoading');
+            }
+        });
+    }
+
 </script>
 
 @stop
