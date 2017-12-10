@@ -252,13 +252,13 @@
     category_chart_data = [
         ['Kategori', 'Meblağ', 'Id'],
         @foreach($tags as $tag)
-            ['{!! $tag['name'] !!}',{{ $tag['issueCount'] }}, {{ $tag['id'] }} ],
+            ['{!! $tag->name !!}',{{ $tag->issueCount }}, {{ $tag->id }} ],
         @endforeach
     ];
     category_chart_options = {
         colors: [
         @foreach($tags as $tag)
-            '{{ $tag['background'] }}',
+            '{{ $tag->background }}',
         @endforeach
         ],
     };

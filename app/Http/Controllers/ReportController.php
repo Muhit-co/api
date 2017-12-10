@@ -8,7 +8,7 @@
 
 
 
-
+use DB;
 use Muhit\Models\District;
 use Muhit\Models\Issue;
 use Muhit\Models\Hood;
@@ -76,31 +76,33 @@ class ReportController extends Controller
     }
 
     private function getIdeaChartData($district_id){
-        $allIssuesStatusGroup = Issue::where('district_id', $district_id)
-            ->selectRaw('issues.status, count(*) as statusCount')
-            ->groupBy('issues.status')
-            ->get();
+        $query = 'select status, count(*) as statusCount
+            from issues 
+            where district_id = :district_id
+            group by status';
+
+        $allIssuesStatusGroup = DB::select($query, ['district_id' => $district_id]);
         $ideaChartData = [["Fikir durumu", "Meblağ", "status"]];
         foreach ($allIssuesStatusGroup as $issueStatus){
-            array_push($ideaChartData, [trans('issues.'.$issueStatus['status']), $issueStatus['statusCount'], $issueStatus['status']]);
+            array_push($ideaChartData, [trans('issues.'.$issueStatus->status), $issueStatus->statusCount, $issueStatus->status]);
         }
 
         return $ideaChartData;
     }
 
     private function getTagsOfDistrictWithIssueCount($district_id, $tag_id){
-        $query = Issue::where('district_id', $district_id)
-            ->join('issue_tag', 'issues.id', '=', 'issue_tag.issue_id')
-            ->join('tags', 'issue_tag.tag_id', '=', 'tags.id')
-            ->selectRaw('tags.id, tags.name, tags.background, count(issue_tag.tag_id) as issueCount');
+        $query = 'select t.id, t.name, t.background, count(it.tag_id) as issueCount 
+                    from issues i
+                    join issue_tag it on i.id = it.issue_id
+                    join tags t on t.id = it.tag_id
+                    where i.district_id = :district_id';
 
         if(isset($tag_id)){
-            $query->where('tags.id', $tag_id);
+            $query .= ' and t.id = ' .$tag_id;
         }
+        $query .= ' group by it.tag_id
+                    order by issueCount';
 
-        return $query->groupBy('issue_tag.tag_id')
-            ->orderBy('issueCount','desc')
-            ->get();
-
+        return DB::select($query, ['district_id' => $district_id]);
     }
 }
