@@ -1,4 +1,4 @@
-<?php if($env != 'local') : ?>
+<?php if(env('APP_ENV') != 'local') : ?>
 
 <!-- Google Code for Sign Up Conversion Page -->
 <script type="text/javascript">
