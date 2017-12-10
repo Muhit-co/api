@@ -56,3 +56,4 @@
     </div>
 </footer>
 
+@include('partials.google-adwords')
