@@ -98,11 +98,16 @@ class ReportController extends Controller
                     where i.district_id = :district_id';
 
         if(isset($tag_id)){
-            $query .= ' and t.id = ' .$tag_id;
+            $query .= ' and t.id = :tag_id';
         }
         $query .= ' group by it.tag_id
                     order by issueCount';
 
-        return DB::select($query, ['district_id' => $district_id]);
+        if(isset($tag_id)){
+            return DB::select($query, ['district_id' => $district_id, 'tag_id'=> $tag_id]);
+
+        } else {
+            return DB::select($query, ['district_id' => $district_id]);
+        }
     }
 }
