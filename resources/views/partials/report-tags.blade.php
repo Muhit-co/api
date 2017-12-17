@@ -1,6 +1,6 @@
 @foreach($tags as $tag)
     <li>
-        <a href="?tag={{ urlencode($tag->name) }}">
+        <a href="#">
             <div class="u-floatright u-pl10">
                                     <span class="c-light">
                                         <i class="ion ion-lightbulb u-mr5"></i>

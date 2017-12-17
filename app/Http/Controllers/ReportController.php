@@ -24,7 +24,7 @@ class ReportController extends Controller
         $district = District::find($district_id);
         if(isset($district)){
 
-            $popularIssues = Issue::where('district_id', $district_id)->orderBy('supporter_count', 'desc')->paginate(10);
+            $popularIssues = $this->getIssuesByDistrictAndStatus($district_id, 'all');
             $hoodsOfDistrictWithIssueCount = $this->getHoodsOfDistrictWithIssueCount($district_id);
             $ideaChartData = $this->getIdeaChartData($district_id);
             $tagsOfDistrictWithIssueCount = $this->getTagsOfDistrictWithIssueCount($district_id, null);
@@ -41,28 +41,52 @@ class ReportController extends Controller
     public function getReportDistrictIssues($district_id = null){
         $district = District::find($district_id);
         $issue_status = request()->input('issueStatus');
-        if(isset($district) && isset($issue_status)) {
+        $tag_id = request()->input('tagId');
 
-            $popularIssues = Issue::where('district_id', $district_id);
+        if(!isset($issue_status)){
+            $issue_status = 'all';
+        }
 
-            if($issue_status != 'all'){
-                $popularIssues = $popularIssues->where('status', $issue_status);
+        if(isset($district) && isset($issue_status) ) {
+            if($tag_id){
+                $popularIssues = $this->getIssuesByDistrictAndStatusAndTag($district_id, $issue_status, $tag_id);
+            } else {
+                $popularIssues = $this->getIssuesByDistrictAndStatus($district_id, $issue_status);
             }
-
-            $popularIssues = $popularIssues->orderBy('supporter_count', 'desc')
-                ->paginate(10);
-
             return response()->app(200, 'partials.report-issues', ['popularIssues' => $popularIssues]);
         }
     }
 
-    public function getReportDistrictTags($district_id = null){
-        $district = District::find($district_id);
-        $tag_id = request()->input('tagId');
-        if(isset($district) ) {
-            $filteredTags = $this->getTagsOfDistrictWithIssueCount($district_id, $tag_id);
 
-            return response()->app(200, 'partials.report-tags', ['tags' => $filteredTags]);
+
+    private function getIssuesByDistrictAndStatus($district_id, $issue_status)
+    {
+        if (isset($district_id) && isset($issue_status)) {
+
+            $query = 'select id, title, status, supporter_count
+            from issues 
+            where district_id = :district_id
+            and ( \'all\' = :issue_status or status = :issue_status_1)
+            order by supporter_count desc
+            limit 10';
+
+            return DB::select($query, ['district_id' => $district_id, 'issue_status' => $issue_status,'issue_status_1' => $issue_status]);
+        }
+    }
+    private function getIssuesByDistrictAndStatusAndTag($district_id, $issue_status, $tag_id)
+    {
+        if (isset($district_id) && isset($issue_status) && isset($tag_id)) {
+
+            $query = 'select i.id, i.title, i.status, i.supporter_count
+            from issues i
+            join issue_tag it on i.id = it.issue_id
+            where district_id = :district_id
+            and ( \'all\' = :issue_status or i.status = :issue_status_1)
+            and it.id = :tag_id
+            order by supporter_count desc
+            limit 10';
+
+            return DB::select($query, ['district_id' => $district_id, 'issue_status' => $issue_status,'issue_status_1' => $issue_status, 'tag_id'=>$tag_id]);
         }
     }
 

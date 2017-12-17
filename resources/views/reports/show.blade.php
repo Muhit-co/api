@@ -56,7 +56,7 @@
                         <div class="u-flex">
                             <div style="display: flex; flex-basis: 50%; flex-direction: column; justify-content: center;">
                                 <h4 class="chart-number h--light u-aligncenter c-light u-mb5">
-                                    {!! trans('issues.n_ideas_cap', ['number' => sizeof($popularIssues)]) !!}
+                                    {!! trans('issues.n_ideas_cap', ['number' => count($popularIssues)]) !!}
                                 </h4>
                                 {{-- // @aniluyg TODO: Click on section to filter map --}}
                                 <div id="chart_ideas">
@@ -182,7 +182,8 @@
 <!--Load the AJAX API-->
 <script type="text/javascript" src="//www.google.com/jsapi"></script>
 <script type="text/javascript">
-
+    var selectedTagId=null;
+    var selectedStatus='all';
     google.load("visualization", "1", {packages:["corechart"]});
 
     function drawChart(target, source_data, custom_options) {
@@ -229,15 +230,16 @@
                     } else {
                         selectedStatus = 'all';
                     }
-                    filterReportIdeasBy( selectedStatus );
+
                 } else if(chartTarget == 'chart_categories'){
                     if(selectedItem) {
                         selectedTagId = source_data[selectedItem.row + 1][2];
                     } else {
                         selectedTagId = null; //all
                     }
-                    filterReportTagsBy( selectedTagId );
+                    debugger;
                 }
+            filterReportIdeasBy( selectedStatus, selectedTagId);
 
         });
 
@@ -274,42 +276,23 @@
     $("#issueTypeOption").change(function() {
         filterReportIdeasBy( $(this).val() );
     });
-    function filterReportIdeasBy(value) {
-        
+    function filterReportIdeasBy(status, tagId) {
+        if(!tagId){
+            tagId = '';
+        }
         $container = $("#issueListContainer");
         $container.addClass('isLoading');
 
         $.ajax({
             url: '/report/district/' + $districtId + '/issues',
             method: 'get',
-            data: 'issueStatus=' + value,
+            data: {'issueStatus' : status, 'tagId' : tagId},
             success: function(r){
                 $container.html(r);
                 $container.removeClass('isLoading');
-                $('#issueTypeOption').val(value);
+                $('#issueTypeOption').val(status);
             },
             error: function() {
-                $container.removeClass('isLoading');
-            }
-        });
-    }
-
-    function filterReportTagsBy(value) {
-        $data ='';
-        if(value){
-            $data = 'tagId=' + value;
-        }
-        $container = $("#tagListContainer");
-        $container.addClass('isLoading');
-        $.ajax({
-            url: '/report/district/' + $districtId + '/tags',
-            method: 'get',
-            data: $data,
-            success: function(r){
-                $container.html(r);
-                $container.removeClass('isLoading');
-            },
-            error: function(e) {
                 $container.removeClass('isLoading');
             }
         });

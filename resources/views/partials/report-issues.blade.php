@@ -1,20 +1,19 @@
     @foreach($popularIssues as $issue)
 
         <?php
-        $issue = $issue->toArray();
-        $issue_status = getIssueStatus($issue['status'], $issue['supporter_count']);
+        $issue_status = getIssueStatus($issue->status, $issue->supporter_count);
         ?>
 
         <li>
-            <a href="/issues/view/{{$issue['id']}}">
+            <a href="/issues/view/{{$issue->id}}">
                 <div class="u-floatright u-pl10">
                                     <span class="c-{{$issue_status['class']}}">
                                         <i class="ion {{$issue_status['icon']}} u-mr5"></i>
-                                        <strong>{{$issue['supporter_count']}}</strong>
+                                        <strong>{{$issue->supporter_count}}</strong>
                                     </span>
                     <i class="ion ion-chevron-right u-ml10"></i>
                 </div>
-                <span class="title">{{$issue['title']}}</span>
+                <span class="title">{{$issue->title}}</span>
             </a>
         </li>
 
