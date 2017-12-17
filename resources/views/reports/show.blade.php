@@ -239,7 +239,7 @@
                     }
                     debugger;
                 }
-            filterReportIdeasBy( selectedStatus, selectedTagId);
+            filterReportIdeasByStatusAndTag( selectedStatus, selectedTagId);
 
         });
 
@@ -274,9 +274,9 @@
     $districtId = '{{ $district->id }}';
 
     $("#issueTypeOption").change(function() {
-        filterReportIdeasBy( $(this).val() );
+        filterReportIdeasByStatus( $(this).val() );
     });
-    function filterReportIdeasBy(status, tagId) {
+    function filterReportIdeasByStatusAndTag(status, tagId) {
         if(!tagId){
             tagId = '';
         }
@@ -296,6 +296,10 @@
                 $container.removeClass('isLoading');
             }
         });
+    }
+
+    function filterReportIdeasByStatus(status){
+        filterReportIdeasByStatusAndTag(status, selectedTagId);
     }
 
 </script>

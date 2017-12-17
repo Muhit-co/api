@@ -37,7 +37,7 @@
     @if(count($popularIssues) == 0)
         <div class="bg-white u-aligncenter u-pv15 c-medium u-lineheight20">
             {{ trans('issues.issues_cant_be_found') }}<br>
-            <small><a href="javascript:filterReportIdeasBy('all');" id="#issueTypeSelectAll">{{ trans('issues.show_all_ideas') }}</a></small>
+            <small><a href="javascript:filterReportIdeasByStatus('all');" id="#issueTypeSelectAll">{{ trans('issues.show_all_ideas') }}</a></small>
         </div>
     @endif
 
