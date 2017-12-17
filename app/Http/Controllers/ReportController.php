@@ -28,8 +28,9 @@ class ReportController extends Controller
             $hoodsOfDistrictWithIssueCount = $this->getHoodsOfDistrictWithIssueCount($district_id);
             $ideaChartData = $this->getIdeaChartData($district_id);
             $tagsOfDistrictWithIssueCount = $this->getTagsOfDistrictWithIssueCount($district_id, null);
+            $issueCount = $this->getIssueCountOfDistrict($district_id);
 
-            return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData, 'tags' => $tagsOfDistrictWithIssueCount]);
+            return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData, 'tags' => $tagsOfDistrictWithIssueCount, 'issueCount'=>$issueCount]);
           
         }
         else  {
@@ -57,7 +58,10 @@ class ReportController extends Controller
         }
     }
 
-
+    private function getIssueCountOfDistrict($district_id){
+        return DB::table('issues')
+            ->where('district_id', $district_id)->whereNull('deleted_at') ->count();
+    }
 
     private function getIssuesByDistrictAndStatus($district_id, $issue_status)
     {
@@ -67,6 +71,7 @@ class ReportController extends Controller
             from issues 
             where district_id = :district_id
             and ( \'all\' = :issue_status or status = :issue_status_1)
+            and deleted_at is NULL
             order by supporter_count desc
             limit 10';
 
@@ -82,7 +87,8 @@ class ReportController extends Controller
             join issue_tag it on i.id = it.issue_id
             where district_id = :district_id
             and ( \'all\' = :issue_status or i.status = :issue_status_1)
-            and it.id = :tag_id
+            and it.tag_id = :tag_id
+            and i.deleted_at is NULL
             order by supporter_count desc
             limit 10';
 
@@ -93,6 +99,7 @@ class ReportController extends Controller
     private function getHoodsOfDistrictWithIssueCount($district_id){
         $hoodsOfDistrict = Hood::where('hoods.district_id', $district_id);
         return $hoodsOfDistrict->join('issues', 'hoods.id', '=', 'issues.hood_id')
+            ->whereNull('issues.deleted_at')
             ->selectRaw('hoods.*, count(issues.hood_id) as issueCount')
             ->groupBy('issues.hood_id')
             ->orderBy('issueCount','desc')
@@ -103,6 +110,7 @@ class ReportController extends Controller
         $query = 'select status, count(*) as statusCount
             from issues 
             where district_id = :district_id
+            and deleted_at is NULL
             group by status';
 
         $allIssuesStatusGroup = DB::select($query, ['district_id' => $district_id]);
@@ -119,7 +127,8 @@ class ReportController extends Controller
                     from issues i
                     join issue_tag it on i.id = it.issue_id
                     join tags t on t.id = it.tag_id
-                    where i.district_id = :district_id';
+                    where i.district_id = :district_id
+                    and i.deleted_at is NULL';
 
         if(isset($tag_id)){
             $query .= ' and t.id = :tag_id';

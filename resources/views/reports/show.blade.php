@@ -56,7 +56,7 @@
                         <div class="u-flex">
                             <div style="display: flex; flex-basis: 50%; flex-direction: column; justify-content: center;">
                                 <h4 class="chart-number h--light u-aligncenter c-light u-mb5">
-                                    {!! trans('issues.n_ideas_cap', ['number' => count($popularIssues)]) !!}
+                                    {!! trans('issues.n_ideas_cap', ['number' => $issueCount]) !!}
                                 </h4>
                                 {{-- // @aniluyg TODO: Click on section to filter map --}}
                                 <div id="chart_ideas">
