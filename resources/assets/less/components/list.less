@@ -91,6 +91,9 @@
     opacity: 1;
     pointer-events: all;
   }
+  .list-content--tagsFilterable.isFiltered li:not(.isActive) .tag {
+    background: @greyLighter !important;
+  }
 }
 .list li + li {
   border-top: 1px solid @greyLighter;
@@ -111,7 +114,7 @@
     p {
       font-size: 0.75em;
     }
-    .tag {
+    .tag:not(.tag-uncollapsible) {
       .tag-collapsed;
       font-size: 0;
       color: transparent;

@@ -30,7 +30,7 @@ class ReportController extends Controller
             $tagsOfDistrictWithIssueCount = $this->getTagsOfDistrictWithIssueCount($district_id, null);
             $issueCount = $this->getIssueCountOfDistrict($district_id);
 
-            return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData, 'tags' => $tagsOfDistrictWithIssueCount, 'issueCount'=>$issueCount]);
+            return response()->app(200, 'reports.show', ['popularIssues' => $popularIssues, 'hoods' => $hoodsOfDistrictWithIssueCount, 'district' => $district, 'ideaChartData' => $ideaChartData, 'tags' => array_reverse($tagsOfDistrictWithIssueCount), 'issueCount'=>$issueCount]);
           
         }
         else  {

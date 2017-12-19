@@ -144,7 +144,7 @@
                 <div class="list-header">
                     <h4>{{ trans('reports.categories') }}</h4>
                 </div>
-                <ul class="list-content" id="tagListContainer">
+                <ul class="list-content list-content--tagsFilterable" id="tagListContainer">
                     @include('partials.report-tags', ['tags' => $tags])
                 </ul>
             </div>
@@ -223,22 +223,22 @@
         google.visualization.events.addListener(chart, 'select', function() {
             selectedItem = chart.getSelection()[0];
 
-                var chartTarget = target;
-                if(chartTarget == 'chart_ideas'){
-                    if(selectedItem) {
-                        selectedStatus = source_data[selectedItem.row + 1][2];
-                    } else {
-                        selectedStatus = 'all';
-                    }
-
-                } else if(chartTarget == 'chart_categories'){
-                    if(selectedItem) {
-                        selectedTagId = source_data[selectedItem.row + 1][2];
-                    } else {
-                        selectedTagId = null; //all
-                    }
-                    debugger;
+            var chartTarget = target;
+            if(chartTarget == 'chart_ideas'){
+                if(selectedItem) {
+                    selectedStatus = source_data[selectedItem.row + 1][2];
+                } else {
+                    selectedStatus = 'all';
                 }
+
+            } else if(chartTarget == 'chart_categories'){
+                if(selectedItem) {
+                    selectedTagId = source_data[selectedItem.row + 1][2];
+                } else {
+                    selectedTagId = null; //all
+                }
+                // debugger;
+            }
             filterReportIdeasByStatusAndTag( selectedStatus, selectedTagId);
 
         });
@@ -291,6 +291,15 @@
                 $container.html(r);
                 $container.removeClass('isLoading');
                 $('#issueTypeOption').val(status);
+
+                if(tagId !== '') {
+                    $('#tagListContainer').addClass('isFiltered');
+                    $('#tagListContainer li').removeClass('isActive');
+                    $('#tagListContainer li[data-id="' + tagId + '"]').addClass('isActive');
+                } else {
+                    $('#tagListContainer').removeClass('isFiltered');
+                    $('#tagListContainer li').removeClass('isActive');
+                }
             },
             error: function() {
                 $container.removeClass('isLoading');
