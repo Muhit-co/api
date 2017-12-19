@@ -5,11 +5,23 @@
     "gulp-less": "^3.3.0",
     "gulp-util": "^3.0.8",
     "laravel-elixir": "^6.0.0-15",
-    "sigmund": "^1.0.1"
+    "sigmund": "^1.0.1",
+    "npm-run-all": "^3.1.1"
   },
   "engines": {
     "npm": "5.5.1",
     "node": "6.11.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "start": "npm-run-all --parallel serve build:watch",
+    "serve": "php artisan serve --host=127.0.0.1",
+    "build": "gulp --production",
+    "build:watch": "gulp watch",
+    "build:dev": "gulp",
+    "redis": "redis-server /usr/local/etc/redis.conf",
+    "mysql": "mysqld --gdb",
+    "app:queue": "php artisan queue:listen",
+    "stack": "npm-run-all --parallel redis mysql build:watch serve app:queue"
+  }
 }

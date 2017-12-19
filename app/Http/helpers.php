@@ -35,7 +35,8 @@ function getIssueStatus($status, $issue_supporters) {
 
 // Adds query parameter to current url
 function buildRelativeUrl($param, $value, $remove = '') {
-    parse_str($_SERVER['QUERY_STRING'], $query_string);
+    $qs = (isset($_SERVER['QUERY_STRING'])) ? $_SERVER['QUERY_STRING'] : '';
+    parse_str($qs, $query_string);
     $query_string[$param] = $value;
     if(strlen($remove) > 0) {
         unset($query_string[$remove]);
