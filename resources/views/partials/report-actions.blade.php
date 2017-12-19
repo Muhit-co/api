@@ -1,5 +1,27 @@
 {{-- Report Actions --}}
 
+<div class="form-group hasIconRight u-relative u-mr10">
+    <select class="form-input form-outline u-pr20">
+        <option selected>{{ trans('issues.all') }}</option>
+        {{-- // NB. TEMPORARY! Should be last 12 months  --}}
+        <option>{{strftime('%B %Y', strtotime("10/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("09/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("08/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("07/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("06/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("05/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("04/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("03/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("02/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("01/01/2017"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("12/01/2016"))}}</option>
+        <option>{{strftime('%B %Y', strtotime("11/01/2016"))}}</option>
+    </select>
+    <div class="form-appendRight u-aligncenter u-width30 u-pr15 u-mt5">
+        <i class="ion ion-chevron-down"></i>
+    </div>
+</div>
+
 <?php
 $title = $district->name . ' ' . trans('reports.municipality_report');
 
@@ -24,11 +46,11 @@ $facebook_url .= "&redirect_uri=" . 'http://www.muhit.co';
 $whatsapp_text = '%22' . $title . '%22%0A' . urlencode(Request::url());
 ?>
 
-<a href="javascript:alert('get downloadable pdf');" class="btn btn-blueempty u-ph10 u-nowrap" style="min-width: 3.5rem;">
+<a href="javascript:window.print();" class="btn btn-blueempty u-ph10 u-nowrap no-print" style="min-width: 3.5rem;">
     <i class="ion ion-document ion-15x"></i>
     <i class="ion ion-ios-arrow-thin-down ion-15x"></i>
 </a>
-<div class="hasDropdown u-inlineblock u-ml5">
+<div class="hasDropdown u-inlineblock u-ml5 no-print">
     <a href="javascript:void(0)" class="btn btn-blueempty">
         <i class="ion ion-android-share-alt ion-15x"></i>
     </a>

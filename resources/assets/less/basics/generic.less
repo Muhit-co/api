@@ -91,3 +91,12 @@ hr {
     display: block;
   }
 }
+
+
+
+/* --- Hide elements when printing/saving as PDF --- */
+@media print {    
+  .no-print, .no-print * {
+    display: none !important;
+  }
+}

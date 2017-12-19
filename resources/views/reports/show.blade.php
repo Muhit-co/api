@@ -12,33 +12,11 @@
                             <h4 class="u-lineheight30 c-light">{{ trans('reports.municipality_report_cap') }}</h4>
                             <div class="u-flex">
                                 <h1 class="h--light u-mt5 c-bluedark"><big>{{$district->name}}</big></h1>
-                                <big class="u-block c-bluedark u-mt15 u-ml15">{{$district->city->name}}</big>
+                                <big class="u-block c-bluedark u-ml15" style="margin-top: 12px;">{{$district->city->name}}</big>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-5 u-flex">
-
-                        <div class="form-group hasIconRight u-relative u-mr10">
-                            <select class="form-input form-outline u-pr20">
-                                <option selected>{{ trans('issues.all') }}</option>
-                                {{-- // NB. TEMPORARY! Should be last 12 months  --}}
-                                <option>{{strftime('%B %Y', strtotime("10/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("09/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("08/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("07/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("06/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("05/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("04/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("03/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("02/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("01/01/2017"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("12/01/2016"))}}</option>
-                                <option>{{strftime('%B %Y', strtotime("11/01/2016"))}}</option>
-                            </select>
-                            <div class="form-appendRight u-aligncenter u-width30 u-pr15 u-mt5">
-                                <i class="ion ion-chevron-down"></i>
-                            </div>
-                        </div>
 
                         @include('partials.report-actions', array('district' => $district))
 
