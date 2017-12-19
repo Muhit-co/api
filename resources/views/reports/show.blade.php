@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="card">
-                <div class="card-content u-pa0 u-clearfix">
+                <div class="card-content row row-nopadding u-pa0 u-clearfix">
                     <div class="col-xs-12 col-sm-5 u-pv20 c-light">
 
                         <div class="u-flex">
@@ -83,8 +83,15 @@
                         </div>
 
                     </div>
-                    <div class="col-xs-12 col-sm-7" style="background-size: cover; background-position: center; background-image: url('/images/mockup-map-kadikoy.jpg'); min-height: 40vh;">
+                    <div class="media-map col-xs-12 col-sm-7">
+                        <div id="map-canvas" class="map-canvas map-canvas--report">
+                        </div>
+                        <script>
+                            mapInitialize();
+                        </script>
                     </div>
+                    {{-- <div class="col-xs-12 col-sm-7" style="background-size: cover; background-position: center; background-image: url('/images/mockup-map-kadikoy.jpg'); min-height: 40vh;">
+                    </div> --}}
                 </div>
             </div>
         </div>
