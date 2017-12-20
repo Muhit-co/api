@@ -3,7 +3,7 @@
     <div class="row row-nopadding">
         <div class="col-xs-12">
 
-            <div class="extended u-floatleft"><a href="/" target="_self" class="btn btn-blueempty u-mt15 u-ml15"><i class="ion ion-chevron-left"></i></a></div>
+            <div class="extended u-floatleft no-print"><a href="/" target="_self" class="btn btn-blueempty u-mt15 u-ml15"><i class="ion ion-chevron-left"></i></a></div>
 
             <a href="/" class="u-floatleft u-pv15 u-pl10">
                 @include('partials.logo_svg', array('height' => '36px', 'colour' => 'blue'))
@@ -13,7 +13,7 @@
                 @include('partials.userinfo')
             @else
                 {{-- user is not logged in --}}
-                <div class="u-floatright u-nowrap">
+                <div class="u-floatright u-nowrap no-print">
 
                     <div class="lang-switcher u-inlineblock u-pv20 u-ph10 u-lineheight30 col-xs-hide c-blue">
                         @include('partials.lang-switcher', ['state' => 'full'])

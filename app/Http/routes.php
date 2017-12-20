@@ -21,7 +21,7 @@ Route::get('/lang/{loc}', function ($loc) {
 
 # reports routing
 Route::get('/report/district/{districtId}', 'ReportController@getReportDistrictById');
-Route::post('/report/district/{districtId}/issues', 'ReportController@getReportDistrictIssues');
+Route::get('/report/district/{districtId}/issues', 'ReportController@getReportDistrictIssues');
 
 /*Route::get('/report', function () {
     return view('reports.show');
