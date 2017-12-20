@@ -15,7 +15,7 @@
     height: 20px;
     .rounded(50%);
   }
-  &.badge-circle {
+  &.badge-circle-small {
     width: 40px;
     height: 40px;
     .rounded(50%);
@@ -81,6 +81,18 @@
       -webkit-transform-origin: center center;
       -moz-transform-origin: center center;
       transform-origin: center center;
+    }
+  }
+  &.badge-support-outline {
+    padding-top: 8px;
+
+    &.badge-in-progress {
+      border: 1px solid @purple;
+      color: @purple;
+    }
+    &.badge-solved {
+      border: 1px solid @deepGreen;
+      color: @deepGreen;
     }
   }
   &.badge-image {

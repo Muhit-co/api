@@ -7,7 +7,7 @@
 
 <section id="issues">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1" id="issueListContainer">
+        <div class="col-xs-12 col-sm-8" id="issueListContainer">
 
             @if (isset($_GET['sort']) && $_GET['sort'] == 'map')
                 @include('partials.issues-map', ['issues' => $issues])
@@ -16,6 +16,9 @@
             @endif
 
         </div>
+    	<div class="col-xs-12 col-sm-4">
+    		@include('partials.issues-latest-updates')
+    	</div>
     </div>
 </section>
 
