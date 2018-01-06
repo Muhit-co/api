@@ -278,13 +278,39 @@ class IssuesController extends Controller {
 			return response()->api(200, 'Issues', $issues->toArray());
 		}
 
+		$latestUpdatedIssues = $this->getLatestUpdatedIssues($hood, $district);
 		view()->share('pageTitle', 'Fikir listesi - ');
 		session(['last_page' => Request::path()]);
-		return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'issues_count' => $issues->count(), 'hood' => $hood , 'district' => $district, 'all_districts' => $all_districts]);
+		return response()->app(200, 'issues.list', ['issues' => $issues->paginate(20), 'issues_count' => $issues->count(), 'hood' => $hood , 'district' => $district, 'all_districts' => $all_districts, 'latestUpdatedIssues' => $latestUpdatedIssues]);
 
 	}
 
-	/**
+	private function getLatestUpdatedIssues($hood = null, $district = null)
+    {
+        $hood_id = null;
+        $district_id = null;
+        if(isset($hood))
+            $hood_id = $hood->id;
+        if(isset($district))
+            $district_id = $district->id;
+
+        $query = 'select i.id,i.title,i.status, u.username as commenter, c.updated_at
+            from issues i 
+            join comments c 
+            on i.id = c.issue_id
+            join users u 
+            on c.user_id = u.id
+            where (:district_id is NULL or i.district_id = :district_id_1)
+            and (:hood_id is NULL or i.hood_id = :hood_id_1)
+            and i.deleted_at is NULL
+            order by c.updated_at desc
+            limit 3';
+
+        return DB::select($query, ['district_id' => $district_id,'district_id_1' => $district_id, 'hood_id' => $hood_id, 'hood_id_1' => $hood_id]);
+
+    }
+
+            /**
 	 * returns json format of the issues for map datas
 	 *
 	 * @return json
