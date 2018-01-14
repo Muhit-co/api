@@ -7,7 +7,7 @@
 	<ul class="list-content">
 		@foreach($latestUpdatedIssues as $issue)
 
-			<?php $issue_status = getIssueStatus($issue->status, 0); ?>
+			<?php $issue_status = getIssueStatus($issue->status, 5); ?>
 
 			<li>
 				<a href="/issues/view/{{$issue->id}}">
