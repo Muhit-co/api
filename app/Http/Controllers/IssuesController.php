@@ -294,7 +294,7 @@ class IssuesController extends Controller {
         if(isset($district))
             $district_id = $district->id;
 
-        $query = 'select i.id,i.title,i.status, u.username as commenter, c.updated_at
+        $query = 'select i.id,i.title,i.status, CONCAT(u.first_name ," ", u.last_name) as commenter, c.updated_at
             from issues i 
             join comments c 
             on i.id = c.issue_id
@@ -304,7 +304,7 @@ class IssuesController extends Controller {
             and (:hood_id is NULL or i.hood_id = :hood_id_1)
             and i.deleted_at is NULL
             order by c.updated_at desc
-            limit 3';
+            limit 10';
 
         return DB::select($query, ['district_id' => $district_id,'district_id_1' => $district_id, 'hood_id' => $hood_id, 'hood_id_1' => $hood_id]);
 
