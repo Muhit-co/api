@@ -221,7 +221,7 @@ class IssuesController extends Controller {
         //Get cities and districts in these cities order by city name and district issue count
         $query =
             'select distinct name, city_name, issue_count from(
-                select d.name, city_issues.name as city_name, (select count(*) from issues issue where issue.district_id = d.id) as issue_count
+                select d.name, city_issues.name as city_name, (select count(*) from issues issue where issue.district_id = d.id and issue.deleted_at is NULL) as issue_count
                 from districts d
                 join (select  i.city_id id, c.name , count(i.city_id) as icount from cities c join issues i on c.id = i.city_id  where i.deleted_at is NULL group by i.city_id, c.name order by icount desc
                 ) city_issues
