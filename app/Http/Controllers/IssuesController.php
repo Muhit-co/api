@@ -218,8 +218,19 @@ class IssuesController extends Controller {
 		$issues = Issue::with('user', 'tags', 'images', 'comments.muhtar');
 
 		// Gets all available districts. @TODO: separate into own (async) request
-		$all_districts = District::with('city','issues')->get();
-		// $all_districts = array();
+        //Get cities and districts in these cities order by city name and district issue count
+        $query =
+            'select distinct name, city_name, issue_count from(
+                select d.name, city_issues.name as city_name, (select count(*) from issues issue where issue.district_id = d.id and issue.deleted_at is NULL) as issue_count
+                from districts d
+                join (select  i.city_id id, c.name , count(i.city_id) as icount from cities c join issues i on c.id = i.city_id  where i.deleted_at is NULL group by i.city_id, c.name order by icount desc
+                ) city_issues
+                on d.city_id = city_issues.id
+                join issues i on d.id = i.district_id
+                where i.deleted_at is NULL
+                order by city_issues.icount desc, d.name asc
+              ) subquery;';
+        $all_districts = DB::select($query);
 
 		$hood = null;
 		$district = null;
