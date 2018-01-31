@@ -5,7 +5,7 @@
 	</div>
 
 	<ul class="list-content">
-		@foreach($latestUpdatedIssues as $issue)
+		@foreach($latestUpdatedIssues as $key=>$issue)
 
 			<?php $issue_status = getIssueStatus($issue->status, 5); ?>
 
@@ -18,9 +18,9 @@
 						<small>
 							<div class="u-mb5">
 								<div class="u-floatright u-opacity75 hasTooltip">
-									X gün önce
-                                    <div class="tooltip tooltip-compact tooltip-alignright" style="width: auto; white-space: nowrap;">
-                                    	{{ strftime('%d %h %Y %H:%M:%S', strtotime($issue->updated_at)) }}
+									<span id="relativeTimeSpan_{{$key}}"></span>
+                                    <div id="relativeTimeTooltip_{{$key}}" name="relativeTimeTooltip" class="tooltip tooltip-compact tooltip-alignright" style="width: auto; white-space: nowrap;">
+                                    	{{ strftime('%d.%m.%Y %H:%M:%S', strtotime($issue->updated_at)) }}
                                     </div>
 								</div>
 								FİKİR GÜNCELLENDİ
@@ -35,3 +35,19 @@
 		@endforeach
 	</ul>
 </div>
+
+<script type="text/javascript">
+    var issueIds = [
+		@foreach($latestUpdatedIssues as $issue)
+         {{ $issue->id }},
+		@endforeach
+    ];
+
+	moment.locale('{{App::getLocale()}}');
+    $.each( issueIds, function( key, value ) {
+        var time = $('#relativeTimeTooltip_'+key).text();
+        var relativeTime = moment(time, "DD.MM.YYYY hh:mm:ss").fromNow()
+		$('#relativeTimeSpan_'+key).text(relativeTime);
+
+    });
+</script>
