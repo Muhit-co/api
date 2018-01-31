@@ -7,7 +7,16 @@
         @endif
 
         <div class="row u-pv10">
-            <div class="col-md-6 col-md-offset-1 col-sm-6">
+            <div class="col-xs-12 col-sm-8">
+
+
+                <div class="hasDropdown u-floatright u-mt5">
+                    <a href="javascript:void(0)" id="district_dropdown_btn" onclick="$('#district_dropdown').toggleClass('isOpen');" class="btn btn-sm <?php if(isset($district)) { echo 'btn-white'; } else { echo 'btn-whiteoutline'; } ?>">
+                        {{ trans('issues.districts_cap') }}
+                        <i class="ion ion-chevron-down u-ml5"></i>
+                    </a>
+                </div>
+                
 
                 <h2 class="u-clearfix">
                     <!-- change mahalle -->
@@ -65,14 +74,7 @@
                 </h4>
 
             </div>
-            <div class="col-md-4 col-sm-6 u-clearfix">
-
-                <div class="hasDropdown u-inlineblock u-mt5">
-                    <a href="javascript:void(0)" id="district_dropdown_btn" onclick="$('#district_dropdown').toggleClass('isOpen');" class="btn btn-sm <?php if(isset($district)) { echo 'btn-white'; } else { echo 'btn-whiteoutline'; } ?>">
-                        {{ trans('issues.districts_cap') }}
-                        <i class="ion ion-chevron-down u-ml5"></i>
-                    </a>
-                </div>
+            <div class="col-xs-12 col-sm-4 u-clearfix">
 
                 <!-- use current location -->
                 {{-- <div class="u-floatleft u-mr20">
@@ -101,7 +103,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-12">
 
                 @include('partials.district-dropdown', ['all_districts' => $all_districts, 'district' => $district])
 
