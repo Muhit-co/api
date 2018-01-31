@@ -33,6 +33,8 @@ if(strlen($issue['problem']) > 0) {
             <?php
             $issue_supporters = (int) Redis::get('supporter_counter:' . $issue['id']);
             $issue_status = getIssueStatus($issue['status'], $issue_supporters);
+            $neighbourhood = trim( explode(',', $issue['location'], 2)[0] );
+            $distr_city = trim( explode(',', $issue['location'], 2)[1] );
             ?>
 
             {{-- Card start --}}
@@ -43,8 +45,11 @@ if(strlen($issue['problem']) > 0) {
                         @include('partials.issue-actions', array('issue' => $issue))
                     </div>
 
-                    <a href="javascript:window.history.back()" class="u-floatleft u-pr10"><i class="ion ion-android-arrow-back ion-2x"></i></a>
-                    <span class="title u-inlineblock u-mt5">{{$issue['location']}}</span>
+                    <a href="javascript:window.history.back()" class="u-floatleft u-pr20"><i class="ion ion-android-arrow-back ion-2x"></i></a>
+                    <span class="title u-inlineblock u-mt5">
+                        <a href="/fikirler?{{ buildRelativeUrl('location', $issue['location'] ) }}">{{ $neighbourhood }}</a>,
+                        <a href="/fikirler?{{ buildRelativeUrl('district', $distr_city , 'location' ) }}">{{ $distr_city }}</a>
+                    </span>
                 </div>
                 <div class="card-content">
 
