@@ -42,8 +42,11 @@
          {{ $issue->id }},
 		@endforeach
     ];
-
-	moment.locale('{{App::getLocale()}}');
+	var locale = '{{App::getLocale()}}';
+	if(!locale){
+		locale = 'tr'; //default locale
+	}
+	moment.locale(locale);
     $.each( issueIds, function( key, value ) {
         var time = $('#relativeTimeTooltip_'+key).text();
         var relativeTime = moment(time, "DD.MM.YYYY hh:mm:ss").fromNow()
