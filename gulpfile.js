@@ -18,6 +18,8 @@ elixir(function(mix) {
         "vendors/jquery.smooth-scroll.js",
         "vendors/jquery.slides.js",
         "vendors/fastclick.js",
+        "moment/moment.js",
+        "moment/moment-with-locales.js",
         "app.js",
         "scripts.js",
         "maps.js",
