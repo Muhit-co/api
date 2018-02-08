@@ -52,6 +52,7 @@
 		var formattedTime = moment(time).utcOffset(offset).format('DD.MM.YYYY HH:mm:ss');
         var relativeTime = moment(formattedTime, "DD.MM.YYYY HH:mm:ss").fromNow();
 
+        $('#relativeTimeTooltip_'+key).text(formattedTime);
         $('#relativeTimeSpan_'+key).text(relativeTime);
 
     });
