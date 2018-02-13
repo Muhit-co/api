@@ -19,9 +19,11 @@
 							<div class="u-mb5">
 								<div class="u-floatright u-opacity75 hasTooltip">
 									<span id="relativeTimeSpan_{{$key}}"></span>
-                                    <div id="relativeTimeTooltip_{{$key}}" name="relativeTimeTooltip" class="tooltip tooltip-compact tooltip-alignright" style="width: auto; white-space: nowrap;">
-                                    	{{ strftime('%d.%m.%Y %H:%M:%S', strtotime($issue->updated_at)) }}
-                                    </div>
+
+                                    <div id="relativeTimeTooltip_{{$key}}" name="relativeTimeTooltip" class="tooltip tooltip-compact tooltip-alignright" style="width: auto; white-space: nowrap;" >
+
+										{{ $issue->updated_at }}
+									</div>
 								</div>
 								FİKİR GÜNCELLENDİ
 							</div>
@@ -46,11 +48,18 @@
 	if(!locale){
 		locale = 'tr'; //default locale
 	}
-	moment.locale(locale);
+    moment.locale(locale);
+    var serverOffset = '{{date('Z')/60}}';
+	var clientOffset = moment().utcOffset();
+    var offset = clientOffset - serverOffset;
     $.each( issueIds, function( key, value ) {
-        var time = $('#relativeTimeTooltip_'+key).text();
-        var relativeTime = moment(time, "DD.MM.YYYY hh:mm:ss").fromNow()
-		$('#relativeTimeSpan_'+key).text(relativeTime);
+        var time = $('#relativeTimeTooltip_'+key).text().trim();
+
+        var formattedTime = moment.utc(time).utcOffset(offset).format('DD.MM.YYYY HH:mm:ss');
+        var relativeTime = moment(formattedTime, "DD.MM.YYYY HH:mm:ss").fromNow();
+
+        $('#relativeTimeTooltip_'+key).text(formattedTime);
+        $('#relativeTimeSpan_'+key).text(relativeTime);
 
     });
 </script>
