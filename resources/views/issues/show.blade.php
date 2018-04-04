@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 @section('dialogs')
-    @if($role =='admin' || $role == 'municipality-admin')
+    @if($role == 'admin' || $role == 'municipality-admin' || $role == 'superadmin')
         @include('dialogs.write_comment', ['issue_id' => $issue['id']])
         @include('dialogs.edit_comment', ['issue_id' => $issue['id']])
         @include('dialogs.come_drink_tea', ['issue_id' => $issue['id']])
@@ -171,10 +171,10 @@ if(strlen($issue['problem']) > 0) {
                                 <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored u-ml10" onclick="return confirm('{{ trans('issues.delete_confirm') }}');"><i class="ion ion-trash-b u-mr5"></i> {{ trans('auth.delete_cap') }}</a>
                             @else
                                 <span class="hasTooltip u-ml10">
-                                    <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                                    <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> {{ trans('auth.delete_cap') }}</a>
                                     <span class="tooltip tooltip-alignright u-mr20">
                                         <i class="ion ion-information-circled ion-15x u-floatleft u-mv10 u-mr10"></i>
-                                        <div class="u-ml30">{{ trans('issues.delete_restricted_supporters_tooltip') }}.</div>
+                                        <div class="u-ml30">{{ trans('issues.delete_restricted_supporters') }}.</div>
                                     </span>
                                 </span>
                             @endif
