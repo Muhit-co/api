@@ -65,7 +65,7 @@ return [
     "write_comment" => "Write a comment",
     "write_comment_descr" => "Are there any developments or change in status around this idea? Write your comment here. This comment will be visible to everyone (public).",
     "edit_comment" => "Edit comment",
-    "delete_comment_confirmation" => "Are you sure you want to delete this idea? You cannot undo this action.",
+    "delete_comment_confirmation" => "Are you sure you want to delete this comment? You cannot undo this action.",
     "change_status_progress" => "Mark this idea as 'in progress'!",
     "placeholder_your_message" => "Write your comment here...",
     "change_status_progress_descr" => "Would you like to take action on this idea? You might need to contact appropriate agencies in the municipality to solve this idea. ",

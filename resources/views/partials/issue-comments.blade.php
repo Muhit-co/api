@@ -16,6 +16,8 @@
                         <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
                             <i class="ion ion-edit"></i>
                         </a>
+                    @elseif(Auth::check() && Auth::user()->level > 6))
+                        <a href="/issues/delete/{{$issue['id']}}" class="btn btn-sm btn-tertiary btn-greytored u-ml10" onclick="return confirm('{{ trans('issues.delete_comment_confirmation') }}');"><i class="ion ion-trash-b u-mr5"></i> {{ trans('auth.delete_cap') }}</a>
                     @endif
                 </div>
                 <p class="u-lineheight20">

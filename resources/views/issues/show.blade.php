@@ -166,9 +166,9 @@ if(strlen($issue['problem']) > 0) {
 
                 <div class="card-footer u-clearfix">
                     <div class="u-floatright">
-                        @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 5))
+                        @if(Auth::check() and (Auth::user()->id == $issue['user_id'] or Auth::user()->level > 6))
                             @if($issue_supporters < 10)
-                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored u-ml10" onclick="return confirm('{{ trans('issues.delete_confirm') }}');"><i class="ion ion-trash-b u-mr5"></i> SİL</a>
+                                <a href="/issues/delete/{{$issue['id']}}" class="btn btn-tertiary btn-greytored u-ml10" onclick="return confirm('{{ trans('issues.delete_confirm') }}');"><i class="ion ion-trash-b u-mr5"></i> {{ trans('auth.delete_cap') }}</a>
                             @else
                                 <span class="hasTooltip u-ml10">
                                     <a href="javascript:void(0)" class="btn" disabled><i class="ion ion-trash-b u-mr5"></i> SİL</a>
