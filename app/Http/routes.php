@@ -163,3 +163,19 @@ Route::group(['prefix' => 'api'], function () {
         });
     });
 });
+
+
+# Temporary Workshop routes
+# For Haritalama Workshop, Ekim 2018
+Route::get('/anket/halic', function () {
+    return view('workshop.halic');
+});
+Route::get('/anket/karakoy', function () {
+    return view('workshop.karakoy');
+});
+Route::get('/anket/tophane', function () {
+    return view('workshop.tophane');
+});
+Route::get('/anket/findikli', function () {
+    return view('workshop.findikli');
+});
