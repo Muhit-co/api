@@ -11,6 +11,7 @@ notifications:
 
 deploy:
   - provider: elasticbeanstalk
+    skip_cleanup: true
     access_key_id: 
       secure: QQYc+cdhycjmxInCd1qCNeUQptZyJPAjHl5tAY6b54YuhWIzJapnXrWWeL0snebelzRvi82vk+Tc7YcK0zIzsXM62/K4OUqAlsfAnih5cnm234w9EYfcHOzJY2fFcrgbLkWRKXWXTB3YhcT4/N6W0KwGUYhpiOgD0cZ+Sez5iwAJO4XPP/z0G8ellFhsH3UJrsi/iULPTPA6Spp44tTd9k4uLrd86A+28GsKLjVjQ52xbTlC3BHxmozTC5u0j9Z5KwNDqRMLrEgiXA23Oni8Bl5WO+0177NEtGU7SeJP0cifHg21RQYMMZ//3CbK/WooeVn+LrpiRUzdx7Kkd4g3IqAn5V7p/A7u9vvWuzwSgLx8qymp9EncNP4WV9rus5zhaE08hQqO+nZoebPR+vpVrFj/zieU94jjCNUxrPiqvvc066Qidxjfw/AaeMf6A9Y1tDOWBs5dSZshG9Wpu+ch1IWTvFLhLrMByqEt5kMh2s2zyiUqLSeyrwnBOWHr/PKBx/BJXGVy2K/7up1xjefzbCWbSU4F/U8wEtLocGoleL07qoU6AOnrKllO7TtOGvhoEcclFgnjg/AdJdKlqsehzSSBRQdWUKucIegsuE6WeDqoTlrPiLZ8Kqjn2K4wxEk/WCFtNu+DUaXS9hluU+BVNPSJezG3fIophh4KbanDP1A=
     secret_access_key:
@@ -20,7 +21,6 @@ deploy:
       secure: LBezfVKi8ZOVae10OEVdjNNp7sM3qQcDKm7R+BPkwdqMK4TqgE1sdQVpBQw8F/2hIB7Eo7zI6HJKfoNqZfgtB9OMQjq2/wQYhMziJGNAe8n6fcuxXcHTv1vFpLk0LRDz3HXSKZQiGibw1pKAziZQHq/qqTrSZQzOHWoEHAzDI9J8H+hY0+Gb+RI/veN+0MyyOxDbD7TZkd4ByEJb1GlajIy0/DAZhvzd5jqyl1jODhV9VK5+JJNY+bUdjKQrSBopMZgEE8xSxvvQOcelgcMof9CqhwF921LsL9i7cgQNE7CeOeTbV3CDY8hOGlOwafZJGb4CZmLEXQVnfjBI2FcIpXCvFTVMIPJqEpywuWRCq4gB0KGw1IOEjRlfL/1kbgI3Bjsi/p1POeKL7Krm4DZE6p4hysx3zZLGDxIBswrzH4Gq5f8pw0xAJkxq6f3fQa5D/KBK7K9QI+v7+rbX6ezt7IHDDnIj1xxpdiKSDgkZc+4VjAGjaUWu/DBfff+bjpslQy9XcZ/ujZ8muHTbZOiuqpjw38zx3HVo/SQqRo435Bq1GHI4uSvS5ryaYAl3Obbgj6zKZNRzRA1EeRTEGcJYUDKpmuzKq0ZkoL8Fu6XjTV8z8UzHItjKrPPI7I5tDRA4m0MaDjYp5uuV8md9Ii9+ebsJDPb4yD7Lw8ghySo8AKQ=
     env: app-stage
     bucket_name: muhit-travis-ci 
-    skip_cleanup: true
     on:
       repo: Muhit-co/api
       branch: feature/*
