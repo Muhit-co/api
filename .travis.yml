@@ -15,6 +15,7 @@ before_deploy:
   - echo ${TRAVIS_COMMIT}
   - cd ..
   - zip MuhitAPP-stage-${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip ${TRAVIS_BUILD_DIR}
+  - mv MuhitAPP-stage-${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip ${TRAVIS_BUILD_DIR}/
   - ls -al
   - cd ${TRAVIS_BUILD_DIR}
   - ls -al
