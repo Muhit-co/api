@@ -11,7 +11,6 @@ notifications:
 
 deploy:
   - provider: elasticbeanstalk
-    skip_cleanup: true
     access_key_id: 
       secure: QQYc+cdhycjmxInCd1qCNeUQptZyJPAjHl5tAY6b54YuhWIzJapnXrWWeL0snebelzRvi82vk+Tc7YcK0zIzsXM62/K4OUqAlsfAnih5cnm234w9EYfcHOzJY2fFcrgbLkWRKXWXTB3YhcT4/N6W0KwGUYhpiOgD0cZ+Sez5iwAJO4XPP/z0G8ellFhsH3UJrsi/iULPTPA6Spp44tTd9k4uLrd86A+28GsKLjVjQ52xbTlC3BHxmozTC5u0j9Z5KwNDqRMLrEgiXA23Oni8Bl5WO+0177NEtGU7SeJP0cifHg21RQYMMZ//3CbK/WooeVn+LrpiRUzdx7Kkd4g3IqAn5V7p/A7u9vvWuzwSgLx8qymp9EncNP4WV9rus5zhaE08hQqO+nZoebPR+vpVrFj/zieU94jjCNUxrPiqvvc066Qidxjfw/AaeMf6A9Y1tDOWBs5dSZshG9Wpu+ch1IWTvFLhLrMByqEt5kMh2s2zyiUqLSeyrwnBOWHr/PKBx/BJXGVy2K/7up1xjefzbCWbSU4F/U8wEtLocGoleL07qoU6AOnrKllO7TtOGvhoEcclFgnjg/AdJdKlqsehzSSBRQdWUKucIegsuE6WeDqoTlrPiLZ8Kqjn2K4wxEk/WCFtNu+DUaXS9hluU+BVNPSJezG3fIophh4KbanDP1A=
     secret_access_key:
