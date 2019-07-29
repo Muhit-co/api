@@ -10,13 +10,13 @@ notifications:
     secure: jU9WRRWKjSxVnCL4X4CR/3LSFIJU+nOpiDyVhRyq0QF6q99U5UUj8nm8KP6w4bPnMORfuBUVqzXhDdNwfYipOLpRUB0xmJk/qzaT8MB8MAgBbqnMfIszuG59FZJbsfPT+Xe37Nbe1m0nX/1u3XAxWafgAiLA4zH2jLzC2FrSKgnTWX+bY95YRZfihSvpnSf+CTjsmrf687L3LhlrcYf/Fn6XjwHkdtS8WieAE6aSzdJ9IHepnEM9Bfi3era2QvX/fdUNLCM4rTkTDW7nlvU5zFLRSPEy5CIgqBnQqbki8JcjUnVkn64Z/lu4XbgYlq1WZyHG8TUOHYV0HzAwDZoTtOi3vvQ3BpDyb0DrtMGNkIjSeDPBk1HRsxcw2t0ih5r8cE0KMSUokKiJRi9ALv1fXgJGZAtDzYIYzHg8VcgbpclFfURpOSzQEpRo6UcZDfhK0jpSeUiv2SKm+EmLICVlOqYoSR1y5KZZKNEhXvSKZUnyALTA251RfiI//XoUb9xuT28CiOEPVSgtzi9m1ZrohuLPWYDVUlpDH4tga95Q0614xq97FYIXK6SM10wh7vDrxKq3YMd4R7rFQqf5tPsCSSEbk0NaRBNP0sIy0R1zG0/yRx6yHRKuBwe59sfN+/wnxfjeUJyuoz/b53YTg6//bxv/EIgGYx6WQHi88k/xNNU=
 
 before_deploy:
-  - zip --exclude=node_modules -r ../MuhitAPP-${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip ./*
-  - mv ../MuhitAPP-stage-${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip ${TRAVIS_BUILD_DIR}/
+  - zip --exclude=*node_modules* -r ../MuhitAPP-${TRAVIS_BUILD_NUMBER}.zip ./*
+  - mv ../MuhitAPP-stage-${TRAVIS_BUILD_NUMBER}.zip ${TRAVIS_BUILD_DIR}/
 
 deploy:
   - provider: elasticbeanstalk
     skip_cleanup: true
-    zip_file: MuhitAPP-${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip
+    zip_file: MuhitAPP-${TRAVIS_BUILD_NUMBER}.zip
     access_key_id: 
       secure: QQYc+cdhycjmxInCd1qCNeUQptZyJPAjHl5tAY6b54YuhWIzJapnXrWWeL0snebelzRvi82vk+Tc7YcK0zIzsXM62/K4OUqAlsfAnih5cnm234w9EYfcHOzJY2fFcrgbLkWRKXWXTB3YhcT4/N6W0KwGUYhpiOgD0cZ+Sez5iwAJO4XPP/z0G8ellFhsH3UJrsi/iULPTPA6Spp44tTd9k4uLrd86A+28GsKLjVjQ52xbTlC3BHxmozTC5u0j9Z5KwNDqRMLrEgiXA23Oni8Bl5WO+0177NEtGU7SeJP0cifHg21RQYMMZ//3CbK/WooeVn+LrpiRUzdx7Kkd4g3IqAn5V7p/A7u9vvWuzwSgLx8qymp9EncNP4WV9rus5zhaE08hQqO+nZoebPR+vpVrFj/zieU94jjCNUxrPiqvvc066Qidxjfw/AaeMf6A9Y1tDOWBs5dSZshG9Wpu+ch1IWTvFLhLrMByqEt5kMh2s2zyiUqLSeyrwnBOWHr/PKBx/BJXGVy2K/7up1xjefzbCWbSU4F/U8wEtLocGoleL07qoU6AOnrKllO7TtOGvhoEcclFgnjg/AdJdKlqsehzSSBRQdWUKucIegsuE6WeDqoTlrPiLZ8Kqjn2K4wxEk/WCFtNu+DUaXS9hluU+BVNPSJezG3fIophh4KbanDP1A=
     secret_access_key:
@@ -32,7 +32,7 @@ deploy:
   
   - provider: elasticbeanstalk
     skip_cleanup: true
-    zip_file: MuhitAPP-${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip
+    zip_file: MuhitAPP-${TRAVIS_BUILD_NUMBER}-.zip
     access_key_id: 
       secure: QQYc+cdhycjmxInCd1qCNeUQptZyJPAjHl5tAY6b54YuhWIzJapnXrWWeL0snebelzRvi82vk+Tc7YcK0zIzsXM62/K4OUqAlsfAnih5cnm234w9EYfcHOzJY2fFcrgbLkWRKXWXTB3YhcT4/N6W0KwGUYhpiOgD0cZ+Sez5iwAJO4XPP/z0G8ellFhsH3UJrsi/iULPTPA6Spp44tTd9k4uLrd86A+28GsKLjVjQ52xbTlC3BHxmozTC5u0j9Z5KwNDqRMLrEgiXA23Oni8Bl5WO+0177NEtGU7SeJP0cifHg21RQYMMZ//3CbK/WooeVn+LrpiRUzdx7Kkd4g3IqAn5V7p/A7u9vvWuzwSgLx8qymp9EncNP4WV9rus5zhaE08hQqO+nZoebPR+vpVrFj/zieU94jjCNUxrPiqvvc066Qidxjfw/AaeMf6A9Y1tDOWBs5dSZshG9Wpu+ch1IWTvFLhLrMByqEt5kMh2s2zyiUqLSeyrwnBOWHr/PKBx/BJXGVy2K/7up1xjefzbCWbSU4F/U8wEtLocGoleL07qoU6AOnrKllO7TtOGvhoEcclFgnjg/AdJdKlqsehzSSBRQdWUKucIegsuE6WeDqoTlrPiLZ8Kqjn2K4wxEk/WCFtNu+DUaXS9hluU+BVNPSJezG3fIophh4KbanDP1A=
     secret_access_key:
