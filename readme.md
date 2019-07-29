@@ -1,6 +1,10 @@
 # Muhit API
 
-[ ![Codeship Status for Muhit-co/api](https://codeship.com/projects/dbffa660-e41a-0132-e4fa-16773c71d38d/status?branch=master)](https://codeship.com/projects/81787)
+### Build Status
+#### Master: 
+[![Build Status](https://travis-ci.org/Muhit-co/api.svg?branch=master)](https://travis-ci.org/Muhit-co/api)
+#### Staging: 
+[![Build Status](https://travis-ci.org/Muhit-co/api.svg?branch=develop)](https://travis-ci.org/Muhit-co/api)
 
 ## Local Development 
 
