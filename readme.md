@@ -3,8 +3,6 @@
 ### Build Status
 #### Master: 
 [![Build Status](https://travis-ci.org/Muhit-co/api.svg?branch=master)](https://travis-ci.org/Muhit-co/api)
-#### Staging: 
-[![Build Status](https://travis-ci.org/Muhit-co/api.svg?branch=develop)](https://travis-ci.org/Muhit-co/api)
 
 ## Local Development 
 
