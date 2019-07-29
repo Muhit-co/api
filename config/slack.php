@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'endpoint' => 'https://hooks.slack.com/services/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',
+    'endpoint' => env('SLACK_HOOK_IDEA', ''),
 
     /*
     |-------------------------------------------------------------
