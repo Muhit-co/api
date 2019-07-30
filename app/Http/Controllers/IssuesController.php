@@ -306,10 +306,10 @@ class IssuesController extends Controller {
             $district_id = $district->id;
 
         $query = 'select i.id,i.title,i.status, CONCAT(u.first_name ," ", u.last_name) as commenter, c.updated_at
-            from issues i 
-            join comments c 
+            from issues i
+            join comments c
             on i.id = c.issue_id
-            join users u 
+            join users u
             on c.user_id = u.id
             where (:district_id is NULL or i.district_id = :district_id_1)
             and (:hood_id is NULL or i.hood_id = :hood_id_1)
@@ -726,7 +726,11 @@ class IssuesController extends Controller {
 			Redis::incr('user_supported_issue_counter:' . $user_id);
 			DB::table('issues')->where('id', $id)->increment('supporter_count');
 			$su_counter = (int) Redis::incr('supporter_counter:' . $id);
-			Redis::zadd('issue_supporters:' . $id, time(), $user_id);
+            Redis::zadd('issue_supporters:' . $id, time(), $user_id);
+
+            // for some reason if the counter on redis falls behind, lets make it catch up.
+            $db_counter = $issue->supporter_count + 1;
+            $this->syncCounter($id, $su_counter, $db_counter);
 
 			$this->dispatch(new SendIssueSupportedEmail($user_id, $id));
 		} catch (Exception $e) {
@@ -798,7 +802,11 @@ class IssuesController extends Controller {
 
 			Redis::decr('user_supported_issue_counter:' . $user_id);
 			$su_counter = (int) Redis::decr('supporter_counter:' . $id);
-			Redis::zrem('issue_supporters:' . $id, $user_id);
+            Redis::zrem('issue_supporters:' . $id, $user_id);
+
+			DB::table('issues')->where('id', $id)->decrement('supporter_count');
+            $db_counter = $issue->supporter_count - 1;
+            $this->syncCounter($id, $su_counter, $db_counter);
 		} catch (Exception $e) {
 			Log::error('IssuesController/getUnSupport', (array) $e);
 			if ($this->isApi) {
@@ -907,5 +915,14 @@ class IssuesController extends Controller {
 	 */
 	public function testqueue() {
 		$this->dispatch(new TestQueue());
-	}
+    }
+
+    private function syncCounter($id, $redis_counter, $db_counter)
+    {
+        if ($redis_counter !== $db_counter) {
+            $db_counter = $db_counter < 0 ? 0 : $db_counter;
+            Redis::set('supporter_counter:'.$id, $db_counter);
+        }
+        return;
+    }
 }
