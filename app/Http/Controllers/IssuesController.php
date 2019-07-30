@@ -921,7 +921,7 @@ class IssuesController extends Controller {
     {
         if ($redis_counter !== $db_counter) {
             $db_counter = $db_counter < 0 ? 0 : $db_counter;
-            Rds::set('supporter_counter:'.$id, $db_counter);
+            Redis::set('supporter_counter:'.$id, $db_counter);
         }
         return;
     }
