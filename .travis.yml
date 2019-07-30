@@ -41,7 +41,7 @@ deploy:
     region: eu-west-1
     app: 
       secure: LBezfVKi8ZOVae10OEVdjNNp7sM3qQcDKm7R+BPkwdqMK4TqgE1sdQVpBQw8F/2hIB7Eo7zI6HJKfoNqZfgtB9OMQjq2/wQYhMziJGNAe8n6fcuxXcHTv1vFpLk0LRDz3HXSKZQiGibw1pKAziZQHq/qqTrSZQzOHWoEHAzDI9J8H+hY0+Gb+RI/veN+0MyyOxDbD7TZkd4ByEJb1GlajIy0/DAZhvzd5jqyl1jODhV9VK5+JJNY+bUdjKQrSBopMZgEE8xSxvvQOcelgcMof9CqhwF921LsL9i7cgQNE7CeOeTbV3CDY8hOGlOwafZJGb4CZmLEXQVnfjBI2FcIpXCvFTVMIPJqEpywuWRCq4gB0KGw1IOEjRlfL/1kbgI3Bjsi/p1POeKL7Krm4DZE6p4hysx3zZLGDxIBswrzH4Gq5f8pw0xAJkxq6f3fQa5D/KBK7K9QI+v7+rbX6ezt7IHDDnIj1xxpdiKSDgkZc+4VjAGjaUWu/DBfff+bjpslQy9XcZ/ujZ8muHTbZOiuqpjw38zx3HVo/SQqRo435Bq1GHI4uSvS5ryaYAl3Obbgj6zKZNRzRA1EeRTEGcJYUDKpmuzKq0ZkoL8Fu6XjTV8z8UzHItjKrPPI7I5tDRA4m0MaDjYp5uuV8md9Ii9+ebsJDPb4yD7Lw8ghySo8AKQ=
-    env: app-stage
+    env: app-live
     bucket_name: muhit-travis-ci 
     on:
       repo: Muhit-co/api
