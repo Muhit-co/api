@@ -11,7 +11,7 @@ notifications:
 
 before_deploy:
   - rm -rf node_modules/
-  - zip -r ../MuhitAPP-${TRAVIS_BUILD_NUMBER}.zip ./*
+  - zip -qr ../MuhitAPP-${TRAVIS_BUILD_NUMBER}.zip ./*
   - mv ../MuhitAPP-stage-${TRAVIS_BUILD_NUMBER}.zip ${TRAVIS_BUILD_DIR}/
 
 deploy:
