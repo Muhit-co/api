@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 @section('dialogs')
-    @if($role =='admin' || $role == 'municipality-admin')
+    @if($role =='admin' || $role == 'municipality-admin' || $role == 'superadmin')
         @include('dialogs.write_comment', ['issue_id' => $issue['id']])
         @include('dialogs.edit_comment', ['issue_id' => $issue['id']])
         @include('dialogs.come_drink_tea', ['issue_id' => $issue['id']])
