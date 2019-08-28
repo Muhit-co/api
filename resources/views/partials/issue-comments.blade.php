@@ -1,25 +1,15 @@
 <?php
 function commentIsEditable($comment, $issue, $role) {
     $commentIsEditable = false;
+    $isOwnComment = (Auth::check() && Auth::user()->id == $comment['muhtar']['id']) ? true : false;
 
-    // Refactoring needed: optimise User checks
-    $isPartOfHood = (Auth::check() && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id) ? true : false;
-    $isResponsibleMuhtar = (Auth::check() && Auth::user()->id == $comment['muhtar']['id']) ? true : false;
-
-    if ($role == 'admin' && $isPartOfHood == true && $isResponsibleMuhtar == true) {
-        $commentIsEditable = true;
-    }
-
-    if($role == 'superadmin') {
-        $commentIsEditable = true;
-    }
+    // Allow editing/removing of comments if Admin and if Own Comment
+    if($role == 'admin' && $isOwnComment == true) { $commentIsEditable = true; }
+    // Allow editing/removing of comments if Superadmin
+    if($role == 'superadmin') { $commentIsEditable = true; }
 
     return $commentIsEditable;
 }
-
-// $actionable = ($role =='admin' && isset(Auth::user()->hood_id) && $issue['hood_id'] == Auth::user()->hood_id) ? true : false;
-// @if(Auth::check() and $actionable == true and Auth::user()->id == $comment['muhtar']['id'])
-
 ?>
 
 {{-- Comments start --}}
@@ -35,14 +25,14 @@ function commentIsEditable($comment, $issue, $role) {
                 <div class="u-floatright c-medium u-lineheight20">
                     <small>{{ strftime('%d %h %Y – %k:%M', strtotime($comment['created_at'])) }}</small>
                     @if(commentIsEditable($comment, $issue, $role) == true)
-                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-blueempty u-ml5" onclick="dialogCommentEditData($(this));" style="margin-right: -5px;">
+                        <a data-dialog="dialog_edit_comment" data-comment-id="{{$comment['id']}}" class="btn btn-sm btn-subtle u-ml5" onclick="dialogCommentEditData($(this));" style="margin: -4px -8px 0 0;">
                             <i class="ion ion-edit"></i>
                         </a>
                     @endif
                 </div>
-                <p>{{$role}}</p>
+
                 <p class="u-lineheight20">
-                    <strong {!! ($isOwnIssue) ? 'class="c-blue"' : '' !!}">
+                    <strong {!! ($isOwnIssue) ? 'class="c-blue"' : '' !!}>
                         {{ $comment['muhtar']['first_name'] }} {{ $comment['muhtar']['last_name'] }}
                     </strong>
                     <span class="{!! ($isOwnIssue) ? 'c-darkblue' : 'c-medium' !!}">

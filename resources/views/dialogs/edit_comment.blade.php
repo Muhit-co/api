@@ -1,8 +1,12 @@
+<?php 
+$routeBase = ($role == 'superadmin') ? '/admin' : '/muhtar';
+?>
+
 <dialog id="dialog_edit_comment" class="u-width600">
 
     <a href="javascript:void(0)" onclick="closeDialog();" class="u-pinned-topright u-mr30 u-ml25 u-mt25"><i class="ion ion-ios-close-empty ion-3x"></i></a>
 
-    <form method="post" action="/muhtar/edit-comment/">
+    <form method="post" action="{{$routeBase}}/edit-comment/">
         <div class="dialog-content">
             <h2 class="u-mr30 u-mb10">
                 {{ trans('issues.edit_comment') }}
@@ -16,7 +20,7 @@
         <hr>
 
         <div class="u-alignright">
-            <a id="comment_delete" href="/muhtar/delete-comment/" onclick="return confirm('{{trans('issues.delete_comment_confirmation')}}'); closeDialog();" class="btn btn-greytored btn-busyOnClick u-mr10 u-floatleft">{{ trans('auth.delete_cap') }}</a>
+            <a id="comment_delete" href="{{$routeBase}}/delete-comment/" onclick="return confirm('{{trans('issues.delete_comment_confirmation')}}'); closeDialog();" class="btn btn-greytored btn-busyOnClick u-mr10 u-floatleft">{{ trans('auth.delete_cap') }}</a>
             <a href="javascript:void(0)" onclick="closeDialog();" class="btn btn-tertiary u-mr10">{{ trans('auth.cancel_cap') }}</a>
             <button type="submit" class="btn btn-secondary">{{ trans('auth.save_cap') }}</button>
         </div>
