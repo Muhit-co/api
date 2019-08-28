@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Log;
 use Muhit\Models\Hood;
 use Muhit\Models\User;
+use Muhit\Models\Comment;
 use Muhit\Repositories\Admin\AdminRepositoryInterface;
 use Storage;
 
@@ -233,4 +234,86 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * deletes a comment
+     *
+     * @param null $id
+     * @return redirect
+     * @author gcg
+     */
+    public function getDeleteComment($id = null)
+    {
+        $comment = Comment::find($id);
+        if (empty($comment)) {
+            return redirect('/')
+                ->with('error', 'Silmek istediğiniz yorum sistemde bulunmuyor...');
+        }
+
+        try {
+
+            $comment->delete();
+
+        } catch (Exception $e) {
+            Log::error('AdminController/getDeleteComment', (array)$e);
+            return redirect('/issues/view/' . $comment->issue_id)
+                ->with('error', 'Yorum silerken teknik bir hata meydana geldi. ');
+        }
+        return redirect('/issues/view/' . $comment->issue_id)
+            ->with('success', 'Yaptığınız yorumu sildiniz.');
+    }
+
+    /**
+     * edits a comment
+     *
+     * @param null $id
+     * @return view
+     * @author gcg
+     */
+    public function getEditComment($id = null)
+    {
+        $comment = Comment::find($id);
+
+        if (empty($comment)) {
+            return redirect('/')
+                ->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
+        }
+
+        return response()->app(200, 'comments.edit', ['comment' => $comment]);
+    }
+
+    /**
+     * saves an editted comment
+     *
+     * @return view
+     * @author gcg
+     */
+    public function postEditComment($id = null, Request $request)
+    {
+        $comment = Comment::find($id);
+
+        if (empty($comment)) {
+
+            return redirect('/')
+                ->with('error', 'Düzenlemek istediğiniz yorum sistemde bulunmuyor...');
+        }
+
+        if ($request->has('comment')) {
+            $comment->comment = $request->get('comment');
+            try {
+                $comment->save();
+            } catch (Exception $e) {
+                Log::error('AdminController/postEditComment', (array)$e);
+
+                return redirect('/issues/view/' . $comment->issue_id)
+                    ->with('error', 'Yorumunuzu düzenlerken teknik bir hata meydana geldi.');
+            }
+
+            return redirect('/issues/view/' . $comment->issue_id . '#comment-' . $comment->id)
+                ->with('success', 'Yorumunuz başarılı bir şekilde güncellendi');
+
+        } else {
+            return redirect('/issues/view/' . $comment->issue_id)
+                ->with('error', 'Lütfen yorumunuzu yazıp tekrar deneyin.');
+        }
+    }
 }

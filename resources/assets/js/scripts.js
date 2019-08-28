@@ -323,7 +323,7 @@ function dialogCommentEditData(obj) {
   $dest = obj.attr('data-dialog');
   $comment_id = obj.attr('data-comment-id');
   if (obj.length > 0 && $('#' + $dest).length > 0) {
-    $msg = $.trim( obj.closest('.comment').find('.comment-message').html() );
+    $msg = $.trim( obj.closest('.comment').find('.comment-message').attr('data-comment') );
     if ($msg.length > 0) {
       $('#' + $dest).find('textarea[name="comment"]').val($msg);
       $form = $('#' + $dest).find('form');
