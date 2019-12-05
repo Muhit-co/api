@@ -73,7 +73,7 @@ class DataExporter extends Command
 
     public function issues()
     {
-        $issues = Issue::with('comments', 'user', 'tags', 'images', 'updates')->get();
+        $issues = Issue::with('comments.user', 'user', 'tags', 'images', 'updates')->get();
         echo $issues->toJson();
     }
 }

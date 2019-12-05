@@ -38,7 +38,24 @@ class User extends \Eloquent implements AuthenticatableContract
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password', 
+        'remember_token', 
+        'supported_issue_counter',
+        'opened_issue_counter',
+        'admin_type',
+        'verify_token',
+        'deleted_at',
+        'phone',
+        'password_token_expires_at',
+        'password_reset_token',
+        'coordinates',
+        'location',
+        'hood_id',
+        'level',
+        'updated_at',
+        'created_at',
+    ];
 
     protected $appends = ['full_name'];
 
