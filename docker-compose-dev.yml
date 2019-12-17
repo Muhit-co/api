@@ -1,10 +1,10 @@
 version: '3.1'
 services:
-  muhit-redis:
+  muhitredis:
     image: "redis:alpine"
     ports:
       - 6379/tcp
-  muhit-db:
+  muhitdb:
     image: mysql
     command: --sql_mode="" --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
       MYSQL_PASSWORD: 11235
     ports:
       - "4306:3306"
-  muhit-web:
+  muhitweb:
     build: .
     ports:
       - "3000:80"
