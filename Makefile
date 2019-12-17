@@ -1,4 +1,4 @@
-.PHONY: build build-prod composer dev check test docker-dev docker-build ci dev-db release run-gulp
+.PHONY: build build-prod composer dev check test docker-dev docker-build ci dev-db release gulp
 
 # Install composer and node deps and run composer scripts.
 build:
@@ -34,26 +34,26 @@ ci:
 
 # Runs the artisan db commands
 dev-db:
-	docker exec -i api_muhit-web_1 /usr/local/bin/php artisan migrate
-	docker exec -i api_muhit-web_1 /usr/local/bin/php artisan db:seed
+	docker exec -i api_muhitweb_1 /usr/local/bin/php artisan migrate
+	docker exec -i api_muhitweb_1 /usr/local/bin/php artisan db:seed
 
 # Removes everything in development database
 dev-db-refresh:
-	docker exec -i api_muhit-web_1 /usr/local/bin/php artisan migrate:fresh
+	docker exec -i api_muhitweb_1 /usr/local/bin/php artisan migrate:fresh
 
 # Runs the rollback command on the docker
 dev-rollback:
-	docker exec -i api_muhit-web_1 /usr/local/bin/php artisan migrate:rollback
+	docker exec -i api_muhitweb_1 /usr/local/bin/php artisan migrate:rollback
 
 # clears caches on docker
 view-clear:
-	docker exec -i api_muhit-web_1 /usr/local/bin/php artisan view:clear
-	docker exec -i api_muhit-web_1 /usr/local/bin/php artisan view:cache
+	docker exec -i api_muhitweb_1 /usr/local/bin/php artisan view:clear
+	docker exec -i api_muhitweb_1 /usr/local/bin/php artisan view:cache
 
 # install npm and run gulp
-run-gulp:
-	docker exec -i api_muhit-web_1 npm install
-	docker exec -i api_muhit-web_1 ./node_modules/.bin/gulp --production
+gulp:
+	docker exec -i api_muhitweb_1 npm install
+	docker exec -i api_muhitweb_1 ./node_modules/.bin/gulp --production
 
 # reads the latest tag, creates a new release incrementing the patch number
 release:
