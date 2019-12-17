@@ -11,6 +11,9 @@ class Issue extends \Eloquent
 
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
+    protected $hidden = [
+        'deleted_at',
+    ];
 
     public function tags()
     {
@@ -40,8 +43,8 @@ class Issue extends \Eloquent
     public function toArray($user_id = null)
     {
         $array = parent::toArray();
-        $array['supporter_counter'] = (int)Redis::get('supporter_counter:' . $this->id);
-        $array['is_supported'] = (((int)Redis::zscore('issue_supporters:' . $this->id, $user_id) > 0) ? 1 : 0);
+        //$array['supporter_counter'] = (int)Redis::get('supporter_counter:' . $this->id);
+        //$array['is_supported'] = (((int)Redis::zscore('issue_supporters:' . $this->id, $user_id) > 0) ? 1 : 0);
         return $array;
     }
 

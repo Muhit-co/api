@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
 		'Muhit\Console\Commands\Inspire',
+		'Muhit\Console\Commands\DataExporter',
 	];
 
 	/**

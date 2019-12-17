@@ -1,17 +1,19 @@
 <?php namespace Muhit\Models;
 
-use Redis;
+use DB;
 
 class Tag extends \Eloquent
 {
 
     protected $guarded = ['id'];
+    protected $appends = ['issue_counter'];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 
-    public function toArray()
+    public function getIssueCounterAttribute() 
     {
-        $array = parent::toArray();
-        $array['issue_counter'] = (int)Redis::get('tag_issue_counter:' . $this->id);
-
-        return $array;
+        return DB::table('issue_tag')->where('tag_id', $this->id)->count();
     }
 }
